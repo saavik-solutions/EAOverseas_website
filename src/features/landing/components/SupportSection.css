@@ -268,7 +268,7 @@
 
 @media (max-width: 640px) {
     .support-section {
-        padding: 0 1rem 2rem 1rem;
+        padding: 0 1rem 0 1rem;
     }
 
     .support-heading {
@@ -339,6 +339,10 @@
     .card-navigation {
         margin-top: 0;
         margin-bottom: 0;
+    }
+
+    .support-images {
+        display: none;
     }
 
     .image-frame {

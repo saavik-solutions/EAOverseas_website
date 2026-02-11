@@ -1,5 +1,5 @@
 .team-section {
-    padding: 5rem 2rem;
+    padding: 2rem 2rem 5rem 2rem;
     max-width: 1600px;
     margin: 0 auto;
     font-family: 'Inter', sans-serif;
@@ -18,7 +18,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 16px;
+    gap: 0.25rem;
     text-align: center;
     max-width: 745px;
 }
@@ -60,18 +60,26 @@
     display: none;
 }
 
+.team-carousel-wrapper {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    position: relative;
+}
+
 .team-carousel-container {
     width: 100%;
+    max-width: calc(100% - 180px);
     position: relative;
     overflow: hidden;
-    margin-bottom: 1rem;
 }
 
 .team-navigation-controls {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 20px;
     width: 100%;
     margin-top: 1rem;
 }
@@ -79,6 +87,7 @@
 .nav-arrow-btn {
     width: 54px;
     height: 54px;
+    flex-shrink: 0;
     border-radius: 50%;
     background: #FFFFFF;
     border: 2px solid #E2E8F0;
@@ -193,7 +202,7 @@
 
 @media (max-width: 640px) {
     .team-section {
-        padding: 3rem 1rem;
+        padding: 3rem 1rem 0;
         gap: 2rem;
     }
 
@@ -202,17 +211,24 @@
         line-height: 1.2;
     }
 
+    .team-carousel-wrapper {
+        gap: 0.75rem;
+    }
+
+    .team-carousel-container {
+        max-width: calc(100% - 100px);
+    }
+
     .team-grid {
         display: flex;
         flex-wrap: nowrap;
         overflow-x: auto;
         justify-content: flex-start;
         gap: 1rem;
-        width: calc(100% + 2rem);
-        /* Extend to edges */
-        margin-left: -1rem;
-        padding-left: 1rem;
-        padding-right: 1rem;
+        padding-left: 0;
+        padding-right: 0;
+        margin-left: 0;
+        width: 100%;
         scroll-snap-type: x mandatory;
         /* Hide scrollbar */
         scrollbar-width: none;
@@ -236,13 +252,8 @@
         font-size: 20px;
     }
 
-    .team-carousel-container {
-        margin-bottom: 0.5rem;
-    }
-
     .team-navigation-controls {
-        gap: 12px;
-        margin-top: 0.5rem;
+        margin-top: 1rem;
     }
 
     .nav-arrow-btn {

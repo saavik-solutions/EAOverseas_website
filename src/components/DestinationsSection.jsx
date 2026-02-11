@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './DestinationsSection.css';
-import statsIcon from '../assets/stats_icon_placeholder.png'; // Placeholder for stats icon
+// import statsIcon from '../assets/stats_icon_placeholder.png'; // Placeholder for stats icon
 import { useNavigate } from 'react-router-dom';
 
 const DestinationsSection = () => {

@@ -12,10 +12,9 @@ const ConsultantSidebar = ({ isOpen, onClose, user }) => {
     const navItems = [
         { name: 'Dashboard', icon: 'dashboard', path: '/counsellor-dashboard' },
         { name: 'Students', icon: 'group', path: '/counsellor-students' },
-        { name: 'Applications', icon: 'description', path: '/counsellor-applications' },
-        { name: 'Tasks', icon: 'task_alt', path: '/counsellor-tasks' },
-        { name: 'Schedule', icon: 'calendar_month', path: '/counsellor-schedule' },
+        { name: 'University Directory', icon: 'school', path: '/consultant/university-directory' },
         { name: 'Documents', icon: 'description', path: '/counsellor-documents', badge: 3 },
+        { name: 'Schedule', icon: 'calendar_month', path: '/counsellor-schedule' },
     ];
 
     return (
@@ -36,14 +35,8 @@ const ConsultantSidebar = ({ isOpen, onClose, user }) => {
                     ${isOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
                 `}
             >
-                <div className="p-5 flex items-center gap-3">
-                    <div className="bg-primary/10 flex items-center justify-center rounded-lg size-10 text-primary bg-blue-50 text-blue-600">
-                        <span className="material-symbols-outlined text-2xl icon-filled">school</span>
-                    </div>
-                    <div className="flex flex-col">
-                        <h1 className="text-text-main dark:text-white text-base font-bold leading-none text-gray-900">EAOverseas</h1>
-                        <p className="text-text-secondary text-xs mt-1 text-gray-500">Counsellor Portal</p>
-                    </div>
+                <div className="p-5 flex items-center justify-start">
+                    <img src={logo} alt="EA Overseas" className="h-10 w-auto object-contain" />
                 </div>
 
                 <nav className="flex-1 overflow-y-auto px-3 py-2 space-y-1">

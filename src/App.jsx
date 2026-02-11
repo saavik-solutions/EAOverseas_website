@@ -3,6 +3,9 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import ScrollToTop from './components/ScrollToTop';
 import MainLayout from './layouts/MainLayout';
 import LandingPage from './pages/LandingPage';
+import TermsAndConditions from './pages/TermsAndConditions';
+import CookiePolicy from './pages/CookiePolicyPage';
+import PrivacyPolicy from './pages/PrivacyPolicyPage';
 import AboutUs from './pages/AboutUs';
 import Team from './pages/Team';
 import ExpertProfile from './pages/ExpertProfile';
@@ -11,6 +14,7 @@ import AllDestinations from './pages/AllDestinations';
 import Blogs from './pages/Blogs';
 import BlogDetails from './pages/BlogDetails';
 import Testimonials from './pages/Testimonials';
+import StudentStory from './pages/StudentStory';
 import HomeDashboard from './pages/HomeDashboard';
 import Courses from './pages/Courses';
 import Feed from './pages/Feed';
@@ -70,7 +74,10 @@ import WritingTestInstructions from './pages/WritingTestInstructions';
 import WritingTest from './pages/WritingTest';
 import ConsultantDashboard from './pages/ConsultantDashboard';
 import ConsultantStudents from './pages/ConsultantStudents';
+import ConsultantSchedule from './pages/ConsultantSchedule';
+import ConsultantTasks from './pages/ConsultantTasks';
 import ConsultantLayout from './layouts/ConsultantLayout';
+import UniversityKnowledgeHub from './pages/UniversityKnowledgeHub';
 
 // Profile Pages
 import ProfileLayout from './pages/profile/ProfileLayout';
@@ -91,10 +98,8 @@ import { NotificationProvider } from './context/NotificationContext';
 import { useAuth } from './context/AuthContext';
 
 const HomeRoute = () => {
-    const { user, loading } = useAuth();
-    if (loading) return null; // Or a spinner
-    // Redirect to Global Feed for logged-in users as requested
-    return user ? <Navigate to="/feed" replace /> : <Navigate to="/feed" replace />;
+    // Redirect ALL users to Landing Page first
+    return <Navigate to="/landing" replace />;
 };
 
 import CountryDetails from './pages/CountryDetails';
@@ -108,6 +113,9 @@ function App() {
                         <ScrollToTop />
                         <Routes>
                             <Route path="/landing" element={<LandingPage />} />
+                            <Route path="/terms" element={<TermsAndConditions />} />
+                            <Route path="/cookie-policy" element={<CookiePolicy />} />
+                            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
                             <Route path="/about" element={<AboutUs />} />
                             <Route path="/team" element={<Team />} />
                             <Route path="/expert-profile" element={<Navigate to="/team" replace />} />
@@ -118,6 +126,7 @@ function App() {
                             <Route path="/blogs" element={<Blogs />} />
                             <Route path="/blogs/:id" element={<BlogDetails />} />
                             <Route path="/testimonials" element={<Testimonials />} />
+                            <Route path="/testimonials/:id" element={<StudentStory />} />
                             <Route path="/" element={<MainLayout />}>
                                 <Route index element={<HomeRoute />} />
                                 <Route path="dashboard" element={<HomeDashboard />} />
@@ -196,7 +205,12 @@ function App() {
                             <Route element={<ConsultantLayout />}>
                                 <Route path="/counsellor-dashboard" element={<ConsultantDashboard />} />
                                 <Route path="/counsellor-students" element={<ConsultantStudents />} />
+                                <Route path="/counsellor-schedule" element={<ConsultantSchedule />} />
+                                <Route path="/counsellor-tasks" element={<ConsultantTasks />} />
+                                <Route path="/consultant/university-directory" element={<UniversityKnowledgeHub />} />
                             </Route>
+
+                            {/* Consultant Resources */}
 
                             {/* Auth Routes */}
                             <Route path="/login" element={<Login />} />

@@ -39,7 +39,6 @@ const TestPrep = () => {
             <div className="hidden lg:block">
                 <PageHeader
                     title="Test Prep Hub"
-                    breadcrumbs={[{ label: 'Test Prep' }]}
                     actions={
                         !user ? (
                             <button
@@ -293,7 +292,7 @@ const TestPrep = () => {
 
                 </div>
             </main>
-        </div>
+        </div >
     );
 };
 

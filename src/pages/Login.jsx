@@ -49,7 +49,7 @@ const Login = () => {
                         ? 'https://images.unsplash.com/photo-1562774053-701939374585?q=80&w=2686&auto=format&fit=crop'
                         : selectedRole === 'Counsellor'
                             ? 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=2664&auto=format&fit=crop'
-                            : 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=2670&auto=format&fit=crop'
+                            : 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=2670&auto=format&fit=crop'
                         }")`,
                     filter: 'grayscale(20%)'
                 }}></div>
@@ -173,6 +173,7 @@ const Login = () => {
                                 <div className="relative">
                                     <input
                                         type={showPassword ? "text" : "password"}
+                                        name="password"
                                         value={password}
                                         onChange={(e) => setPassword(e.target.value)}
                                         className="w-full h-10 lg:h-12 px-3 pr-10 rounded-lg bg-gray-50 border-gray-200 border focus:bg-white focus:border-[#0d6cf2] focus:ring-2 focus:ring-[#0d6cf2]/10 transition-all outline-none text-slate-900 text-sm lg:text-base font-medium placeholder:text-gray-400"

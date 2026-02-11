@@ -20,7 +20,7 @@ const Navbar = () => {
             <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-12 h-16 lg:h-20 flex items-center justify-between">
                 {/* Logo */}
                 <div className="flex-shrink-0 cursor-pointer" onClick={() => navigate('/landing')}>
-                    <img src={logo} alt="EA Overseas Logo" className="h-8 lg:h-10 w-auto object-contain" />
+                    <img src={logo} alt="EA Overseas Logo" className="h-10 lg:h-14 w-auto object-contain" />
                 </div>
 
                 {/* Desktop Links */}
@@ -29,9 +29,8 @@ const Navbar = () => {
                         <div
                             key={path}
                             onClick={() => navigate(path)}
-                            className="relative group cursor-pointer"
                         >
-                            <span className={`text-sm font-medium transition-colors ${isActive(path) ? 'text-blue-600' : 'text-gray-900 hover:text-blue-600'}`}>
+                            <span className={`text-base font-medium transition-colors ${isActive(path) ? 'text-blue-600' : 'text-gray-900 hover:text-blue-600'}`}>
                                 {path === '/countries' ? 'Countries' : path === '/about' ? 'About Us' : 'Blogs'}
                             </span>
                             {isActive(path) && (

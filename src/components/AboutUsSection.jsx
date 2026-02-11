@@ -1,10 +1,10 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './AboutUsSection.css';
-import img1 from '../assets/story_placeholder_1.jpg'; // Placeholder
-import img2 from '../assets/story_placeholder_2.jpg'; // Placeholder
-import img3 from '../assets/story_placeholder_3.jpg'; // Placeholder
-import img4 from '../assets/story_placeholder_4.jpg'; // Placeholder
+import img1 from '../assets/about_us_1.jpg';
+import img2 from '../assets/about_us_2.jpg';
+import img3 from '../assets/about_us_3.jpg';
+import img4 from '../assets/about_us_4.jpg';
 
 const AboutUsSection = () => {
     const navigate = useNavigate();

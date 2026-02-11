@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate, useSearchParams, useOutletContext } from 'react-router-dom';
+import { useNavigate, useSearchParams, useOutletContext, Link } from 'react-router-dom';
 import { useSavedItems } from '../../context/SavedItemsContext';
 
 const Review = () => {
@@ -177,7 +177,7 @@ const Review = () => {
                         <div className="flex-1">
                             <span className="font-semibold text-slate-900 block mb-1">Declaration</span>
                             <span className="text-sm text-slate-600 leading-relaxed group-hover:text-slate-800 transition-colors">
-                                I hereby declare that the information provided is true and correct. I understand that any willful consideration of facts will result in the disqualification of my candidacy. I agree to the <a href="#" className="text-blue-600 hover:underline">Terms of Service</a> and <a href="#" className="text-blue-600 hover:underline">Privacy Policy</a>.
+                                I hereby declare that the information provided is true and correct. I understand that any willful consideration of facts will result in the disqualification of my candidacy. I agree to the <Link to="/terms" target="_blank" className="text-blue-600 hover:underline">Terms of Service</Link> and <Link to="/privacy-security" target="_blank" className="text-blue-600 hover:underline">Privacy Policy</Link>.
                             </span>
                         </div>
                     </label>

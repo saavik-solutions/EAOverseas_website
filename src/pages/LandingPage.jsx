@@ -18,21 +18,19 @@ import studentStoryHero from '../assets/student_story_hero.png';
 // Ah, step 2228 was `copy ... loan_hero.png`. Yes I did.
 import loanHeroImage from '../assets/loan_hero.png';
 import mainHeroImage from '../assets/student_standing.png';
-import mobileHeroImage from 'C:/Users/SRIKAR/.gemini/antigravity/brain/497f3c6b-bda9-4682-a8d9-e040951d29f5/hero_mobile_cartoon_1769695627587.png'; // Direct import from brain for now, or should I copy? I'll use direct path as it works in Vite 
-// Actually, usually I should copy to assets. But I'll import from absolute path if allowed, or better, I will run a command to copy it to assets first?
-// Wait, I can't run shell explicitly to copy unless I use run_command. 
-// I'll just import it from the absolute path for now as Vite allows serving up files if they are accessible.
-// Better: I will use absolute path in the src. 
-// Wait, ideally I should move it to assets.
+import mobileHeroImage from '../assets/hero_mobile_cartoon.png';
 import whatsappIcon from '../assets/icon_whatsapp.png';
+import story1 from '../assets/story_card_manisha.jpg';
+import story2 from '../assets/story_card_manish.jpg';
+import story3 from '../assets/story_card_sanjukta.jpg';
 
 const LandingPage = () => {
     const navigate = useNavigate();
 
     // Slide 1: Original Hero + Flag Strip
     const slide1 = (
-        <div className="flex flex-col-reverse items-center justify-between w-full max-w-6xl px-4 gap-6 md:gap-12">
-            <div className="flex-1 text-center">
+        <div className="flex flex-col items-center justify-between w-full max-w-6xl px-4 gap-6 md:gap-12">
+            <div className="flex-1 text-center w-full">
                 <h1 className="text-3xl sm:text-4xl md:text-7xl font-extrabold tracking-tight mb-4 md:mb-8 leading-tight text-[#090914]">
                     Discover the Future <br />
                     with EAOverseas
@@ -48,25 +46,33 @@ const LandingPage = () => {
 
                 <button
                     onClick={() => navigate('/about')}
-                    className="bg-[#2D83F2] hover:bg-blue-600 text-white text-sm md:text-lg font-bold py-2.5 px-6 md:py-4 md:px-10 rounded-lg transition-all shadow-md mb-12 md:mb-8 relative z-40"
+                    className="hidden md:inline-block bg-[#2D83F2] hover:bg-blue-600 text-white text-sm md:text-lg font-bold py-2.5 px-6 md:py-4 md:px-10 rounded-lg transition-all shadow-md mb-12 md:mb-8 relative z-40"
                 >
                     Explore More About Us
                 </button>
             </div>
             <div className="flex-1 flex justify-center mt-2 md:-mt-12 w-full">
-                {/* Desktop Image */}
-                <img src={mainHeroImage} alt="Discover the Future" className="hidden w-full max-w-md object-contain hover:scale-105 transition-transform duration-500" />
+                {/* Desktop Image - Hidden */}
+                {/* <img src={mainHeroImage} alt="Discover the Future" className="hidden md:block w-full max-w-md object-contain hover:scale-105 transition-transform duration-500" /> */}
 
                 {/* Mobile Cartoon Image */}
                 <img src={mobileHeroImage} alt="Discover the Future" className="block md:hidden w-[85%] sm:w-4/5 max-w-[340px] object-contain hover:scale-105 transition-transform duration-500" />
             </div>
+
+            {/* Mobile Button - Below Image */}
+            <button
+                onClick={() => navigate('/about')}
+                className="md:hidden bg-[#2D83F2] hover:bg-blue-600 text-white text-sm font-bold py-3 px-8 rounded-lg transition-all shadow-md mb-8 w-full max-w-sm"
+            >
+                Explore More About Us
+            </button>
         </div>
     );
 
     // Slide 2: Loan Options
     const slide2 = (
-        <div className="flex flex-col-reverse md:flex-row items-center md:items-start justify-between w-full max-w-6xl px-4 gap-6 md:gap-12">
-            <div className="flex-1 text-center md:text-left">
+        <div className="flex flex-col md:flex-row items-center md:items-start justify-between w-full max-w-6xl px-4 gap-6 md:gap-12">
+            <div className="flex-1 text-center md:text-left w-full md:w-auto">
                 <h1 className="text-2xl sm:text-4xl md:text-6xl font-extrabold tracking-tight mb-3 md:mb-6 leading-tight text-[#090914]">
                     Discover Your <br />
                     Loan Options
@@ -81,7 +87,7 @@ const LandingPage = () => {
                 </p>
                 <button
                     onClick={() => navigate('/loan-calculator')}
-                    className="bg-[#2D83F2] hover:bg-blue-600 text-white text-xs sm:text-base font-bold py-2.5 px-6 md:px-8 rounded-lg transition-all shadow-md mb-12 md:mb-8"
+                    className="hidden md:inline-block bg-[#2D83F2] hover:bg-blue-600 text-white text-xs sm:text-base font-bold py-2.5 px-6 md:px-8 rounded-lg transition-all shadow-md mb-12 md:mb-8"
                 >
                     Explore the Loan Calculator
                 </button>
@@ -89,13 +95,21 @@ const LandingPage = () => {
             <div className="flex-1 flex justify-center mt-0 md:-mt-12 w-full">
                 <img src={loanHeroImage} alt="Loan Options" className="w-[90%] sm:w-4/5 md:w-full max-w-[380px] md:max-w-md object-contain hover:scale-105 transition-transform duration-500" />
             </div>
+
+            {/* Mobile Button - Below Image */}
+            <button
+                onClick={() => navigate('/loan-calculator')}
+                className="md:hidden bg-[#2D83F2] hover:bg-blue-600 text-white text-sm font-bold py-3 px-8 rounded-lg transition-all shadow-md mb-8 w-full max-w-sm"
+            >
+                Explore the Loan Calculator
+            </button>
         </div >
     );
 
     // Slide 3: Destinations
     const slide3 = (
-        <div className="flex flex-col-reverse md:flex-row items-center md:items-start justify-between w-full max-w-6xl px-4 gap-6 md:gap-12">
-            <div className="flex-1 text-center md:text-left">
+        <div className="flex flex-col md:flex-row items-center md:items-start justify-between w-full max-w-6xl px-4 gap-6 md:gap-12">
+            <div className="flex-1 text-center md:text-left w-full md:w-auto">
                 <h1 className="text-2xl sm:text-4xl md:text-6xl font-extrabold tracking-tight mb-3 md:mb-6 leading-tight text-[#090914]">
                     Canada, UK, Germany... <br />
                     Where Will You Go?
@@ -109,7 +123,7 @@ const LandingPage = () => {
                 </p>
                 <button
                     onClick={() => navigate('/countries')}
-                    className="bg-[#2D83F2] hover:bg-blue-600 text-white text-xs sm:text-base font-bold py-2.5 px-6 md:px-8 rounded-lg transition-all shadow-md mb-12 md:mb-8"
+                    className="hidden md:inline-block bg-[#2D83F2] hover:bg-blue-600 text-white text-xs sm:text-base font-bold py-2.5 px-6 md:px-8 rounded-lg transition-all shadow-md mb-12 md:mb-8"
                 >
                     Explore Countries
                 </button>
@@ -117,18 +131,28 @@ const LandingPage = () => {
             <div className="flex-1 flex justify-center mt-0 md:-mt-12 w-full">
                 <img src={destinationsHero} alt="Destinations Collage" className="w-[90%] sm:w-4/5 md:w-full max-w-[380px] md:max-w-md object-contain hover:scale-105 transition-transform duration-500" />
             </div>
+
+            {/* Mobile Button - Below Image */}
+            <button
+                onClick={() => navigate('/countries')}
+                className="md:hidden bg-[#2D83F2] hover:bg-blue-600 text-white text-sm font-bold py-3 px-8 rounded-lg transition-all shadow-md mb-8 w-full max-w-sm"
+            >
+                Explore Countries
+            </button>
         </div >
     );
 
+
+
     // Slide 4: Student Stories
     const slide4 = (
-        <div className="flex flex-col-reverse md:flex-row items-center md:items-start justify-between w-full max-w-6xl px-4 gap-6 md:gap-12">
-            <div className="flex-1 text-center md:text-left">
-                <h1 className="text-2xl sm:text-4xl md:text-6xl font-extrabold tracking-tight mb-3 md:mb-6 leading-tight text-[#090914]">
+        <div className="flex flex-col md:flex-row items-center md:items-center justify-between w-full max-w-6xl px-4 gap-8 md:gap-12">
+            <div className="flex-1 text-center md:text-left w-full md:w-auto z-10">
+                <h1 className="text-3xl sm:text-4xl md:text-6xl font-extrabold tracking-tight mb-4 md:mb-6 leading-tight text-[#090914]">
                     From Kolkata to <br />
                     Canada in 6 Months
                 </h1>
-                <p className="text-sm sm:text-base text-[#52525B] mb-5 md:mb-8 leading-relaxed max-w-lg mx-auto md:mx-0">
+                <p className="text-sm sm:text-base text-[#52525B] mb-6 md:mb-8 leading-relaxed max-w-lg mx-auto md:mx-0">
                     Read how Tanisha got her German visa on the first try and achieved her study abroad dreams.
                     <span className="block md:hidden mt-2">
                         Discover inspiring journeys of students who transformed their lives with our expert guidance. From university selection to visa approval, we are with you every step of the way. Your success story could be next. We are dedicated to making your study abroad dreams a reality with our personalized support and network.
@@ -141,14 +165,78 @@ const LandingPage = () => {
                             element.scrollIntoView({ behavior: 'smooth' });
                         }
                     }}
-                    className="bg-[#2D83F2] hover:bg-blue-600 text-white text-xs sm:text-base font-bold py-2.5 px-6 md:px-8 rounded-lg transition-all shadow-md mb-12 md:mb-8"
+                    className="hidden md:inline-block bg-[#2D83F2] hover:bg-blue-600 text-white text-sm md:text-base font-bold py-3 px-8 rounded-lg transition-all shadow-md mb-8"
                 >
                     View Student Stories
                 </button>
             </div>
-            <div className="flex-1 flex justify-center mt-0 md:-mt-12 w-full">
-                <img src={studentStoryHero} alt="Student Stories" className="w-[90%] sm:w-4/5 md:w-full max-w-[380px] md:max-w-md object-contain hover:scale-105 transition-transform duration-500" />
+
+            {/* Right Side - 3 Pill Layout (Exact Match) */}
+            <div className="flex-1 flex justify-center items-center w-full relative mt-12 md:mt-0 pt-16 md:pt-12">
+                <div className="relative flex items-start justify-center gap-4 md:gap-6">
+
+                    {/* Decorative Top Horizontal Pill - Galaxy Texture */}
+                    <div className="absolute top-2 left-1/2 transform -translate-x-1/2 w-40 h-9 rounded-full shadow-2xl z-0 overflow-hidden bg-[#020617] border border-blue-900/30">
+                        {/* Deep Space Background */}
+                        <div className="absolute inset-0 bg-gradient-to-r from-[#0f172a] via-[#1e1b4b] to-[#312e81] opacity-100"></div>
+
+                        {/* Nebula Clouds */}
+                        <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 via-purple-500/20 to-transparent mix-blend-overlay"></div>
+
+                        {/* Stars Texture */}
+                        <div className="absolute inset-0 opacity-70" style={{
+                            backgroundImage: 'radial-gradient(white 1px, transparent 1px), radial-gradient(white 0.5px, transparent 0.5px)',
+                            backgroundSize: '16px 16px, 8px 8px',
+                            backgroundPosition: '0 0, 4px 4px'
+                        }}></div>
+
+                        {/* Glow */}
+                        <div className="absolute -bottom-2 -right-2 w-16 h-16 bg-blue-500/30 blur-xl rounded-full"></div>
+                    </div>
+
+                    {/* Left Pill (Manisha) - High */}
+                    <div className="relative group z-10">
+                        <div className="w-24 sm:w-32 md:w-40 h-64 sm:h-80 md:h-96 rounded-[100px] overflow-hidden shadow-xl border-4 border-white transition-transform duration-500 hover:-translate-y-2 bg-blue-200">
+                            <img src={story1} alt="Student Story 1" className="w-full h-full object-cover" />
+                        </div>
+                    </div>
+
+                    {/* Center Pill (Manish) - Low (Shifted Down) & Lighting Effect */}
+                    <div className="relative mt-12 md:mt-16 z-10 group">
+                        <div className="w-24 sm:w-32 md:w-40 h-64 sm:h-80 md:h-96 rounded-[100px] overflow-hidden shadow-xl border-4 border-white transition-transform duration-500 hover:-translate-y-2 bg-gray-900 relative">
+                            <img src={story2} alt="Student Story 2" className="w-full h-full object-cover grayscale-[10%] contrast-110" />
+                            {/* Enhanced Blue/Red Split Lighting Effect Overlay */}
+                            <div className="absolute inset-0 bg-gradient-to-r from-blue-600/50 to-red-600/50 mix-blend-overlay pointer-events-none"></div>
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-80"></div>
+                        </div>
+                    </div>
+
+                    {/* Right Pill (Sanjukta) - High */}
+                    <div className="relative group z-10">
+                        <div className="w-24 sm:w-32 md:w-40 h-64 sm:h-80 md:h-96 rounded-[100px] overflow-hidden shadow-xl border-4 border-white transition-transform duration-500 hover:-translate-y-2 bg-green-100">
+                            <img src={story3} alt="Student Story 3" className="w-full h-full object-cover" />
+                        </div>
+                        {/* Decorative Bottom Horizontal Pill */}
+                        <div className="absolute -bottom-16 left-1/2 transform -translate-x-1/2 w-40 h-9 bg-gradient-to-r from-purple-600 to-pink-500 rounded-full opacity-90 shadow-lg z-20">
+                            <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/20 rounded-full"></div>
+                        </div>
+                    </div>
+
+                </div>
             </div>
+
+            {/* Mobile Button - Below Image */}
+            <button
+                onClick={() => {
+                    const element = document.getElementById('student-stories');
+                    if (element) {
+                        element.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }}
+                className="md:hidden bg-[#2D83F2] hover:bg-blue-600 text-white text-sm font-bold py-3 px-8 rounded-lg transition-all shadow-md mt-6 w-full max-w-sm"
+            >
+                View Student Stories
+            </button>
         </div>
     );
 
@@ -168,7 +256,7 @@ const LandingPage = () => {
                 }}
             />
 
-            <main className="flex flex-col items-center justify-start text-center px-4 pt-4 pb-12 md:pt-10 md:pb-24 max-w-[1600px] mx-auto w-full">
+            <main className="flex flex-col items-center justify-start text-center px-4 pt-4 pb-0 md:pt-10 md:pb-0 max-w-[1600px] mx-auto w-full">
 
                 {/* Hero Carousel Wrapper for Sticky Flags */}
                 <div className="relative w-full max-w-[1600px] mx-auto">

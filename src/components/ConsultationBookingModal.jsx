@@ -18,6 +18,25 @@ const ConsultationBookingModal = ({ isOpen, onClose, onConfirm }) => {
     });
 
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [emailError, setEmailError] = useState('');
+
+    // Email validation function
+    const isValidEmail = (email) => {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    };
+
+    const handleEmailChange = (e) => {
+        const email = e.target.value;
+        setFormData({ ...formData, email });
+
+        // Validate email on change
+        if (email && !isValidEmail(email)) {
+            setEmailError('Please enter a valid email address');
+        } else {
+            setEmailError('');
+        }
+    };
 
     useEffect(() => {
         if (isOpen) {
@@ -27,6 +46,7 @@ const ConsultationBookingModal = ({ isOpen, onClose, onConfirm }) => {
             setSelectedTime(null);
             setFormData({ name: '', email: '', topic: '', notes: '' });
             setIsSubmitting(false);
+            setEmailError('');
         } else {
             const timer = setTimeout(() => setIsVisible(false), 300);
             return () => clearTimeout(timer);
@@ -133,6 +153,9 @@ const ConsultationBookingModal = ({ isOpen, onClose, onConfirm }) => {
             onClose();
         }, 1500);
     };
+
+    // Check if form is valid
+    const isFormValid = formData.name.trim() && formData.email.trim() && isValidEmail(formData.email);
 
     return createPortal(
         <div className={`fixed inset-0 z-[100] flex items-center justify-center p-4 transition-opacity duration-300 ${isOpen ? 'opacity-100' : 'opacity-0'}`}>
@@ -289,10 +312,19 @@ const ConsultationBookingModal = ({ isOpen, onClose, onConfirm }) => {
                                         <input
                                             type="email"
                                             value={formData.email}
-                                            onChange={e => setFormData({ ...formData, email: e.target.value })}
-                                            className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition-all"
+                                            onChange={handleEmailChange}
+                                            className={`w-full px-4 py-3 rounded-lg border ${emailError ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-2 focus:ring-blue-600'} focus:border-transparent outline-none transition-all`}
                                             placeholder="john@example.com"
                                         />
+                                        {emailError && (
+                                            <p className="mt-1 text-sm text-red-600 flex items-center gap-1">
+                                                <span className="material-symbols-outlined !text-[16px]">error</span>
+                                                {emailError}
+                                            </p>
+                                        )}
+                                        <p className="mt-1 text-xs text-gray-500">
+                                            📧 You'll receive a confirmation email at this address
+                                        </p>
                                     </div>
                                     <div>
                                         <label className="block text-sm font-bold text-gray-700 mb-1.5">Additional Notes</label>
@@ -307,8 +339,8 @@ const ConsultationBookingModal = ({ isOpen, onClose, onConfirm }) => {
 
                                 <button
                                     onClick={handleConfirmBooking}
-                                    disabled={!formData.name || !formData.email || isSubmitting}
-                                    className="w-full bg-blue-600 disabled:bg-gray-300 hover:bg-blue-700 text-white py-4 rounded-xl font-bold text-lg shadow-lg hover:shadow-xl hover:scale-[1.01] active:scale-[0.99] transition-all mt-6 flex items-center justify-center gap-2"
+                                    disabled={!isFormValid || isSubmitting}
+                                    className="w-full bg-blue-600 disabled:bg-gray-300 disabled:cursor-not-allowed hover:bg-blue-700 text-white py-4 rounded-xl font-bold text-lg shadow-lg hover:shadow-xl hover:scale-[1.01] active:scale-[0.99] transition-all mt-6 flex items-center justify-center gap-2"
                                 >
                                     {isSubmitting ? (
                                         <>

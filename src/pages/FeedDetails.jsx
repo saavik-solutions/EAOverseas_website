@@ -82,7 +82,7 @@ Step-by-Step Application Process:
 3. Complete the Online Application Form via the "Apply Now" button.
 4. Ensure submission before the deadline.
 
-For further assistance, please reach out to our support team at support@eaoverseas.com.
+For further assistance, please reach out to our support team at info@eaoverseas.com.
 
 Good luck!
         `;

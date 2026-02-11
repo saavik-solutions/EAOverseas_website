@@ -3,11 +3,13 @@ import PageHeader from '../components/PageHeader';
 import BookingModal from '../components/ConsultationBookingModal';
 import ConsultationSuccessModal from '../components/ConsultationSuccessModal';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 
 const Consultant = () => {
     // State for form interaction (basic mock state)
     const [consultationType, setConsultationType] = useState('shortlisting');
     const [mode, setMode] = useState('video');
+    const [selectedDate, setSelectedDate] = useState('today'); // today, tomorrow
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
     const [bookedSlot, setBookedSlot] = useState(() => {
@@ -15,51 +17,92 @@ const Consultant = () => {
         const saved = localStorage.getItem('consultation_booking');
         return saved ? JSON.parse(saved) : null;
     });
-    const [isChatActive, setIsChatActive] = useState(false);
+    const { user } = useAuth(); // Get real user
     const navigate = useNavigate();
 
-    // Check if chat should be active based on time
+    // Check if chat should be active based on time and handle expiry
     useEffect(() => {
         if (!bookedSlot) return;
 
-        const checkTime = () => {
-            // Mock logic: In a real app, parse bookedSlot.time and compare with new Date()
-            // For demo: if bookedSlot.time is "3:00 PM" and current time is 3:00 PM, activate
-            // Simple string check for demo purposes or manual toggle
-            // Let's activate it immediately for demo if the slot is "Now" or just toggle it
-            // For this specific requirement: "if we select the time 3 pm so on 3 pm the chat now option will show"
+        const checkStatus = () => {
+            const now = Date.now();
 
-            // Getting current time content for comparison
-            const now = new Date();
-            const hours = now.getHours();
-            const minutes = now.getMinutes();
-            const ampm = hours >= 12 ? 'PM' : 'AM';
-            const formattedHours = hours % 12 || 12;
-            const formattedMinutes = minutes < 10 ? '0' + minutes : minutes;
-            const currentTimeStr = `${formattedHours}:${formattedMinutes} ${ampm}`;
-
-            // Very strict comparison for the requirement
-            if (bookedSlot.time === currentTimeStr) {
-                setIsChatActive(true);
+            // Check for expiry (10 minutes = 600000 ms)
+            if (bookedSlot.createdAt) {
+                const elapsed = now - bookedSlot.createdAt;
+                if (elapsed > 10 * 60 * 1000) {
+                    setBookedSlot(null);
+                    localStorage.removeItem('consultation_booking');
+                    return;
+                }
             }
+
+            // Existing logic for strictly equal time (kept for reference, but simpler now)
+            // ... (omitted for brevity as we are defaulting to Active)
+            setIsChatActive(true);
         };
 
-        const interval = setInterval(checkTime, 1000); // Check every second
+        const interval = setInterval(checkStatus, 1000); // Check every second
         return () => clearInterval(interval);
     }, [bookedSlot]);
 
     const handleRequestConsultation = () => {
-        if (mode === 'async') {
-            // Open Booking Modal for Chat mode
-            setIsBookingModalOpen(true);
-        } else {
-            // Direct Success for other modes
-            triggerSuccessModal();
-        }
+        // Direct Success for all modes as per new requirement
+        triggerSuccessModal();
     };
 
     const triggerSuccessModal = () => {
         setIsModalOpen(true);
+
+        // Create immediate booking details so the "Start Chat" button appears
+        const now = new Date();
+
+        // Calculate session date based on selection
+        const sessionDate = selectedDate === 'tomorrow'
+            ? new Date(now.getTime() + 24 * 60 * 60 * 1000)
+            : now;
+
+        const hours = now.getHours();
+        const minutes = now.getMinutes();
+        const ampm = hours >= 12 ? 'PM' : 'AM';
+        const formattedHours = hours % 12 || 12;
+        const formattedMinutes = minutes < 10 ? '0' + minutes : minutes;
+        const currentTimeStr = `${formattedHours}:${formattedMinutes} ${ampm}`;
+
+        const typeTitles = {
+            'shortlisting': 'University Shortlisting',
+            'scholarships': 'Scholarships & Finance',
+            'loan_visa': 'Loan & Visa Readiness',
+            'end_to_end': 'End-to-End Guidance'
+        };
+
+        // GENERATE DYNAMIC STUDENT ID IF NOT EXISTS
+        // For guests/demo, generate a random ID. For logged in, use their stable mapping if possible.
+        const studentId = user?.id || `#EAS-${Math.floor(1000 + Math.random() * 9000)}`;
+
+        const newSession = {
+            id: `session_${Date.now()}`,
+            studentName: user?.name || 'Alex', // Fallback to 'Alex' for demo clarity
+            studentId: studentId,
+            studentEmail: user?.email || 'alex@example.com',
+            date: sessionDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
+            dateLabel: selectedDate === 'today' ? 'Today' : 'Tmrw',
+            time: currentTimeStr,
+            topic: typeTitles[consultationType],
+            mode: mode,
+            status: 'scheduled',
+            createdAt: Date.now()
+        };
+
+        // Add to scheduled sessions array
+        const existingSessions = JSON.parse(localStorage.getItem('scheduled_sessions') || '[]');
+        existingSessions.push(newSession);
+        localStorage.setItem('scheduled_sessions', JSON.stringify(existingSessions));
+
+        // Keep old booking logic for backward compatibility
+        setBookedSlot(newSession);
+        localStorage.setItem('consultation_booking', JSON.stringify(newSession));
+
         // Simulate redirect after showing modal for a bit
         setTimeout(() => {
             setIsModalOpen(false);
@@ -70,7 +113,7 @@ const Consultant = () => {
     return (
         <div className="flex flex-col flex-1 h-full bg-[#f8f9fc] overflow-hidden font-sans">
             <div className="hidden lg:block">
-                <PageHeader title="Counsellor" breadcrumbs={[{ label: 'Counsellor' }]} />
+                <PageHeader title="Counsellor" />
             </div>
 
             <main className="flex-1 overflow-y-auto no-scrollbar">
@@ -88,8 +131,8 @@ const Consultant = () => {
                                     <p className="text-gray-500 text-xs md:text-sm">
                                         {bookedSlot.date} at <span className="font-semibold text-gray-900">{bookedSlot.time}</span>
                                     </p>
-                                    <p className="text-[10px] md:text-xs text-red-500 mt-0.5 font-medium">
-                                        Note: Meeting cancels if not joined in 10m.
+                                    <p className="text-[10px] md:text-xs text-blue-600 mt-0.5 font-medium">
+                                        Note: You will get a notification when the counsellor is available.
                                     </p>
                                 </div>
                             </div>
@@ -165,7 +208,7 @@ const Consultant = () => {
                                     { id: 'audio', icon: 'call', label: 'Audio Call' },
                                     { id: 'async', icon: 'chat', label: 'Chat' }
                                 ].map((option) => {
-                                    const isDisabled = option.id === 'async' && bookedSlot !== null;
+                                    const isDisabled = false; // logic removed as per request
                                     return (
                                         <label key={option.id} className={`relative group ${isDisabled ? 'cursor-not-allowed opacity-60' : 'cursor-pointer'}`}>
                                             <input
@@ -178,11 +221,6 @@ const Consultant = () => {
                                                 disabled={isDisabled}
                                             />
                                             <div className="py-2 px-1 md:py-4 md:px-2 rounded-xl border md:border-2 border-gray-100 bg-white hover:border-blue-600 hover:text-blue-600 peer-checked:border-blue-600 peer-checked:bg-white peer-checked:text-blue-600 peer-checked:shadow-sm peer-checked:scale-[1.02] flex flex-col items-center gap-1 md:gap-2 shadow-sm transition-all duration-200">
-                                                {isDisabled && option.id === 'async' && (
-                                                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gray-800 text-white text-[10px] py-1 px-2 rounded-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-10 font-medium">
-                                                        Limit reached (1/day)
-                                                    </div>
-                                                )}
                                                 <span className={`material-symbols-outlined text-[18px] md:text-[26px] group-hover:text-blue-600 ${mode === option.id ? 'text-blue-600' : 'text-gray-400'}`}>{option.icon}</span>
                                                 <span className={`text-[10px] md:text-sm font-semibold group-hover:text-blue-600 ${mode === option.id ? 'text-blue-600' : 'text-gray-600'}`}>
                                                     {option.label}
@@ -193,6 +231,35 @@ const Consultant = () => {
                                 })}
                             </div>
                         </section>
+
+                        {/* 3. Select Date */}
+                        <section className="flex flex-col gap-3 md:gap-5">
+                            <h2 className="text-xs md:text-sm font-bold text-gray-400 uppercase tracking-wider ml-1">3. Select Date</h2>
+                            <div className="grid grid-cols-2 gap-3 md:gap-4">
+                                {[
+                                    { id: 'today', label: 'Today', icon: 'today' },
+                                    { id: 'tomorrow', label: 'Tomorrow', icon: 'event' }
+                                ].map((option) => (
+                                    <label key={option.id} className="relative cursor-pointer group">
+                                        <input
+                                            className="peer sr-only"
+                                            name="session_date"
+                                            type="radio"
+                                            value={option.id}
+                                            checked={selectedDate === option.id}
+                                            onChange={() => setSelectedDate(option.id)}
+                                        />
+                                        <div className="py-3 px-3 md:py-4 md:px-4 rounded-xl border md:border-2 border-gray-100 bg-white hover:border-blue-600 hover:text-blue-600 peer-checked:border-blue-600 peer-checked:bg-blue-50/30 peer-checked:text-blue-600 peer-checked:shadow-sm peer-checked:scale-[1.02] flex items-center justify-center gap-2 md:gap-3 shadow-sm transition-all duration-200">
+                                            <span className={`material-symbols-outlined text-[18px] md:text-[22px] group-hover:text-blue-600 ${selectedDate === option.id ? 'text-blue-600' : 'text-gray-400'}`}>{option.icon}</span>
+                                            <span className={`text-xs md:text-sm font-semibold group-hover:text-blue-600 ${selectedDate === option.id ? 'text-blue-600' : 'text-gray-600'}`}>
+                                                {option.label}
+                                            </span>
+                                        </div>
+                                    </label>
+                                ))}
+                            </div>
+                        </section>
+
 
                         {/* CTA Section */}
                         <section className="pt-2 md:pt-4 mt-2 md:mt-4">
@@ -235,7 +302,23 @@ const Consultant = () => {
                         'loan_visa': 'Loan & Visa Readiness',
                         'end_to_end': 'End-to-End Guidance'
                     };
-                    const newDetails = { ...details, topic: typeTitles[consultationType] };
+
+                    // GENERATE DYNAMIC STUDENT ID IF NOT EXISTS (same logic as main flow)
+                    const studentId = user?.id || `#EAS-${Math.floor(1000 + Math.random() * 9000)}`;
+
+                    const newDetails = {
+                        ...details,
+                        topic: typeTitles[consultationType],
+                        studentName: user?.name || 'Alex',
+                        studentId: studentId,
+                        studentEmail: user?.email || 'alex@example.com'
+                    };
+
+                    // Add to scheduled sessions array for Dashboard visibility
+                    const existingSessions = JSON.parse(localStorage.getItem('scheduled_sessions') || '[]');
+                    existingSessions.push(newDetails);
+                    localStorage.setItem('scheduled_sessions', JSON.stringify(existingSessions));
+
                     setBookedSlot(newDetails);
                     localStorage.setItem('consultation_booking', JSON.stringify(newDetails));
                     setMode('video'); // Reset to default allowed mode

@@ -80,14 +80,6 @@ const ApplicationDashboard = () => {
             {/* Specific Header for Application Dashboard */}
             <header className="h-16 border-b border-gray-200 bg-white flex items-center justify-between px-6 shrink-0 z-10">
                 <div className="flex items-center gap-2 text-sm">
-                    <button
-                        onClick={() => navigate('/dashboard')}
-                        className="flex items-center gap-2 text-gray-500 hover:text-gray-900 transition-colors"
-                    >
-                        <span className="material-symbols-outlined !text-[20px]">folder</span>
-                        <span>Home Dashboard</span>
-                    </button>
-                    <span className="material-symbols-outlined !text-[16px] text-gray-400">chevron_right</span>
                     <span className="text-gray-900 font-medium">Applications</span>
                 </div>
                 <div className="flex items-center gap-4">

@@ -20,6 +20,7 @@ export const AuthProvider = ({ children }) => {
             // ADMIN LOGIN (Full/Demo Mode)
             if (email === 'alex.j@example.com' && password === '5678') {
                 const adminUser = {
+                    id: 'USER_ADMIN_001',
                     name: 'Alex Johnson',
                     email: 'alex.j@example.com',
                     isDemo: true, // This flag enables all the AI/Pre-filled content
@@ -28,12 +29,12 @@ export const AuthProvider = ({ children }) => {
                 localStorage.setItem('eaoverseas_user', JSON.stringify(adminUser));
                 resolve(adminUser);
                 return;
-                return;
             }
 
             // COUNSELLOR LOGIN (Demo Mode)
             if (email === 'partner@counsellor.com' && password === 'COUNSELLOR2026') {
                 const counsellorUser = {
+                    id: 'USER_COUNSELLOR_001',
                     name: 'Dr. Alex Morgan',
                     email: 'partner@counsellor.com',
                     role: 'Counsellor',
@@ -66,6 +67,7 @@ export const AuthProvider = ({ children }) => {
         return new Promise((resolve) => {
             const newUser = {
                 ...userDetails,
+                id: `USER_${Date.now()}_${Math.floor(Math.random() * 1000)}`,
                 isDemo: false, // Fresh account
                 createdAt: new Date().toISOString()
             };

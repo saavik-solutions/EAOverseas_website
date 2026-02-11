@@ -58,7 +58,7 @@ const Blogs = () => {
                             <div
                                 key={blog.id}
                                 onClick={() => navigate(`/blogs/${blog.id}`)}
-                                className={`group cursor-pointer border border-gray-100 rounded-lg md:rounded-xl p-2 md:p-4 hover:shadow-lg transition-all bg-white flex flex-col h-full ${index === 0 ? 'col-span-2' : ''}`}
+                                className="group cursor-pointer border border-gray-100 rounded-lg md:rounded-xl p-2 md:p-4 hover:shadow-lg transition-all bg-white flex flex-col h-full"
                             >
                                 <div className="aspect-[3/2] rounded-md md:rounded-lg overflow-hidden mb-2 md:mb-4">
                                     <img

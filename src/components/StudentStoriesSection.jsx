@@ -2,10 +2,10 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import './StudentStoriesSection.css';
-import story1 from '../assets/story_placeholder_1.jpg'; // Placeholder
-import story2 from '../assets/story_placeholder_2.jpg'; // Placeholder
-import story3 from '../assets/story_placeholder_3.jpg'; // Placeholder
-import story4 from '../assets/story_placeholder_4.jpg'; // Placeholder
+import story1 from '../assets/story_card_manish.jpg';
+import story2 from '../assets/story_card_manisha.jpg';
+import story3 from '../assets/story_card_sanjukta.jpg';
+import story4 from '../assets/student_girl.jpg';
 
 const StudentStoriesSection = () => {
     const navigate = useNavigate();

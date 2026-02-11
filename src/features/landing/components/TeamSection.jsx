@@ -59,32 +59,7 @@ const TeamSection = () => {
                 <h2 className="team-title">Experts to make your application Stand Out</h2>
             </div>
 
-            <div className="team-carousel-container">
-                <div className="team-grid" ref={gridRef}>
-                    {team.map((member, index) => (
-                        <div
-                            key={index}
-                            className="team-card cursor-pointer"
-                            onClick={() => navigate(`/expert-profile/${member.id}`)}
-                        >
-                            <div
-                                className="team-card-image"
-                                style={{ backgroundImage: `linear-gradient(180deg, rgba(217, 217, 217, 0) 0%, #FFFFFF 100%), url(${member.image})` }}
-                            >
-                                <div className="team-card-content">
-                                    <h3 className="member-name" style={{ color: member.color }}>{member.name}</h3>
-                                    <div className="member-divider" style={{ borderColor: member.color }}></div>
-                                    <div className="member-role-tag" style={{ backgroundColor: member.tagBg, color: member.color }}>
-                                        {member.role}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            </div>
-
-            <div className="team-navigation-controls">
+            <div className="team-carousel-wrapper">
                 <button
                     className="nav-arrow-btn prev"
                     onClick={() => scroll('left')}
@@ -93,7 +68,30 @@ const TeamSection = () => {
                     <span className="material-symbols-outlined">arrow_back</span>
                 </button>
 
-                <button className="meet-team-btn" onClick={() => navigate('/team')}>Meet our team</button>
+                <div className="team-carousel-container">
+                    <div className="team-grid" ref={gridRef}>
+                        {team.map((member, index) => (
+                            <div
+                                key={index}
+                                className="team-card cursor-pointer"
+                                onClick={() => navigate(`/expert-profile/${member.id}`)}
+                            >
+                                <div
+                                    className="team-card-image"
+                                    style={{ backgroundImage: `linear-gradient(180deg, rgba(217, 217, 217, 0) 0%, #FFFFFF 100%), url(${member.image})` }}
+                                >
+                                    <div className="team-card-content">
+                                        <h3 className="member-name" style={{ color: member.color }}>{member.name}</h3>
+                                        <div className="member-divider" style={{ borderColor: member.color }}></div>
+                                        <div className="member-role-tag" style={{ backgroundColor: member.tagBg, color: member.color }}>
+                                            {member.role}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
 
                 <button
                     className="nav-arrow-btn next"
@@ -102,6 +100,10 @@ const TeamSection = () => {
                 >
                     <span className="material-symbols-outlined">arrow_forward</span>
                 </button>
+            </div>
+
+            <div className="team-navigation-controls">
+                <button className="meet-team-btn" onClick={() => navigate('/team')}>Meet our team</button>
             </div>
         </section>
     );

@@ -1,5 +1,5 @@
 .about-us-section {
-    padding: 5rem 2rem;
+    padding: 5rem 2rem 1rem 2rem;
     max-width: 1600px;
     margin: 0 auto;
     font-family: 'Inter', sans-serif;
@@ -111,7 +111,7 @@
 
 @media (max-width: 640px) {
     .about-us-section {
-        padding: 2.5rem 1rem;
+        padding: 2.5rem 1rem 0;
     }
 
     .about-content {
@@ -145,5 +145,35 @@
         height: auto;
         aspect-ratio: 1/1;
         /* Maintain square aspect ratio */
+    }
+
+    /* Reorder logic for Mobile */
+    .about-content {
+        align-items: center;
+    }
+
+    .about-text-column,
+    .about-image-column {
+        display: contents;
+    }
+
+    .about-tag {
+        order: 1;
+    }
+
+    .about-title {
+        order: 2;
+    }
+
+    .about-grid {
+        order: 3;
+    }
+
+    .about-description {
+        order: 4;
+    }
+
+    .btn-explore-about {
+        order: 5;
     }
 }

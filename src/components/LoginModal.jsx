@@ -51,6 +51,7 @@ const LoginModal = ({ isOpen, onClose }) => {
                         <label className="text-xs lg:text-sm font-bold text-slate-900 ml-1">Email</label>
                         <input
                             type="email"
+                            name="email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             className="w-full h-10 lg:h-12 px-3 rounded-lg bg-gray-50 border-gray-200 border focus:bg-white focus:border-[#0d6cf2] focus:ring-2 focus:ring-[#0d6cf2]/10 transition-all outline-none text-slate-900 text-sm lg:text-base font-medium placeholder:text-gray-400"
@@ -63,6 +64,7 @@ const LoginModal = ({ isOpen, onClose }) => {
                         <label className="text-xs lg:text-sm font-bold text-slate-900 ml-1">Password</label>
                         <input
                             type="password"
+                            name="password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             className="w-full h-10 lg:h-12 px-3 rounded-lg bg-gray-50 border-gray-200 border focus:bg-white focus:border-[#0d6cf2] focus:ring-2 focus:ring-[#0d6cf2]/10 transition-all outline-none text-slate-900 text-sm lg:text-base font-medium placeholder:text-gray-400"
