@@ -16,6 +16,9 @@ interface AuthContextType {
     signup: (userDetails: any) => Promise<User>;
     logout: () => void;
     loading: boolean;
+    isLoginModalOpen: boolean;
+    setLoginModalOpen: (open: boolean) => void;
+    requireAuth: (callback: () => void) => void;
 }
 
 const AuthContext = createContext<AuthContextType | null>(null);
@@ -23,6 +26,7 @@ const AuthContext = createContext<AuthContextType | null>(null);
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const [user, setUser] = useState<User | null>(null);
     const [loading, setLoading] = useState(true);
+    const [isLoginModalOpen, setLoginModalOpen] = useState(false);
 
     useEffect(() => {
         // Check local storage for persistent session
@@ -114,8 +118,19 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         localStorage.removeItem('eaoverseas_user');
     };
 
+    const requireAuth = (callback: () => void) => {
+        if (user) {
+            callback();
+        } else {
+            setLoginModalOpen(true);
+        }
+    };
+
     return (
-        <AuthContext.Provider value={{ user, login, signup, logout, loading }}>
+        <AuthContext.Provider value={{
+            user, login, signup, logout, loading,
+            isLoginModalOpen, setLoginModalOpen, requireAuth
+        }}>
             {children}
         </AuthContext.Provider>
     );

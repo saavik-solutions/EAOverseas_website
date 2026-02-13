@@ -11,7 +11,7 @@ const Feed = () => {
     const navigate = useNavigate();
     // State for Filter Bar
     const [activeCountry, setActiveCountry] = useState('All Countries');
-    const { user } = useAuth();
+    const { user, requireAuth, setLoginModalOpen } = useAuth();
     const [activeTopic, setActiveTopic] = useState('All Topics');
     const [sortBy, setSortBy] = useState('Newest');
 
@@ -62,10 +62,9 @@ const Feed = () => {
         return 0; // Default order (mock data order)
     });
 
-    const { executeAction, isLoginModalOpen, closeLoginModal } = useAuthAction();
 
     const openShareModal = (postId) => {
-        executeAction(() => {
+        requireAuth(() => {
             const post = postsData[postId];
             setShareData(post);
             setIsShareModalOpen(true);
@@ -74,7 +73,7 @@ const Feed = () => {
     };
 
     const handleSave = (postId) => {
-        executeAction(() => {
+        requireAuth(() => {
             console.log('Saved post:', postId);
             // Add save logic here
         });
@@ -87,23 +86,21 @@ const Feed = () => {
     };
 
     const handleCountryChange = (e) => {
-        executeAction(() => setActiveCountry(e.target.value));
+        setActiveCountry(e.target.value);
     };
 
     const handleTopicChange = (topic) => {
-        executeAction(() => setActiveTopic(activeTopic === topic ? 'All Topics' : topic));
+        setActiveTopic(activeTopic === topic ? 'All Topics' : topic);
     };
 
     const handleSortChange = (e) => {
-        executeAction(() => setSortBy(e.target.value));
+        setSortBy(e.target.value);
     };
 
     const resetFilters = () => {
-        executeAction(() => {
-            setActiveCountry('All Countries');
-            setActiveTopic('All Topics');
-            setSortBy('Newest');
-        });
+        setActiveCountry('All Countries');
+        setActiveTopic('All Topics');
+        setSortBy('Newest');
     };
 
     return (
@@ -124,7 +121,6 @@ const Feed = () => {
                     }
                 />
             </div>
-            <LoginModal isOpen={isLoginModalOpen} onClose={closeLoginModal} />
 
             <main className="flex-1 overflow-y-auto bg-gray-50 font-sans">
                 <div className="p-4 md:p-6 lg:p-8 grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-6 lg:gap-8 max-w-7xl mx-auto">
@@ -221,7 +217,7 @@ const Feed = () => {
                                     <article key={post.id} className="flex flex-col bg-white border border-gray-200 rounded-xl p-3 md:p-5 hover:border-blue-200 hover:shadow-sm transition-all group">
                                         <div className="flex items-center justify-between mb-3">
                                             <div className="flex items-center gap-3">
-                                                <div onClick={() => executeAction(() => navigate(`/institution/${encodeURIComponent(post.institution)}`))} className="group/inst flex items-center gap-3 cursor-pointer">
+                                                <div onClick={() => navigate(`/institution/${encodeURIComponent(post.institution)}`)} className="group/inst flex items-center gap-3 cursor-pointer">
                                                     <div className="w-7 h-7 md:w-10 md:h-10 rounded-full overflow-hidden bg-gray-50 flex items-center justify-center border border-gray-100 relative shrink-0 group-hover/inst:border-blue-200 transition-colors">
                                                         <img className="w-full h-full object-contain p-0.5" alt={`${post.institution} Logo`} src={post.logo} />
                                                     </div>
@@ -274,9 +270,7 @@ const Feed = () => {
                                                 </button>
                                             </div>
                                             <button
-                                                onClick={() => executeAction(() => {
-                                                    navigate(`/feed-details/${post.id}`);
-                                                })}
+                                                onClick={() => navigate(`/feed-details/${post.id}`)}
                                                 className="px-4 py-1.5 md:px-6 md:py-2 bg-blue-600 border border-transparent text-white text-xs md:text-sm font-semibold rounded-lg shadow-sm hover:bg-blue-700 transition-colors"
                                             >
                                                 View Details
@@ -362,7 +356,7 @@ const Feed = () => {
                                     { country: 'Germany', flag: '🇩🇪', trend: '+8%' },
                                     { country: 'UK', flag: '🇬🇧', trend: '+5%' },
                                 ].map((item, idx) => (
-                                    <div key={idx} onClick={() => executeAction(() => { })} className="flex items-center justify-between p-2 hover:bg-gray-50 rounded-lg cursor-pointer transition-colors">
+                                    <div key={idx} onClick={() => { }} className="flex items-center justify-between p-2 hover:bg-gray-50 rounded-lg cursor-pointer transition-colors">
                                         <div className="flex items-center gap-3">
                                             <div className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-lg shadow-sm border border-gray-200">
                                                 {item.flag}

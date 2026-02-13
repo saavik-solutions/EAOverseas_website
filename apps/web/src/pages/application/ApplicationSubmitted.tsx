@@ -9,6 +9,8 @@ const ApplicationSubmitted = () => {
     const courseName = searchParams.get('title');
     const [timeLeft, setTimeLeft] = useState(5);
 
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
     useEffect(() => {
         const timer = setInterval(() => {
             setTimeLeft((prev) => {
@@ -26,7 +28,7 @@ const ApplicationSubmitted = () => {
 
     return (
         <div className="flex h-screen w-full bg-background-light overflow-hidden">
-            <Sidebar />
+            <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
 
             <div className="flex flex-col flex-1 h-full overflow-hidden">
                 <header className="h-16 border-b border-gray-200 bg-surface-light flex items-center justify-between px-6 shrink-0 z-10">
@@ -59,7 +61,7 @@ const ApplicationSubmitted = () => {
 
                         <div className="flex flex-col sm:flex-row gap-3 max-w-lg mx-auto w-full">
                             <Link
-                                to="/"
+                                to="/dashboard"
                                 className="w-full flex items-center justify-center gap-2 px-6 py-3.5 bg-blue-600 text-white rounded-lg shadow-lg shadow-blue-500/30 hover:bg-blue-700 transition-all font-semibold text-base"
                             >
                                 Go to Dashboard

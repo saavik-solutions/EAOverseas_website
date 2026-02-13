@@ -7,7 +7,7 @@ import { useUserProfile } from '../context/UserProfileContext';
 
 const HomeDashboard = () => {
     const navigate = useNavigate();
-    const { user } = useAuth();
+    const { user, requireAuth } = useAuth();
     const { userProfile, updatePreferences } = useUserProfile();
     const { savedColleges, savedCourses, savedAccommodations } = useSavedItems();
 
@@ -177,7 +177,7 @@ const HomeDashboard = () => {
                                     {isFreshUser ? "Just got started!" : "Last updated 2 hours ago"}
                                 </span>
                                 <button
-                                    onClick={() => navigate('/profile')}
+                                    onClick={() => requireAuth(() => navigate('/profile'))}
                                     className="bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold py-1.5 px-3 rounded-lg transition-colors shadow-sm"
                                 >
                                     Complete Profile
@@ -190,7 +190,7 @@ const HomeDashboard = () => {
                     <section className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
                         {/* Upload Documents */}
                         <div
-                            onClick={() => navigate('/documents')}
+                            onClick={() => requireAuth(() => navigate('/documents'))}
                             className="flex items-center gap-3 p-4 bg-white border border-gray-100 rounded-xl hover:shadow-md transition-all cursor-pointer group"
                         >
                             <div className="size-10 md:size-12 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center shrink-0 group-hover:bg-blue-600 group-hover:text-white transition-colors">
@@ -218,7 +218,7 @@ const HomeDashboard = () => {
 
                         {/* Track Applications */}
                         <div
-                            onClick={() => navigate('/applications')}
+                            onClick={() => requireAuth(() => navigate('/applications'))}
                             className="flex items-center gap-3 p-4 bg-white border border-gray-100 rounded-xl hover:shadow-md transition-all cursor-pointer group"
                         >
                             <div className="size-10 md:size-12 rounded-lg bg-green-50 text-green-600 flex items-center justify-center shrink-0 group-hover:bg-green-600 group-hover:text-white transition-colors">
@@ -243,7 +243,7 @@ const HomeDashboard = () => {
                                 </div>
                                 <h3 className="font-bold text-gray-900 mb-2 text-sm md:text-base">Profile Analysis Pending</h3>
                                 <p className="text-xs md:text-sm text-gray-500 mb-6">Complete your profile to see eligibility matches and recommendations.</p>
-                                <button onClick={() => navigate('/profile/basic')} className="px-4 py-2 bg-blue-600 text-white rounded-lg font-medium text-xs md:text-sm hover:bg-blue-700">Start Profile Setup</button>
+                                <button onClick={() => requireAuth(() => navigate('/profile/basic'))} className="px-4 py-2 bg-blue-600 text-white rounded-lg font-medium text-xs md:text-sm hover:bg-blue-700">Start Profile Setup</button>
                             </div>
                         ) : (
                             <div className="bg-white rounded-xl border border-gray-100 p-4 md:p-6 shadow-sm flex flex-col h-full">
@@ -252,7 +252,7 @@ const HomeDashboard = () => {
                                         <span className="material-symbols-outlined text-gray-400 !text-[20px] md:!text-[24px]">verified</span>
                                         <h3 className="font-bold text-sm md:text-base text-gray-900">Eligibility</h3>
                                     </div>
-                                    <button className="text-xs md:text-sm font-medium text-blue-600 hover:underline">View Details</button>
+                                    <button onClick={() => requireAuth(() => { })} className="text-xs md:text-sm font-medium text-blue-600 hover:underline">View Details</button>
                                 </div>
                                 <div className="space-y-4 flex-1">
                                     <div className="flex items-center justify-between">
@@ -323,7 +323,7 @@ const HomeDashboard = () => {
                                         })()}
 
                                         <div className="text-center pt-2">
-                                            <button className="text-xs text-blue-600 font-medium hover:underline">View All Matches</button>
+                                            <button onClick={() => requireAuth(() => { })} className="text-xs text-blue-600 font-medium hover:underline">View All Matches</button>
                                         </div>
                                     </>
                                 )}
@@ -423,7 +423,7 @@ const HomeDashboard = () => {
                                 <h3 className="font-bold text-sm md:text-base text-gray-900">Estimated Annual Expense</h3>
                                 <div className="relative">
                                     <button
-                                        onClick={() => setShowFilterDropdown(!showFilterDropdown)}
+                                        onClick={() => requireAuth(() => setShowFilterDropdown(!showFilterDropdown))}
                                         className="flex items-center gap-1 px-3 py-1.5 border border-dashed border-blue-300 bg-blue-50 rounded text-xs md:text-sm text-blue-600 font-bold hover:bg-blue-100 transition-colors"
                                     >
                                         <span className="material-symbols-outlined !text-[16px] md:!text-[18px]">add</span>
@@ -540,7 +540,7 @@ const HomeDashboard = () => {
                             <div className="flex flex-col gap-2 flex-1">
                                 {/* Row 1: Saved Accommodation (Full Width) */}
                                 <div
-                                    onClick={() => navigate('/saved-accommodations')}
+                                    onClick={() => requireAuth(() => navigate('/saved-accommodations'))}
                                     className="flex-1 bg-gray-50 rounded-xl p-3 md:p-5 hover:bg-gray-100 transition-colors cursor-pointer group flex flex-col sm:flex-row items-start sm:items-center justify-between relative overflow-hidden gap-4"
                                 >
                                     <div className="flex items-center gap-4 relative z-10">
@@ -563,7 +563,7 @@ const HomeDashboard = () => {
 
                                 {/* Saved Courses */}
                                 <div
-                                    onClick={() => navigate('/saved-courses')}
+                                    onClick={() => requireAuth(() => navigate('/saved-courses'))}
                                     className="flex-1 bg-gray-50 rounded-xl p-3 md:p-5 hover:bg-gray-100 transition-colors cursor-pointer group flex flex-col sm:flex-row items-start sm:items-center justify-between relative overflow-hidden gap-4"
                                 >
                                     <div className="flex items-center gap-4 relative z-10">
@@ -585,7 +585,7 @@ const HomeDashboard = () => {
 
                                 {/* Saved Colleges */}
                                 <div
-                                    onClick={() => navigate('/saved-colleges')}
+                                    onClick={() => requireAuth(() => navigate('/saved-colleges'))}
                                     className="flex-1 bg-gray-50 rounded-xl p-3 md:p-5 hover:bg-gray-100 transition-colors cursor-pointer group flex flex-col sm:flex-row items-start sm:items-center justify-between relative overflow-hidden gap-4"
                                 >
                                     <div className="flex items-center gap-4 relative z-10">

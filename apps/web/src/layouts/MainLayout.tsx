@@ -5,11 +5,12 @@ import logo from '../assets/logo.jpg';
 import { useAuth } from '../context/AuthContext';
 import { useNotification } from '../context/NotificationContext';
 import NotificationDropdown from '../components/NotificationDropdown';
+import LoginModal from '../components/LoginModal';
 import { useRef, useEffect } from 'react';
 
 const MainLayout = () => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-    const { user } = useAuth() || {}; // Safe access just in case
+    const { user, isLoginModalOpen, setLoginModalOpen } = useAuth() || {}; // Safe access just in case
     const location = useLocation();
     const navigate = useNavigate();
 
@@ -96,13 +97,19 @@ const MainLayout = () => {
                 </div>
             </div>
 
-            <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} user={user} />
+            <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
 
             {/* The individual pages will handle their own <main> and <Header> structure 
                 to allow for maximum flexibility while sharing the Sidebar */}
             <div className={shouldScale ? "contents mobile-scale-down" : "contents"}>
                 <Outlet />
             </div>
+
+            {/* Global Login Modal */}
+            <LoginModal
+                isOpen={isLoginModalOpen}
+                onClose={() => setLoginModalOpen(false)}
+            />
         </div>
     );
 };

@@ -4,7 +4,7 @@ import { useNotification } from '../context/NotificationContext';
 import { useAuth } from '../context/AuthContext';
 import NotificationDropdown from './NotificationDropdown';
 
-const PageHeader = ({ title, actions, breadcrumbs }) => {
+const PageHeader = ({ title, actions, breadcrumbs = [] }) => {
     const navigate = useNavigate();
     const { unreadCount } = useNotification();
     const { logout, user } = useAuth();

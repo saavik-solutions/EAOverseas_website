@@ -1,15 +1,18 @@
 import { useState } from 'react';
 import { Link, useLocation, useSearchParams, useNavigate } from 'react-router-dom';
 import logo from '../assets/logo.jpg';
+import { useAuth } from '../context/AuthContext';
 
-const Sidebar = ({ isOpen, onClose, user }) => {
+
+
+const Sidebar = ({ isOpen, onClose }) => {
     const location = useLocation();
     const [searchParams] = useSearchParams();
     const currentPath = location.pathname;
     const isCourseApp = searchParams.get('title');
     const [isSettingsOpen, setIsSettingsOpen] = useState(false);
     const navigate = useNavigate();
-    // User is passed as prop now
+    const { user, requireAuth } = useAuth();
 
 
     const navItems = [
@@ -59,17 +62,10 @@ const Sidebar = ({ isOpen, onClose, user }) => {
                     {navItems.map((item) => {
                         let isActive = currentPath === item.path || (item.path !== '/' && currentPath.startsWith(item.path));
 
-                        // Hide protected items for guests (optional, keeping visible but actionable via auth guard is better per user request)
-                        // But Dashboard is special - user specifically said "pages like global feed... will visible first"
-                        // I will hide 'Home Dashboard' for guests and redirect '/' to feed later.
-                        if (!user && item.path === '/') return null;
-                        if (!user && item.path === '/profile') return null;
-                        if (!user && (
-                            item.path === '/loans' ||
-                            item.path === '/visas' ||
-                            item.path === '/ai-profile' ||
-                            item.path === '/consultant'
-                        )) return null;
+                        // Show items but guard them
+                        // However, per user request, hide "extra" items for guests to keep it clean.
+                        const guestHiddenPaths = ['/dashboard', '/test-prep', '/loans', '/visas', '/consultant', '/ai-profile', '/profile'];
+                        if (!user && guestHiddenPaths.includes(item.path)) return null;
 
                         // Keep Global Feed active when viewing an institution profile
                         if (item.path === '/feed' && currentPath.startsWith('/institution/')) isActive = true;
@@ -90,13 +86,17 @@ const Sidebar = ({ isOpen, onClose, user }) => {
                         if (item.path === '/loans' && (currentPath.includes('/loan-') || currentPath.includes('/lender-selection'))) isActive = true;
 
                         return (
-                            <Link
+                            <button
                                 key={item.name}
-                                to={item.path}
                                 onClick={() => {
-                                    if (window.innerWidth < 1024) onClose();
+                                    if (!user && guestHiddenPaths.includes(item.path)) {
+                                        requireAuth(() => navigate(item.path));
+                                    } else {
+                                        navigate(item.path);
+                                        if (window.innerWidth < 1024) onClose();
+                                    }
                                 }}
-                                className={`flex items-center gap-3 px-3 py-2.5 rounded-lg group transition-colors ${isActive
+                                className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg group transition-colors ${isActive
                                     ? 'bg-blue-50 text-blue-600 font-semibold'
                                     : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900 font-medium'
                                     }`}
@@ -107,7 +107,7 @@ const Sidebar = ({ isOpen, onClose, user }) => {
                                 <span className={`text-sm ${item.icon === 'auto_awesome' ? 'leading-tight' : ''}`}>
                                     {item.name}
                                 </span>
-                            </Link>
+                            </button>
                         );
                     })}
                 </nav>
@@ -130,14 +130,14 @@ const Sidebar = ({ isOpen, onClose, user }) => {
                                 <div className="p-1">
 
                                     <button
-                                        onClick={() => navigate('/notification-preferences')}
+                                        onClick={() => requireAuth(() => navigate('/notification-preferences'))}
                                         className="w-full text-left px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-colors flex items-center gap-3"
                                     >
                                         <span className="material-symbols-outlined text-[18px]">notifications</span>
                                         Notification Preferences
                                     </button>
                                     <button
-                                        onClick={() => navigate('/privacy-security')}
+                                        onClick={() => requireAuth(() => navigate('/privacy-security'))}
                                         className="w-full text-left px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-colors flex items-center gap-3"
                                     >
                                         <span className="material-symbols-outlined text-[18px]">security</span>
