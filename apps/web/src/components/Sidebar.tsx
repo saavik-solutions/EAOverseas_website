@@ -62,7 +62,9 @@ const Sidebar = ({ isOpen, onClose }) => {
                     {navItems.map((item) => {
                         let isActive = currentPath === item.path || (item.path !== '/' && currentPath.startsWith(item.path));
 
-                        // Show all items for guests per latest request
+                        // Show specific items for guests as per user request
+                        const guestVisiblePaths = ['/feed', '/community-feed', '/colleges', '/courses', '/dashboard', '/test-prep', '/accommodation'];
+                        if (!user && !guestVisiblePaths.includes(item.path)) return null;
 
                         // Keep Global Feed active when viewing an institution profile
                         if (item.path === '/feed' && currentPath.startsWith('/institution/')) isActive = true;
