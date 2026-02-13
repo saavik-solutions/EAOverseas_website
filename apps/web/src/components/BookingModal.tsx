@@ -1,7 +1,14 @@
 import React, { useState, useMemo } from 'react';
 import AccommodationApplicationForm from './AccommodationApplicationForm';
 
-const BookingModal = ({ isOpen, onClose, accommodation, selectedRoom }) => {
+interface BookingModalProps {
+    isOpen: boolean;
+    onClose: () => void;
+    accommodation: any;
+    selectedRoom: any;
+}
+
+const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose, accommodation, selectedRoom }) => {
     // 1. Defaults
     const defaultImage = "https://lh3.googleusercontent.com/aida-public/AB6AXuBDv2ChOaSFAN9rwtOZ5ljePS-MA8Bx8UT-0oKP7ftWjLAcxjPe87VNeurUAsc_VjfioKzwfoBFuk6prMQqFz6Ddsw3kFA1tiHrCrsz_yKdoHFtjZHeL23LG--yTvod0N9GH-6MGqybvV8Q33YiItYMhhGEhV4jMuVYkKVASBT8ws2WDH8bh1DuJcahzPAv3w4lLHHMyBdTr2r1DcKXz9GSdVLxKy-ZfDI1fjMa5nXA4mr5W3ojBBz2JHbY221EWjoBQE5psJlF068";
 
@@ -20,8 +27,9 @@ const BookingModal = ({ isOpen, onClose, accommodation, selectedRoom }) => {
     const rawPrice = (selectedRoom && selectedRoom.price) ? selectedRoom.price : 650;
     const isMonthly = (accommodation && accommodation.period === '/month');
 
+    
     // 5. Helpers
-    const calculateMoveOutDate = (startDate, weeks) => {
+    const calculateMoveOutDate = (startDate: string, weeks: number): string => {
         if (!startDate) return "Invalid Date";
         try {
             const result = new Date(startDate);
