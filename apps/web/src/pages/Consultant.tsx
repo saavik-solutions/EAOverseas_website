@@ -12,6 +12,7 @@ const Consultant = () => {
     const [selectedDate, setSelectedDate] = useState('today'); // today, tomorrow
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
+    const [isChatActive, setIsChatActive] = useState(false);
     const [bookedSlot, setBookedSlot] = useState(() => {
         // Initialize from localStorage to persist booking across navigation
         const saved = localStorage.getItem('consultation_booking');
@@ -119,8 +120,8 @@ const Consultant = () => {
             <main className="flex-1 overflow-y-auto no-scrollbar">
                 <div className="max-w-4xl mx-auto px-4 md:px-6 py-6 md:py-12 flex flex-col gap-6 md:gap-12">
 
-                    {/* Upcoming Consultation Card */}
-                    {bookedSlot && (
+                    {/* Upcoming Consultation Card - Only for Chat Mode */}
+                    {bookedSlot && bookedSlot.mode === 'async' && (
                         <div className="bg-white rounded-2xl p-4 md:p-6 border border-blue-100 shadow-sm flex flex-col md:flex-row items-center justify-between gap-4 md:gap-6 mb-2 animate-fade-in">
                             <div className="flex items-center gap-4 w-full md:w-auto">
                                 <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-green-50 flex items-center justify-center text-green-600 shrink-0">
