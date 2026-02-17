@@ -20,7 +20,7 @@ const Sidebar = ({ isOpen, onClose }) => {
         { name: 'Community Feed', icon: 'forum', path: '/community-feed' },
         { name: 'Universities', icon: 'school', path: '/colleges' },
         { name: 'Courses', icon: 'book', path: '/courses' },
-        { name: 'AI Profile Analyzer & AI Assistance', icon: 'auto_awesome', path: '/ai-profile' },
+        { name: 'AI Profile & Assistance', icon: 'auto_awesome', path: '/ai-profile' },
         { name: 'Home Dashboard', icon: 'dashboard', path: '/dashboard' },
         { name: 'Test Prep', icon: 'quiz', path: '/test-prep' },
         { name: 'Accommodation', icon: 'home_work', path: '/accommodation' },
@@ -96,10 +96,10 @@ const Sidebar = ({ isOpen, onClose }) => {
                                     : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900 font-medium'
                                     }`}
                             >
-                                <span className={`material-symbols-outlined ${item.icon === 'auto_awesome' ? 'mt-0.5' : ''} ${isActive ? 'text-blue-600' : 'text-gray-400 group-hover:text-gray-600'}`}>
+                                <span className={`material-symbols-outlined ${isActive ? 'text-blue-600' : item.icon === 'auto_awesome' ? 'text-indigo-500' : 'text-gray-400 group-hover:text-gray-600'}`}>
                                     {item.icon}
                                 </span>
-                                <span className={`text-sm ${item.icon === 'auto_awesome' ? 'leading-tight' : ''}`}>
+                                <span className="text-sm">
                                     {item.name}
                                 </span>
                             </button>
@@ -144,19 +144,7 @@ const Sidebar = ({ isOpen, onClose }) => {
                                         <span className="material-symbols-outlined text-[18px]">security</span>
                                         Privacy & Security
                                     </button>
-                                    <div className="h-px bg-gray-100 my-1 hidden lg:block"></div>
-                                    <button
-                                        onClick={() => {
-                                            // Trigger auth action if needed, but for now strict redirect as requested
-                                            // In a real app we'd clear auth tokens here
-                                            // executeAction(() => logout()) 
-                                            navigate('/login'); // Redirect to login page as requested
-                                            window.location.reload(); // Optional: Ensure state is cleared
-                                        }}
-                                        className="w-full text-left px-3 py-2.5 text-sm font-medium text-red-600 hover:bg-red-50 rounded-lg transition-colors items-center gap-3 hidden lg:flex">
-                                        <span className="material-symbols-outlined text-[18px]">logout</span>
-                                        Sign Out
-                                    </button>
+
                                 </div>
                             </div>
                         </div>
@@ -164,19 +152,7 @@ const Sidebar = ({ isOpen, onClose }) => {
                         <div className="flex flex-col gap-2">
                         </div>
                     )}
-                    {/* Mobile Sign Out Button - Outside Dropdown */}
-                    {user && (
-                        <button
-                            onClick={() => {
-                                navigate('/login');
-                                window.location.reload();
-                            }}
-                            className="w-full flex lg:hidden items-center gap-3 p-3 rounded-lg hover:bg-red-50 text-red-600 font-medium transition-colors mt-1"
-                        >
-                            <span className="material-symbols-outlined text-gray-500">logout</span>
-                            <span className="text-sm font-medium">Sign Out</span>
-                        </button>
-                    )}
+
                 </div>
             </aside>
         </>

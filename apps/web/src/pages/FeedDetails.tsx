@@ -1,6 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { postsData } from '../data/mockFeedData';
+import ShareModal from '../components/ShareModal';
 import { useAuth } from '../context/AuthContext';
 import { useSavedItems } from '../context/SavedItemsContext';
 
@@ -13,48 +14,6 @@ const FeedDetails = () => {
 
     // Share Modal State
     const [isShareModalOpen, setIsShareModalOpen] = useState(false);
-    const [copyBtnText, setCopyBtnText] = useState('Copy Link');
-
-    const openShareModal = () => {
-        setIsShareModalOpen(true);
-        setCopyBtnText('Copy Link');
-    };
-
-    const closeShareModal = () => {
-        setIsShareModalOpen(false);
-    };
-
-    const copyShareLink = () => {
-        const shareLink = `https://eaoverseas.com/s/${data.id}-scholarship-2025`;
-        navigator.clipboard.writeText(shareLink);
-        setCopyBtnText('Copied!');
-        setTimeout(() => setCopyBtnText('Copy Link'), 2000);
-    };
-
-    const shareToSocial = (platform: string) => {
-        const shareLink = `https://eaoverseas.com/s/${data.id}-scholarship-2025`;
-        const shareUrl = encodeURIComponent(shareLink);
-        const title = encodeURIComponent(data.title);
-        let url = '';
-
-        switch (platform) {
-            case 'linkedin':
-                url = `https://www.linkedin.com/sharing/share-offsite/?url=${shareUrl}`;
-                break;
-            case 'facebook':
-                url = `https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`;
-                break;
-            case 'twitter':
-                url = `https://twitter.com/intent/tweet?url=${shareUrl}&text=${title}`;
-                break;
-            case 'whatsapp':
-                url = `https://api.whatsapp.com/send?text=${title}%20${shareUrl}`;
-                break;
-            default:
-                break;
-        }
-        if (url) window.open(url, '_blank');
-    };
 
     // Dynamic Label Class
     const getLabelClass = () => {
@@ -181,7 +140,7 @@ Good luck!
                                     <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-gray-200">
                                         <div></div>
                                         <div className="flex gap-2 module:gap-3 justify-between w-full md:w-auto md:justify-start">
-                                            <button onClick={openShareModal} className="px-3 py-1.5 md:px-4 md:py-2 bg-white border border-gray-200 text-gray-900 font-medium rounded-lg hover:bg-gray-50 hover:text-primary transition-colors flex items-center gap-1.5 md:gap-2 text-xs md:text-sm shadow-sm flex-1 md:flex-none justify-center">
+                                            <button onClick={() => setIsShareModalOpen(true)} className="px-3 py-1.5 md:px-4 md:py-2 bg-white border border-gray-200 text-gray-900 font-medium rounded-lg hover:bg-gray-50 hover:text-primary transition-colors flex items-center gap-1.5 md:gap-2 text-xs md:text-sm shadow-sm flex-1 md:flex-none justify-center">
                                                 <span className="material-symbols-outlined text-[18px] md:text-[20px]">share</span>
                                                 Share
                                             </button>
@@ -399,73 +358,18 @@ Good luck!
                 </div>
             </aside>
 
-            {/* SHARE MODAL */}
-            {isShareModalOpen && data && (
-                <div className="fixed inset-0 z-50" aria-labelledby="modal-title" role="dialog" aria-modal="true">
-                    <div className="fixed inset-0 bg-gray-900/50 backdrop-blur-sm transition-opacity" onClick={closeShareModal}></div>
-                    <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
-                        <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
-                            <div className="relative transform overflow-hidden rounded-2xl bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
-                                {/* Header */}
-                                <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
-                                    <h3 className="text-base font-bold text-gray-900" id="modal-title">Share Scholarship</h3>
-                                    <button onClick={closeShareModal} className="text-gray-400 hover:text-gray-500 transition-colors">
-                                        <span className="material-symbols-outlined text-[20px]">close</span>
-                                    </button>
-                                </div>
-                                {/* Content */}
-                                <div className="p-6">
-                                    <div className="flex items-start gap-4 p-4 bg-gray-50/50 rounded-xl border border-gray-100 mb-6">
-                                        <div className="size-10 rounded bg-white border border-gray-100 p-1 shrink-0 flex items-center justify-center">
-                                            <img src={data.logo} className="w-full h-full object-contain" alt="Logo" />
-                                        </div>
-                                        <div className="flex-1 min-w-0">
-                                            <h4 className="text-sm font-bold text-gray-900 leading-snug line-clamp-2 mb-1">{data.title}</h4>
-                                            <div className="flex items-center gap-2 text-xs text-gray-500">
-                                                <span>{data.location}</span>
-                                                <span>•</span>
-                                                <span className="text-green-600 font-medium">Fully Funded</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    {/* Link Section */}
-                                    <div className="mb-6">
-                                        <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Scholarship Link</label>
-                                        <div className="flex gap-2">
-                                            <div className="flex-1 flex items-center gap-2 px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg">
-                                                <span className="material-symbols-outlined text-gray-400 text-[18px]">link</span>
-                                                <input readOnly value={`https://eaoverseas.com/s/${data.id}-scholarship-2025`} className="bg-transparent border-none text-sm text-gray-600 w-full focus:ring-0 p-0 truncate" />
-                                            </div>
-                                            <button onClick={copyShareLink} className={`px-4 py-2 bg-white border border-gray-200 text-gray-700 text-sm font-medium rounded-lg hover:border-gray-300 hover:bg-gray-50 transition-all shadow-sm ${copyBtnText === 'Copied!' ? 'text-green-600 bg-green-50 border-green-200' : ''}`}>
-                                                {copyBtnText === 'Copied!' ? <><span className="material-symbols-outlined text-[18px]">check</span> Copied!</> : 'Copy Link'}
-                                            </button>
-                                        </div>
-                                    </div>
-                                    {/* Social Share */}
-                                    <div className="mb-6">
-                                        <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Share to Social</label>
-                                        <div className="grid grid-cols-4 gap-3">
-                                            {[
-                                                { id: 'linkedin', icon: 'fa-brands fa-linkedin-in', color: 'text-[#0077b5]', border: 'border-[#0077b5]/20', bg: 'bg-[#0077b5]/5' },
-                                                { id: 'facebook', icon: 'fa-brands fa-facebook-f', color: 'text-[#1877f2]', border: 'border-[#1877f2]/20', bg: 'bg-[#1877f2]/5' },
-                                                { id: 'twitter', icon: 'fa-brands fa-x-twitter', color: 'text-black', border: 'border-black/20', bg: 'bg-black/5' },
-                                                { id: 'whatsapp', icon: 'fa-brands fa-whatsapp', color: 'text-[#25d366]', border: 'border-[#25d366]/20', bg: 'bg-[#25d366]/5' }
-                                            ].map(platform => (
-                                                <button key={platform.id} onClick={() => shareToSocial(platform.id)} className={`flex flex-col items-center justify-center gap-1.5 p-3 rounded-xl border transition-all group ${platform.border} ${platform.bg} hover:brightness-95`}>
-                                                    <i className={`${platform.icon} text-xl ${platform.color}`}></i>
-                                                </button>
-                                            ))}
-                                        </div>
-                                    </div>
-                                    <div className="bg-gray-50 px-6 py-4 flex flex-row-reverse gap-3 border-t border-gray-100">
-                                        <button onClick={closeShareModal} className="inline-flex w-full justify-center rounded-lg bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:w-auto">Cancel</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            )}
+            {/* Share Modal */}
+            <ShareModal
+                isOpen={isShareModalOpen}
+                onClose={() => setIsShareModalOpen(false)}
+                title="Share Scholarship"
+                shareUrl={`https://eaoverseas.com/feed-details/${data.id}`}
+                preview={{
+                    title: data.title,
+                    subtitle: data.institution,
+                    image: data.banner
+                }}
+            />
         </div>
     );
 };

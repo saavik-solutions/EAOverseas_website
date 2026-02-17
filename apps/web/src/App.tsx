@@ -78,7 +78,12 @@ import ConsultantStudents from './pages/ConsultantStudents';
 import ConsultantSchedule from './pages/ConsultantSchedule';
 import ConsultantTasks from './pages/ConsultantTasks';
 import ConsultantLayout from './layouts/ConsultantLayout';
-import UniversityKnowledgeHub from './pages/UniversityKnowledgeHub';
+import UniversityDirectory from './pages/UniversityDirectory';
+import UniversityDetails from './pages/UniversityDetails';
+import CounsellorProfile from './pages/CounsellorProfile';
+import CounsellingChat from './pages/CounsellingChat';
+import PerformanceRatingOverview from './pages/PerformanceRatingOverview';
+import AssignedStudents from './pages/AssignedStudents';
 
 // Profile Pages
 import ProfileLayout from './pages/profile/ProfileLayout';
@@ -209,7 +214,12 @@ function App() {
                                 <Route path="/counsellor-students" element={<ConsultantStudents />} />
                                 <Route path="/counsellor-schedule" element={<ConsultantSchedule />} />
                                 <Route path="/counsellor-tasks" element={<ConsultantTasks />} />
-                                <Route path="/consultant/university-directory" element={<UniversityKnowledgeHub />} />
+                                <Route path="/consultant/university-directory" element={<UniversityDirectory />} />
+                                <Route path="/consultant/university-details/:id" element={<UniversityDetails />} />
+                                <Route path="/counsellor-documents" element={<CounsellingChat />} />
+                                <Route path="/counsellor-profile" element={<CounsellorProfile />} />
+                                <Route path="/counsellor-performance" element={<PerformanceRatingOverview />} />
+                                <Route path="/counsellor-assigned-students" element={<AssignedStudents />} />
                             </Route>
 
                             {/* Consultant Resources */}

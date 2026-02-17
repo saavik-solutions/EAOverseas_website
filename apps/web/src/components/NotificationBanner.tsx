@@ -36,7 +36,7 @@ const NotificationBanner = ({ sessions }) => {
     if (!showNotification || !newSession) return null;
 
     return (
-        <div className="fixed top-4 right-4 z-50 max-w-sm animate-slide-in">
+        <div className="fixed top-4 right-4 z-[100] max-w-sm animate-slide-in">
             <div className="bg-white border-l-4 border-blue-600 rounded-lg shadow-lg p-4 flex items-start gap-3">
                 <div className="flex-shrink-0 w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center">
                     <span className="material-symbols-outlined text-blue-600 text-xl">notifications_active</span>

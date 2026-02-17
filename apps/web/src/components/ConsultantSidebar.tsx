@@ -13,7 +13,7 @@ const ConsultantSidebar = ({ isOpen, onClose, user }) => {
         { name: 'Dashboard', icon: 'dashboard', path: '/counsellor-dashboard' },
         { name: 'Students', icon: 'group', path: '/counsellor-students' },
         { name: 'University Directory', icon: 'school', path: '/consultant/university-directory' },
-        { name: 'Documents', icon: 'description', path: '/counsellor-documents', badge: 3 },
+        { name: 'Counselling Chat', icon: 'chat', path: '/counsellor-documents' },
         { name: 'Schedule', icon: 'calendar_month', path: '/counsellor-schedule' },
     ];
 
@@ -58,26 +58,24 @@ const ConsultantSidebar = ({ isOpen, onClose, user }) => {
                                     {item.icon}
                                 </span>
                                 <span className="text-sm font-medium">{item.name}</span>
-                                {item.badge && (
-                                    <span className="ml-auto bg-blue-600 text-white text-[10px] px-1.5 py-0.5 rounded-full font-bold">
-                                        {item.badge}
-                                    </span>
-                                )}
                             </Link>
                         );
                     })}
                 </nav>
 
                 <div className="mt-auto p-4 border-t border-gray-100">
-                    <div className="flex items-center gap-3 px-2 py-2">
-                        <div className="size-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-bold">
+                    <Link
+                        to="/counsellor-profile"
+                        className="flex items-center gap-3 px-2 py-2 rounded-xl hover:bg-gray-50 transition-colors group"
+                    >
+                        <div className="size-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-bold group-hover:bg-blue-600 group-hover:text-white transition-colors">
                             ER
                         </div>
                         <div className="flex flex-col">
-                            <p className="text-sm font-bold text-gray-900 leading-none">Elena Rodriguez</p>
+                            <p className="text-sm font-bold text-gray-900 leading-none group-hover:text-blue-600 transition-colors">Elena Rodriguez</p>
                             <p className="text-xs text-gray-500 mt-1">Senior Counselor</p>
                         </div>
-                    </div>
+                    </Link>
                 </div>
             </aside>
         </>

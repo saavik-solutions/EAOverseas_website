@@ -3,13 +3,34 @@ import { useParams, Link } from 'react-router-dom';
 import PageHeader from '../components/PageHeader';
 import { postsData } from '../data/mockFeedData';
 
+interface Post {
+    id: string;
+    label: string;
+    labelColor?: string;
+    banner: string;
+    logo: string;
+    title: string;
+    institution: string;
+    location: string;
+    verified: boolean;
+    tags: string[];
+    applyLink: string;
+    grid?: {
+        label: string;
+        value: string;
+        alert?: boolean;
+        color?: string;
+    }[];
+    about: string;
+}
+
 const UniversityProfile = () => {
     const { name } = useParams();
-    const decodedName = decodeURIComponent(name);
+    const decodedName = decodeURIComponent(name || '');
 
     // Filter posts for this institution
     const institutionPosts = Object.values(postsData).filter(
-        post => post.institution === decodedName
+        (post: Post) => post.institution === decodedName
     );
 
     // Get institution details from the first post (assuming consistent data)
@@ -30,19 +51,21 @@ const UniversityProfile = () => {
 
     // Share Modal State (Reused from Feed logic if needed, simplified for now)
     const [isShareModalOpen, setIsShareModalOpen] = useState(false);
-    const [shareData, setShareData] = useState(null);
+    const [shareData, setShareData] = useState<Post | null>(null);
     const [copyBtnText, setCopyBtnText] = useState('Copy Link');
 
-    const openShareModal = (post) => {
+    const openShareModal = (post: Post) => {
         setShareData(post);
         setIsShareModalOpen(true);
         setCopyBtnText('Copy Link');
     };
 
     const copyToClipboard = () => {
-        navigator.clipboard.writeText(`https://eaoverseas.com/feed/${shareData.id}`);
-        setCopyBtnText('Copied!');
-        setTimeout(() => setCopyBtnText('Copy Link'), 2000);
+        if (shareData) {
+            navigator.clipboard.writeText(`https://eaoverseas.com/feed/${shareData.id}`);
+            setCopyBtnText('Copied!');
+            setTimeout(() => setCopyBtnText('Copy Link'), 2000);
+        }
     };
 
     return (
@@ -87,7 +110,7 @@ const UniversityProfile = () => {
                     </h2>
 
                     <div className="grid gap-6">
-                        {institutionPosts.map((post) => (
+                        {institutionPosts.map((post: Post) => (
                             <article key={post.id} className="flex flex-col bg-white border border-gray-200 rounded-xl p-6 hover:border-blue-200 hover:shadow-md transition-all group">
                                 <div className="flex items-center justify-between mb-4">
                                     <div className="flex items-center gap-3">

@@ -7,6 +7,7 @@ import { useAuthAction } from '../hooks/useAuthAction';
 import { useAuth } from '../context/AuthContext';
 import { useSavedItems } from '../context/SavedItemsContext';
 import LoginModal from '../components/LoginModal';
+import ShareModal from '../components/ShareModal';
 
 const Feed = () => {
     const navigate = useNavigate();
@@ -20,7 +21,6 @@ const Feed = () => {
     // Share Modal State
     const [isShareModalOpen, setIsShareModalOpen] = useState(false);
     const [shareData, setShareData] = useState(null);
-    const [copyBtnText, setCopyBtnText] = useState('Copy Link');
 
     const countries = ['All Countries', 'USA', 'UK', 'Canada', 'Germany', 'Australia', 'Europe', 'Global'];
     const topics = ['All Topics', 'Admissions', 'Scholarships', 'Visas', 'Accomodation', 'Career Advice', 'Routine'];
@@ -70,7 +70,6 @@ const Feed = () => {
             const post = postsData[postId];
             setShareData(post);
             setIsShareModalOpen(true);
-            setCopyBtnText('Copy Link');
         });
     };
 
@@ -80,11 +79,6 @@ const Feed = () => {
         });
     };
 
-    const copyToClipboard = () => {
-        navigator.clipboard.writeText(`https://eaoverseas.com/feed/${shareData.id}`);
-        setCopyBtnText('Copied!');
-        setTimeout(() => setCopyBtnText('Copy Link'), 2000);
-    };
 
     const handleCountryChange = (e) => {
         setActiveCountry(e.target.value);
@@ -389,63 +383,19 @@ const Feed = () => {
 
 
             {/* Share Modal */}
-            {
-                isShareModalOpen && (
-                    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
-                        <div className="bg-white rounded-2xl w-full max-w-md p-6 shadow-xl animate-scale-in">
-                            <div className="flex justify-between items-center mb-6">
-                                <h3 className="text-lg font-bold text-gray-900">Share Opportunity</h3>
-                                <button onClick={() => setIsShareModalOpen(false)} className="p-2 hover:bg-gray-100 rounded-full transition-colors">
-                                    <span className="material-symbols-outlined text-gray-500">close</span>
-                                </button>
-                            </div>
-
-                            <div className="flex gap-4 justify-center mb-8">
-                                <button className="flex flex-col items-center gap-2 p-4 hover:bg-gray-50 rounded-xl transition-colors group">
-                                    <div className="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center text-green-600 group-hover:scale-110 transition-transform">
-                                        <i className="fa-brands fa-whatsapp text-xl"></i>
-                                    </div>
-                                    <span className="text-xs font-medium text-gray-600">WhatsApp</span>
-                                </button>
-                                <button className="flex flex-col items-center gap-2 p-4 hover:bg-gray-50 rounded-xl transition-colors group">
-                                    <div className="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 group-hover:scale-110 transition-transform">
-                                        <i className="fa-brands fa-linkedin-in text-xl"></i>
-                                    </div>
-                                    <span className="text-xs font-medium text-gray-600">LinkedIn</span>
-                                </button>
-                                <button className="flex flex-col items-center gap-2 p-4 hover:bg-gray-50 rounded-xl transition-colors group">
-                                    <div className="w-12 h-12 rounded-full bg-sky-100 flex items-center justify-center text-sky-500 group-hover:scale-110 transition-transform">
-                                        <i className="fa-brands fa-twitter text-xl"></i>
-                                    </div>
-                                    <span className="text-xs font-medium text-gray-600">Twitter</span>
-                                </button>
-                                <button className="flex flex-col items-center gap-2 p-4 hover:bg-gray-50 rounded-xl transition-colors group">
-                                    <div className="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 group-hover:scale-110 transition-transform">
-                                        <span className="material-symbols-outlined">mail</span>
-                                    </div>
-                                    <span className="text-xs font-medium text-gray-600">Email</span>
-                                </button>
-                            </div>
-
-                            <div className="flex items-center gap-2 p-3 bg-gray-50 rounded-xl border border-gray-200">
-                                <span className="material-symbols-outlined text-gray-400">link</span>
-                                <input
-                                    type="text"
-                                    readOnly
-                                    value={`https://eaoverseas.com/feed/${shareData?.id}`}
-                                    className="bg-transparent text-sm text-gray-600 flex-1 outline-none"
-                                />
-                                <button
-                                    onClick={copyToClipboard}
-                                    className="px-4 py-1.5 bg-gray-900 text-white text-xs font-bold rounded-lg hover:bg-gray-800 transition-colors"
-                                >
-                                    {copyBtnText}
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                )
-            }
+            {shareData && (
+                <ShareModal
+                    isOpen={isShareModalOpen}
+                    onClose={() => setIsShareModalOpen(false)}
+                    title="Share Opportunity"
+                    shareUrl={`https://eaoverseas.com/feed/${shareData.id}`}
+                    preview={{
+                        title: shareData.title,
+                        subtitle: shareData.institution,
+                        image: shareData.banner
+                    }}
+                />
+            )}
         </div >
     );
 };

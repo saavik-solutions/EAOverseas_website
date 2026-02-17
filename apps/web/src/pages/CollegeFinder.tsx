@@ -456,7 +456,11 @@ const CollegeFinder = () => {
                                     </div>
                                 ) : (
                                     filteredUniversities.map((uni, index) => (
-                                        <div key={index} className="bg-white rounded-xl border border-gray-200 p-3 lg:p-6 shadow-sm hover:border-blue-600/50 hover:shadow-md transition-all group flex flex-col sm:flex-row gap-3 lg:gap-6">
+                                        <div
+                                            key={index}
+                                            onClick={() => navigate(`/college-details?name=${encodeURIComponent(uni.name)}`)}
+                                            className="bg-white rounded-xl border border-gray-200 p-3 lg:p-6 shadow-sm hover:border-blue-600/50 hover:shadow-md transition-all group flex flex-col sm:flex-row gap-3 lg:gap-6 cursor-pointer relative"
+                                        >
                                             <div className="shrink-0 flex items-start">
                                                 <div className="size-14 lg:size-28 rounded-lg border border-gray-100 bg-white p-1 flex items-center justify-center overflow-hidden">
                                                     {uni.image ? (
@@ -470,7 +474,7 @@ const CollegeFinder = () => {
                                                 <div className="flex justify-between items-start gap-2">
                                                     <div className="flex-1 min-w-0">
                                                         <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2 mb-0.5 lg:mb-2">
-                                                            <h3 className="text-base lg:text-xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors cursor-pointer leading-tight truncate">{uni.name}</h3>
+                                                            <h3 className="text-base lg:text-xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors leading-tight truncate">{uni.name}</h3>
                                                             <span className="w-fit px-1.5 py-0.5 lg:px-2 lg:py-1 rounded text-[10px] lg:text-xs font-bold bg-green-100 text-green-700 border border-green-200 uppercase tracking-wide shrink-0">{uni.match}% Match</span>
                                                         </div>
                                                         <p className="text-xs lg:text-sm text-gray-500 flex items-center gap-1 truncate mb-2 lg:mb-4">
@@ -478,7 +482,10 @@ const CollegeFinder = () => {
                                                         </p>
                                                     </div>
                                                     <button
-                                                        onClick={() => handleToggleSave(uni)}
+                                                        onClick={(e) => {
+                                                            e.stopPropagation();
+                                                            handleToggleSave(uni);
+                                                        }}
                                                         className={`shrink-0 transition-colors p-1.5 lg:p-2 rounded-lg hover:bg-blue-50 ${isCollegeSaved(uni) ? 'text-blue-600 bg-blue-50' : 'text-slate-400 hover:text-blue-600'}`}
                                                         title={isCollegeSaved(uni) ? "Remove from saved" : "Save university"}
                                                     >
@@ -503,7 +510,6 @@ const CollegeFinder = () => {
                                                         <span>Salary: <strong className="text-gray-900">{uni.stats.salary}</strong></span>
                                                     </div>
                                                     <button
-                                                        onClick={() => executeAction(() => navigate(`/college-details?name=${encodeURIComponent(uni.name)}`))}
                                                         className="text-xs lg:text-sm font-semibold text-blue-600 hover:text-blue-800 hover:underline flex items-center gap-0.5 transition-colors"
                                                     >
                                                         Details <span className="material-symbols-outlined !text-[14px] lg:!text-[18px]">arrow_forward</span>

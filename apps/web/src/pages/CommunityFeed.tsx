@@ -4,12 +4,12 @@ import PageHeader from '../components/PageHeader';
 import { useAuthAction } from '../hooks/useAuthAction';
 import { useAuth } from '../context/AuthContext';
 import LoginModal from '../components/LoginModal';
+import ShareModal from '../components/ShareModal';
 
 const CommunityFeed = () => {
     // State for interactive elements
     const [isShareModalOpen, setIsShareModalOpen] = useState(false);
     const [shareData, setShareData] = useState(null);
-    const [copyBtnText, setCopyBtnText] = useState('Copy Link');
     const [expandedPosts, setExpandedPosts] = useState({});
     const [visibleComments, setVisibleComments] = useState({});
     const [newPostText, setNewPostText] = useState('');
@@ -624,20 +624,7 @@ const CommunityFeed = () => {
         executeAction(() => {
             setShareData(post);
             setIsShareModalOpen(true);
-            setCopyBtnText('Copy Link');
         });
-    };
-
-    const closeShareModal = () => {
-        setIsShareModalOpen(false);
-        setShareData(null);
-    };
-
-    const copyShareLink = () => {
-        const shareLink = `https://eaoverseas.com/community/discussion-${shareData.id}`;
-        navigator.clipboard.writeText(shareLink);
-        setCopyBtnText('Copied!');
-        setTimeout(() => setCopyBtnText('Copy Link'), 2000);
     };
 
     const toggleComments = (postId) => {
@@ -1030,9 +1017,9 @@ const CommunityFeed = () => {
                                                     <Link to={`/profile/${post.author}`} className="font-medium text-gray-900 hover:underline hover:text-blue-600 transition-colors" onClick={(e) => e.stopPropagation()}>
                                                         {post.author}
                                                     </Link>
-                                                    {post.isVerifiedAttributes && (
+                                                    {(post as any).isVerifiedAttributes && (
                                                         <span className="flex items-center gap-1 text-[10px] font-bold text-blue-600 whitespace-nowrap">
-                                                            <span className="material-symbols-outlined !text-[14px]">verified</span> {post.verifiedLabel}
+                                                            <span className="material-symbols-outlined !text-[14px]">verified</span> {(post as any).verifiedLabel}
                                                         </span>
                                                     )}
                                                     {post.isExpert && (
@@ -1045,8 +1032,8 @@ const CommunityFeed = () => {
                                                 <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-1.5 leading-snug group-hover:text-primary transition-colors break-words">
                                                     {post.title}
                                                 </h3>
-                                                {post.image && (
-                                                    <div className="h-48 w-full rounded-lg bg-gray-200 mt-2 mb-3 bg-cover bg-center border border-gray-100" style={{ backgroundImage: `url("${post.image}")` }}></div>
+                                                {(post as any).image && (
+                                                    <div className="h-48 w-full rounded-lg bg-gray-200 mt-2 mb-3 bg-cover bg-center border border-gray-100" style={{ backgroundImage: `url("${(post as any).image}")` }}></div>
                                                 )}
                                                 {post.content && (
                                                     <p className="text-sm text-gray-600 leading-relaxed mb-3 break-words">
@@ -1072,13 +1059,13 @@ const CommunityFeed = () => {
                                                         <button onClick={() => toggleComments(post.id)} className="flex items-center gap-1.5 hover:text-gray-900 transition-colors">
                                                             <span className="material-symbols-outlined text-[18px]">mode_comment</span>
                                                             {post.type === 'question' ? (
-                                                                <span>{post.answers?.length || 0} Comments</span>
+                                                                <span>{(post as any).answers?.length || 0} Comments</span>
                                                             ) : (
                                                                 <span>{post.commentsCount} Comments</span>
                                                             )}
                                                         </button>
                                                         <div className="flex items-center gap-4">
-                                                            <button onClick={() => openShareModal(post)} className="flex items-center gap-1.5 hover:text-gray-900 transition-colors">
+                                                            <button onClick={(e) => { e.stopPropagation(); openShareModal(post); }} className="flex items-center gap-1.5 hover:text-gray-900 transition-colors">
                                                                 <span className="material-symbols-outlined text-[18px]">share</span> Share
                                                             </button>
                                                             {/* Only show delete for current user */}
@@ -1276,84 +1263,20 @@ const CommunityFeed = () => {
                 </aside>
             </div>
 
-            {/* SHARE MODAL */}
-            {
-                isShareModalOpen && shareData && (
-                    <div className="fixed inset-0 z-50 transition-opacity" aria-labelledby="modal-title" role="dialog" aria-modal="true">
-                        <div className="fixed inset-0 bg-gray-900/50 backdrop-blur-sm transition-opacity" onClick={closeShareModal}></div>
-                        <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
-                            <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
-                                <div className="relative transform overflow-hidden rounded-2xl bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
-                                    <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
-                                        <h3 className="text-base font-bold text-gray-900" id="modal-title">Share Discussion</h3>
-                                        <button onClick={closeShareModal} className="text-gray-400 hover:text-gray-500 transition-colors">
-                                            <span className="material-symbols-outlined text-[20px]">close</span>
-                                        </button>
-                                    </div>
-                                    <div className="p-6">
-                                        <div className="flex items-start gap-4 p-4 bg-gray-50/50 rounded-xl border border-gray-100 mb-6">
-                                            <div className="size-10 rounded bg-white border border-gray-100 p-1 shrink-0 flex items-center justify-center">
-                                                <img src="https://cdn-icons-png.flaticon.com/512/1256/1256650.png" className="w-full h-full object-contain" alt="Logo" />
-                                            </div>
-                                            <div className="flex-1 min-w-0">
-                                                <h4 className="text-sm font-bold text-gray-900 leading-snug line-clamp-2 mb-1">{shareData.title}</h4>
-                                                <div className="flex items-center gap-2 text-xs text-gray-500">
-                                                    <span>EAOverseas Community</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="mb-6">
-                                            <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Discussion Link</label>
-                                            <div className="flex gap-2">
-                                                <div className="flex-1 flex items-center gap-2 px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg">
-                                                    <span className="material-symbols-outlined text-gray-400 text-[18px]">link</span>
-                                                    <input readOnly value={`https://eaoverseas.com/community/discussion-${shareData.id}`} className="bg-transparent border-none text-sm text-gray-600 w-full focus:ring-0 p-0 truncate" />
-                                                </div>
-                                                <button onClick={copyShareLink} className={`px-4 py-2 bg-white border border-gray-200 text-gray-700 text-sm font-medium rounded-lg hover:border-gray-300 hover:bg-gray-50 transition-all shadow-sm ${copyBtnText === 'Copied!' ? 'text-green-600 bg-green-50 border-green-200' : ''}`}>
-                                                    {copyBtnText === 'Copied!' ? <><span className="material-symbols-outlined text-[18px]">check</span> Copied!</> : 'Copy Link'}
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <div className="mb-6">
-                                            <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Share to Social</label>
-                                            <div className="grid grid-cols-4 gap-3">
-                                                {[
-                                                    {
-                                                        name: 'linkedin',
-                                                        style: 'bg-[#0077b5] hover:bg-[#006097] text-white border-transparent',
-                                                        path: "M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
-                                                    },
-                                                    {
-                                                        name: 'facebook',
-                                                        style: 'bg-[#1877F2] hover:bg-[#166fe5] text-white border-transparent',
-                                                        path: "M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.791-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
-                                                    },
-                                                    {
-                                                        name: 'twitter',
-                                                        style: 'bg-[#1DA1F2] hover:bg-[#1a91da] text-white border-transparent',
-                                                        path: "M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"
-                                                    },
-                                                    {
-                                                        name: 'whatsapp',
-                                                        style: 'bg-[#25D366] hover:bg-[#22bf5b] text-white border-transparent',
-                                                        path: "M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"
-                                                    }
-                                                ].map(platform => (
-                                                    <button key={platform.name} className={`flex flex-col items-center justify-center gap-1.5 p-3 rounded-xl border transition-all shadow-sm ${platform.style}`}>
-                                                        <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
-                                                            <path d={platform.path} />
-                                                        </svg>
-                                                    </button>
-                                                ))}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                )
-            }
+            {/* Share Modal */}
+            {shareData && (
+                <ShareModal
+                    isOpen={isShareModalOpen}
+                    onClose={() => setIsShareModalOpen(false)}
+                    title="Share Discussion"
+                    shareUrl={`https://eaoverseas.com/community/discussion-${shareData.id}`}
+                    preview={{
+                        title: shareData.title,
+                        subtitle: "EAOverseas Community",
+                        icon: "https://cdn-icons-png.flaticon.com/512/1256/1256650.png"
+                    }}
+                />
+            )}
         </div >
     );
 };

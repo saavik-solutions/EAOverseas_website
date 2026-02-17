@@ -1,75 +1,82 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import PageHeader from '../components/PageHeader';
 import NotificationBanner from '../components/NotificationBanner';
 
 const ConsultantDashboard = () => {
     // State for dynamically loaded sessions
     const [sessions, setSessions] = React.useState([]);
+    const [assignedStudentsCount, setAssignedStudentsCount] = React.useState(24);
 
-    // Load sessions from localStorage
-    const loadSessions = () => {
+    // Load sessions and assigned count
+    const loadData = () => {
+        // Load sessions
         const savedSessions = localStorage.getItem('scheduled_sessions');
         if (savedSessions) {
             const parsedSessions = JSON.parse(savedSessions);
-
-            // Filter only scheduled (not completed) sessions AND aggressively filter out 'Student User'
             const scheduledSessions = parsedSessions.filter(s => {
                 const name = s.studentName || s.name || '';
-                // Check if name contains 'Student User' or 'Guest User' (case insensitive)
                 const isBadData = /student\s*user|guest\s*user/i.test(name);
                 return s.status === 'scheduled' && !isBadData;
             });
-
-            // If we filtered out bad data, update localStorage to permanently remove it
             if (scheduledSessions.length < parsedSessions.length) {
                 localStorage.setItem('scheduled_sessions', JSON.stringify(scheduledSessions));
             }
-
             setSessions(scheduledSessions);
         } else {
             setSessions([]);
         }
+
+        // Load dynamic assigned students count
+        const savedAssigned = localStorage.getItem('assigned_students_list');
+        if (savedAssigned) {
+            const dynamicList = JSON.parse(savedAssigned);
+            // Count unique ones that aren't in the base 24 (matching the logic in AssignedStudents.tsx)
+            // For simplicity, we just add the dynamic list length if we assume they are unique
+            setAssignedStudentsCount(24 + dynamicList.length);
+        }
     };
 
-    // Load sessions on mount and refresh every 5 seconds
+    // Load on mount and refresh
     React.useEffect(() => {
-        loadSessions();
-        const interval = setInterval(loadSessions, 5000);
+        loadData();
+        const interval = setInterval(loadData, 5000);
         return () => clearInterval(interval);
     }, []);
 
-    // Function to mark student as completed when session starts
-    // Function to mark student as completed when session starts
+    // Function to mark student as completed when session starts and add to assigned list
     const handleSessionAction = (session) => {
-        // Support both full session object or just name (backward compatibility)
         const studentName = session.studentName || session.name || session;
-        const studentId = session.studentId;
+        const studentId = session.studentId || `#EAS-${Math.floor(Math.random() * 1000) + 2000}`; // Fallback ID
+        const university = session.university || session.targetUni || 'Target University Pending';
 
-        // Get current completed students from localStorage
-        const saved = localStorage.getItem('completedStudents');
-        const completedStudents = saved ? JSON.parse(saved) : [];
+        // 1. Mark as completed (for existing logic)
+        const savedCompleted = localStorage.getItem('completedStudents');
+        const completedStudents = savedCompleted ? JSON.parse(savedCompleted) : [];
 
-        // If we have a direct student ID from the session, use it
-        if (studentId) {
-            if (!completedStudents.includes(studentId)) {
-                completedStudents.push(studentId);
-                localStorage.setItem('completedStudents', JSON.stringify(completedStudents));
-            }
-            return;
+        if (!completedStudents.includes(studentId)) {
+            completedStudents.push(studentId);
+            localStorage.setItem('completedStudents', JSON.stringify(completedStudents));
         }
 
-        // Fallback: Find student ID by name from student data (Legacy/Mock data)
-        const studentMap = {
-            'James Sterling': '#EAS-2940',
-            'Aisha Mohammed': '#EAS-3012',
-            'Liam Chen': '#EAS-1829',
-            'Sofia Wagner': '#EAS-4410'
-        };
+        // 2. Add to Assigned Students for the new directory
+        const savedAssigned = localStorage.getItem('assigned_students_list');
+        const assignedStudents = savedAssigned ? JSON.parse(savedAssigned) : [];
 
-        const mappedId = studentMap[studentName];
-        if (mappedId && !completedStudents.includes(mappedId)) {
-            completedStudents.push(mappedId);
-            localStorage.setItem('completedStudents', JSON.stringify(completedStudents));
+        // Check if student already exists in assigned list
+        const exists = assignedStudents.some(s => s.id === studentId || s.name === studentName);
+
+        if (!exists) {
+            const newStudent = {
+                id: studentId,
+                name: studentName,
+                university: university,
+                status: 'Successful',
+                color: ['blue', 'orange', 'purple', 'green'][Math.floor(Math.random() * 4)]
+            };
+            const updatedList = [...assignedStudents, newStudent];
+            localStorage.setItem('assigned_students_list', JSON.stringify(updatedList));
+            setAssignedStudentsCount(24 + updatedList.length);
         }
     };
     return (
@@ -86,47 +93,52 @@ const ConsultantDashboard = () => {
                     {/* Stats Cards */}
                     <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
                         {/* Card 1 */}
-                        <div className="bg-white p-5 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
+                        <Link to="/counsellor-assigned-students" className="bg-white p-5 rounded-xl border border-gray-200 shadow-sm hover:shadow-md hover:border-blue-200 transition-all cursor-pointer group flex flex-col">
                             <div className="flex items-start justify-between mb-4">
-                                <div className="p-2 bg-blue-50 rounded-lg text-blue-600">
+                                <div className="p-2 bg-blue-50 rounded-lg text-blue-600 group-hover:bg-blue-100 transition-colors">
                                     <span className="material-symbols-outlined icon-filled">person</span>
                                 </div>
                                 <span className="text-xs font-medium px-2 py-1 rounded-full bg-green-50 text-green-600">+1 new</span>
                             </div>
                             <p className="text-gray-500 text-sm font-medium">Assigned Students</p>
-                            <p className="text-2xl font-bold text-gray-900 mt-1">24 <span className="text-sm font-normal text-gray-500">total</span></p>
-                        </div>
+                            <div className="flex items-end justify-between">
+                                <p className="text-2xl font-bold text-gray-900 mt-1">{assignedStudentsCount} <span className="text-sm font-normal text-gray-500">total</span></p>
+                                <span className="material-symbols-outlined text-gray-300 text-sm opacity-0 group-hover:opacity-100 transition-opacity">arrow_forward_ios</span>
+                            </div>
+                        </Link>
                         {/* Card 2 */}
-                        <div className="bg-white p-5 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
+                        <Link to="/counsellor-students" className="bg-white p-5 rounded-xl border border-gray-200 shadow-sm hover:shadow-md hover:border-blue-200 transition-all cursor-pointer group flex flex-col">
                             <div className="flex items-start justify-between mb-4">
-                                <div className="p-2 bg-purple-50 rounded-lg text-purple-600">
+                                <div className="p-2 bg-purple-50 rounded-lg text-purple-600 group-hover:bg-purple-100 transition-colors">
                                     <span className="material-symbols-outlined icon-filled">school</span>
                                 </div>
+                                <span className="material-symbols-outlined text-gray-300 text-sm opacity-0 group-hover:opacity-100 transition-opacity">arrow_forward_ios</span>
                             </div>
                             <p className="text-gray-500 text-sm font-medium">Active Student Cases</p>
-                            <p className="text-2xl font-bold text-gray-900 mt-1">12 <span className="text-sm font-normal text-gray-500">in progress</span></p>
-                        </div>
+                            <p className="text-2xl font-bold text-gray-900 mt-1">12 <span className="text-sm font-normal text-gray-500">successful</span></p>
+                        </Link>
                         {/* Card 3 */}
                         <div className="bg-white p-5 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
                             <div className="flex items-start justify-between mb-4">
                                 <div className="p-2 bg-orange-50 rounded-lg text-orange-600">
                                     <span className="material-symbols-outlined icon-filled">description</span>
                                 </div>
-                                <span className="text-xs font-medium px-2 py-1 rounded-full bg-orange-50 text-orange-600">Action Needed</span>
+                                <span className="text-xs font-medium px-2 py-1 rounded-full bg-green-50 text-green-600">Successful</span>
                             </div>
                             <p className="text-gray-500 text-sm font-medium">Pending Reviews</p>
                             <p className="text-2xl font-bold text-gray-900 mt-1">3 <span className="text-sm font-normal text-gray-500">documents</span></p>
                         </div>
                         {/* Card 4 */}
-                        <div className="bg-white p-5 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
+                        <Link to="/counsellor-performance" className="bg-white p-5 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-all hover:border-blue-200 hover:bg-blue-50/10 cursor-pointer group">
                             <div className="flex items-start justify-between mb-4">
-                                <div className="p-2 bg-yellow-50 rounded-lg text-yellow-600">
+                                <div className="p-2 bg-yellow-50 rounded-lg text-yellow-600 group-hover:bg-yellow-100 transition-colors">
                                     <span className="material-symbols-outlined icon-filled">star</span>
                                 </div>
+                                <span className="material-symbols-outlined text-gray-300 text-sm opacity-0 group-hover:opacity-100 transition-opacity">arrow_forward_ios</span>
                             </div>
                             <p className="text-gray-500 text-sm font-medium">Average Rating</p>
                             <p className="text-2xl font-bold text-gray-900 mt-1">4.8 <span className="text-sm font-normal text-gray-500">stars</span></p>
-                        </div>
+                        </Link>
                     </div>
 
 

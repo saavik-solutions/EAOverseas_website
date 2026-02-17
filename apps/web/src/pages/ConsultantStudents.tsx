@@ -1,10 +1,22 @@
 import React from 'react';
 import PageHeader from '../components/PageHeader';
 
+interface Student {
+    name: string;
+    id: string;
+    country: string;
+    stage: string;
+    priority: string;
+    lastInteraction: string;
+    detail: string;
+    initials: string;
+    color: string;
+}
+
 const ConsultantStudents = () => {
     const [searchQuery, setSearchQuery] = React.useState('');
     // Load completed students from localStorage on mount
-    const [completedStudents, setCompletedStudents] = React.useState(() => {
+    const [completedStudents, setCompletedStudents] = React.useState<string[]>(() => {
         const saved = localStorage.getItem('completedStudents');
         return saved ? JSON.parse(saved) : [];
     });
@@ -19,91 +31,69 @@ const ConsultantStudents = () => {
         localStorage.setItem('completedStudents', JSON.stringify(completedStudents));
     }, [completedStudents]);
 
-    const [studentData, setStudentData] = React.useState([
-        {
-            name: 'James Sterling',
-            id: '#EAS-2940',
-            country: 'United Kingdom',
-            stage: 'Visa Processing',
-            priority: 'Urgent',
-            last: '2 hours ago',
-            detail: 'Call scheduled',
-            initials: 'JS',
-            color: 'blue'
-        },
-        {
-            name: 'Aisha Mohammed',
-            id: '#EAS-3012',
-            country: 'Canada',
-            stage: 'App. Submitted',
-            priority: 'High',
-            last: 'Yesterday',
-            detail: 'Document review',
-            initials: 'AM',
-            color: 'orange'
-        },
-        {
-            name: 'Liam Chen',
-            id: '#EAS-1829',
-            country: 'Australia',
-            stage: 'Test Prep',
-            priority: 'Low',
-            last: 'Feb 10, 2026',
-            detail: 'IELTS Mock results',
-            initials: 'LC',
-            color: 'purple'
-        },
-        {
-            name: 'Sofia Wagner',
-            id: '#EAS-4410',
-            country: 'Germany',
-            stage: 'Visa Processing',
-            priority: 'High',
-            last: 'Feb 8, 2026',
-            detail: 'Interview scheduled',
-            initials: 'SW',
-            color: 'teal'
-        },
-    ]);
+    const [studentData, setStudentData] = React.useState<Student[]>([]);
 
-    // Effect to load dynamic students from scheduled sessions
+    // Load and update students from scheduled sessions
     React.useEffect(() => {
-        const savedSessions = localStorage.getItem('scheduled_sessions');
-        if (savedSessions) {
-            const parsedSessions = JSON.parse(savedSessions);
+        const loadDynamicStudents = () => {
+            const savedSessions = localStorage.getItem('scheduled_sessions');
+            if (savedSessions) {
+                const parsedSessions = JSON.parse(savedSessions);
 
-            // Map unique students from sessions
-            const dynamicStudents = [];
-            const seenIds = new Set(studentData.map(s => s.id));
+                // Map unique students from sessions
+                // Start with Sarah Jenkins (Permanent Demo Student)
+                const dynamicStudents: Student[] = [
+                    {
+                        name: 'Sarah Jenkins',
+                        id: 'USER_ADMIN_002',
+                        country: 'United Kingdom',
+                        stage: 'Visa Processing',
+                        priority: 'High',
+                        lastInteraction: 'Today',
+                        detail: 'Visa Application Strategy',
+                        initials: 'SJ',
+                        color: 'purple'
+                    }
+                ];
+                const seenIds = new Set(['USER_ADMIN_002']);
 
-            parsedSessions.forEach(session => {
-                // Skip if no student ID (legacy data) or already exists
-                if (!session.studentId || seenIds.has(session.studentId)) return;
+                parsedSessions.forEach(session => {
+                    const studentId = session.studentId;
+                    if (!studentId || seenIds.has(studentId)) return;
 
-                // Create a student object from session data
-                // We'll infer/randomize missing fields for the demo
-                const initials = session.studentName
-                    ? session.studentName.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase()
-                    : 'GU';
+                    // Create a student object from session data
+                    const initials = session.studentName
+                        ? session.studentName.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase()
+                        : 'GU';
 
-                dynamicStudents.push({
-                    name: session.studentName,
-                    id: session.studentId,
-                    country: 'Unassigned', // Default
-                    stage: 'Initial Consultation', // Default for new bookings
-                    priority: 'Medium',
-                    last: 'Just now', // Since they just booked
-                    detail: session.topic || 'Consultation',
-                    initials: initials,
-                    color: ['blue', 'orange', 'purple', 'teal'][Math.floor(Math.random() * 4)]
+                    // Derive country and stage from session data if available, or use defaults
+                    // For demo purposes we can map certain topics to stages
+                    let stage = 'Initial Consultation';
+                    if (session.topic?.toLowerCase().includes('visa')) stage = 'Visa Processing';
+                    else if (session.topic?.toLowerCase().includes('ielts') || session.topic?.toLowerCase().includes('test')) stage = 'Test Prep';
+
+                    dynamicStudents.push({
+                        name: session.studentName,
+                        id: studentId,
+                        country: session.country || 'Unassigned',
+                        stage: stage,
+                        priority: session.priority || 'Medium',
+                        lastInteraction: session.dateLabel || 'Just now',
+                        detail: session.topic || 'Consultation',
+                        initials: initials,
+                        color: ['blue', 'orange', 'purple', 'teal'][Math.floor(Math.random() * 4)]
+                    });
+                    seenIds.add(studentId);
                 });
-                seenIds.add(session.studentId);
-            });
 
-            if (dynamicStudents.length > 0) {
-                setStudentData(prev => [...prev, ...dynamicStudents]);
+                setStudentData(dynamicStudents);
             }
-        }
+        };
+
+        loadDynamicStudents();
+        // Check for updates every few seconds in case a new session is booked
+        const interval = setInterval(loadDynamicStudents, 5000);
+        return () => clearInterval(interval);
     }, []);
 
     // Unique options for filters
@@ -286,7 +276,7 @@ const ConsultantStudents = () => {
                                                     </div>
                                                 </td>
                                                 <td className="px-6 py-4">
-                                                    <p className="text-sm text-gray-600">{student.last}</p>
+                                                    <p className="text-sm text-gray-600">{student.lastInteraction}</p>
                                                     <p className="text-xs text-gray-400 italic">{student.detail}</p>
                                                 </td>
                                                 <td className="px-6 py-4 text-right">
@@ -298,7 +288,7 @@ const ConsultantStudents = () => {
                                         ))
                                     ) : (
                                         <tr>
-                                            <td colSpan="6" className="px-6 py-12 text-center text-gray-500">
+                                            <td colSpan={7} className="px-6 py-12 text-center text-gray-500">
                                                 No students found matching your filters.
                                             </td>
                                         </tr>
@@ -309,7 +299,7 @@ const ConsultantStudents = () => {
 
                         {/* Table Footer / Pagination */}
                         <div className="p-6 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-gray-100">
-                            <p className="text-sm text-gray-500">Showing <span className="font-semibold text-gray-900">{filteredStudents.length > 0 ? 1 : 0}-{filteredStudents.length}</span> of <span className="font-semibold text-gray-900">{studentData.length}</span> students</p>
+                            <p className="text-sm text-gray-500">Showing <span className="font-semibold text-gray-900">{filteredStudents.length > 0 ? `1-${filteredStudents.length}` : '0'}</span> of <span className="font-semibold text-gray-900">{studentData.length}</span> students</p>
                             <div className="flex items-center gap-2">
                                 <button className="p-2 border border-gray-200 rounded-lg text-gray-400 hover:bg-gray-50 transition-colors disabled:opacity-50" disabled>
                                     <span className="material-symbols-outlined text-lg">chevron_left</span>
