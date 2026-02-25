@@ -16,14 +16,14 @@ const Sidebar = ({ isOpen, onClose }) => {
 
 
     const navItems = [
-        { name: 'Global Feed', icon: 'public', path: '/feed' },
-        { name: 'Community Feed', icon: 'forum', path: '/community-feed' },
-        { name: 'Universities', icon: 'school', path: '/colleges' },
-        { name: 'Courses', icon: 'book', path: '/courses' },
+        { name: 'Global Feed', icon: 'public', path: user ? '/feed' : '/explore/feed' },
+        { name: 'Community Feed', icon: 'forum', path: user ? '/community-feed' : '/explore/community' },
+        { name: 'Universities', icon: 'school', path: user ? '/colleges' : '/explore/colleges' },
+        { name: 'Courses', icon: 'book', path: user ? '/courses' : '/explore/courses' },
         { name: 'AI Profile & Assistance', icon: 'auto_awesome', path: '/ai-profile' },
-        { name: 'Home Dashboard', icon: 'dashboard', path: '/dashboard' },
-        { name: 'Test Prep', icon: 'quiz', path: '/test-prep' },
-        { name: 'Accommodation', icon: 'home_work', path: '/accommodation' },
+        { name: 'Home Dashboard', icon: 'dashboard', path: user ? '/dashboard' : '/explore/dashboard' },
+        { name: 'Test Prep', icon: 'quiz', path: user ? '/test-prep' : '/explore/test-prep' },
+        { name: 'Accommodation', icon: 'home_work', path: user ? '/accommodation' : '/explore/accommodation' },
         { name: 'Loans', icon: 'attach_money', path: '/loans' },
         { name: 'Visas', icon: 'airplane_ticket', path: '/visas' },
         { name: 'Counsellor', icon: 'support_agent', path: '/consultant' },
@@ -63,7 +63,7 @@ const Sidebar = ({ isOpen, onClose }) => {
                         let isActive = currentPath === item.path || (item.path !== '/' && currentPath.startsWith(item.path));
 
                         // Show specific items for guests as per user request
-                        const guestVisiblePaths = ['/feed', '/community-feed', '/colleges', '/courses', '/dashboard', '/test-prep', '/accommodation'];
+                        const guestVisiblePaths = ['/feed', '/explore/feed', '/community-feed', '/explore/community', '/colleges', '/explore/colleges', '/courses', '/explore/courses', '/dashboard', '/explore/dashboard', '/test-prep', '/explore/test-prep', '/accommodation', '/explore/accommodation'];
                         if (!user && !guestVisiblePaths.includes(item.path)) return null;
 
                         // Keep Global Feed active when viewing an institution profile

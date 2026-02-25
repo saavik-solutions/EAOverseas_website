@@ -49,14 +49,14 @@ const Login = () => {
             <div className="hidden lg:block w-[50%] bg-[#0d6cf20a] relative overflow-hidden">
                 <div className="absolute inset-0 bg-cover bg-center" style={{
                     backgroundImage: `url("${selectedRole === 'University'
-                            ? 'https://images.unsplash.com/photo-1562774053-701939374585?q=80&w=2686&auto=format&fit=crop'
-                            : selectedRole === 'Counsellor'
-                                ? 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=2664&auto=format&fit=crop'
-                                : selectedRole === 'Vendors'
-                                    ? 'https://images.unsplash.com/photo-1521737711867-e3b97375f902?q=80&w=2687&auto=format&fit=crop'
-                                    : selectedRole === 'Chief Counsel'
-                                        ? 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=2670&auto=format&fit=crop'
-                                        : 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=2670&auto=format&fit=crop'
+                        ? 'https://images.unsplash.com/photo-1562774053-701939374585?q=80&w=2686&auto=format&fit=crop'
+                        : selectedRole === 'Counsellor'
+                            ? 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=2664&auto=format&fit=crop'
+                            : selectedRole === 'Vendors'
+                                ? 'https://images.unsplash.com/photo-1521737711867-e3b97375f902?q=80&w=2687&auto=format&fit=crop'
+                                : selectedRole === 'Chief Counsel'
+                                    ? 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=2670&auto=format&fit=crop'
+                                    : 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=2670&auto=format&fit=crop'
                         }")`,
                     filter: 'grayscale(20%)'
                 }}></div>
@@ -86,14 +86,14 @@ const Login = () => {
                         <div className="flex items-center gap-4">
                             <div className="w-12 h-12 rounded-full bg-white/20 bg-cover bg-center border-2 border-white/50" style={{
                                 backgroundImage: `url("${selectedRole === 'University'
-                                        ? 'https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=2574&auto=format&fit=crop'
-                                        : selectedRole === 'Counsellor'
-                                            ? 'https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=2561&auto=format&fit=crop'
-                                            : selectedRole === 'Vendors'
-                                                ? 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=2574&auto=format&fit=crop'
-                                                : selectedRole === 'Chief Counsel'
-                                                    ? 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=2576&auto=format&fit=crop'
-                                                    : 'https://lh3.googleusercontent.com/aida-public/AB6AXuAyofmbE6BQ1oKD_K5rKFIejNVdgeqUiSyrolvHkNfCE26ZnAXiT-oINCudT0C-fT3MCmy9redQzfVamIOAnrhXrylTrlJkbQPzWlxG7hTppX9A53giOaN0dXM6Yg3W2IXnmrCIHAK7jp5hyFYv-ptAImCikMurQL6guj1jZaXnZbloJ3SOSTuzhdxZ0Nnj6dAjTODFzyzL_gA8HM3MX7QjAv3pDPx-BL07xUcB4uKUW_dao5sgRNXIJtrcbyIivxNSWhyQOVL-cK4'
+                                    ? 'https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=2574&auto=format&fit=crop'
+                                    : selectedRole === 'Counsellor'
+                                        ? 'https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=2561&auto=format&fit=crop'
+                                        : selectedRole === 'Vendors'
+                                            ? 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=2574&auto=format&fit=crop'
+                                            : selectedRole === 'Chief Counsel'
+                                                ? 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=2576&auto=format&fit=crop'
+                                                : 'https://lh3.googleusercontent.com/aida-public/AB6AXuAyofmbE6BQ1oKD_K5rKFIejNVdgeqUiSyrolvHkNfCE26ZnAXiT-oINCudT0C-fT3MCmy9redQzfVamIOAnrhXrylTrlJkbQPzWlxG7hTppX9A53giOaN0dXM6Yg3W2IXnmrCIHAK7jp5hyFYv-ptAImCikMurQL6guj1jZaXnZbloJ3SOSTuzhdxZ0Nnj6dAjTODFzyzL_gA8HM3MX7QjAv3pDPx-BL07xUcB4uKUW_dao5sgRNXIJtrcbyIivxNSWhyQOVL-cK4'
                                     }")`
                             }}></div>
                             <div>
@@ -298,7 +298,7 @@ const Login = () => {
 
                         <button
                             type="button"
-                            onClick={() => navigate('/feed')}
+                            onClick={() => navigate('/explore/feed')}
                             className="w-full mt-2 h-10 lg:h-12 border-2 border-[#0d6cf2] text-[#0d6cf2] hover:bg-[#0d6cf2] hover:text-white text-sm lg:text-base font-bold rounded-lg transition-all flex items-center justify-center gap-2 shadow-sm"
                         >
                             Continue as Guest

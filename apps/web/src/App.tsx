@@ -181,6 +181,15 @@ function App() {
                                 <Route path="test-prep/reading/submitted" element={<ReadingTestSubmitted />} />
                                 <Route path="test-prep/writing-instructions" element={<WritingTestInstructions />} />
                                 <Route path="test-prep/writing" element={<WritingTest />} />
+
+                                {/* Guest Specific Routes */}
+                                <Route path="explore/feed" element={<Feed />} />
+                                <Route path="explore/community" element={<CommunityFeed />} />
+                                <Route path="explore/courses" element={<Courses />} />
+                                <Route path="explore/colleges" element={<CollegeFinder />} />
+                                <Route path="explore/dashboard" element={<HomeDashboard />} />
+                                <Route path="explore/test-prep" element={<TestPrep />} />
+                                <Route path="explore/accommodation" element={<Accommodation />} />
                             </Route>
 
                             {/* Test Prep Routes (Standalone - No Layout) */}
