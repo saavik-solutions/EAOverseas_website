@@ -176,7 +176,7 @@ const LandingPage = () => {
                 <div className="relative flex items-start justify-center gap-4 sm:gap-6 md:gap-8">
                     {/* Left Pill - High */}
                     <div className="relative group z-10 shrink-0">
-                        <div className="w-24 sm:w-32 md:w-44 h-56 sm:h-80 md:h-[420px] rounded-full overflow-hidden shadow-2xl">
+                        <div className="w-20 sm:w-28 md:w-36 h-48 sm:h-64 md:h-[340px] rounded-full overflow-hidden shadow-2xl">
                             <img src={story1} alt="Student Story Left" className="w-full h-full object-cover" />
                         </div>
                     </div>
@@ -184,21 +184,21 @@ const LandingPage = () => {
                     {/* Center Pill - Low */}
                     <div className="relative mt-8 md:mt-24 z-10 group shrink-0">
                         {/* Decorative Top Horizontal Pill - Now relative to Center Pill */}
-                        <div className="absolute -top-8 md:-top-14 left-1/2 transform -translate-x-1/2 w-24 md:w-32 h-6 md:h-8 rounded-full shadow-xl z-0 overflow-hidden border border-white/10">
+                        <div className="absolute -top-8 md:-top-12 left-1/2 transform -translate-x-1/2 w-20 md:w-28 h-5 md:h-7 rounded-full shadow-xl z-0 overflow-hidden border border-white/10">
                             <img src={topBar} alt="Top Decor" className="w-full h-full object-contain" />
                         </div>
-                        <div className="w-24 sm:w-32 md:w-44 h-56 sm:h-80 md:h-[420px] rounded-full overflow-hidden shadow-2xl relative">
+                        <div className="w-20 sm:w-28 md:w-36 h-48 sm:h-64 md:h-[340px] rounded-full overflow-hidden shadow-2xl relative">
                             <img src={story2} alt="Student Story Center" className="w-full h-full object-cover" />
                         </div>
                     </div>
 
                     {/* Right Pill - High */}
                     <div className="relative group z-10 shrink-0">
-                        <div className="w-24 sm:w-32 md:w-44 h-56 sm:h-80 md:h-[420px] rounded-full overflow-hidden shadow-2xl">
+                        <div className="w-20 sm:w-28 md:w-36 h-48 sm:h-64 md:h-[340px] rounded-full overflow-hidden shadow-2xl">
                             <img src={story3} alt="Student Story Right" className="w-full h-full object-cover" />
                         </div>
                         {/* Decorative Bottom Horizontal Pill */}
-                        <div className="absolute -bottom-14 md:-bottom-20 left-1/2 transform -translate-x-1/2 w-24 md:w-32 h-6 md:h-8 rounded-full opacity-90 shadow-xl z-20 overflow-hidden border border-white/10">
+                        <div className="absolute -bottom-12 md:-bottom-16 left-1/2 transform -translate-x-1/2 w-20 md:w-28 h-5 md:h-7 rounded-full opacity-90 shadow-xl z-20 overflow-hidden border border-white/10">
                             <img src={bottomBar} alt="Bottom Decor" className="w-full h-full object-contain" />
                         </div>
                     </div>

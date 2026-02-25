@@ -57,30 +57,30 @@ const AssignedStudents = () => {
             <PageHeader title="Assigned Students" />
 
             <main className="flex-1 overflow-y-auto p-4 lg:p-10 no-scrollbar">
-                <div className="max-w-[1400px] mx-auto w-full flex flex-col gap-8">
+                <div className="max-w-[1400px] mx-auto w-full flex flex-col gap-6 md:gap-8">
 
                     {/* Page Title & Stats */}
-                    <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 animate-fade-in">
-                        <div className="flex flex-col gap-1">
-                            <h1 className="text-slate-900 text-3xl font-extrabold tracking-tight">Assigned Students</h1>
-                            <p className="text-slate-500 text-base">Overview of all active student cases assigned to your portfolio.</p>
+                    <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-3 md:gap-4 animate-fade-in">
+                        <div className="flex flex-col gap-0.5">
+                            <h1 className="text-slate-900 text-xl md:text-3xl font-extrabold tracking-tight">Assigned Students</h1>
+                            <p className="text-slate-500 text-xs md:text-base">Overview of all active student cases.</p>
                         </div>
                         <div className="flex items-center gap-3">
-                            <div className="bg-white px-4 py-2 rounded-lg border border-slate-200 shadow-sm">
-                                <span className="text-slate-500 text-xs font-bold uppercase mr-2">Total Assigned:</span>
-                                <span className="text-slate-900 font-black">{students.length}</span>
+                            <div className="bg-white px-3 py-1.5 md:px-4 md:py-2 rounded-lg border border-slate-200 shadow-sm">
+                                <span className="text-slate-500 text-[10px] md:text-xs font-bold uppercase mr-2">Total:</span>
+                                <span className="text-slate-900 font-black text-xs md:text-sm">{students.length}</span>
                             </div>
                         </div>
                     </div>
 
                     {/* Students Grid */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 animate-slide-up">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6 animate-slide-up">
                         {students.map((student, idx) => (
                             <div key={`${student.id}-${idx}`}
-                                className="bg-white rounded-xl border border-slate-200 shadow-sm hover:shadow-md hover:border-blue-200 transition-all cursor-pointer group flex flex-col p-6"
+                                className="bg-white rounded-xl border border-slate-200 shadow-sm hover:shadow-md hover:border-blue-200 transition-all cursor-pointer group flex flex-col p-4 md:p-6"
                                 style={{ animationDelay: `${idx * 0.02}s` }}>
                                 <div className="flex justify-between items-start mb-4">
-                                    <div className={`size-12 rounded-full flex items-center justify-center font-bold text-lg ${student.color === 'blue' ? 'bg-blue-50 text-blue-600' :
+                                    <div className={`size-10 md:size-12 rounded-full flex items-center justify-center font-bold text-base md:text-lg ${student.color === 'blue' ? 'bg-blue-50 text-blue-600' :
                                         student.color === 'orange' ? 'bg-orange-50 text-orange-600' :
                                             student.color === 'purple' ? 'bg-purple-50 text-purple-600' :
                                                 'bg-green-50 text-green-600'
@@ -92,8 +92,8 @@ const AssignedStudents = () => {
                                     </div>
                                 </div>
 
-                                <div className="flex flex-col gap-1 mb-4 flex-1">
-                                    <h3 className="text-slate-900 font-bold text-lg group-hover:text-blue-600 transition-colors">{student.name}</h3>
+                                <div className="flex flex-col gap-0.5 md:gap-1 mb-3 md:mb-4 flex-1">
+                                    <h3 className="text-slate-900 font-bold text-base md:text-lg group-hover:text-blue-600 transition-colors truncate">{student.name}</h3>
                                     <p className="text-slate-400 text-xs font-bold uppercase tracking-wider">{student.id}</p>
                                 </div>
 

@@ -4,12 +4,21 @@ import PageHeader from '../components/PageHeader';
 import { useSavedItems } from '../context/SavedItemsContext';
 import { useAuth } from '../context/AuthContext';
 import { useUserProfile } from '../context/UserProfileContext';
+import { incrementCount, decrementCount } from '../utils/dailyCounter';
 
 const HomeDashboard = () => {
     const navigate = useNavigate();
     const { user, requireAuth } = useAuth();
     const { userProfile, updatePreferences } = useUserProfile();
     const { savedColleges, savedCourses, savedAccommodations, savedPosts } = useSavedItems();
+
+    // Track visitor - increment on mount, decrement on unmount
+    React.useEffect(() => {
+        incrementCount();
+        return () => {
+            decrementCount();
+        };
+    }, []);
 
     // Expense Data Configuration
     const EXPENSE_DATA = {

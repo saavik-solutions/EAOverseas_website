@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import logo from '../assets/logo.jpg';
+import { useAuth } from '../context/AuthContext';
 
-const ConsultantSidebar = ({ isOpen, onClose, user }) => {
+const ConsultantSidebar = ({ isOpen, onClose }) => {
+    const { logout } = useAuth();
     const location = useLocation();
     const currentPath = location.pathname;
     const navigate = useNavigate();
@@ -22,14 +24,14 @@ const ConsultantSidebar = ({ isOpen, onClose, user }) => {
             {/* Mobile Overlay Backdrop */}
             {isOpen && (
                 <div
-                    className="fixed inset-0 bg-black/50 z-40 lg:hidden backdrop-blur-sm transition-opacity"
+                    className="fixed inset-0 bg-black/50 z-[60] lg:hidden backdrop-blur-sm transition-opacity"
                     onClick={onClose}
                 ></div>
             )}
 
             <aside
                 className={`
-                    fixed lg:static inset-y-0 left-0 z-50
+                    fixed lg:static inset-y-0 left-0 z-[70]
                     w-64 flex-col h-full bg-white shrink-0 lg:flex
                     transition-transform duration-300 ease-in-out shadow-xl lg:shadow-none
                     ${isOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
@@ -63,7 +65,7 @@ const ConsultantSidebar = ({ isOpen, onClose, user }) => {
                     })}
                 </nav>
 
-                <div className="mt-auto p-4 border-t border-gray-100">
+                <div className="mt-auto p-4 border-t border-gray-100 space-y-2">
                     <Link
                         to="/counsellor-profile"
                         className="flex items-center gap-3 px-2 py-2 rounded-xl hover:bg-gray-50 transition-colors group"
@@ -76,6 +78,17 @@ const ConsultantSidebar = ({ isOpen, onClose, user }) => {
                             <p className="text-xs text-gray-500 mt-1">Senior Counselor</p>
                         </div>
                     </Link>
+
+                    <button
+                        onClick={() => {
+                            logout();
+                            navigate('/login');
+                        }}
+                        className="lg:hidden w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-rose-600 hover:bg-rose-50 transition-colors text-left"
+                    >
+                        <span className="material-symbols-outlined">logout</span>
+                        <span className="text-sm font-bold">Sign Out</span>
+                    </button>
                 </div>
             </aside>
         </>

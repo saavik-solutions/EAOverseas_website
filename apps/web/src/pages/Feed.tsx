@@ -60,7 +60,7 @@ const Feed = () => {
 
         return matchesCountry && matchesTopic;
     }).sort((a, b) => {
-        if (sortBy === 'Most Saved') return (b.votes || 0) - (a.votes || 0); // Mock logic for votes
+        if (sortBy === 'Most Saved') return ((b as any).votes || 0) - ((a as any).votes || 0); // Mock logic for votes
         return 0; // Default order (mock data order)
     });
 
@@ -209,10 +209,14 @@ const Feed = () => {
                                 </div>
                             ) : (
                                 filteredPosts.map((post) => (
-                                    <article key={post.id} className="flex flex-col bg-white border border-gray-200 rounded-xl p-3 md:p-5 hover:border-blue-200 hover:shadow-sm transition-all group">
+                                    <article
+                                        key={post.id}
+                                        onClick={() => requireAuth(() => navigate(`/feed-details/${post.id}`))}
+                                        className="flex flex-col bg-white border border-gray-200 rounded-xl p-3 md:p-5 hover:border-blue-200 hover:shadow-sm transition-all group cursor-pointer"
+                                    >
                                         <div className="flex items-center justify-between mb-3">
                                             <div className="flex items-center gap-3">
-                                                <div onClick={() => navigate(`/institution/${encodeURIComponent(post.institution)}`)} className="group/inst flex items-center gap-3 cursor-pointer">
+                                                <div onClick={(e) => { e.stopPropagation(); requireAuth(() => navigate(`/institution/${encodeURIComponent(post.institution)}`)); }} className="group/inst flex items-center gap-3 cursor-pointer">
                                                     <div className="w-7 h-7 md:w-10 md:h-10 rounded-full overflow-hidden bg-gray-50 flex items-center justify-center border border-gray-100 relative shrink-0 group-hover/inst:border-blue-200 transition-colors">
                                                         <img className="w-full h-full object-contain p-0.5" alt={`${post.institution} Logo`} src={post.logo} />
                                                     </div>
@@ -254,7 +258,7 @@ const Feed = () => {
                                         <div className="flex items-center justify-between pt-4 border-t border-gray-100 mt-4">
                                             <div className="flex items-center gap-1">
                                                 <button
-                                                    onClick={() => handleSave(post)}
+                                                    onClick={(e) => { e.stopPropagation(); requireAuth(() => handleSave(post)); }}
                                                     className={`p-1.5 md:p-2 rounded-lg transition-colors ${isPostSaved(post) ? 'text-blue-600 bg-blue-50' : 'text-gray-400 hover:text-blue-600 hover:bg-blue-50'}`}
                                                     title={isPostSaved(post) ? "Unsave" : "Save"}
                                                 >
@@ -262,12 +266,12 @@ const Feed = () => {
                                                         {isPostSaved(post) ? 'bookmark' : 'bookmark_border'}
                                                     </span>
                                                 </button>
-                                                <button onClick={() => openShareModal(post.id)} className="p-1.5 md:p-2 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors" title="Share">
+                                                <button onClick={(e) => { e.stopPropagation(); openShareModal(post.id); }} className="p-1.5 md:p-2 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors" title="Share">
                                                     <span className="material-symbols-outlined text-[18px] md:text-[22px]">share</span>
                                                 </button>
                                             </div>
                                             <button
-                                                onClick={() => navigate(`/feed-details/${post.id}`)}
+                                                onClick={(e) => { e.stopPropagation(); requireAuth(() => navigate(`/feed-details/${post.id}`)); }}
                                                 className="px-4 py-1.5 md:px-6 md:py-2 bg-blue-600 border border-transparent text-white text-xs md:text-sm font-semibold rounded-lg shadow-sm hover:bg-blue-700 transition-colors"
                                             >
                                                 View Details

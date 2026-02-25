@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link, useSearchParams } from 'react-router-dom';
 import PageHeader from '../components/PageHeader';
 import { useUserProfile } from '../context/UserProfileContext';
 import ConnectionsPopup from '../components/ConnectionsPopup';
 
 const MyProfile = () => {
     const navigate = useNavigate();
+    const [searchParams] = useSearchParams();
+    const isReadOnly = searchParams.get('readonly') === 'true';
 
     // Data Constants
     const COUNTRY_DATA = [
@@ -123,13 +125,15 @@ const MyProfile = () => {
                                 }}
                             >
                                 {!bannerImage && <div className="absolute inset-0 bg-gradient-to-r from-blue-50 to-indigo-50"></div>}
-                                <button
-                                    onClick={() => bannerInputRef.current.click()}
-                                    className="absolute top-2 right-2 p-1.5 bg-white/80 hover:bg-white rounded-full shadow-sm backdrop-blur-sm text-gray-600 hover:text-blue-600 transition-all opacity-0 group-hover/banner:opacity-100"
-                                    title="Change Banner"
-                                >
-                                    <span className="material-symbols-outlined text-[18px]">add_a_photo</span>
-                                </button>
+                                {!isReadOnly && (
+                                    <button
+                                        onClick={() => bannerInputRef.current.click()}
+                                        className="absolute top-2 right-2 p-1.5 bg-white/80 hover:bg-white rounded-full shadow-sm backdrop-blur-sm text-gray-600 hover:text-blue-600 transition-all opacity-0 group-hover/banner:opacity-100"
+                                        title="Change Banner"
+                                    >
+                                        <span className="material-symbols-outlined text-[18px]">add_a_photo</span>
+                                    </button>
+                                )}
                                 <input
                                     type="file"
                                     ref={bannerInputRef}
@@ -140,14 +144,16 @@ const MyProfile = () => {
                             </div>
 
                             {/* Profile Image Section */}
-                            <div className="relative z-10 mt-4 mb-3 md:mb-4 group cursor-pointer" onClick={() => profileInputRef.current.click()}>
+                            <div className={`relative z-10 mt-4 mb-3 md:mb-4 group ${!isReadOnly ? 'cursor-pointer' : ''}`} onClick={!isReadOnly ? () => profileInputRef.current.click() : undefined}>
                                 <div
                                     className="w-20 h-20 md:w-28 md:h-28 rounded-full border-4 border-white shadow-md bg-center bg-cover transition-all"
                                     style={{ backgroundImage: `url("${profileImage}")` }}
                                 ></div>
-                                <div className="absolute bottom-1 right-1 bg-white rounded-full p-1.5 shadow-sm border border-gray-100 flex items-center justify-center transition-transform group-hover:scale-110">
-                                    <span className="material-symbols-outlined text-[16px] text-blue-600">edit</span>
-                                </div>
+                                {!isReadOnly && (
+                                    <div className="absolute bottom-1 right-1 bg-white rounded-full p-1.5 shadow-sm border border-gray-100 flex items-center justify-center transition-transform group-hover:scale-110">
+                                        <span className="material-symbols-outlined text-[16px] text-blue-600">edit</span>
+                                    </div>
+                                )}
                                 <input
                                     type="file"
                                     ref={profileInputRef}
@@ -192,78 +198,82 @@ const MyProfile = () => {
                                     <span className="text-xs text-[#60728a]">{profileStrength < 100 ? 'Almost there! Add activity.' : 'Excellent! Profile complete.'}</span>
                                 </div>
                             </div>
-                            <button
-                                onClick={() => navigate('/profile/edit')}
-                                className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 md:py-2.5 px-4 rounded-lg transition-colors flex items-center justify-center gap-2 text-sm md:text-base"
-                            >
-                                <span>Edit Profile</span>
-                            </button>
+                            {!isReadOnly && (
+                                <button
+                                    onClick={() => navigate('/profile/edit')}
+                                    className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 md:py-2.5 px-4 rounded-lg transition-colors flex items-center justify-center gap-2 text-sm md:text-base"
+                                >
+                                    <span>Edit Profile</span>
+                                </button>
+                            )}
                         </div>
                         {/* Quick Profile Sections */}
-                        <div className="bg-white rounded-xl shadow-sm border border-[#e5e7eb] overflow-hidden">
-                            <div className="p-4 border-b border-[#f0f2f5]">
-                                <h3 className="font-bold text-[#111418]">Quick Access</h3>
-                            </div>
-                            <div className="flex flex-col">
-                                {/* Item 1 */}
-                                <Link to="/referrals" className="group flex items-center gap-4 px-4 py-4 hover:bg-gray-50 transition-colors border-b border-[#f0f2f5] last:border-0">
-                                    <div className="flex items-center justify-center rounded-lg bg-blue-50 text-blue-600 shrink-0 size-10">
-                                        <span className="material-symbols-outlined text-[20px]">group_add</span>
-                                    </div>
-                                    <div className="flex flex-col flex-1 min-w-0">
-                                        <p className="text-[#111418] text-sm font-bold leading-normal truncate">Referrals</p>
-                                        <p className="text-[#60728a] text-xs font-normal leading-normal truncate">Invite friends & earn</p>
-                                    </div>
-                                    <span className="material-symbols-outlined text-[#60728a] text-[20px] group-hover:translate-x-1 transition-transform">chevron_right</span>
-                                </Link>
+                        {!isReadOnly && (
+                            <div className="bg-white rounded-xl shadow-sm border border-[#e5e7eb] overflow-hidden">
+                                <div className="p-4 border-b border-[#f0f2f5]">
+                                    <h3 className="font-bold text-[#111418]">Quick Access</h3>
+                                </div>
+                                <div className="flex flex-col">
+                                    {/* Item 1 */}
+                                    <Link to="/referrals" className="group flex items-center gap-4 px-4 py-4 hover:bg-gray-50 transition-colors border-b border-[#f0f2f5] last:border-0">
+                                        <div className="flex items-center justify-center rounded-lg bg-blue-50 text-blue-600 shrink-0 size-10">
+                                            <span className="material-symbols-outlined text-[20px]">group_add</span>
+                                        </div>
+                                        <div className="flex flex-col flex-1 min-w-0">
+                                            <p className="text-[#111418] text-sm font-bold leading-normal truncate">Referrals</p>
+                                            <p className="text-[#60728a] text-xs font-normal leading-normal truncate">Invite friends & earn</p>
+                                        </div>
+                                        <span className="material-symbols-outlined text-[#60728a] text-[20px] group-hover:translate-x-1 transition-transform">chevron_right</span>
+                                    </Link>
 
-                                {/* Item 3 */}
-                                <Link to="/saved-colleges" className="group flex items-center gap-4 px-4 py-4 hover:bg-gray-50 transition-colors border-b border-[#f0f2f5] last:border-0">
-                                    <div className="flex items-center justify-center rounded-lg bg-purple-50 text-purple-600 shrink-0 size-10">
-                                        <span className="material-symbols-outlined text-[20px]">account_balance</span>
-                                    </div>
-                                    <div className="flex flex-col flex-1 min-w-0">
-                                        <p className="text-[#111418] text-sm font-bold leading-normal truncate">Saved Colleges</p>
-                                        <p className="text-[#60728a] text-xs font-normal leading-normal truncate">View shortlisted universities</p>
-                                    </div>
-                                    <span className="material-symbols-outlined text-[#60728a] text-[20px] group-hover:translate-x-1 transition-transform">chevron_right</span>
-                                </Link>
-                                {/* Item 4 */}
-                                <Link to="/saved-courses" className="group flex items-center gap-4 px-4 py-4 hover:bg-gray-50 transition-colors border-b border-[#f0f2f5] last:border-0">
-                                    <div className="flex items-center justify-center rounded-lg bg-orange-50 text-orange-600 shrink-0 size-10">
-                                        <span className="material-symbols-outlined text-[20px]">bookmarks</span>
-                                    </div>
-                                    <div className="flex flex-col flex-1 min-w-0">
-                                        <p className="text-[#111418] text-sm font-bold leading-normal truncate">Saved Courses</p>
-                                        <p className="text-[#60728a] text-xs font-normal leading-normal truncate">Manage bookmarked programs</p>
-                                    </div>
-                                    <span className="material-symbols-outlined text-[#60728a] text-[20px] group-hover:translate-x-1 transition-transform">chevron_right</span>
-                                </Link>
-                                {/* Item 5 */}
-                                <Link to="/saved-accommodations" className="group flex items-center gap-4 px-4 py-4 hover:bg-gray-50 transition-colors last:border-0">
-                                    <div className="flex items-center justify-center rounded-lg bg-cyan-50 text-cyan-600 shrink-0 size-10">
-                                        <span className="material-symbols-outlined text-[20px]">holiday_village</span>
-                                    </div>
-                                    <div className="flex flex-col flex-1 min-w-0">
-                                        <p className="text-[#111418] text-sm font-bold leading-normal truncate">Saved Accommodations</p>
-                                        <p className="text-[#60728a] text-xs font-normal leading-normal truncate">View shortlisted housing</p>
-                                    </div>
-                                    <span className="material-symbols-outlined text-[#60728a] text-[20px] group-hover:translate-x-1 transition-transform">chevron_right</span>
-                                </Link>
+                                    {/* Item 3 */}
+                                    <Link to="/saved-colleges" className="group flex items-center gap-4 px-4 py-4 hover:bg-gray-50 transition-colors border-b border-[#f0f2f5] last:border-0">
+                                        <div className="flex items-center justify-center rounded-lg bg-purple-50 text-purple-600 shrink-0 size-10">
+                                            <span className="material-symbols-outlined text-[20px]">account_balance</span>
+                                        </div>
+                                        <div className="flex flex-col flex-1 min-w-0">
+                                            <p className="text-[#111418] text-sm font-bold leading-normal truncate">Saved Colleges</p>
+                                            <p className="text-[#60728a] text-xs font-normal leading-normal truncate">View shortlisted universities</p>
+                                        </div>
+                                        <span className="material-symbols-outlined text-[#60728a] text-[20px] group-hover:translate-x-1 transition-transform">chevron_right</span>
+                                    </Link>
+                                    {/* Item 4 */}
+                                    <Link to="/saved-courses" className="group flex items-center gap-4 px-4 py-4 hover:bg-gray-50 transition-colors border-b border-[#f0f2f5] last:border-0">
+                                        <div className="flex items-center justify-center rounded-lg bg-orange-50 text-orange-600 shrink-0 size-10">
+                                            <span className="material-symbols-outlined text-[20px]">bookmarks</span>
+                                        </div>
+                                        <div className="flex flex-col flex-1 min-w-0">
+                                            <p className="text-[#111418] text-sm font-bold leading-normal truncate">Saved Courses</p>
+                                            <p className="text-[#60728a] text-xs font-normal leading-normal truncate">Manage bookmarked programs</p>
+                                        </div>
+                                        <span className="material-symbols-outlined text-[#60728a] text-[20px] group-hover:translate-x-1 transition-transform">chevron_right</span>
+                                    </Link>
+                                    {/* Item 5 */}
+                                    <Link to="/saved-accommodations" className="group flex items-center gap-4 px-4 py-4 hover:bg-gray-50 transition-colors last:border-0">
+                                        <div className="flex items-center justify-center rounded-lg bg-cyan-50 text-cyan-600 shrink-0 size-10">
+                                            <span className="material-symbols-outlined text-[20px]">holiday_village</span>
+                                        </div>
+                                        <div className="flex flex-col flex-1 min-w-0">
+                                            <p className="text-[#111418] text-sm font-bold leading-normal truncate">Saved Accommodations</p>
+                                            <p className="text-[#60728a] text-xs font-normal leading-normal truncate">View shortlisted housing</p>
+                                        </div>
+                                        <span className="material-symbols-outlined text-[#60728a] text-[20px] group-hover:translate-x-1 transition-transform">chevron_right</span>
+                                    </Link>
 
-                                {/* Item 6: Saved Posts */}
-                                <Link to="/saved-posts" className="group flex items-center gap-4 px-4 py-4 hover:bg-gray-50 transition-colors last:border-0">
-                                    <div className="flex items-center justify-center rounded-lg bg-emerald-50 text-emerald-600 shrink-0 size-10">
-                                        <span className="material-symbols-outlined text-[20px]">dynamic_feed</span>
-                                    </div>
-                                    <div className="flex flex-col flex-1 min-w-0">
-                                        <p className="text-[#111418] text-sm font-bold leading-normal truncate">Saved Posts</p>
-                                        <p className="text-[#60728a] text-xs font-normal leading-normal truncate">View saved articles</p>
-                                    </div>
-                                    <span className="material-symbols-outlined text-[#60728a] text-[20px] group-hover:translate-x-1 transition-transform">chevron_right</span>
-                                </Link>
+                                    {/* Item 6: Saved Posts */}
+                                    <Link to="/saved-posts" className="group flex items-center gap-4 px-4 py-4 hover:bg-gray-50 transition-colors last:border-0">
+                                        <div className="flex items-center justify-center rounded-lg bg-emerald-50 text-emerald-600 shrink-0 size-10">
+                                            <span className="material-symbols-outlined text-[20px]">dynamic_feed</span>
+                                        </div>
+                                        <div className="flex flex-col flex-1 min-w-0">
+                                            <p className="text-[#111418] text-sm font-bold leading-normal truncate">Saved Posts</p>
+                                            <p className="text-[#60728a] text-xs font-normal leading-normal truncate">View saved articles</p>
+                                        </div>
+                                        <span className="material-symbols-outlined text-[#60728a] text-[20px] group-hover:translate-x-1 transition-transform">chevron_right</span>
+                                    </Link>
+                                </div>
                             </div>
-                        </div>
+                        )}
                     </div>
                     {/* Right Column: Profile Highlights */}
                     <div className="lg:col-span-8 flex flex-col gap-6">
@@ -276,7 +286,9 @@ const MyProfile = () => {
                                     </div>
                                     <h3 className="text-lg font-bold text-[#111418]">Academic Snapshot</h3>
                                 </div>
-                                <button onClick={() => navigate('/profile/academic-snapshot')} className="text-sm font-medium text-blue-600 hover:text-blue-700">View Details</button>
+                                {!isReadOnly && (
+                                    <button onClick={() => navigate('/profile/academic-snapshot')} className="text-sm font-medium text-blue-600 hover:text-blue-700">View Details</button>
+                                )}
                             </div>
                             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                                 <div className="flex flex-col gap-1 p-4 rounded-lg bg-[#f5f7f8]">
@@ -312,12 +324,14 @@ const MyProfile = () => {
                                     </div>
                                     <h3 className="text-lg font-bold text-[#111418]">Targets & Preferences</h3>
                                 </div>
-                                <button
-                                    onClick={toggleEditMode}
-                                    className={`text-sm font-medium ${isEditingPreferences ? 'text-green-600 hover:text-green-700 bg-green-50 px-3 py-1 rounded-lg' : 'text-blue-600 hover:text-blue-700'}`}
-                                >
-                                    {isEditingPreferences ? 'Save Changes' : 'Edit'}
-                                </button>
+                                {!isReadOnly && (
+                                    <button
+                                        onClick={toggleEditMode}
+                                        className={`text-sm font-medium ${isEditingPreferences ? 'text-green-600 hover:text-green-700 bg-green-50 px-3 py-1 rounded-lg' : 'text-blue-600 hover:text-blue-700'}`}
+                                    >
+                                        {isEditingPreferences ? 'Save Changes' : 'Edit'}
+                                    </button>
+                                )}
                             </div>
                             <div className="flex flex-col gap-6">
                                 {/* Countries */}

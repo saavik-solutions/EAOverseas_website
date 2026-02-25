@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useAuthAction } from '../hooks/useAuthAction';
+import LoginModal from '../components/LoginModal';
 import PageHeader from '../components/PageHeader';
 import { postsData } from '../data/mockFeedData';
 
@@ -26,7 +28,9 @@ interface Post {
 
 const UniversityProfile = () => {
     const { name } = useParams();
+    const navigate = useNavigate();
     const decodedName = decodeURIComponent(name || '');
+    const { executeAction, isLoginModalOpen, closeLoginModal } = useAuthAction();
 
     // Filter posts for this institution
     const institutionPosts = Object.values(postsData).filter(
@@ -70,7 +74,8 @@ const UniversityProfile = () => {
 
     return (
         <div className="flex flex-col flex-1 h-full bg-[#f8f9fc] overflow-hidden">
-            <PageHeader title={decodedName} breadcrumbs={[{ label: 'Global Feed', path: '/feed' }, { label: decodedName }]} />
+            <LoginModal isOpen={isLoginModalOpen} onClose={closeLoginModal} />
+            <PageHeader title={decodedName} breadcrumbs={[{ label: 'Global Feed', link: '/feed' }, { label: decodedName }]} />
 
             <main className="flex-1 overflow-y-auto bg-gray-50 font-sans">
                 <div className="max-w-5xl mx-auto p-8">
@@ -111,7 +116,11 @@ const UniversityProfile = () => {
 
                     <div className="grid gap-6">
                         {institutionPosts.map((post: Post) => (
-                            <article key={post.id} className="flex flex-col bg-white border border-gray-200 rounded-xl p-6 hover:border-blue-200 hover:shadow-md transition-all group">
+                            <article
+                                key={post.id}
+                                onClick={() => executeAction(() => navigate(`/feed-details/${post.id}`))}
+                                className="flex flex-col bg-white border border-gray-200 rounded-xl p-6 hover:border-blue-200 hover:shadow-md transition-all group cursor-pointer"
+                            >
                                 <div className="flex items-center justify-between mb-4">
                                     <div className="flex items-center gap-3">
                                         {/* Logo reused here for context, though redundant with header it helps generic card feel */}
@@ -153,16 +162,23 @@ const UniversityProfile = () => {
 
                                 <div className="flex items-center justify-between pt-5 border-t border-gray-100">
                                     <div className="flex items-center gap-2">
-                                        <button className="p-2 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors" title="Save">
+                                        <button
+                                            onClick={(e) => { e.stopPropagation(); executeAction(() => { }); }}
+                                            className="p-2 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
+                                            title="Save"
+                                        >
                                             <span className="material-symbols-outlined text-[24px]">bookmark_border</span>
                                         </button>
                                         <button onClick={() => openShareModal(post)} className="p-2 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors" title="Share">
                                             <span className="material-symbols-outlined text-[24px]">share</span>
                                         </button>
                                     </div>
-                                    <Link to={`/feed-details/${post.id}`} className="px-6 py-2.5 bg-blue-600 border border-transparent text-white text-sm font-semibold rounded-lg shadow-sm hover:bg-blue-700 transition-colors">
+                                    <button
+                                        onClick={() => executeAction(() => navigate(`/feed-details/${post.id}`))}
+                                        className="px-6 py-2.5 bg-blue-600 border border-transparent text-white text-sm font-semibold rounded-lg shadow-sm hover:bg-blue-700 transition-colors"
+                                    >
                                         View Details
-                                    </Link>
+                                    </button>
                                 </div>
                             </article>
                         ))}

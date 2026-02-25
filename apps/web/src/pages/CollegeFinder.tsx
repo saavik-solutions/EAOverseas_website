@@ -458,7 +458,7 @@ const CollegeFinder = () => {
                                     filteredUniversities.map((uni, index) => (
                                         <div
                                             key={index}
-                                            onClick={() => navigate(`/college-details?name=${encodeURIComponent(uni.name)}`)}
+                                            onClick={() => executeAction(() => navigate(`/college-details?name=${encodeURIComponent(uni.name)}`))}
                                             className="bg-white rounded-xl border border-gray-200 p-3 lg:p-6 shadow-sm hover:border-blue-600/50 hover:shadow-md transition-all group flex flex-col sm:flex-row gap-3 lg:gap-6 cursor-pointer relative"
                                         >
                                             <div className="shrink-0 flex items-start">

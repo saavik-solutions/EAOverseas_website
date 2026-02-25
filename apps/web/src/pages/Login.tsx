@@ -11,11 +11,14 @@ const Login = () => {
     const [showPassword, setShowPassword] = useState(false);
     const [error, setError] = useState('');
     const [selectedRole, setSelectedRole] = useState('Student');
+    const [showRoleDropdown, setShowRoleDropdown] = useState(false);
 
     const demoCredentials = {
         'Student': { email: 'alex.j@example.com', pass: '5678' },
         'University': { email: 'admin@university.edu', pass: 'UNIV2026' },
-        'Counsellor': { email: 'partner@counsellor.com', pass: 'COUNSELLOR2026' }
+        'Counsellor': { email: 'partner@counsellor.com', pass: 'COUNSELLOR2026' },
+        'Vendors': { email: 'vendor@services.com', pass: 'VENDOR2026' },
+        'Chief Counsel': { email: 'chief@counsel.com', pass: 'CHIEF2026' }
     };
 
     const handleLogin = async (e) => {
@@ -46,10 +49,14 @@ const Login = () => {
             <div className="hidden lg:block w-[50%] bg-[#0d6cf20a] relative overflow-hidden">
                 <div className="absolute inset-0 bg-cover bg-center" style={{
                     backgroundImage: `url("${selectedRole === 'University'
-                        ? 'https://images.unsplash.com/photo-1562774053-701939374585?q=80&w=2686&auto=format&fit=crop'
-                        : selectedRole === 'Counsellor'
-                            ? 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=2664&auto=format&fit=crop'
-                            : 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=2670&auto=format&fit=crop'
+                            ? 'https://images.unsplash.com/photo-1562774053-701939374585?q=80&w=2686&auto=format&fit=crop'
+                            : selectedRole === 'Counsellor'
+                                ? 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=2664&auto=format&fit=crop'
+                                : selectedRole === 'Vendors'
+                                    ? 'https://images.unsplash.com/photo-1521737711867-e3b97375f902?q=80&w=2687&auto=format&fit=crop'
+                                    : selectedRole === 'Chief Counsel'
+                                        ? 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=2670&auto=format&fit=crop'
+                                        : 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=2670&auto=format&fit=crop'
                         }")`,
                     filter: 'grayscale(20%)'
                 }}></div>
@@ -65,32 +72,44 @@ const Login = () => {
                             <span className="material-symbols-outlined fill-current">star</span>
                             <span className="material-symbols-outlined fill-current">star</span>
                         </div>
-                        <p className="text-lg leading-relaxed font-medium mb-6">"{
-                            selectedRole === 'University'
+                        <p className="text-lg leading-relaxed font-medium mb-6">"
+                            {selectedRole === 'University'
                                 ? "Our international student intake has increased by 40% since using EAOverseas. The verification tools save us countless hours of administrative work."
                                 : selectedRole === 'Counsellor'
                                     ? "Client satisfaction has never been higher. The transparency regarding application status allows us to manage expectations and deliver results."
-                                    : "EAOverseas helped me find the perfect university program and guided me through every step of the visa process. I couldn't have done it without them!"
-                        }"</p>
+                                    : selectedRole === 'Vendors'
+                                        ? "Partnering with EAOverseas has opened new revenue streams. The platform's vendor management system is intuitive and helps us reach thousands of students."
+                                        : selectedRole === 'Chief Counsel'
+                                            ? "The oversight tools and analytics dashboard give me complete visibility into operations. Managing compliance and counsellor performance has never been easier."
+                                            : "EAOverseas helped me find the perfect university program and guided me through every step of the visa process. I couldn't have done it without them!"
+                            }"</p>
                         <div className="flex items-center gap-4">
                             <div className="w-12 h-12 rounded-full bg-white/20 bg-cover bg-center border-2 border-white/50" style={{
                                 backgroundImage: `url("${selectedRole === 'University'
-                                    ? 'https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=2574&auto=format&fit=crop'
-                                    : selectedRole === 'Counsellor'
-                                        ? 'https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=2561&auto=format&fit=crop'
-                                        : 'https://lh3.googleusercontent.com/aida-public/AB6AXuAyofmbE6BQ1oKD_K5rKFIejNVdgeqUiSyrolvHkNfCE26ZnAXiT-oINCudT0C-fT3MCmy9redQzfVamIOAnrhXrylTrlJkbQPzWlxG7hTppX9A53giOaN0dXM6Yg3W2IXnmrCIHAK7jp5hyFYv-ptAImCikMurQL6guj1jZaXnZbloJ3SOSTuzhdxZ0Nnj6dAjTODFzyzL_gA8HM3MX7QjAv3pDPx-BL07xUcB4uKUW_dao5sgRNXIJtrcbyIivxNSWhyQOVL-cK4'
+                                        ? 'https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=2574&auto=format&fit=crop'
+                                        : selectedRole === 'Counsellor'
+                                            ? 'https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=2561&auto=format&fit=crop'
+                                            : selectedRole === 'Vendors'
+                                                ? 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=2574&auto=format&fit=crop'
+                                                : selectedRole === 'Chief Counsel'
+                                                    ? 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=2576&auto=format&fit=crop'
+                                                    : 'https://lh3.googleusercontent.com/aida-public/AB6AXuAyofmbE6BQ1oKD_K5rKFIejNVdgeqUiSyrolvHkNfCE26ZnAXiT-oINCudT0C-fT3MCmy9redQzfVamIOAnrhXrylTrlJkbQPzWlxG7hTppX9A53giOaN0dXM6Yg3W2IXnmrCIHAK7jp5hyFYv-ptAImCikMurQL6guj1jZaXnZbloJ3SOSTuzhdxZ0Nnj6dAjTODFzyzL_gA8HM3MX7QjAv3pDPx-BL07xUcB4uKUW_dao5sgRNXIJtrcbyIivxNSWhyQOVL-cK4'
                                     }")`
                             }}></div>
                             <div>
                                 <p className="font-bold text-white">{
                                     selectedRole === 'University' ? 'Prof. David Lee' :
                                         selectedRole === 'Counsellor' ? 'Dr. Alex Morgan' :
-                                            'James Anderson'
+                                            selectedRole === 'Vendors' ? 'Michael Chen' :
+                                                selectedRole === 'Chief Counsel' ? 'Sarah Williams' :
+                                                    'James Anderson'
                                 }</p>
                                 <p className="text-sm text-blue-200">{
                                     selectedRole === 'University' ? 'Department Head, Oxford Brookes' :
                                         selectedRole === 'Counsellor' ? 'Senior Counsellor, EAOverseas' :
-                                            "Student, King's College London"
+                                            selectedRole === 'Vendors' ? 'Partner, Global Services Ltd' :
+                                                selectedRole === 'Chief Counsel' ? 'Chief Counsel, EAOverseas' :
+                                                    "Student, King's College London"
                                 }</p>
                             </div>
                         </div>
@@ -119,21 +138,62 @@ const Login = () => {
                     <form className="space-y-4 lg:space-y-5" onSubmit={handleLogin}>
 
 
-                        {/* Role Selection Tabs */}
-                        <div className="bg-gray-100 p-1 rounded-lg flex gap-1">
-                            {['Student', 'University', 'Counsellor'].map((role) => (
+                        {/* Role Selection Tabs with Dropdown */}
+                        <div className="flex gap-2">
+                            <div className="bg-gray-100 p-1 rounded-lg flex gap-1 flex-1">
+                                {['Student', 'University', 'Counsellor'].map((role) => (
+                                    <button
+                                        key={role}
+                                        type="button"
+                                        onClick={() => setSelectedRole(role)}
+                                        className={`flex-1 py-1.5 lg:py-2 text-xs lg:text-sm font-bold rounded-md transition-all ${selectedRole === role
+                                            ? 'bg-white text-gray-900 shadow-sm'
+                                            : 'text-gray-500 hover:text-gray-700'
+                                            }`}
+                                    >
+                                        {role}
+                                    </button>
+                                ))}
+                            </div>
+
+                            {/* Dropdown Button */}
+                            <div className="relative">
                                 <button
-                                    key={role}
                                     type="button"
-                                    onClick={() => setSelectedRole(role)}
-                                    className={`flex-1 py-1.5 lg:py-2 text-xs lg:text-sm font-bold rounded-md transition-all ${selectedRole === role
-                                        ? 'bg-white text-gray-900 shadow-sm'
-                                        : 'text-gray-500 hover:text-gray-700'
-                                        }`}
+                                    onClick={() => setShowRoleDropdown(!showRoleDropdown)}
+                                    className="bg-gray-100 hover:bg-gray-200 p-1 rounded-lg h-full px-3 transition-all flex items-center justify-center"
                                 >
-                                    {role}
+                                    <span className="material-symbols-outlined text-gray-600 text-[20px]">
+                                        {showRoleDropdown ? 'expand_less' : 'expand_more'}
+                                    </span>
                                 </button>
-                            ))}
+
+                                {/* Dropdown Menu */}
+                                {showRoleDropdown && (
+                                    <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-1 z-50">
+                                        <button
+                                            type="button"
+                                            onClick={() => {
+                                                setSelectedRole('Vendors');
+                                                setShowRoleDropdown(false);
+                                            }}
+                                            className="w-full text-left px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
+                                        >
+                                            Vendors
+                                        </button>
+                                        <button
+                                            type="button"
+                                            onClick={() => {
+                                                setSelectedRole('Chief Counsel');
+                                                setShowRoleDropdown(false);
+                                            }}
+                                            className="w-full text-left px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
+                                        >
+                                            Chief Counsel
+                                        </button>
+                                    </div>
+                                )}
+                            </div>
                         </div>
 
                         {/* Role Description */}
@@ -143,6 +203,8 @@ const Login = () => {
                                 {selectedRole === 'Student' && "Access your applications, universities, loans, and visa process."}
                                 {selectedRole === 'University' && "Manage your institution profile, courses, and incoming applications."}
                                 {selectedRole === 'Counsellor' && "Connect with students, manage appointments, and guide applications."}
+                                {selectedRole === 'Vendors' && "Manage vendor services, partnerships, and service offerings."}
+                                {selectedRole === 'Chief Counsel' && "Oversee legal compliance, counsellor operations, and strategic decisions."}
                             </p>
                         </div>
 

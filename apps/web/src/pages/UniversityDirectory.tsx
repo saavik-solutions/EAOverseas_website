@@ -1,10 +1,14 @@
 import React, { useState, useMemo } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import PageHeader from '../components/PageHeader';
+import { useAuthAction } from '../hooks/useAuthAction';
+import LoginModal from '../components/LoginModal';
 
 import { universitiesData } from '../data/universities';
 
 const UniversityDirectory = () => {
+    const navigate = useNavigate();
+    const { executeAction, isLoginModalOpen, closeLoginModal } = useAuthAction();
     const [searchQuery, setSearchQuery] = useState('');
     const [filters, setFilters] = useState({
         Country: 'All',
@@ -45,8 +49,15 @@ const UniversityDirectory = () => {
         setFilters(prev => ({ ...prev, [type]: value }));
     };
 
+    const handleViewDetails = (id: number) => {
+        executeAction(() => {
+            navigate(`/consultant/university-details/${id}`);
+        });
+    };
+
     return (
         <div className="flex flex-col flex-1 h-full overflow-hidden bg-[#F8FAFC]">
+            <LoginModal isOpen={isLoginModalOpen} onClose={closeLoginModal} />
             <PageHeader title="University Directory" />
 
             <main className="flex-1 overflow-y-auto p-4 lg:p-8">
@@ -54,7 +65,7 @@ const UniversityDirectory = () => {
 
 
                     {/* Controls Panel */}
-                    <div className="bg-white/70 backdrop-blur-xl z-20 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-white/20 p-4 md:p-6 mb-8">
+                    <div className="bg-white/70 backdrop-blur-xl z-20 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-white/20 p-3 md:p-6 mb-4 md:mb-8">
                         <div className="flex flex-col xl:flex-row gap-6 items-center">
                             {/* Search */}
                             <div className="w-full xl:flex-1">
@@ -66,30 +77,30 @@ const UniversityDirectory = () => {
                                         type="text"
                                         value={searchQuery}
                                         onChange={(e) => setSearchQuery(e.target.value)}
-                                        className="block w-full pl-12 pr-4 py-4 bg-gray-50 border border-gray-100 rounded-2xl text-gray-900 placeholder:text-gray-400 focus:ring-4 focus:ring-blue-100 focus:border-blue-500 focus:bg-white transition-all text-sm md:text-base outline-none shadow-sm"
-                                        placeholder="Search by university, country or course..."
+                                        className="block w-full pl-10 md:pl-12 pr-4 py-3 md:py-4 bg-gray-50 border border-gray-100 rounded-2xl text-gray-900 placeholder:text-gray-400 focus:ring-4 focus:ring-blue-100 focus:border-blue-500 focus:bg-white transition-all text-xs md:text-base outline-none shadow-sm"
+                                        placeholder="Search by university, country..."
                                     />
                                 </div>
                             </div>
 
                             {/* Filters */}
-                            <div className="grid grid-cols-2 md:grid-cols-3 lg:flex lg:flex-wrap gap-3 w-full xl:w-auto">
+                            <div className="grid grid-cols-2 md:grid-cols-3 lg:flex lg:flex-wrap gap-2 md:gap-3 w-full xl:w-auto">
                                 {[
                                     { label: 'Country', options: countries },
-                                    { label: 'Course Type', options: courseTypes },
+                                    { label: 'Type', options: courseTypes },
                                     { label: 'Budget', options: budgets },
-                                    { label: 'Ranking', options: ['All', 'Top 10', 'Top 50'] },
+                                    { label: 'Rank', options: ['All', 'Top 10', 'Top 50'] },
                                     { label: 'Intake', options: intakes }
                                 ].map((filter) => (
-                                    <div key={filter.label} className="relative group min-w-[120px]">
+                                    <div key={filter.label} className="relative group min-w-[100px] md:min-w-[120px]">
                                         <select
-                                            value={filters[filter.label as keyof typeof filters]}
-                                            onChange={(e) => handleFilterChange(filter.label, e.target.value)}
-                                            className="appearance-none w-full bg-white border border-gray-100 px-4 py-3 rounded-xl text-xs md:text-sm font-bold text-gray-700 hover:border-blue-300 hover:bg-blue-50/30 cursor-pointer focus:ring-2 focus:ring-blue-100 outline-none transition-all shadow-sm"
+                                            value={filters[filter.label === 'Type' ? 'Course Type' : filter.label === 'Rank' ? 'Ranking' : filter.label as keyof typeof filters]}
+                                            onChange={(e) => handleFilterChange(filter.label === 'Type' ? 'Course Type' : filter.label === 'Rank' ? 'Ranking' : filter.label, e.target.value)}
+                                            className="appearance-none w-full bg-white border border-gray-100 px-3 md:px-4 py-2 md:py-3 rounded-xl text-[10px] md:text-sm font-bold text-gray-700 hover:border-blue-300 hover:bg-blue-50/30 cursor-pointer focus:ring-2 focus:ring-blue-100 outline-none transition-all shadow-sm"
                                         >
-                                            {filter.options.map(opt => <option key={opt} value={opt}>{opt === 'All' ? `All ${filter.label}` : opt}</option>)}
+                                            {filter.options.map(opt => <option key={opt} value={opt}>{opt === 'All' ? `${filter.label}` : opt}</option>)}
                                         </select>
-                                        <span className="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400 text-lg group-hover:text-blue-500 transition-colors">expand_more</span>
+                                        <span className="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400 text-sm md:text-lg group-hover:text-blue-500 transition-colors">expand_more</span>
                                     </div>
                                 ))}
                                 {/* Reset */}
@@ -98,7 +109,7 @@ const UniversityDirectory = () => {
                                         setSearchQuery('');
                                         setFilters({ Country: 'All', 'Course Type': 'All', Budget: 'All', Ranking: 'All', Intake: 'All' });
                                     }}
-                                    className="px-4 py-3 rounded-xl text-xs font-bold text-blue-600 hover:bg-blue-50 transition-colors border border-transparent hover:border-blue-100"
+                                    className="px-3 py-2 md:px-4 md:py-3 rounded-xl text-[10px] md:text-xs font-bold text-blue-600 hover:bg-blue-50 transition-colors border border-transparent hover:border-blue-100"
                                 >
                                     Reset
                                 </button>
@@ -113,8 +124,75 @@ const UniversityDirectory = () => {
                         </p>
                     </div>
 
-                    {/* Table / Grid */}
-                    <div className="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden mb-12">
+                    {/* Mobile Card View */}
+                    <div className="grid grid-cols-1 gap-4 md:hidden">
+                        {filteredUniversities.length > 0 ? (
+                            filteredUniversities.map((uni) => (
+                                <div
+                                    key={uni.id}
+                                    onClick={() => handleViewDetails(uni.id)}
+                                    className="bg-white rounded-2xl p-4 shadow-sm border border-gray-100 space-y-4 active:scale-[0.98] transition-all"
+                                >
+                                    <div className="flex items-start gap-4">
+                                        <div className="size-12 rounded-xl bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-100 flex items-center justify-center text-blue-600 shrink-0">
+                                            <span className="material-symbols-outlined text-2xl">school</span>
+                                        </div>
+                                        <div className="min-w-0 flex-1">
+                                            <h3 className="font-bold text-gray-900 text-sm mb-1 line-clamp-2 leading-tight">{uni.name}</h3>
+                                            <div className="flex flex-wrap items-center gap-2">
+                                                <span className="text-[10px] font-semibold text-blue-600 bg-blue-50 px-2 py-0.5 rounded uppercase tracking-wide">{uni.courseType}</span>
+                                                <span className="text-[10px] font-medium text-gray-400 truncate">{uni.course}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div className="grid grid-cols-2 gap-4 py-3 border-y border-gray-50">
+                                        <div className="space-y-1">
+                                            <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Location & Intake</p>
+                                            <div className="flex items-center gap-1.5 text-gray-700">
+                                                <span className="material-symbols-outlined text-sm text-blue-500">public</span>
+                                                <span className="text-[11px] font-bold">{uni.country}</span>
+                                            </div>
+                                            <div className="flex items-center gap-1.5 text-gray-500">
+                                                <span className="material-symbols-outlined text-sm text-indigo-400">calendar_today</span>
+                                                <span className="text-[10px] font-semibold">{uni.intakeType}</span>
+                                            </div>
+                                        </div>
+                                        <div className="space-y-1">
+                                            <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Costs & Rank</p>
+                                            <div className="flex items-center gap-1.5 text-gray-700">
+                                                <span className="text-[11px] font-black">{uni.tuitionValue === 0 ? 'FREE' : `$${uni.tuitionValue.toLocaleString()}`}</span>
+                                                <span className={`text-[9px] font-black px-1.5 py-0.5 rounded bg-opacity-10 ${uni.budget === 'Premium' ? 'bg-purple-600 text-purple-600' :
+                                                    uni.budget === 'Moderate' ? 'bg-blue-600 text-blue-600' :
+                                                        'bg-green-600 text-green-600'
+                                                    }`}>
+                                                    {uni.budget}
+                                                </span>
+                                            </div>
+                                            <div className="flex items-center gap-1.5">
+                                                <span className="text-[11px] font-black text-blue-600">Global Rank #{uni.globalRanking}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <button
+                                        onClick={(e) => { e.stopPropagation(); handleViewDetails(uni.id); }}
+                                        className="w-full py-2.5 rounded-xl bg-blue-600 text-white text-xs font-bold hover:bg-blue-700 transition-colors shadow-sm shadow-blue-100"
+                                    >
+                                        View University Details
+                                    </button>
+                                </div>
+                            ))
+                        ) : (
+                            <div className="bg-white rounded-2xl p-8 text-center border border-gray-100">
+                                <span className="material-symbols-outlined text-4xl text-gray-200 mb-2">search_off</span>
+                                <p className="font-bold text-gray-900 text-sm">No matches found</p>
+                            </div>
+                        )}
+                    </div>
+
+                    {/* Table View (Desktop) */}
+                    <div className="hidden md:block bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden mb-12">
                         <div className="overflow-x-auto min-h-[400px]">
                             <table className="w-full text-left border-collapse">
                                 <thead>
@@ -122,14 +200,18 @@ const UniversityDirectory = () => {
                                         <th className="px-6 py-5 text-gray-400 text-[10px] font-black uppercase tracking-widest min-w-[300px]">University & Course</th>
                                         <th className="px-6 py-5 text-gray-400 text-[10px] font-black uppercase tracking-widest">Details</th>
                                         <th className="px-6 py-5 text-gray-400 text-[10px] font-black uppercase tracking-widest">Costs</th>
-                                        <th className="px-6 py-5 text-gray-400 text-[10px] font-black uppercase tracking-widest">Global Rank</th>
-                                        <th className="px-6 py-5 text-gray-400 text-[10px] font-black uppercase tracking-widest text-right">Connect</th>
+                                        <th className="px-6 py-5 text-gray-400 text-[10px] font-black uppercase tracking-widest text-center">Global Rank</th>
+                                        <th className="px-6 py-5 text-gray-400 text-[10px] font-black uppercase tracking-widest text-right">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody className="divide-y divide-gray-50">
                                     {filteredUniversities.length > 0 ? (
                                         filteredUniversities.map((uni) => (
-                                            <tr key={uni.id} className="hover:bg-blue-50/20 transition-all group">
+                                            <tr
+                                                key={uni.id}
+                                                onClick={() => handleViewDetails(uni.id)}
+                                                className="hover:bg-blue-50/20 transition-all group cursor-pointer"
+                                            >
                                                 <td className="px-6 py-6">
                                                     <div className="flex items-start gap-4">
                                                         <div className="size-12 rounded-2xl bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-100 flex items-center justify-center text-blue-600 shadow-sm shrink-0 group-hover:scale-110 transition-transform">
@@ -182,7 +264,12 @@ const UniversityDirectory = () => {
                                                 <td className="px-6 py-6 text-right">
 
                                                     <div className="flex flex-col md:flex-row justify-end gap-2">
-                                                        <Link to={`/consultant/university-details/${uni.id}`} className="px-4 py-2 rounded-xl border border-gray-200 text-gray-600 text-xs font-bold hover:bg-gray-50 transition-all whitespace-nowrap">View Details</Link>
+                                                        <button
+                                                            onClick={(e) => { e.stopPropagation(); handleViewDetails(uni.id); }}
+                                                            className="px-4 py-2 rounded-xl border border-gray-200 text-gray-600 text-xs font-bold hover:bg-gray-50 transition-all whitespace-nowrap"
+                                                        >
+                                                            View Details
+                                                        </button>
                                                     </div>
                                                 </td>
                                             </tr>

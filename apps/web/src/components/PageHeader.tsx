@@ -41,7 +41,7 @@ const PageHeader: React.FC<PageHeaderProps> = ({ title, actions, breadcrumbs = [
     }, []);
 
     return (
-        <header className="sticky top-0 h-16 bg-white flex items-center justify-between px-4 lg:px-8 shrink-0 z-50 shadow-sm border-b border-gray-100">
+        <header className="sticky top-0 h-16 bg-white flex items-center justify-between px-4 lg:px-8 shrink-0 z-40 shadow-sm border-b border-gray-100">
             <div className="flex flex-col justify-center">
                 {breadcrumbs && (
                     <div className={`flex items-center gap-2 font-medium text-gray-500 mb-0.5 ${!title ? 'text-sm' : 'text-xs'}`}>

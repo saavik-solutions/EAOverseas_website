@@ -4,6 +4,8 @@ import BookingModal from '../components/ConsultationBookingModal';
 import ConsultationSuccessModal from '../components/ConsultationSuccessModal';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { useAuthAction } from '../hooks/useAuthAction';
+import LoginModal from '../components/LoginModal';
 
 const Consultant = () => {
     // State for form interaction (basic mock state)
@@ -18,6 +20,7 @@ const Consultant = () => {
         return saved ? JSON.parse(saved) : null;
     });
     const { user } = useAuth(); // Get real user
+    const { executeAction, isLoginModalOpen, closeLoginModal } = useAuthAction();
     const navigate = useNavigate();
 
     // Check if chat should be active based on time and handle expiry
@@ -47,8 +50,10 @@ const Consultant = () => {
     }, [bookedSlot]);
 
     const handleRequestConsultation = () => {
-        // Direct Success for all modes as per new requirement
-        triggerSuccessModal();
+        executeAction(() => {
+            // Direct Success for all modes as per new requirement
+            triggerSuccessModal();
+        });
     };
 
     const triggerSuccessModal = () => {
@@ -110,6 +115,7 @@ const Consultant = () => {
 
     return (
         <div className="flex flex-col flex-1 h-full bg-[#f8f9fc] overflow-hidden font-sans">
+            <LoginModal isOpen={isLoginModalOpen} onClose={closeLoginModal} />
             <div className="hidden lg:block">
                 <PageHeader title="Counsellor" />
             </div>

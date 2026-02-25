@@ -113,6 +113,10 @@ const ConsultationSuccessModal = ({ isOpen, onClose, data }) => {
                         <div>
                             <span className="text-[10px] font-bold text-gray-900 leading-tight block">Expert Assigned</span>
                             <span className="text-[9px] text-gray-500 block">Sarah Jen</span>
+                            <div className="flex items-center justify-center md:justify-center gap-1 mt-1">
+                                <span className="material-symbols-outlined text-yellow-500 text-[12px] icon-filled">star</span>
+                                <span className="text-[10px] font-bold text-gray-900">4.8</span>
+                            </div>
                         </div>
                     </div>
                 </div>

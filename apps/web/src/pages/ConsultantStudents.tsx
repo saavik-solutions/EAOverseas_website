@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import PageHeader from '../components/PageHeader';
 
 interface Student {
@@ -14,6 +15,7 @@ interface Student {
 }
 
 const ConsultantStudents = () => {
+    const navigate = useNavigate();
     const [searchQuery, setSearchQuery] = React.useState('');
     // Load completed students from localStorage on mount
     const [completedStudents, setCompletedStudents] = React.useState<string[]>(() => {
@@ -41,21 +43,8 @@ const ConsultantStudents = () => {
                 const parsedSessions = JSON.parse(savedSessions);
 
                 // Map unique students from sessions
-                // Start with Sarah Jenkins (Permanent Demo Student)
-                const dynamicStudents: Student[] = [
-                    {
-                        name: 'Sarah Jenkins',
-                        id: 'USER_ADMIN_002',
-                        country: 'United Kingdom',
-                        stage: 'Visa Processing',
-                        priority: 'High',
-                        lastInteraction: 'Today',
-                        detail: 'Visa Application Strategy',
-                        initials: 'SJ',
-                        color: 'purple'
-                    }
-                ];
-                const seenIds = new Set(['USER_ADMIN_002']);
+                const dynamicStudents: Student[] = [];
+                const seenIds = new Set<string>();
 
                 parsedSessions.forEach(session => {
                     const studentId = session.studentId;
@@ -133,10 +122,10 @@ const ConsultantStudents = () => {
                 <div className="max-w-[95%] mx-auto space-y-6 pb-10">
 
                     {/* Header Actions */}
-                    <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+                    <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3">
                         <div>
-                            <h2 className="text-2xl md:text-3xl font-black text-gray-900 tracking-tight">Student Management</h2>
-                            <p className="text-gray-500 mt-1">Manage and track student progress.</p>
+                            <h2 className="text-xl md:text-3xl font-black text-gray-900 tracking-tight">Student Management</h2>
+                            <p className="text-xs md:text-sm text-gray-500 mt-0.5">Manage and track student progress.</p>
                         </div>
                         {/* Add New Student button removed */}
                     </div>
@@ -145,7 +134,7 @@ const ConsultantStudents = () => {
                     <div className="bg-white p-4 rounded-xl border border-gray-200 flex flex-wrap items-center gap-3 shadow-sm">
 
                         {/* Country Filter */}
-                        <div className="flex items-center gap-2 px-3 py-1.5 bg-gray-50 rounded-lg text-sm text-gray-700 border border-gray-200 hover:border-blue-400 transition-colors">
+                        <div className="flex items-center gap-1.5 px-2 py-1 bg-gray-50 rounded-lg text-xs md:text-sm text-gray-700 border border-gray-200 hover:border-blue-400 transition-colors">
                             <span className="font-medium text-gray-500">Country:</span>
                             <select
                                 value={filters.country}
@@ -157,7 +146,7 @@ const ConsultantStudents = () => {
                         </div>
 
                         {/* Stage Filter */}
-                        <div className="flex items-center gap-2 px-3 py-1.5 bg-gray-50 rounded-lg text-sm text-gray-700 border border-gray-200 hover:border-blue-400 transition-colors">
+                        <div className="flex items-center gap-1.5 px-2 py-1 bg-gray-50 rounded-lg text-xs md:text-sm text-gray-700 border border-gray-200 hover:border-blue-400 transition-colors">
                             <span className="font-medium text-gray-500">Stage:</span>
                             <select
                                 value={filters.stage}
@@ -169,7 +158,7 @@ const ConsultantStudents = () => {
                         </div>
 
                         {/* Urgency Filter */}
-                        <div className="flex items-center gap-2 px-3 py-1.5 bg-gray-50 rounded-lg text-sm text-gray-700 border border-gray-200 hover:border-blue-400 transition-colors">
+                        <div className="flex items-center gap-1.5 px-2 py-1 bg-gray-50 rounded-lg text-xs md:text-sm text-gray-700 border border-gray-200 hover:border-blue-400 transition-colors">
                             <span className="font-medium text-gray-500">Urgency:</span>
                             <select
                                 value={filters.urgency}
@@ -183,18 +172,18 @@ const ConsultantStudents = () => {
                         <div className="hidden md:block h-6 w-[1px] bg-gray-200 mx-2"></div>
                         <button onClick={clearFilters} className="text-sm font-medium text-blue-600 hover:underline">Clear Filters</button>
 
-                        <div className="ml-auto flex items-center gap-2">
-                            <div className="relative group/search">
+                        <div className="ml-auto flex items-center gap-2 w-full md:w-auto">
+                            <div className="relative group/search flex-1 md:flex-none">
                                 <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-lg group-focus-within/search:text-blue-500 transition-colors">search</span>
                                 <input
                                     type="text"
                                     value={searchQuery}
                                     onChange={(e) => setSearchQuery(e.target.value)}
                                     placeholder="Search..."
-                                    className="bg-gray-50 border border-gray-200 rounded-lg pl-10 pr-4 py-1.5 text-sm focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none w-40 md:w-64 transition-all"
+                                    className="bg-gray-50 border border-gray-200 rounded-lg pl-9 pr-4 py-1.5 text-xs md:text-sm focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none w-full md:w-64 transition-all"
                                 />
                             </div>
-                            <div className="flex items-center border border-gray-200 rounded-lg overflow-hidden bg-white">
+                            <div className="flex items-center border border-gray-200 rounded-lg overflow-hidden bg-white shrink-0">
                                 <button className="p-1.5 bg-blue-50 text-blue-600">
                                     <span className="material-symbols-outlined text-lg">view_list</span>
                                 </button>
@@ -211,20 +200,23 @@ const ConsultantStudents = () => {
                             <table className="w-full text-left border-collapse">
                                 <thead>
                                     <tr className="bg-gray-50 border-b border-gray-200">
-                                        <th className="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider w-12">Completed</th>
-                                        <th className="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider">Student Name</th>
-                                        <th className="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider">Target Country</th>
-                                        <th className="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider">Current Stage</th>
-                                        <th className="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider">Priority</th>
-                                        <th className="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider">Last Interaction</th>
-                                        <th className="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider text-right">Actions</th>
+                                        <th className="px-2 py-3 md:px-6 md:py-4 text-[10px] md:text-xs font-bold text-gray-500 uppercase tracking-wider w-8 md:w-12 text-center">
+                                            <span className="md:hidden">OK</span>
+                                            <span className="hidden md:inline">COMPLETED</span>
+                                        </th>
+                                        <th className="px-2 py-3 md:px-6 md:py-4 text-[10px] md:text-xs font-bold text-gray-500 uppercase tracking-wider">NAME</th>
+                                        <th className="px-4 py-3 md:px-6 md:py-4 text-[10px] md:text-xs font-bold text-gray-500 uppercase tracking-wider hidden sm:table-cell">TARGET COUNTRY</th>
+                                        <th className="px-2 py-3 md:px-6 md:py-4 text-[10px] md:text-xs font-bold text-gray-500 uppercase tracking-wider">STAGE</th>
+                                        <th className="px-4 py-3 md:px-6 md:py-4 text-[10px] md:text-xs font-bold text-gray-500 uppercase tracking-wider hidden md:table-cell">PRIORITY</th>
+                                        <th className="px-4 py-3 md:px-6 md:py-4 text-[10px] md:text-xs font-bold text-gray-500 uppercase tracking-wider hidden lg:table-cell">LAST INTERACTION</th>
+                                        <th className="px-2 py-3 md:px-6 md:py-4 text-[10px] md:text-xs font-bold text-gray-500 uppercase tracking-wider text-right">ACTION</th>
                                     </tr>
                                 </thead>
                                 <tbody className="divide-y divide-gray-100">
                                     {filteredStudents.length > 0 ? (
                                         filteredStudents.map((student, idx) => (
-                                            <tr key={idx} className="hover:bg-blue-50/30 transition-colors group">
-                                                <td className="px-6 py-4 text-center">
+                                            <tr key={idx} className="hover:bg-blue-50/30 transition-colors group text-sm">
+                                                <td className="px-2 py-3 md:px-6 md:py-4 text-center">
                                                     <input
                                                         type="checkbox"
                                                         checked={completedStudents.includes(student.id)}
@@ -235,36 +227,36 @@ const ConsultantStudents = () => {
                                                                 setCompletedStudents(completedStudents.filter(id => id !== student.id));
                                                             }
                                                         }}
-                                                        className="w-4 h-4 accent-green-600 cursor-pointer"
+                                                        className="size-3.5 md:w-4 md:h-4 accent-green-600 cursor-pointer"
                                                     />
                                                 </td>
-                                                <td className="px-6 py-4">
-                                                    <div className="flex items-center gap-3">
-                                                        <div className={`size-9 rounded-full bg-${student.color}-100 flex items-center justify-center text-${student.color}-600 font-bold text-sm shrink-0 uppercase`}>
+                                                <td className="px-2 py-3 md:px-6 md:py-4">
+                                                    <div className="flex items-center gap-1.5 md:gap-3">
+                                                        <div className={`size-7 md:size-9 rounded-full bg-${student.color}-100 flex items-center justify-center text-${student.color}-600 font-bold text-[9px] md:text-sm shrink-0 uppercase`}>
                                                             {student.initials}
                                                         </div>
-                                                        <div>
-                                                            <p className="text-sm font-bold text-gray-900">{student.name}</p>
-                                                            <p className="text-xs text-gray-500">ID: {student.id}</p>
+                                                        <div className="min-w-0">
+                                                            <p className="text-[11px] md:text-sm font-bold text-gray-900 truncate leading-tight">{student.name}</p>
+                                                            <p className="text-[9px] text-gray-500 leading-none">#{student.id}</p>
                                                         </div>
                                                     </div>
                                                 </td>
-                                                <td className="px-6 py-4">
-                                                    <div className="flex items-center gap-2">
+                                                <td className="px-4 py-3 md:px-6 md:py-4 hidden sm:table-cell">
+                                                    <div className="flex items-center gap-1.5">
                                                         <span className="material-symbols-outlined text-gray-400 text-sm">public</span>
-                                                        <span className="text-sm text-gray-600">{student.country}</span>
+                                                        <span className="text-xs md:text-sm text-gray-600">{student.country}</span>
                                                     </div>
                                                 </td>
-                                                <td className="px-6 py-4">
-                                                    <span className={`text-xs font-semibold px-2.5 py-1 rounded-full border ${student.stage === 'Visa Processing' ? 'bg-blue-50 text-blue-600 border-blue-100' :
+                                                <td className="px-2 py-3 md:px-6 md:py-4">
+                                                    <span className={`text-[9px] md:text-xs font-semibold px-1.5 md:px-2.5 py-0.5 md:py-1 rounded-full border leading-none block w-fit ${student.stage === 'Visa Processing' ? 'bg-blue-50 text-blue-600 border-blue-100' :
                                                         student.stage === 'App. Submitted' ? 'bg-green-50 text-green-600 border-green-100' :
                                                             'bg-yellow-50 text-yellow-700 border-yellow-100'
                                                         }`}>
                                                         {student.stage}
                                                     </span>
                                                 </td>
-                                                <td className="px-6 py-4">
-                                                    <div className={`flex items-center gap-1.5 font-semibold text-xs px-2 py-1 rounded-lg w-fit ${student.priority === 'Urgent' ? 'text-red-600 bg-red-50' :
+                                                <td className="px-4 py-3 md:px-6 md:py-4 hidden md:table-cell">
+                                                    <div className={`flex items-center gap-1.5 font-semibold text-[10px] md:text-xs px-2 py-0.5 md:py-1 rounded-lg w-fit ${student.priority === 'Urgent' ? 'text-red-600 bg-red-50' :
                                                         student.priority === 'High' ? 'text-orange-600 bg-orange-50' :
                                                             'text-blue-600 bg-blue-50'
                                                         }`}>
@@ -275,13 +267,16 @@ const ConsultantStudents = () => {
                                                         {student.priority}
                                                     </div>
                                                 </td>
-                                                <td className="px-6 py-4">
-                                                    <p className="text-sm text-gray-600">{student.lastInteraction}</p>
-                                                    <p className="text-xs text-gray-400 italic">{student.detail}</p>
+                                                <td className="px-4 py-3 md:px-6 md:py-4 hidden lg:table-cell">
+                                                    <p className="text-xs md:text-sm text-gray-600">{student.lastInteraction}</p>
+                                                    <p className="text-[10px] text-gray-400 italic truncate max-w-[120px]">{student.detail}</p>
                                                 </td>
-                                                <td className="px-6 py-4 text-right">
-                                                    <button className="text-blue-600 text-sm font-bold hover:bg-blue-50 px-4 py-2 rounded-lg transition-colors">
-                                                        View Profile
+                                                <td className="px-2 py-3 md:px-6 md:py-4 text-right">
+                                                    <button
+                                                        onClick={() => navigate('/counsellor-student-profile?readonly=true')}
+                                                        className="text-blue-600 text-[11px] md:text-sm font-bold hover:bg-blue-50 px-2 md:px-4 py-1 md:py-2 rounded-lg transition-colors whitespace-nowrap"
+                                                    >
+                                                        Profile
                                                     </button>
                                                 </td>
                                             </tr>

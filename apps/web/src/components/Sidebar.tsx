@@ -12,7 +12,7 @@ const Sidebar = ({ isOpen, onClose }) => {
     const isCourseApp = searchParams.get('title');
     const [isSettingsOpen, setIsSettingsOpen] = useState(false);
     const navigate = useNavigate();
-    const { user, requireAuth } = useAuth();
+    const { user, requireAuth, logout } = useAuth();
 
 
     const navItems = [
@@ -35,14 +35,14 @@ const Sidebar = ({ isOpen, onClose }) => {
             {/* Mobile Overlay Backdrop */}
             {isOpen && (
                 <div
-                    className="fixed inset-0 bg-black/50 z-40 lg:hidden backdrop-blur-sm transition-opacity"
+                    className="fixed inset-0 bg-black/50 z-[60] lg:hidden backdrop-blur-sm transition-opacity"
                     onClick={onClose}
                 ></div>
             )}
 
             <aside
                 className={`
-                    fixed lg:static inset-y-0 left-0 z-50
+                    fixed lg:static inset-y-0 left-0 z-[70]
                     w-64 flex-col h-full bg-white shrink-0 lg:flex
                     transition-transform duration-300 ease-in-out shadow-xl lg:shadow-none
                     ${isOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
@@ -108,51 +108,62 @@ const Sidebar = ({ isOpen, onClose }) => {
                 </nav>
                 <div className="p-4 border-t border-gray-100">
                     {user ? (
-                        <div className="relative">
-                            <button
-                                onClick={() => setIsSettingsOpen(!isSettingsOpen)}
-                                className="w-full flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 transition-colors text-left"
-                            >
-                                <div className="flex items-center gap-3">
-                                    <span className="material-symbols-outlined text-gray-500">settings</span>
-                                    <span className="text-sm font-medium text-gray-700">Settings</span>
-                                </div>
-                                <span className={`material-symbols-outlined text-gray-400 text-[20px] transition-transform duration-300 ${isSettingsOpen ? 'rotate-180' : ''}`}>expand_less</span>
-                            </button>
+                        <div className="flex flex-col gap-2">
+                            <div className="relative">
+                                <button
+                                    onClick={() => setIsSettingsOpen(!isSettingsOpen)}
+                                    className="w-full flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 transition-colors text-left"
+                                >
+                                    <div className="flex items-center gap-3">
+                                        <span className="material-symbols-outlined text-gray-500">settings</span>
+                                        <span className="text-sm font-medium text-gray-700">Settings</span>
+                                    </div>
+                                    <span className={`material-symbols-outlined text-gray-400 text-[20px] transition-transform duration-300 ${isSettingsOpen ? 'rotate-180' : ''}`}>expand_less</span>
+                                </button>
 
-                            {/* Settings Dropup Menu */}
-                            <div className={`absolute bottom-full left-0 mb-2 w-full bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden transition-all duration-300 transform origin-bottom border-gray-100 ${isSettingsOpen ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-95 translate-y-2 pointer-events-none'}`}>
-                                <div className="p-1">
-
-                                    <button
-                                        onClick={() => {
-                                            navigate('/notification-preferences');
-                                            if (window.innerWidth < 1024) onClose();
-                                        }}
-                                        className="w-full text-left px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-colors flex items-center gap-3"
-                                    >
-                                        <span className="material-symbols-outlined text-[18px]">notifications</span>
-                                        Notification Preferences
-                                    </button>
-                                    <button
-                                        onClick={() => {
-                                            navigate('/privacy-security');
-                                            if (window.innerWidth < 1024) onClose();
-                                        }}
-                                        className="w-full text-left px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-colors flex items-center gap-3"
-                                    >
-                                        <span className="material-symbols-outlined text-[18px]">security</span>
-                                        Privacy & Security
-                                    </button>
-
+                                {/* Settings Dropup Menu */}
+                                <div className={`absolute bottom-full left-0 mb-2 w-full bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden transition-all duration-300 transform origin-bottom border-gray-100 ${isSettingsOpen ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-95 translate-y-2 pointer-events-none'}`}>
+                                    <div className="p-1">
+                                        <button
+                                            onClick={() => {
+                                                navigate('/notification-preferences');
+                                                if (window.innerWidth < 1024) onClose();
+                                            }}
+                                            className="w-full text-left px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-colors flex items-center gap-3"
+                                        >
+                                            <span className="material-symbols-outlined text-[18px]">notifications</span>
+                                            Notification Preferences
+                                        </button>
+                                        <button
+                                            onClick={() => {
+                                                navigate('/privacy-security');
+                                                if (window.innerWidth < 1024) onClose();
+                                            }}
+                                            className="w-full text-left px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-colors flex items-center gap-3"
+                                        >
+                                            <span className="material-symbols-outlined text-[18px]">security</span>
+                                            Privacy & Security
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
+
+                            {/* Mobile-only Sign Out */}
+                            <button
+                                onClick={() => {
+                                    logout();
+                                    navigate('/login');
+                                }}
+                                className="lg:hidden w-full flex items-center gap-3 p-3 rounded-lg text-rose-600 hover:bg-rose-50 transition-colors text-left"
+                            >
+                                <span className="material-symbols-outlined">logout</span>
+                                <span className="text-sm font-bold">Sign Out</span>
+                            </button>
                         </div>
                     ) : (
                         <div className="flex flex-col gap-2">
                         </div>
                     )}
-
                 </div>
             </aside>
         </>

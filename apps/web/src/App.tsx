@@ -84,6 +84,9 @@ import CounsellorProfile from './pages/CounsellorProfile';
 import CounsellingChat from './pages/CounsellingChat';
 import PerformanceRatingOverview from './pages/PerformanceRatingOverview';
 import AssignedStudents from './pages/AssignedStudents';
+import Superadmin from './pages/Superadmin';
+import SuperAdminUniversityManagement from './pages/SuperAdminUniversityManagement';
+import SuperAdminUniversityProfile from './pages/SuperAdminUniversityProfile';
 
 // Profile Pages
 import ProfileLayout from './pages/profile/ProfileLayout';
@@ -220,6 +223,7 @@ function App() {
                                 <Route path="/counsellor-profile" element={<CounsellorProfile />} />
                                 <Route path="/counsellor-performance" element={<PerformanceRatingOverview />} />
                                 <Route path="/counsellor-assigned-students" element={<AssignedStudents />} />
+                                <Route path="/counsellor-student-profile" element={<MyProfile />} />
                             </Route>
 
                             {/* Consultant Resources */}
@@ -231,6 +235,9 @@ function App() {
                             <Route path="/verification" element={<Verification />} />
                             <Route path="/university-verification" element={<UniversityVerification />} />
                             <Route path="/university-pending-verification" element={<UniversityPendingVerification />} />
+                            <Route path="/Superadmin" element={<Superadmin />} />
+                            <Route path="/Superadmin/universities" element={<SuperAdminUniversityManagement />} />
+                            <Route path="/Superadmin/university/:id" element={<SuperAdminUniversityProfile />} />
                         </Routes>
                     </BrowserRouter>
                 </UserProfileProvider >

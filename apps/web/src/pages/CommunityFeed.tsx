@@ -18,8 +18,7 @@ const CommunityFeed = () => {
     const [selectedFilter, setSelectedFilter] = useState('All Topics');
     const [searchQuery, setSearchQuery] = useState(''); // Search State
     const [visibleCommentCounts, setVisibleCommentCounts] = useState({}); // Manage visible count per post
-    const [replyingTo, setReplyingTo] = useState(null); // { postId, commentIdx }
-    const [replyText, setReplyText] = useState('');
+
     const fileInputRef = useRef(null);
     const currentUser = "Alex Morgan";
     const { executeAction, isLoginModalOpen, closeLoginModal } = useAuthAction();
@@ -650,82 +649,50 @@ const CommunityFeed = () => {
     };
 
     const handleCommentVote = (postId, commentIdx, direction) => {
-        setPosts(prevPosts => prevPosts.map(post => {
-            if (post.id === postId) {
-                const newComments = [...post.comments];
-                const comment = newComments[commentIdx];
-                const currentVote = comment.userVote || 0;
-                let newVote = 0;
-                let voteChange = 0;
+        executeAction(() => {
+            setPosts(prevPosts => prevPosts.map(post => {
+                if (post.id === postId) {
+                    const newComments = [...post.comments];
+                    const comment = newComments[commentIdx];
+                    const currentVote = comment.userVote || 0;
+                    let newVote = 0;
+                    let voteChange = 0;
 
-                if (direction === 'up') {
-                    if (currentVote === 1) {
-                        // Toggle off
-                        newVote = 0;
-                        voteChange = -1;
+                    if (direction === 'up') {
+                        if (currentVote === 1) {
+                            // Toggle off
+                            newVote = 0;
+                            voteChange = -1;
+                        } else {
+                            // Vote up (from 0 or -1)
+                            newVote = 1;
+                            voteChange = currentVote === -1 ? 2 : 1;
+                        }
                     } else {
-                        // Vote up (from 0 or -1)
-                        newVote = 1;
-                        voteChange = currentVote === -1 ? 2 : 1;
+                        if (currentVote === -1) {
+                            // Toggle off
+                            newVote = 0;
+                            voteChange = 1; // logical adjustment if we were tracking 'score'
+                        } else {
+                            // Vote down
+                            newVote = -1;
+                            voteChange = currentVote === 1 ? -2 : -1;
+                        }
                     }
-                } else {
-                    if (currentVote === -1) {
-                        // Toggle off
-                        newVote = 0;
-                        voteChange = 1; // logical adjustment if we were tracking 'score'
-                    } else {
-                        // Vote down
-                        newVote = -1;
-                        voteChange = currentVote === 1 ? -2 : -1;
-                    }
+
+                    newComments[commentIdx] = {
+                        ...comment,
+                        upvotes: (comment.upvotes || 0) + voteChange,
+                        userVote: newVote
+                    };
+                    return { ...post, comments: newComments };
                 }
-
-                newComments[commentIdx] = {
-                    ...comment,
-                    upvotes: (comment.upvotes || 0) + voteChange,
-                    userVote: newVote
-                };
-                return { ...post, comments: newComments };
-            }
-            return post;
-        }));
+                return post;
+            }));
+        });
     };
 
-    const handleReplyClick = (postId, commentIdx) => {
-        if (replyingTo?.postId === postId && replyingTo?.commentIdx === commentIdx) {
-            setReplyingTo(null); // Toggle off
-        } else {
-            setReplyingTo({ postId, commentIdx });
-            setReplyText(''); // Reset text
-        }
-    };
 
-    const handleReplySubmit = (postId, commentIdx) => {
-        if (!replyText.trim()) return;
-
-        setPosts(prevPosts => prevPosts.map(post => {
-            if (post.id === postId) {
-                const newComments = [...post.comments];
-                const comment = newComments[commentIdx];
-                const newReply = {
-                    author: currentUser,
-                    avatar: "https://i.pravatar.cc/150?u=145",
-                    text: replyText,
-                    time: "Just now"
-                };
-
-                newComments[commentIdx] = {
-                    ...comment,
-                    replies: [...(comment.replies || []), newReply]
-                };
-                return { ...post, comments: newComments };
-            }
-            return post;
-        }));
-
-        setReplyingTo(null);
-        setReplyText('');
-    };
 
     const handleImageUpload = (e) => {
         const file = e.target.files[0];
@@ -775,49 +742,46 @@ const CommunityFeed = () => {
     };
 
     const handleVote = (postId, direction) => {
-        setPosts(prevPosts => prevPosts.map(post => {
-            if (post.id === postId) {
-                let newVoteCount = post.votes;
-                let newUserVote = post.userVote || 0; // Default to 0 if undefined
+        executeAction(() => {
+            setPosts(prevPosts => prevPosts.map(post => {
+                if (post.id === postId) {
+                    let newVoteCount = post.votes;
+                    let newUserVote = post.userVote || 0; // Default to 0 if undefined
 
-                if (direction === 'up') {
-                    if (newUserVote === 1) {
-                        // Already upvoted, remove vote
-                        newUserVote = 0;
-                        newVoteCount--;
-                    } else if (newUserVote === -1) {
-                        // Was downvoted, switch to upvote
-                        newUserVote = 1;
-                        newVoteCount += 2;
-                    } else {
-                        // No vote, add upvote
-                        newUserVote = 1;
-                        newVoteCount++;
+                    if (direction === 'up') {
+                        if (newUserVote === 1) {
+                            // Already upvoted, remove vote
+                            newUserVote = 0;
+                            newVoteCount--;
+                        } else if (newUserVote === -1) {
+                            // Was downvoted, switch to upvote
+                            newUserVote = 1;
+                            newVoteCount += 2;
+                        } else {
+                            // No vote, add upvote
+                            newUserVote = 1;
+                            newVoteCount++;
+                        }
+                    } else { // direction === 'down'
+                        if (newUserVote === -1) {
+                            // Already downvoted, remove vote
+                            newUserVote = 0;
+                            newVoteCount++; // Restore count
+                        } else if (newUserVote === 1) {
+                            // Was upvoted, switch to downvote
+                            newUserVote = -1;
+                            newVoteCount -= 2;
+                        } else {
+                            // No vote, add downvote
+                            newUserVote = -1;
+                            newVoteCount--;
+                        }
                     }
-                } else { // direction === 'down'
-                    if (newUserVote === -1) {
-                        // Already downvoted, remove vote
-                        newUserVote = 0;
-                        newVoteCount++;
-                    } else if (newUserVote === 1) {
-                        // Was upvoted, switch to downvote
-                        newUserVote = -1;
-                        newVoteCount -= 2;
-                    } else {
-                        // No vote, add downvote
-                        newUserVote = -1;
-                        newVoteCount--;
-                    }
+                    return { ...post, votes: newVoteCount, userVote: newUserVote };
                 }
-
-                return {
-                    ...post,
-                    votes: newVoteCount,
-                    userVote: newUserVote
-                };
-            }
-            return post;
-        }));
+                return post;
+            }));
+        });
     };
 
     const handleCommentChange = (postId, text) => {
@@ -867,6 +831,7 @@ const CommunityFeed = () => {
 
     return (
         <div className="flex flex-col flex-1 h-full overflow-hidden">
+            <LoginModal isOpen={isLoginModalOpen} onClose={closeLoginModal} />
             <div className="hidden lg:block">
                 <PageHeader
                     title="Community Feed"
@@ -993,7 +958,10 @@ const CommunityFeed = () => {
                                         return matchCategory && matchSearch;
                                     })
                                     .map(post => (
-                                        <article key={post.id} className="bg-white rounded-xl border border-gray-200 shadow-sm hover:border-blue-200 transition-all cursor-pointer group flex overflow-hidden">
+                                        <article
+                                            key={post.id}
+                                            className="bg-white rounded-xl border border-gray-200 shadow-sm transition-all group flex overflow-hidden w-full text-left"
+                                        >
                                             {/* Voting */}
                                             <div className="w-12 bg-gray-50 border-r border-gray-100 flex flex-col items-center py-3 gap-1 shrink-0">
                                                 <button
@@ -1014,9 +982,12 @@ const CommunityFeed = () => {
                                             <div className="flex-1 p-3 sm:p-4 min-w-0">
                                                 <div className="flex items-center gap-2 mb-2 text-xs text-gray-500 flex-wrap">
                                                     <div className="size-6 rounded-full bg-cover bg-center shrink-0" style={{ backgroundImage: `url("${post.avatar}")` }}></div>
-                                                    <Link to={`/profile/${post.author}`} className="font-medium text-gray-900 hover:underline hover:text-blue-600 transition-colors" onClick={(e) => e.stopPropagation()}>
+                                                    <button
+                                                        onClick={(e) => { e.stopPropagation(); executeAction(() => navigate(`/profile/${post.author}`)); }}
+                                                        className="font-medium text-gray-900 hover:underline hover:text-blue-600 transition-colors bg-transparent border-none p-0 cursor-pointer text-left"
+                                                    >
                                                         {post.author}
-                                                    </Link>
+                                                    </button>
                                                     {(post as any).isVerifiedAttributes && (
                                                         <span className="flex items-center gap-1 text-[10px] font-bold text-blue-600 whitespace-nowrap">
                                                             <span className="material-symbols-outlined !text-[14px]">verified</span> {(post as any).verifiedLabel}
@@ -1029,7 +1000,7 @@ const CommunityFeed = () => {
                                                     )}
                                                     <span className="whitespace-nowrap">• {post.time}</span>
                                                 </div>
-                                                <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-1.5 leading-snug group-hover:text-primary transition-colors break-words">
+                                                <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-1.5 leading-snug transition-colors break-words">
                                                     {post.title}
                                                 </h3>
                                                 {(post as any).image && (
@@ -1040,11 +1011,11 @@ const CommunityFeed = () => {
                                                         {/* Simple truncation logic */}
                                                         {!expandedPosts[post.id] && post.content.length > 120 ? (
                                                             <>
-                                                                {post.content.substring(0, 120)}... <span className="text-primary font-medium cursor-pointer hover:underline" onClick={() => toggleReadMore(post.id)}>more</span>
+                                                                {post.content.substring(0, 120)}... <span className="text-primary font-medium cursor-pointer hover:underline" onClick={(e) => { e.stopPropagation(); toggleReadMore(post.id); }}>more</span>
                                                             </>
                                                         ) : (
                                                             <>
-                                                                {post.content} {post.content.length > 120 && <span className="text-gray-400 text-xs cursor-pointer hover:underline ml-2" onClick={() => toggleReadMore(post.id)}>less</span>}
+                                                                {post.content} {post.content.length > 120 && <span className="text-gray-400 text-xs cursor-pointer hover:underline ml-2" onClick={(e) => { e.stopPropagation(); toggleReadMore(post.id); }}>less</span>}
                                                             </>
                                                         )}
                                                     </p>
@@ -1056,7 +1027,7 @@ const CommunityFeed = () => {
                                                         ))}
                                                     </div>
                                                     <div className="flex items-center gap-4 text-gray-500 text-xs font-medium w-full sm:w-auto justify-between sm:justify-start border-t sm:border-t-0 pt-2 sm:pt-0 border-gray-50">
-                                                        <button onClick={() => toggleComments(post.id)} className="flex items-center gap-1.5 hover:text-gray-900 transition-colors">
+                                                        <button onClick={(e) => { e.stopPropagation(); toggleComments(post.id); }} className="flex items-center gap-1.5 hover:text-gray-900 transition-colors">
                                                             <span className="material-symbols-outlined text-[18px]">mode_comment</span>
                                                             {post.type === 'question' ? (
                                                                 <span>{(post as any).answers?.length || 0} Comments</span>
@@ -1132,71 +1103,9 @@ const CommunityFeed = () => {
                                                                             </div>
                                                                             <p className={`text-xs leading-relaxed ${comment.author === 'AI Assistant' ? 'text-blue-900' : 'text-gray-700'}`}>{comment.text}</p>
                                                                         </div>
-                                                                        <div className="flex items-center gap-4 mt-1.5 ml-1">
-                                                                            <div className="flex items-center gap-1">
-                                                                                <button
-                                                                                    onClick={() => handleCommentVote(post.id, idx, 'up')}
-                                                                                    className={`flex items-center gap-1 transition-colors ${comment.userVote === 1 ? 'text-blue-600' : 'text-gray-500 hover:text-blue-600'}`}
-                                                                                >
-                                                                                    <span className={`material-symbols-outlined !text-[16px] ${comment.userVote === 1 ? 'fill-current' : ''}`}>arrow_upward</span>
-                                                                                    <span className="text-xs font-semibold">{comment.upvotes || 0}</span>
-                                                                                </button>
-                                                                                <button
-                                                                                    onClick={() => handleCommentVote(post.id, idx, 'down')}
-                                                                                    className={`transition-colors ${comment.userVote === -1 ? 'text-red-500' : 'text-gray-500 hover:text-red-500'}`}
-                                                                                >
-                                                                                    <span className={`material-symbols-outlined !text-[16px] ${comment.userVote === -1 ? 'fill-current' : ''}`}>arrow_downward</span>
-                                                                                </button>
-                                                                            </div>
-                                                                            <button
-                                                                                onClick={() => handleReplyClick(post.id, idx)}
-                                                                                className={`text-xs font-semibold transition-colors ${replyingTo?.postId === post.id && replyingTo?.commentIdx === idx ? 'text-blue-600' : 'text-gray-500 hover:text-gray-900'}`}
-                                                                            >
-                                                                                Reply
-                                                                            </button>
-                                                                            <button className="text-gray-400 hover:text-gray-900 transition-colors">
-                                                                                <span className="material-symbols-outlined !text-[16px]">more_horiz</span>
-                                                                            </button>
-                                                                        </div>
 
-                                                                        {/* Render Replies */}
-                                                                        {comment.replies && comment.replies.length > 0 && (
-                                                                            <div className="mt-2 ml-4 pl-3 border-l-2 border-gray-100 flex flex-col gap-2">
-                                                                                {comment.replies.map((reply, rIdx) => (
-                                                                                    <div key={rIdx} className="bg-gray-50/50 rounded-lg p-2">
-                                                                                        <div className="flex justify-between items-start">
-                                                                                            <span className="text-xs font-bold text-gray-900">{reply.author}</span>
-                                                                                            <span className="text-[10px] text-gray-400">{reply.time}</span>
-                                                                                        </div>
-                                                                                        <p className="text-xs text-gray-700 mt-0.5">{reply.text}</p>
-                                                                                    </div>
-                                                                                ))}
-                                                                            </div>
-                                                                        )}
 
-                                                                        {/* Reply Input */}
-                                                                        {replyingTo?.postId === post.id && replyingTo?.commentIdx === idx && (
-                                                                            <div className="mt-2 flex gap-2 animate-in fade-in slide-in-from-top-1 duration-200">
-                                                                                <div className="size-6 rounded-full bg-gray-200 bg-cover bg-center shrink-0" style={{ backgroundImage: 'url("https://lh3.googleusercontent.com/aida-public/AB6AXuDchVeb3pnQlG7miYN4K2qZ3FvzJ_BraFfz7fnE81y6daVb93_nRvdtmIe5JhDRWYUdniaxDtf5aOMeFEmMH_uKnO3jaGZcMIiV1OOqhbDuBV6iZMmHNro2d4fd1I_yoys75ES60YwCpQFin-dgLs6XN1pmJKBT70K1ONBeTAzsRG_HEHX5AC6ICuZkdmV5cHJyejbkmy13_hZS_EZFXELG3W2x0JXa01xdub5lXyGmShDjpaGpE5ehLI9I3fJvA-46_b0sixf8Fdg")' }}></div>
-                                                                                <div className="flex-1 flex gap-2">
-                                                                                    <input
-                                                                                        type="text"
-                                                                                        placeholder={`Reply to ${comment.author}...`}
-                                                                                        className="flex-1 text-xs border border-gray-200 rounded-lg px-3 py-1.5 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/20 bg-white"
-                                                                                        value={replyText}
-                                                                                        onChange={(e) => setReplyText(e.target.value)}
-                                                                                        autoFocus
-                                                                                    />
-                                                                                    <button
-                                                                                        onClick={() => handleReplySubmit(post.id, idx)}
-                                                                                        disabled={!replyText.trim()}
-                                                                                        className="px-3 py-1 bg-blue-600 text-white text-xs font-semibold rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed"
-                                                                                    >
-                                                                                        Reply
-                                                                                    </button>
-                                                                                </div>
-                                                                            </div>
-                                                                        )}
+
                                                                     </div>
                                                                 </div>
                                                             ))}
