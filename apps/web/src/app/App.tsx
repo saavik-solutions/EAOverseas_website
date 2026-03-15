@@ -147,6 +147,9 @@ import CountryDetails from '@/pages/CountryDetails';
 const HomeRoute = () => {
     const { user } = useAuth();
     if (user) {
+        if (user.role === 'admin') {
+            return <Navigate to="/Superadmin" replace />;
+        }
         return <Navigate to="/dashboard" replace />;
     }
     return <LandingPage />;
@@ -299,23 +302,19 @@ function App() {
                                             <Route path="/counsellor-student-profile" element={<MyProfile />} />
                                         </Route>
 
-                                        <Route path="/login" element={<Login />} />
-                                        <Route path="/signup" element={<Signup />} />
-                                        <Route path="/forgot-password" element={<ForgotPassword />} />
-                                        <Route path="/verification" element={<Verification />} />
-                                        <Route path="/university-verification" element={<UniversityVerification />} />
-                                        <Route path="/university-pending-verification" element={<UniversityPendingVerification />} />
-                                        <Route path="/Superadmin" element={<ProtectedRoute requiredRoles={['admin']}><Superadmin /></ProtectedRoute>} />
-                                        <Route path="/Superadmin/universities" element={<SuperAdminUniversityManagement />} />
-                                        <Route path="/Superadmin/consultants" element={<SuperAdminConsultantManagement />} />
-                                        <Route path="/Superadmin/counsellors" element={<SuperAdminAvailableCounsellors />} />
-                                        <Route path="/Superadmin/active-today" element={<SuperAdminActiveTodayCounsellors />} />
-                                        <Route path="/Superadmin/scraper" element={<UniversityScraper />} />
-                                        <Route path="/Superadmin/active-partners" element={<ActivePartnersPage />} />
-                                        <Route path="/Superadmin/top-performers" element={<TopPerformersPage />} />
-                                        <Route path="/Superadmin/applications" element={<ApplicationsAnalyticsPage />} />
-                                        <Route path="/Superadmin/applications/all" element={<AllApplicationsPage />} />
-                                        <Route path="/Superadmin/university/:id" element={<SuperAdminUniversityProfile />} />
+                                        <Route path="/Superadmin" element={<ProtectedRoute requiredRoles={['admin']}><Superadmin /></ProtectedRoute>}>
+                                            <Route path="universities" element={<SuperAdminUniversityManagement />} />
+                                            <Route path="consultants" element={<SuperAdminConsultantManagement />} />
+                                            <Route path="counsellors" element={<SuperAdminAvailableCounsellors />} />
+                                            <Route path="active-today" element={<SuperAdminActiveTodayCounsellors />} />
+                                            <Route path="scraper" element={<UniversityScraper />} />
+                                            <Route path="active-partners" element={<ActivePartnersPage />} />
+                                            <Route path="top-performers" element={<TopPerformersPage />} />
+                                            <Route path="applications" element={<ApplicationsAnalyticsPage />} />
+                                            <Route path="applications/all" element={<AllApplicationsPage />} />
+                                            <Route path="university/:id" element={<SuperAdminUniversityProfile />} />
+                                        </Route>
+                                        <Route path="/superadmin/*" element={<Navigate to="/Superadmin" replace />} />
                                         <Route path="/university/dashboard" element={<ProtectedRoute requiredRoles={['university']}><UniversityDashboard /></ProtectedRoute>} />
                                         <Route path="/university/applications" element={<UniversityApplications />} />
                                         <Route path="/university/published-posts" element={<UniversityPublishedPosts />} />
