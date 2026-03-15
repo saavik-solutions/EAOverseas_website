@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
-import SuperAdminLayout from '@/layouts/SuperAdminLayout';
+import { useNavigate } from 'react-router-dom';
 
 // Mock Data — 24 entries: Approved(55%) > Pending(30%) > Rejected(15%)
 const INITIAL_APPLICATIONS = [
@@ -112,217 +112,215 @@ const ApplicationsAnalyticsPage = () => {
         });
 
     return (
-        <SuperAdminLayout title="Applications Analytics">
-            <div className="p-4 lg:p-6 max-w-7xl mx-auto space-y-4">
-                {/* Header & Filters */}
-                <div className="flex flex-col gap-4">
-                    <div className="flex flex-wrap items-end justify-between gap-4">
+        <div className="p-4 lg:p-6 max-w-7xl mx-auto space-y-4">
+            {/* Header & Filters */}
+            <div className="flex flex-col gap-4">
+                <div className="flex flex-wrap items-end justify-between gap-4">
+                    <div>
+                        <h1 className="text-2xl font-black text-slate-900 tracking-tight">Applications This Month</h1>
+                        <p className="text-xs text-slate-500 mt-1">Real-time overview of global application trends and processing metrics.</p>
+                    </div>
+                </div>
+
+                {/* Filter Bar */}
+                <div className="flex flex-wrap items-center gap-3 bg-white p-2.5 rounded-lg border border-slate-200 shadow-sm">
+                    <div className="flex items-center gap-2 px-3 py-1 bg-slate-50 rounded-md border border-slate-200 focus-within:ring-2 focus-within:ring-[#2b6cee]/20">
+                        <span className="text-[10px] font-bold text-slate-400 uppercase">Country:</span>
+                        <select
+                            value={filterCountry}
+                            onChange={(e) => setFilterCountry(e.target.value)}
+                            className="bg-transparent text-xs font-medium border-none focus:ring-0 cursor-pointer outline-none min-w-[100px] text-slate-700 py-1"
+                        >
+                            <option value="All Regions">All Regions</option>
+                            <option value="United Kingdom">United Kingdom</option>
+                            <option value="Canada">Canada</option>
+                            <option value="Germany">Germany</option>
+                            <option value="Australia">Australia</option>
+                        </select>
+                    </div>
+
+                    <div className="flex items-center gap-2 px-3 py-1 bg-slate-50 rounded-md border border-slate-200 focus-within:ring-2 focus-within:ring-[#2b6cee]/20">
+                        <span className="text-[10px] font-bold text-slate-400 uppercase">University:</span>
+                        <select
+                            value={filterUniversity}
+                            onChange={(e) => setFilterUniversity(e.target.value)}
+                            className="bg-transparent text-xs font-medium border-none focus:ring-0 cursor-pointer outline-none min-w-[120px] text-slate-700 py-1"
+                        >
+                            <option value="All Universities">All Universities</option>
+                            <option value="Oxford University">Oxford University</option>
+                            <option value="University of Toronto">University of Toronto</option>
+                            <option value="TUM Munich">TUM Munich</option>
+                            <option value="Melbourne University">Melbourne University</option>
+                        </select>
+                    </div>
+
+                    <div className="flex items-center gap-2 px-3 py-1 bg-slate-50 rounded-md border border-slate-200 focus-within:ring-2 focus-within:ring-[#2b6cee]/20">
+                        <span className="text-[10px] font-bold text-slate-400 uppercase">Status:</span>
+                        <select
+                            value={filterStatus}
+                            onChange={(e) => setFilterStatus(e.target.value)}
+                            className="bg-transparent text-xs font-medium border-none focus:ring-0 cursor-pointer outline-none min-w-[90px] text-slate-700 py-1"
+                        >
+                            <option value="Any Status">Any Status</option>
+                            <option value="Approved">Approved</option>
+                            <option value="Reviewing">Reviewing</option>
+                            <option value="Rejected">Rejected</option>
+                        </select>
+                    </div>
+
+                    <div className="flex items-center gap-2 px-3 py-1 bg-slate-50 rounded-md border border-slate-200 focus-within:ring-2 focus-within:ring-[#2b6cee]/20 ml-auto">
+                        <span className="material-symbols-outlined text-slate-400 text-sm">calendar_today</span>
+                        <select
+                            value={filterDate}
+                            onChange={(e) => setFilterDate(e.target.value)}
+                            className="bg-transparent text-xs font-medium border-none focus:ring-0 cursor-pointer outline-none min-w-[100px] text-slate-700 py-1"
+                        >
+                            <option value="Last 30 Days">Last 30 Days</option>
+                            <option value="This Quarter">This Quarter</option>
+                            <option value="This Year">This Year</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            {/* Stats Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div
+                    onClick={() => navigate('/Superadmin/applications/all')}
+                    className="bg-white p-4 rounded-xl border border-slate-200 shadow-sm cursor-pointer hover:border-blue-300 hover:shadow-md transition-all group"
+                >
+                    <div className="flex items-center justify-between mb-2">
+                        <div className="p-1.5 bg-blue-50 rounded-md text-[#2b6cee]">
+                            <span className="material-symbols-outlined text-sm">folder_open</span>
+                        </div>
+                        <span className="material-symbols-outlined text-slate-300 text-sm group-hover:text-[#2b6cee] transition-colors">chevron_right</span>
+                    </div>
+                    <p className="text-slate-500 text-xs font-medium">Total Applications</p>
+                    <h3 className="text-2xl font-black mt-0.5">{totalApps}</h3>
+                </div>
+                <div className="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
+                    <div className="flex items-center justify-between mb-2">
+                        <div className={`p-1.5 ${midKpi.iconBg} rounded-md ${midKpi.iconColor}`}>
+                            <span className="material-symbols-outlined text-sm">{midKpi.icon}</span>
+                        </div>
+                    </div>
+                    <p className="text-slate-500 text-xs font-medium">{midKpi.label}</p>
+                    <h3 className="text-2xl font-black mt-0.5">{midKpi.value}</h3>
+                </div>
+                <div className="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
+                    <div className="flex items-center justify-between mb-2">
+                        <div className="p-1.5 bg-amber-50 rounded-md text-amber-500">
+                            <span className="material-symbols-outlined text-sm">pending_actions</span>
+                        </div>
+                    </div>
+                    <p className="text-slate-500 text-xs font-medium">Pending Review</p>
+                    <h3 className="text-2xl font-black mt-0.5">{pendingApps}</h3>
+                </div>
+            </div>
+
+            {/* Middle Section: Main Chart & Distribution */}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+                {/* Daily Trends Chart */}
+                <div className="lg:col-span-2 bg-white rounded-xl border border-slate-200 shadow-sm p-4 overflow-hidden">
+                    <div className="flex items-center justify-between mb-4">
                         <div>
-                            <h1 className="text-2xl font-black text-slate-900 tracking-tight">Applications This Month</h1>
-                            <p className="text-xs text-slate-500 mt-1">Real-time overview of global application trends and processing metrics.</p>
+                            <h3 className="text-sm font-bold">
+                                {filterDate === 'Last 30 Days' ? 'Monthly' : filterDate === 'This Quarter' ? 'Quarterly' : 'Yearly'} Application Breakdown
+                            </h3>
+                            <p className="text-[10px] text-slate-500">Daily submission volume</p>
+                        </div>
+                        <div className="flex items-center gap-2">
+                            <div className="flex items-center gap-1.5">
+                                <span className="w-2 h-2 rounded-full bg-[#2b6cee]"></span>
+                                <span className="text-[10px] font-semibold text-slate-500">Current</span>
+                            </div>
                         </div>
                     </div>
-
-                    {/* Filter Bar */}
-                    <div className="flex flex-wrap items-center gap-3 bg-white p-2.5 rounded-lg border border-slate-200 shadow-sm">
-                        <div className="flex items-center gap-2 px-3 py-1 bg-slate-50 rounded-md border border-slate-200 focus-within:ring-2 focus-within:ring-[#2b6cee]/20">
-                            <span className="text-[10px] font-bold text-slate-400 uppercase">Country:</span>
-                            <select
-                                value={filterCountry}
-                                onChange={(e) => setFilterCountry(e.target.value)}
-                                className="bg-transparent text-xs font-medium border-none focus:ring-0 cursor-pointer outline-none min-w-[100px] text-slate-700 py-1"
-                            >
-                                <option value="All Regions">All Regions</option>
-                                <option value="United Kingdom">United Kingdom</option>
-                                <option value="Canada">Canada</option>
-                                <option value="Germany">Germany</option>
-                                <option value="Australia">Australia</option>
-                            </select>
-                        </div>
-
-                        <div className="flex items-center gap-2 px-3 py-1 bg-slate-50 rounded-md border border-slate-200 focus-within:ring-2 focus-within:ring-[#2b6cee]/20">
-                            <span className="text-[10px] font-bold text-slate-400 uppercase">University:</span>
-                            <select
-                                value={filterUniversity}
-                                onChange={(e) => setFilterUniversity(e.target.value)}
-                                className="bg-transparent text-xs font-medium border-none focus:ring-0 cursor-pointer outline-none min-w-[120px] text-slate-700 py-1"
-                            >
-                                <option value="All Universities">All Universities</option>
-                                <option value="Oxford University">Oxford University</option>
-                                <option value="University of Toronto">University of Toronto</option>
-                                <option value="TUM Munich">TUM Munich</option>
-                                <option value="Melbourne University">Melbourne University</option>
-                            </select>
-                        </div>
-
-                        <div className="flex items-center gap-2 px-3 py-1 bg-slate-50 rounded-md border border-slate-200 focus-within:ring-2 focus-within:ring-[#2b6cee]/20">
-                            <span className="text-[10px] font-bold text-slate-400 uppercase">Status:</span>
-                            <select
-                                value={filterStatus}
-                                onChange={(e) => setFilterStatus(e.target.value)}
-                                className="bg-transparent text-xs font-medium border-none focus:ring-0 cursor-pointer outline-none min-w-[90px] text-slate-700 py-1"
-                            >
-                                <option value="Any Status">Any Status</option>
-                                <option value="Approved">Approved</option>
-                                <option value="Reviewing">Reviewing</option>
-                                <option value="Rejected">Rejected</option>
-                            </select>
-                        </div>
-
-                        <div className="flex items-center gap-2 px-3 py-1 bg-slate-50 rounded-md border border-slate-200 focus-within:ring-2 focus-within:ring-[#2b6cee]/20 ml-auto">
-                            <span className="material-symbols-outlined text-slate-400 text-sm">calendar_today</span>
-                            <select
-                                value={filterDate}
-                                onChange={(e) => setFilterDate(e.target.value)}
-                                className="bg-transparent text-xs font-medium border-none focus:ring-0 cursor-pointer outline-none min-w-[100px] text-slate-700 py-1"
-                            >
-                                <option value="Last 30 Days">Last 30 Days</option>
-                                <option value="This Quarter">This Quarter</option>
-                                <option value="This Year">This Year</option>
-                            </select>
+                    <div className="relative h-48 w-full">
+                        <svg className="w-full h-full" preserveAspectRatio="none" viewBox="0 0 800 200">
+                            <defs>
+                                <linearGradient id="chartGradient2" x1="0" x2="0" y1="0" y2="1">
+                                    <stop offset="0%" stopColor="#2b6cee" stopOpacity="0.2"></stop>
+                                    <stop offset="100%" stopColor="#2b6cee" stopOpacity="0"></stop>
+                                </linearGradient>
+                            </defs>
+                            <path d={chartFill} fill="url(#chartGradient2)"></path>
+                            <path d={chartPath} fill="none" stroke="#2b6cee" strokeLinecap="round" strokeWidth="2"></path>
+                        </svg>
+                        <div className="absolute bottom-0 left-0 right-0 flex justify-between text-[8px] font-bold text-slate-400 px-2 mt-2 uppercase">
+                            <span>Day 1</span><span>Day 7</span><span>Day 14</span><span>Day 21</span><span>Day 30</span>
                         </div>
                     </div>
                 </div>
 
-                {/* Stats Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <div
-                        onClick={() => navigate('/Superadmin/applications/all')}
-                        className="bg-white p-4 rounded-xl border border-slate-200 shadow-sm cursor-pointer hover:border-blue-300 hover:shadow-md transition-all group"
-                    >
-                        <div className="flex items-center justify-between mb-2">
-                            <div className="p-1.5 bg-blue-50 rounded-md text-[#2b6cee]">
-                                <span className="material-symbols-outlined text-sm">folder_open</span>
-                            </div>
-                            <span className="material-symbols-outlined text-slate-300 text-sm group-hover:text-[#2b6cee] transition-colors">chevron_right</span>
-                        </div>
-                        <p className="text-slate-500 text-xs font-medium">Total Applications</p>
-                        <h3 className="text-2xl font-black mt-0.5">{totalApps}</h3>
+                {/* Status Distribution */}
+                <div className="bg-white rounded-xl border border-slate-200 shadow-sm p-4 flex flex-col items-center">
+                    <div className="w-full text-left mb-4">
+                        <h3 className="text-sm font-bold">Status Distribution</h3>
                     </div>
-                    <div className="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
-                        <div className="flex items-center justify-between mb-2">
-                            <div className={`p-1.5 ${midKpi.iconBg} rounded-md ${midKpi.iconColor}`}>
-                                <span className="material-symbols-outlined text-sm">{midKpi.icon}</span>
-                            </div>
+                    <div className="relative h-36 flex items-center justify-center">
+                        <svg className="w-32 h-32 transform -rotate-90" viewBox="0 0 120 120">
+                            {/* Background track */}
+                            <circle cx="60" cy="60" r="48" fill="transparent" stroke="#f1f5f9" strokeWidth="10" />
+                            {/* Approved arc (blue) — largest */}
+                            <circle cx="60" cy="60" r="48" fill="transparent" stroke="#2b6cee"
+                                strokeWidth="10"
+                                strokeDasharray={`${donutCircumference * allApproved / totalApps} ${donutCircumference}`}
+                                strokeDashoffset="0"
+                            />
+                            {/* Pending arc (amber) — middle, offset after approved */}
+                            <circle cx="60" cy="60" r="48" fill="transparent" stroke="#f59e0b"
+                                strokeWidth="10"
+                                strokeDasharray={`${donutCircumference * allPending / totalApps} ${donutCircumference}`}
+                                strokeDashoffset={`-${donutCircumference * allApproved / totalApps}`}
+                            />
+                            {/* Rejected arc (rose) — smallest */}
+                            <circle cx="60" cy="60" r="48" fill="transparent" stroke="#f43f5e"
+                                strokeWidth="10"
+                                strokeDasharray={`${donutCircumference * allRejected / totalApps} ${donutCircumference}`}
+                                strokeDashoffset={`-${donutCircumference * (allApproved + allPending) / totalApps}`}
+                            />
+                        </svg>
+                        <div className="absolute flex flex-col items-center">
+                            <span className="text-xl font-black">{totalApps}</span>
+                            <span className="text-[8px] uppercase font-bold text-slate-400">Total</span>
                         </div>
-                        <p className="text-slate-500 text-xs font-medium">{midKpi.label}</p>
-                        <h3 className="text-2xl font-black mt-0.5">{midKpi.value}</h3>
                     </div>
-                    <div className="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
-                        <div className="flex items-center justify-between mb-2">
-                            <div className="p-1.5 bg-amber-50 rounded-md text-amber-500">
-                                <span className="material-symbols-outlined text-sm">pending_actions</span>
-                            </div>
-                        </div>
-                        <p className="text-slate-500 text-xs font-medium">Pending Review</p>
-                        <h3 className="text-2xl font-black mt-0.5">{pendingApps}</h3>
-                    </div>
-                </div>
-
-                {/* Middle Section: Main Chart & Distribution */}
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-                    {/* Daily Trends Chart */}
-                    <div className="lg:col-span-2 bg-white rounded-xl border border-slate-200 shadow-sm p-4 overflow-hidden">
-                        <div className="flex items-center justify-between mb-4">
-                            <div>
-                                <h3 className="text-sm font-bold">
-                                    {filterDate === 'Last 30 Days' ? 'Monthly' : filterDate === 'This Quarter' ? 'Quarterly' : 'Yearly'} Application Breakdown
-                                </h3>
-                                <p className="text-[10px] text-slate-500">Daily submission volume</p>
+                    <div className="mt-4 w-full space-y-2">
+                        <div className="flex items-center justify-between">
+                            <div className="flex items-center gap-1.5">
+                                <span className="w-2.5 h-2.5 rounded-full bg-[#2b6cee]"></span>
+                                <span className="text-xs font-medium">Approved</span>
                             </div>
                             <div className="flex items-center gap-2">
-                                <div className="flex items-center gap-1.5">
-                                    <span className="w-2 h-2 rounded-full bg-[#2b6cee]"></span>
-                                    <span className="text-[10px] font-semibold text-slate-500">Current</span>
-                                </div>
+                                <span className="text-[10px] text-slate-400">{Math.round(allApproved / totalApps * 100)}%</span>
+                                <span className="text-xs font-bold w-6 text-right">{allApproved}</span>
                             </div>
                         </div>
-                        <div className="relative h-48 w-full">
-                            <svg className="w-full h-full" preserveAspectRatio="none" viewBox="0 0 800 200">
-                                <defs>
-                                    <linearGradient id="chartGradient2" x1="0" x2="0" y1="0" y2="1">
-                                        <stop offset="0%" stopColor="#2b6cee" stopOpacity="0.2"></stop>
-                                        <stop offset="100%" stopColor="#2b6cee" stopOpacity="0"></stop>
-                                    </linearGradient>
-                                </defs>
-                                <path d={chartFill} fill="url(#chartGradient2)"></path>
-                                <path d={chartPath} fill="none" stroke="#2b6cee" strokeLinecap="round" strokeWidth="2"></path>
-                            </svg>
-                            <div className="absolute bottom-0 left-0 right-0 flex justify-between text-[8px] font-bold text-slate-400 px-2 mt-2 uppercase">
-                                <span>Day 1</span><span>Day 7</span><span>Day 14</span><span>Day 21</span><span>Day 30</span>
+                        <div className="flex items-center justify-between">
+                            <div className="flex items-center gap-1.5">
+                                <span className="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
+                                <span className="text-xs font-medium">Pending</span>
+                            </div>
+                            <div className="flex items-center gap-2">
+                                <span className="text-[10px] text-slate-400">{Math.round(allPending / totalApps * 100)}%</span>
+                                <span className="text-xs font-bold w-6 text-right">{allPending}</span>
                             </div>
                         </div>
-                    </div>
-
-                    {/* Status Distribution */}
-                    <div className="bg-white rounded-xl border border-slate-200 shadow-sm p-4 flex flex-col items-center">
-                        <div className="w-full text-left mb-4">
-                            <h3 className="text-sm font-bold">Status Distribution</h3>
-                        </div>
-                        <div className="relative h-36 flex items-center justify-center">
-                            <svg className="w-32 h-32 transform -rotate-90" viewBox="0 0 120 120">
-                                {/* Background track */}
-                                <circle cx="60" cy="60" r="48" fill="transparent" stroke="#f1f5f9" strokeWidth="10" />
-                                {/* Approved arc (blue) — largest */}
-                                <circle cx="60" cy="60" r="48" fill="transparent" stroke="#2b6cee"
-                                    strokeWidth="10"
-                                    strokeDasharray={`${donutCircumference * allApproved / totalApps} ${donutCircumference}`}
-                                    strokeDashoffset="0"
-                                />
-                                {/* Pending arc (amber) — middle, offset after approved */}
-                                <circle cx="60" cy="60" r="48" fill="transparent" stroke="#f59e0b"
-                                    strokeWidth="10"
-                                    strokeDasharray={`${donutCircumference * allPending / totalApps} ${donutCircumference}`}
-                                    strokeDashoffset={`-${donutCircumference * allApproved / totalApps}`}
-                                />
-                                {/* Rejected arc (rose) — smallest */}
-                                <circle cx="60" cy="60" r="48" fill="transparent" stroke="#f43f5e"
-                                    strokeWidth="10"
-                                    strokeDasharray={`${donutCircumference * allRejected / totalApps} ${donutCircumference}`}
-                                    strokeDashoffset={`-${donutCircumference * (allApproved + allPending) / totalApps}`}
-                                />
-                            </svg>
-                            <div className="absolute flex flex-col items-center">
-                                <span className="text-xl font-black">{totalApps}</span>
-                                <span className="text-[8px] uppercase font-bold text-slate-400">Total</span>
+                        <div className="flex items-center justify-between">
+                            <div className="flex items-center gap-1.5">
+                                <span className="w-2.5 h-2.5 rounded-full bg-rose-500"></span>
+                                <span className="text-xs font-medium">Rejected</span>
                             </div>
-                        </div>
-                        <div className="mt-4 w-full space-y-2">
-                            <div className="flex items-center justify-between">
-                                <div className="flex items-center gap-1.5">
-                                    <span className="w-2.5 h-2.5 rounded-full bg-[#2b6cee]"></span>
-                                    <span className="text-xs font-medium">Approved</span>
-                                </div>
-                                <div className="flex items-center gap-2">
-                                    <span className="text-[10px] text-slate-400">{Math.round(allApproved / totalApps * 100)}%</span>
-                                    <span className="text-xs font-bold w-6 text-right">{allApproved}</span>
-                                </div>
-                            </div>
-                            <div className="flex items-center justify-between">
-                                <div className="flex items-center gap-1.5">
-                                    <span className="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
-                                    <span className="text-xs font-medium">Pending</span>
-                                </div>
-                                <div className="flex items-center gap-2">
-                                    <span className="text-[10px] text-slate-400">{Math.round(allPending / totalApps * 100)}%</span>
-                                    <span className="text-xs font-bold w-6 text-right">{allPending}</span>
-                                </div>
-                            </div>
-                            <div className="flex items-center justify-between">
-                                <div className="flex items-center gap-1.5">
-                                    <span className="w-2.5 h-2.5 rounded-full bg-rose-500"></span>
-                                    <span className="text-xs font-medium">Rejected</span>
-                                </div>
-                                <div className="flex items-center gap-2">
-                                    <span className="text-[10px] text-slate-400">{Math.round(allRejected / totalApps * 100)}%</span>
-                                    <span className="text-xs font-bold w-6 text-right">{allRejected}</span>
-                                </div>
+                            <div className="flex items-center gap-2">
+                                <span className="text-[10px] text-slate-400">{Math.round(allRejected / totalApps * 100)}%</span>
+                                <span className="text-xs font-bold w-6 text-right">{allRejected}</span>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </SuperAdminLayout>
+        </div>
     );
 };
 

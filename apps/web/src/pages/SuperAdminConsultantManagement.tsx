@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import SuperAdminLayout from '@/layouts/SuperAdminLayout';
+
 import { Link } from 'react-router-dom';
 
 const SuperAdminConsultantManagement: React.FC = () => {
@@ -90,214 +90,212 @@ const SuperAdminConsultantManagement: React.FC = () => {
     const activeData = activePeriodData[countryFilter] || activePeriodData['All'] || activePeriodData['United Kingdom'];
 
     return (
-        <SuperAdminLayout title="Consultants Management">
-            <div className="p-8 flex flex-col gap-6">
-                {/* Header Section */}
-                <div className="flex flex-col gap-1">
-                    <h1 className="text-2xl font-black text-slate-900 tracking-tight">Consultants Management</h1>
-                    <p className="text-xs text-slate-500">Monitor consultant activity, performance, and assigned students.</p>
-                </div>
+        <div className="p-8 flex flex-col gap-6">
+            {/* Header Section */}
+            <div className="flex flex-col gap-1">
+                <h1 className="text-2xl font-black text-slate-900 tracking-tight">Consultants Management</h1>
+                <p className="text-xs text-slate-500">Monitor consultant activity, performance, and assigned students.</p>
+            </div>
 
-                {/* Metrics Section */}
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                    <Link to="/Superadmin/counsellors">
-                        <MetricCard
-                            icon="groups_3"
-                            label="Total Consultants"
-                            value="1,284"
-                            trend="+12% Overall"
-                        />
-                    </Link>
-                    <Link to="/Superadmin/active-today">
-                        <MetricCard
-                            icon="event_available"
-                            label="Active Today"
-                            value="42"
-                            trend="Real-time Activity"
-                            isUrgent
-                        />
-                    </Link>
+            {/* Metrics Section */}
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <Link to="/Superadmin/counsellors">
                     <MetricCard
-                        icon="person_pin"
-                        label="Students Assigned"
-                        value="5,670"
-                        trend="+18% Increase"
+                        icon="groups_3"
+                        label="Total Consultants"
+                        value="1,284"
+                        trend="+12% Overall"
                     />
+                </Link>
+                <Link to="/Superadmin/active-today">
                     <MetricCard
-                        icon="assignment_turned_in"
-                        label="Applications Managed"
-                        value="12,400"
-                        trend="+22% Growth"
+                        icon="event_available"
+                        label="Active Today"
+                        value="42"
+                        trend="Real-time Activity"
+                        isUrgent
+                    />
+                </Link>
+                <MetricCard
+                    icon="person_pin"
+                    label="Students Assigned"
+                    value="5,670"
+                    trend="+18% Increase"
+                />
+                <MetricCard
+                    icon="assignment_turned_in"
+                    label="Applications Managed"
+                    value="12,400"
+                    trend="+22% Growth"
+                />
+            </div>
+
+            {/* Filters Section - Simplified */}
+            <div className="bg-white p-3 rounded-xl border border-slate-200 shadow-sm flex items-center justify-between">
+                <div className="flex gap-2">
+                    <FilterSelect
+                        label="Country"
+                        value={countryFilter}
+                        onChange={setCountryFilter}
+                        options={['All', 'India', 'United Kingdom', 'Canada', 'Australia']}
                     />
                 </div>
+                <div className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">
+                    Data filtered by {countryFilter}
+                </div>
+            </div>
 
-                {/* Filters Section - Simplified */}
-                <div className="bg-white p-3 rounded-xl border border-slate-200 shadow-sm flex items-center justify-between">
-                    <div className="flex gap-2">
-                        <FilterSelect
-                            label="Country"
-                            value={countryFilter}
-                            onChange={setCountryFilter}
-                            options={['All', 'India', 'United Kingdom', 'Canada', 'Australia']}
-                        />
+            {/* Activity & Performance Chart */}
+            <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                <div className="flex justify-between items-start mb-8">
+                    <div>
+                        <h3 className="text-base font-bold text-slate-900 leading-none">Consultant Activity & Performance</h3>
+                        <p className="text-xs text-slate-500 mt-1.5 font-medium">{period} trends for {countryFilter}</p>
                     </div>
-                    <div className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">
-                        Data filtered by {countryFilter}
+                    <div className="flex items-center gap-4">
+                        <div className="relative">
+                            <select
+                                value={period}
+                                onChange={(e) => setPeriod(e.target.value)}
+                                className="appearance-none bg-slate-50 border border-slate-200 py-1.5 pl-3 pr-8 rounded-lg text-[10px] font-bold text-slate-600 outline-none cursor-pointer hover:bg-white transition-all shadow-sm"
+                            >
+                                <option value="Monthly">Monthly</option>
+                                <option value="2024">Yearly 2024</option>
+                                <option value="2025">Yearly 2025</option>
+                                <option value="2026">Yearly 2026</option>
+                                <option value="2027">Yearly 2027</option>
+                            </select>
+                            <span className="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-sm text-slate-400 pointer-events-none">expand_more</span>
+                        </div>
                     </div>
                 </div>
 
-                {/* Activity & Performance Chart */}
-                <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
-                    <div className="flex justify-between items-start mb-8">
-                        <div>
-                            <h3 className="text-base font-bold text-slate-900 leading-none">Consultant Activity & Performance</h3>
-                            <p className="text-xs text-slate-500 mt-1.5 font-medium">{period} trends for {countryFilter}</p>
-                        </div>
-                        <div className="flex items-center gap-4">
-                            <div className="relative">
-                                <select
-                                    value={period}
-                                    onChange={(e) => setPeriod(e.target.value)}
-                                    className="appearance-none bg-slate-50 border border-slate-200 py-1.5 pl-3 pr-8 rounded-lg text-[10px] font-bold text-slate-600 outline-none cursor-pointer hover:bg-white transition-all shadow-sm"
-                                >
-                                    <option value="Monthly">Monthly</option>
-                                    <option value="2024">Yearly 2024</option>
-                                    <option value="2025">Yearly 2025</option>
-                                    <option value="2026">Yearly 2026</option>
-                                    <option value="2027">Yearly 2027</option>
-                                </select>
-                                <span className="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-sm text-slate-400 pointer-events-none">expand_more</span>
-                            </div>
-                        </div>
+                <div className="flex gap-4 h-[300px]">
+                    {/* Y-Axis Labels */}
+                    <div className="flex flex-col justify-between text-[10px] font-bold text-slate-400 w-8 pb-8 pt-2">
+                        <span>50K</span>
+                        <span>40K</span>
+                        <span>30K</span>
+                        <span>20K</span>
+                        <span>10K</span>
+                        <span>0</span>
                     </div>
 
-                    <div className="flex gap-4 h-[300px]">
-                        {/* Y-Axis Labels */}
-                        <div className="flex flex-col justify-between text-[10px] font-bold text-slate-400 w-8 pb-8 pt-2">
-                            <span>50K</span>
-                            <span>40K</span>
-                            <span>30K</span>
-                            <span>20K</span>
-                            <span>10K</span>
-                            <span>0</span>
+                    {/* Chart Area */}
+                    <div className="flex-1 relative pb-8">
+                        {/* Horizontal Grid Lines */}
+                        <div className="absolute inset-0 flex flex-col justify-between pointer-events-none py-2 pr-2">
+                            {[0, 1, 2, 3, 4, 5].map((i) => (
+                                <div key={i} className="w-full border-t border-dashed border-slate-100"></div>
+                            ))}
                         </div>
 
-                        {/* Chart Area */}
-                        <div className="flex-1 relative pb-8">
-                            {/* Horizontal Grid Lines */}
-                            <div className="absolute inset-0 flex flex-col justify-between pointer-events-none py-2 pr-2">
-                                {[0, 1, 2, 3, 4, 5].map((i) => (
-                                    <div key={i} className="w-full border-t border-dashed border-slate-100"></div>
-                                ))}
-                            </div>
+                        {/* SVG Line Graph */}
+                        <div className="absolute inset-0 py-2 pr-2">
+                            <svg className="w-full h-full overflow-visible" preserveAspectRatio="none" viewBox="0 0 1000 280">
+                                <defs>
+                                    <linearGradient id="chartGradient" x1="0" x2="0" y1="0" y2="1">
+                                        <stop offset="0%" stopColor="#4f46e5" stopOpacity="0.12"></stop>
+                                        <stop offset="100%" stopColor="#4f46e5" stopOpacity="0"></stop>
+                                    </linearGradient>
+                                </defs>
 
-                            {/* SVG Line Graph */}
-                            <div className="absolute inset-0 py-2 pr-2">
-                                <svg className="w-full h-full overflow-visible" preserveAspectRatio="none" viewBox="0 0 1000 280">
-                                    <defs>
-                                        <linearGradient id="chartGradient" x1="0" x2="0" y1="0" y2="1">
-                                            <stop offset="0%" stopColor="#4f46e5" stopOpacity="0.12"></stop>
-                                            <stop offset="100%" stopColor="#4f46e5" stopOpacity="0"></stop>
-                                        </linearGradient>
-                                    </defs>
+                                {/* Background Path */}
+                                <path
+                                    d={`M${activeData[0].x},${activeData[0].y} ${activeData.slice(1).map((p, i) => {
+                                        const prev = activeData[i];
+                                        const cp1x = prev.x + (p.x - prev.x) / 2;
+                                        const cp2x = prev.x + (p.x - prev.x) / 2;
+                                        return `C${cp1x},${prev.y} ${cp2x},${p.y} ${p.x},${p.y}`;
+                                    }).join(' ')} L1000,280 L0,280 Z`}
+                                    fill="url(#chartGradient)"
+                                    className="transition-all duration-700"
+                                ></path>
 
-                                    {/* Background Path */}
-                                    <path
-                                        d={`M${activeData[0].x},${activeData[0].y} ${activeData.slice(1).map((p, i) => {
-                                            const prev = activeData[i];
-                                            const cp1x = prev.x + (p.x - prev.x) / 2;
-                                            const cp2x = prev.x + (p.x - prev.x) / 2;
-                                            return `C${cp1x},${prev.y} ${cp2x},${p.y} ${p.x},${p.y}`;
-                                        }).join(' ')} L1000,280 L0,280 Z`}
-                                        fill="url(#chartGradient)"
-                                        className="transition-all duration-700"
-                                    ></path>
+                                {/* Main Line */}
+                                <path
+                                    d={`M${activeData[0].x},${activeData[0].y} ${activeData.slice(1).map((p, i) => {
+                                        const prev = activeData[i];
+                                        const cp1x = prev.x + (p.x - prev.x) / 2;
+                                        const cp2x = prev.x + (p.x - prev.x) / 2;
+                                        return `C${cp1x},${prev.y} ${cp2x},${p.y} ${p.x},${p.y}`;
+                                    }).join(' ')}`}
+                                    fill="none"
+                                    stroke="#4f46e5"
+                                    strokeWidth="3"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    className="drop-shadow-sm transition-all duration-700"
+                                ></path>
 
-                                    {/* Main Line */}
-                                    <path
-                                        d={`M${activeData[0].x},${activeData[0].y} ${activeData.slice(1).map((p, i) => {
-                                            const prev = activeData[i];
-                                            const cp1x = prev.x + (p.x - prev.x) / 2;
-                                            const cp2x = prev.x + (p.x - prev.x) / 2;
-                                            return `C${cp1x},${prev.y} ${cp2x},${p.y} ${p.x},${p.y}`;
-                                        }).join(' ')}`}
-                                        fill="none"
-                                        stroke="#4f46e5"
-                                        strokeWidth="3"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        className="drop-shadow-sm transition-all duration-700"
-                                    ></path>
-
-                                    {/* Data points with Hover Interactivity */}
-                                    {activeData.map((p, i) => (
-                                        <g key={i} className="cursor-pointer group">
-                                            <circle
-                                                cx={p.x}
-                                                cy={p.y}
-                                                r="6"
-                                                fill="#4f46e5"
-                                                className="opacity-0 group-hover:opacity-20 transition-opacity"
-                                            ></circle>
-                                            <circle
-                                                cx={p.x}
-                                                cy={p.y}
-                                                r="4"
-                                                fill="#fff"
-                                                stroke="#4f46e5"
-                                                strokeWidth="2.5"
-                                                className="transition-all shadow-sm"
-                                                onMouseEnter={() => setHoveredIndex(i)}
-                                                onMouseLeave={() => setHoveredIndex(null)}
-                                            ></circle>
-
-                                            {/* Tooltip on Hover */}
-                                            {hoveredIndex === i && (
-                                                <g>
-                                                    <rect
-                                                        x={p.x - 30}
-                                                        y={p.y - 35}
-                                                        width="60"
-                                                        height="25"
-                                                        rx="6"
-                                                        fill="#1e293b"
-                                                        className="animate-in fade-in zoom-in duration-200"
-                                                    ></rect>
-                                                    <text
-                                                        x={p.x}
-                                                        y={p.y - 18}
-                                                        textAnchor="middle"
-                                                        fill="#fff"
-                                                        className="text-[10px] font-bold pointer-events-none"
-                                                    >
-                                                        {(p.value / 1000).toFixed(1)}K
-                                                    </text>
-                                                    <line
-                                                        x1={p.x}
-                                                        y1={p.y - 10}
-                                                        x2={p.x}
-                                                        y2={p.y - 4}
-                                                        stroke="#1e293b"
-                                                        strokeWidth="1.5"
-                                                    ></line>
-                                                </g>
-                                            )}
-                                        </g>
-                                    ))}
-                                </svg>
-                            </div>
-
-                            {/* X-Axis Labels */}
-                            <div className="absolute bottom-0 left-0 right-0 flex justify-between px-2 text-[10px] text-slate-400 font-bold uppercase tracking-wider">
+                                {/* Data points with Hover Interactivity */}
                                 {activeData.map((p, i) => (
-                                    <span key={i}>{p.label}</span>
+                                    <g key={i} className="cursor-pointer group">
+                                        <circle
+                                            cx={p.x}
+                                            cy={p.y}
+                                            r="6"
+                                            fill="#4f46e5"
+                                            className="opacity-0 group-hover:opacity-20 transition-opacity"
+                                        ></circle>
+                                        <circle
+                                            cx={p.x}
+                                            cy={p.y}
+                                            r="4"
+                                            fill="#fff"
+                                            stroke="#4f46e5"
+                                            strokeWidth="2.5"
+                                            className="transition-all shadow-sm"
+                                            onMouseEnter={() => setHoveredIndex(i)}
+                                            onMouseLeave={() => setHoveredIndex(null)}
+                                        ></circle>
+
+                                        {/* Tooltip on Hover */}
+                                        {hoveredIndex === i && (
+                                            <g>
+                                                <rect
+                                                    x={p.x - 30}
+                                                    y={p.y - 35}
+                                                    width="60"
+                                                    height="25"
+                                                    rx="6"
+                                                    fill="#1e293b"
+                                                    className="animate-in fade-in zoom-in duration-200"
+                                                ></rect>
+                                                <text
+                                                    x={p.x}
+                                                    y={p.y - 18}
+                                                    textAnchor="middle"
+                                                    fill="#fff"
+                                                    className="text-[10px] font-bold pointer-events-none"
+                                                >
+                                                    {(p.value / 1000).toFixed(1)}K
+                                                </text>
+                                                <line
+                                                    x1={p.x}
+                                                    y1={p.y - 10}
+                                                    x2={p.x}
+                                                    y2={p.y - 4}
+                                                    stroke="#1e293b"
+                                                    strokeWidth="1.5"
+                                                ></line>
+                                            </g>
+                                        )}
+                                    </g>
                                 ))}
-                            </div>
+                            </svg>
+                        </div>
+
+                        {/* X-Axis Labels */}
+                        <div className="absolute bottom-0 left-0 right-0 flex justify-between px-2 text-[10px] text-slate-400 font-bold uppercase tracking-wider">
+                            {activeData.map((p, i) => (
+                                <span key={i}>{p.label}</span>
+                            ))}
                         </div>
                     </div>
                 </div>
             </div>
-        </SuperAdminLayout>
+        </div>
     );
 };
 

@@ -1,6 +1,5 @@
 import React, { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
-import SuperAdminLayout from '@/layouts/SuperAdminLayout';
 
 // --- Types ---
 interface Application {
@@ -112,160 +111,158 @@ const AllApplicationsPage: React.FC = () => {
         [search, statusFilter, countryFilter, dateFrom]);
 
     return (
-        <SuperAdminLayout title="All Applications">
-            <div className="p-4 lg:p-6 max-w-7xl mx-auto space-y-4">
+        <div className="p-4 lg:p-6 max-w-7xl mx-auto space-y-4">
 
-                {/* Header */}
-                <div className="flex items-center gap-3">
-                    <button onClick={() => navigate(-1)} className="p-1.5 hover:bg-slate-100 rounded-lg transition-colors">
-                        <span className="material-symbols-outlined text-slate-500 text-xl">arrow_back</span>
-                    </button>
-                    <div>
-                        <h1 className="text-2xl font-black text-slate-900 tracking-tight">All Applications</h1>
-                        <p className="text-xs text-slate-500 mt-0.5">Complete list of all student applications</p>
-                    </div>
-                </div>
-
-                {/* Filter Bar */}
-                <div className="bg-white rounded-xl border border-slate-200 shadow-sm p-3 flex flex-wrap items-center gap-3">
-
-                    {/* Search */}
-                    <div className="flex items-center gap-2 flex-1 min-w-[180px] px-3 py-1.5 bg-slate-50 rounded-lg border border-slate-200">
-                        <span className="material-symbols-outlined text-slate-400 text-sm">search</span>
-                        <input
-                            type="text"
-                            placeholder="Search by name or university..."
-                            value={search}
-                            onChange={(e) => setSearch(e.target.value)}
-                            className="bg-transparent text-xs outline-none w-full text-slate-700 placeholder-slate-400"
-                        />
-                    </div>
-
-                    {/* Country Filter */}
-                    <div className="flex items-center gap-1.5 px-3 py-1.5 bg-slate-50 rounded-lg border border-slate-200 focus-within:ring-2 focus-within:ring-[#2b6cee]/20">
-                        <span className="material-symbols-outlined text-slate-400 text-sm">public</span>
-                        <select
-                            value={countryFilter}
-                            onChange={(e) => setCountryFilter(e.target.value)}
-                            className="bg-transparent text-xs font-medium border-none focus:ring-0 cursor-pointer outline-none text-slate-700"
-                        >
-                            {COUNTRIES.map(c => <option key={c} value={c}>{c}</option>)}
-                        </select>
-                    </div>
-
-                    {/* Date From */}
-                    <div className="flex items-center gap-1.5 px-3 py-1.5 bg-slate-50 rounded-lg border border-slate-200 focus-within:ring-2 focus-within:ring-[#2b6cee]/20">
-                        <span className="material-symbols-outlined text-slate-400 text-sm">calendar_today</span>
-                        <input
-                            type="date"
-                            value={dateFrom}
-                            onChange={(e) => setDateFrom(e.target.value)}
-                            title="From date"
-                            className="bg-transparent text-xs font-medium border-none focus:ring-0 cursor-pointer outline-none text-slate-700"
-                        />
-                    </div>
-
-                    {/* Clear Date */}
-                    {dateFrom && (
-                        <button
-                            onClick={() => setDateFrom('')}
-                            className="text-xs text-slate-400 hover:text-rose-500 flex items-center gap-1 transition-colors"
-                        >
-                            <span className="material-symbols-outlined text-sm">close</span>
-                            Clear
-                        </button>
-                    )}
-
-                    {/* Status Buttons */}
-                    <div className="flex gap-1.5 ml-auto flex-wrap">
-                        {['All', 'Approved', 'Reviewing', 'Rejected'].map((s) => (
-                            <button
-                                key={s}
-                                onClick={() => setStatusFilter(s)}
-                                className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${statusFilter === s
-                                    ? 'bg-[#2b6cee] text-white shadow-sm'
-                                    : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
-                                    }`}
-                            >
-                                {s}
-                            </button>
-                        ))}
-                        <span className="px-3 py-1.5 text-xs text-slate-500 font-medium">
-                            {filtered.length} result{filtered.length !== 1 ? 's' : ''}
-                        </span>
-                    </div>
-                </div>
-
-                {/* Table */}
-                <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
-                    <div className="overflow-x-auto">
-                        <table className="w-full text-left min-w-[780px]">
-                            <thead className="bg-slate-50 border-b border-slate-100">
-                                <tr>
-                                    <th className="px-5 py-3 text-[10px] font-black text-slate-400 uppercase tracking-widest">Student</th>
-                                    <th className="px-5 py-3 text-[10px] font-black text-slate-400 uppercase tracking-widest">University</th>
-                                    <th className="px-5 py-3 text-[10px] font-black text-slate-400 uppercase tracking-widest">Country</th>
-                                    <th className="px-5 py-3 text-[10px] font-black text-slate-400 uppercase tracking-widest">Submitted On</th>
-                                    <th className="px-5 py-3 text-[10px] font-black text-slate-400 uppercase tracking-widest">Processing Time</th>
-                                    <th className="px-5 py-3 text-[10px] font-black text-slate-400 uppercase tracking-widest text-right">Status</th>
-                                </tr>
-                            </thead>
-                            <tbody className="divide-y divide-slate-100">
-                                {filtered.length > 0 ? filtered.map((app, i) => {
-                                    const sc = STATUS_COLOR[app.status] ?? STATUS_COLOR['Reviewing'];
-                                    const ac = AVATAR_COLOR[app.color] ?? AVATAR_COLOR['amber'];
-                                    return (
-                                        <tr key={i} className="hover:bg-slate-50 transition-colors">
-                                            {/* Student */}
-                                            <td className="px-5 py-4">
-                                                <div className="flex items-center gap-3">
-                                                    <div className={`w-9 h-9 rounded-full ${ac} flex items-center justify-center font-bold text-xs flex-shrink-0`}>
-                                                        {app.initials}
-                                                    </div>
-                                                    <div>
-                                                        <p className="text-sm font-bold text-slate-900 leading-none">{app.name}</p>
-                                                        <p className="text-[10px] text-slate-400 mt-1 uppercase tracking-wide">ID: {app.id}</p>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            {/* University */}
-                                            <td className="px-5 py-4">
-                                                <p className="text-sm font-semibold text-slate-800">{app.uni}</p>
-                                                <p className="text-[11px] text-slate-500 mt-0.5">{app.course}</p>
-                                            </td>
-                                            {/* Country */}
-                                            <td className="px-5 py-4 text-sm text-slate-600">{app.country}</td>
-                                            {/* Submitted On */}
-                                            <td className="px-5 py-4">
-                                                <p className="text-sm font-medium text-slate-700">{formatDate(app.submittedDate)}</p>
-                                            </td>
-                                            {/* Processing Time */}
-                                            <td className="px-5 py-4">
-                                                <span className={`text-sm font-semibold ${getProcessingColor(app)}`}>
-                                                    {getProcessingTime(app)}
-                                                </span>
-                                            </td>
-                                            {/* Status */}
-                                            <td className="px-5 py-4 text-right">
-                                                <span className={`px-2.5 py-1 rounded text-[10px] font-bold uppercase tracking-wide border ${sc.bg} ${sc.text} ${sc.border}`}>
-                                                    {app.status}
-                                                </span>
-                                            </td>
-                                        </tr>
-                                    );
-                                }) : (
-                                    <tr>
-                                        <td colSpan={6} className="px-5 py-12 text-center text-sm text-slate-500">
-                                            No applications match your filters.
-                                        </td>
-                                    </tr>
-                                )}
-                            </tbody>
-                        </table>
-                    </div>
+            {/* Header */}
+            <div className="flex items-center gap-3">
+                <button onClick={() => navigate(-1)} className="p-1.5 hover:bg-slate-100 rounded-lg transition-colors">
+                    <span className="material-symbols-outlined text-slate-500 text-xl">arrow_back</span>
+                </button>
+                <div>
+                    <h1 className="text-2xl font-black text-slate-900 tracking-tight">All Applications</h1>
+                    <p className="text-xs text-slate-500 mt-0.5">Complete list of all student applications</p>
                 </div>
             </div>
-        </SuperAdminLayout>
+
+            {/* Filter Bar */}
+            <div className="bg-white rounded-xl border border-slate-200 shadow-sm p-3 flex flex-wrap items-center gap-3">
+
+                {/* Search */}
+                <div className="flex items-center gap-2 flex-1 min-w-[180px] px-3 py-1.5 bg-slate-50 rounded-lg border border-slate-200">
+                    <span className="material-symbols-outlined text-slate-400 text-sm">search</span>
+                    <input
+                        type="text"
+                        placeholder="Search by name or university..."
+                        value={search}
+                        onChange={(e) => setSearch(e.target.value)}
+                        className="bg-transparent text-xs outline-none w-full text-slate-700 placeholder-slate-400"
+                    />
+                </div>
+
+                {/* Country Filter */}
+                <div className="flex items-center gap-1.5 px-3 py-1.5 bg-slate-50 rounded-lg border border-slate-200 focus-within:ring-2 focus-within:ring-[#2b6cee]/20">
+                    <span className="material-symbols-outlined text-slate-400 text-sm">public</span>
+                    <select
+                        value={countryFilter}
+                        onChange={(e) => setCountryFilter(e.target.value)}
+                        className="bg-transparent text-xs font-medium border-none focus:ring-0 cursor-pointer outline-none text-slate-700"
+                    >
+                        {COUNTRIES.map(c => <option key={c} value={c}>{c}</option>)}
+                    </select>
+                </div>
+
+                {/* Date From */}
+                <div className="flex items-center gap-1.5 px-3 py-1.5 bg-slate-50 rounded-lg border border-slate-200 focus-within:ring-2 focus-within:ring-[#2b6cee]/20">
+                    <span className="material-symbols-outlined text-slate-400 text-sm">calendar_today</span>
+                    <input
+                        type="date"
+                        value={dateFrom}
+                        onChange={(e) => setDateFrom(e.target.value)}
+                        title="From date"
+                        className="bg-transparent text-xs font-medium border-none focus:ring-0 cursor-pointer outline-none text-slate-700"
+                    />
+                </div>
+
+                {/* Clear Date */}
+                {dateFrom && (
+                    <button
+                        onClick={() => setDateFrom('')}
+                        className="text-xs text-slate-400 hover:text-rose-500 flex items-center gap-1 transition-colors"
+                    >
+                        <span className="material-symbols-outlined text-sm">close</span>
+                        Clear
+                    </button>
+                )}
+
+                {/* Status Buttons */}
+                <div className="flex gap-1.5 ml-auto flex-wrap">
+                    {['All', 'Approved', 'Reviewing', 'Rejected'].map((s) => (
+                        <button
+                            key={s}
+                            onClick={() => setStatusFilter(s)}
+                            className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${statusFilter === s
+                                ? 'bg-[#2b6cee] text-white shadow-sm'
+                                : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                                }`}
+                        >
+                            {s}
+                        </button>
+                    ))}
+                    <span className="px-3 py-1.5 text-xs text-slate-500 font-medium">
+                        {filtered.length} result{filtered.length !== 1 ? 's' : ''}
+                    </span>
+                </div>
+            </div>
+
+            {/* Table */}
+            <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
+                <div className="overflow-x-auto">
+                    <table className="w-full text-left min-w-[780px]">
+                        <thead className="bg-slate-50 border-b border-slate-100">
+                            <tr>
+                                <th className="px-5 py-3 text-[10px] font-black text-slate-400 uppercase tracking-widest">Student</th>
+                                <th className="px-5 py-3 text-[10px] font-black text-slate-400 uppercase tracking-widest">University</th>
+                                <th className="px-5 py-3 text-[10px] font-black text-slate-400 uppercase tracking-widest">Country</th>
+                                <th className="px-5 py-3 text-[10px] font-black text-slate-400 uppercase tracking-widest">Submitted On</th>
+                                <th className="px-5 py-3 text-[10px] font-black text-slate-400 uppercase tracking-widest">Processing Time</th>
+                                <th className="px-5 py-3 text-[10px] font-black text-slate-400 uppercase tracking-widest text-right">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody className="divide-y divide-slate-100">
+                            {filtered.length > 0 ? filtered.map((app, i) => {
+                                const sc = STATUS_COLOR[app.status] ?? STATUS_COLOR['Reviewing'];
+                                const ac = AVATAR_COLOR[app.color] ?? AVATAR_COLOR['amber'];
+                                return (
+                                    <tr key={i} className="hover:bg-slate-50 transition-colors">
+                                        {/* Student */}
+                                        <td className="px-5 py-4">
+                                            <div className="flex items-center gap-3">
+                                                <div className={`w-9 h-9 rounded-full ${ac} flex items-center justify-center font-bold text-xs flex-shrink-0`}>
+                                                    {app.initials}
+                                                </div>
+                                                <div>
+                                                    <p className="text-sm font-bold text-slate-900 leading-none">{app.name}</p>
+                                                    <p className="text-[10px] text-slate-400 mt-1 uppercase tracking-wide">ID: {app.id}</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        {/* University */}
+                                        <td className="px-5 py-4">
+                                            <p className="text-sm font-semibold text-slate-800">{app.uni}</p>
+                                            <p className="text-[11px] text-slate-500 mt-0.5">{app.course}</p>
+                                        </td>
+                                        {/* Country */}
+                                        <td className="px-5 py-4 text-sm text-slate-600">{app.country}</td>
+                                        {/* Submitted On */}
+                                        <td className="px-5 py-4">
+                                            <p className="text-sm font-medium text-slate-700">{formatDate(app.submittedDate)}</p>
+                                        </td>
+                                        {/* Processing Time */}
+                                        <td className="px-5 py-4">
+                                            <span className={`text-sm font-semibold ${getProcessingColor(app)}`}>
+                                                {getProcessingTime(app)}
+                                            </span>
+                                        </td>
+                                        {/* Status */}
+                                        <td className="px-5 py-4 text-right">
+                                            <span className={`px-2.5 py-1 rounded text-[10px] font-bold uppercase tracking-wide border ${sc.bg} ${sc.text} ${sc.border}`}>
+                                                {app.status}
+                                            </span>
+                                        </td>
+                                    </tr>
+                                );
+                            }) : (
+                                <tr>
+                                    <td colSpan={6} className="px-5 py-12 text-center text-sm text-slate-500">
+                                        No applications match your filters.
+                                    </td>
+                                </tr>
+                            )}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     );
 };
 

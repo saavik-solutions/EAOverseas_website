@@ -18,19 +18,27 @@ const Login = () => {
         if (autoFillData) {
             try {
                 const { email: savedEmail, password: savedPassword, role: savedRole, university: savedUniversity, country: savedCountry } = JSON.parse(autoFillData);
+
                 if (savedEmail) setEmail(savedEmail);
                 if (savedPassword) setPassword(savedPassword);
                 if (savedRole) setSelectedRole(savedRole);
+
                 if (savedUniversity) {
-                    // Store for AuthContext to pick up if needed, though search in registeredUsers is primary
                     localStorage.setItem('ea_auto_fill_university', savedUniversity);
                 }
                 if (savedCountry) {
                     localStorage.setItem('ea_auto_fill_country', savedCountry);
                 }
 
-                // Clear the data after consumption for security
                 localStorage.removeItem('ea_auto_fill');
+
+                // Auto-submit after a brief delay to ensure states are mostly ready, 
+                // but we'll pass values directly to bypass state lag
+                if (savedEmail && savedPassword) {
+                    setTimeout(() => {
+                        performLogin(savedEmail, savedPassword, savedRole || 'Student');
+                    }, 500);
+                }
             } catch (err) {
                 console.error("Failed to parse auto-fill data", err);
             }
@@ -50,23 +58,20 @@ const Login = () => {
         }
     }, [location.state?.email]);
 
-    const handleLogin = async (e: React.FormEvent) => {
-        e.preventDefault();
+    const performLogin = async (loginEmail: string, loginPass: string, role: string) => {
         setError('');
-
         const allowedRoles = ['Student', 'University', 'Counsellor', 'Vendors', 'Chief Counsel'];
-        if (!allowedRoles.includes(selectedRole)) {
+        if (!allowedRoles.includes(role)) {
             return;
         }
 
         try {
-            const user = await login(email, password);
-            if (user.role === 'University' || selectedRole === 'University') {
+            const user = await login(loginEmail, loginPass);
+            if (user.role === 'University' || role === 'University') {
                 navigate('/university/dashboard');
-            } else if (user.role === 'Counsellor' || selectedRole === 'Counsellor') {
+            } else if (user.role === 'Counsellor' || role === 'Counsellor') {
                 navigate('/counsellor-dashboard');
             } else {
-                // If coming fresh from verification, go to profile for onboarding
                 if (location.state?.verified) {
                     navigate('/profile?firstLogin=true', { replace: true });
                 } else {
@@ -77,6 +82,11 @@ const Login = () => {
         } catch (err: any) {
             setError(err.message);
         }
+    };
+
+    const handleLogin = async (e: React.FormEvent) => {
+        e.preventDefault();
+        performLogin(email, password, selectedRole);
     };
 
     return (

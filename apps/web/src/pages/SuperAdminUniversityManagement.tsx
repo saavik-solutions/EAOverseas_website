@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import SuperAdminLayout from '@/layouts/SuperAdminLayout';
 import CreateUniversityModal from '@/features/universities/components/CreateUniversityModal';
 import AddManagerModal from '@/features/universities/components/AddManagerModal';
 import ManageMembersModal from '@/features/universities/components/ManageMembersModal';
@@ -156,7 +155,7 @@ const SuperAdminUniversityManagement = () => {
     );
 
     return (
-        <SuperAdminLayout title="University Management">
+        <>
             <div className="p-8 flex flex-col gap-6">
                 {/* KPI Cards */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -366,20 +365,6 @@ const SuperAdminUniversityManagement = () => {
                                             <div className="flex items-center justify-end">
                                                 <div className="flex items-center justify-end gap-2">
                                                     <button
-                                                        onClick={() => navigate('/university/management', { state: { university: uni } })}
-                                                        className="size-8 bg-blue-50 text-[#2b6cee] rounded-lg hover:bg-[#2b6cee] hover:text-white transition-all flex items-center justify-center shadow-sm"
-                                                        title="View Scholarships"
-                                                    >
-                                                        <span className="material-symbols-outlined text-[18px]">settings_suggest</span>
-                                                    </button>
-                                                    <button
-                                                        onClick={() => navigate('/university/post-center', { state: { university: uni } })}
-                                                        className="size-8 bg-blue-50 text-[#2b6cee] rounded-lg hover:bg-[#2b6cee] hover:text-white transition-all flex items-center justify-center shadow-sm"
-                                                        title="View Post Center"
-                                                    >
-                                                        <span className="material-symbols-outlined text-[18px]">post_add</span>
-                                                    </button>
-                                                    <button
                                                         onClick={() => navigate(`/Superadmin/university/${uni.id || 'new'}`, { state: { university: uni } })}
                                                         className="px-4 py-1.5 bg-[#2b6cee]/10 text-[#2b6cee] text-xs font-bold rounded-lg hover:bg-[#2b6cee] hover:text-white transition-all whitespace-nowrap"
                                                     >
@@ -519,7 +504,7 @@ const SuperAdminUniversityManagement = () => {
                     localStorage.setItem('eaoverseas_registered_users', JSON.stringify(updatedUsers));
                 }}
             />
-        </SuperAdminLayout>
+        </>
     );
 };
 

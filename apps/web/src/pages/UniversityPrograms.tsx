@@ -24,7 +24,11 @@ interface Program {
     status: 'Active' | 'Draft' | 'Archived';
 }
 
-const UniversityPrograms = () => {
+interface UniversityProgramsProps {
+    isEmbedded?: boolean;
+}
+
+const UniversityPrograms: React.FC<UniversityProgramsProps> = ({ isEmbedded = false }) => {
     const [searchTerm, setSearchTerm] = useState('');
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
     const [isEditModalOpen, setIsEditModalOpen] = useState(false);
@@ -108,120 +112,117 @@ const UniversityPrograms = () => {
         }
     };
 
-    return (
-        <UniversityLayout title="University Programs Management">
-            <div className="p-8 max-w-[1400px] mx-auto space-y-8 font-display">
+    const renderContent = () => (
+        <div className="p-8 max-w-[1400px] mx-auto space-y-8 font-display">
 
-                {/* Search and Action Bar */}
-                <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 px-1">
-                    <div className="relative flex-1 max-w-xl group">
-                        <span className="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-blue-600 transition-colors">search</span>
-                        <input
-                            className="w-full pl-12 pr-6 py-3.5 bg-white border border-slate-200 rounded-[20px] text-sm font-medium focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 transition-all shadow-sm outline-none"
-                            placeholder="Search by program name, department, or level..."
-                            type="text"
-                            value={searchTerm}
-                            onChange={(e) => setSearchTerm(e.target.value)}
-                        />
-                    </div>
-                    <div className="flex items-center gap-3">
-                        <button
-                            onClick={() => setIsAddModalOpen(true)}
-                            className="flex items-center gap-2 px-6 py-3.5 bg-blue-600 text-white text-[12px] font-black rounded-2xl hover:bg-blue-700 transition-all shadow-lg shadow-blue-200 uppercase tracking-widest"
-                        >
-                            <span className="material-symbols-outlined text-[20px]">add</span>
-                            Add New Program
-                        </button>
-                    </div>
+            {/* Search and Action Bar */}
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 px-1">
+                <div className="relative flex-1 max-w-xl group">
+                    <span className="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-blue-600 transition-colors">search</span>
+                    <input
+                        className="w-full pl-12 pr-6 py-3.5 bg-white border border-slate-200 rounded-[20px] text-sm font-medium focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 transition-all shadow-sm outline-none"
+                        placeholder="Search by program name, department, or level..."
+                        type="text"
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                    />
                 </div>
-
-                {/* Table Section */}
-                <div className="bg-white rounded-[32px] border border-slate-100 shadow-[0_20px_60px_rgba(15,23,42,0.03)] overflow-hidden">
-                    <div className="overflow-x-auto">
-                        <table className="w-full text-left border-collapse">
-                            <thead>
-                                <tr className="bg-slate-50/50 border-b border-slate-100">
-                                    <th className="px-8 py-6 text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">Program Name</th>
-                                    <th className="px-8 py-6 text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">Degree Level</th>
-                                    <th className="px-8 py-6 text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">Department</th>
-                                    <th className="px-8 py-6 text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">Duration</th>
-                                    <th className="px-8 py-6 text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">Tuition Fee</th>
-                                    <th className="px-8 py-6 text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">Status</th>
-                                    <th className="px-8 py-6 text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] text-center">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody className="divide-y divide-slate-50">
-                                {filteredPrograms.length > 0 ? (
-                                    filteredPrograms.map((program) => (
-                                        <tr key={program.id} className="hover:bg-blue-50/30 transition-all group">
-                                            <td className="px-8 py-6">
-                                                <div className="flex flex-col gap-1">
-                                                    <div className="text-[15px] font-black text-slate-900 group-hover:text-blue-600 transition-colors uppercase tracking-tight">{program.name}</div>
-                                                    <div className="text-[10px] text-slate-400 font-bold uppercase tracking-widest">ID: {program.id}</div>
-                                                </div>
-                                            </td>
-                                            <td className="px-8 py-6">
-                                                <span className="text-sm font-bold text-slate-600 uppercase tracking-tight">{program.level}</span>
-                                            </td>
-                                            <td className="px-8 py-6">
-                                                <span className="text-sm font-medium text-slate-500 uppercase tracking-tight">{program.department}</span>
-                                            </td>
-                                            <td className="px-8 py-6 text-sm font-bold text-slate-600">
-                                                {program.duration}
-                                            </td>
-                                            <td className="px-8 py-6 text-sm font-black text-slate-900">
-                                                {program.tuitionFee}
-                                            </td>
-                                            <td className="px-8 py-6">
-                                                <span className={`px-3 py-1.5 rounded-xl text-[10px] font-black uppercase tracking-widest flex items-center w-fit gap-2 ${getStatusStyle(program.status)}`}>
-                                                    <span className={`w-1.5 h-1.5 rounded-full ${getStatusDot(program.status)} animate-pulse`}></span>
-                                                    {program.status}
-                                                </span>
-                                            </td>
-                                            <td className="px-8 py-6">
-                                                <div className="flex items-center justify-center gap-2">
-                                                    <button
-                                                        onClick={() => handleEditClick(program)}
-                                                        className="p-2.5 text-slate-400 hover:text-blue-600 hover:bg-blue-50 rounded-xl transition-all"
-                                                        title="Edit"
-                                                    >
-                                                        <span className="material-symbols-outlined text-[20px]">edit</span>
-                                                    </button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    ))
-                                ) : (
-                                    <tr>
-                                        <td colSpan={7} className="px-8 py-20 text-center">
-                                            <div className="flex flex-col items-center gap-3">
-                                                <span className="material-symbols-outlined text-[48px] text-slate-200">search_off</span>
-                                                <p className="text-sm font-bold text-slate-400 uppercase tracking-widest">No programs found matching your criteria</p>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                )}
-                            </tbody>
-                        </table>
-                    </div>
-
-                    {/* Pagination Placeholder */}
-                    <div className="px-8 py-5 bg-slate-50/50 border-t border-slate-100 flex items-center justify-between">
-                        <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest">
-                            Showing {filteredPrograms.length} of {programs.length} programs
-                        </p>
-                        <div className="flex gap-2">
-                            <button className="p-2 rounded-xl bg-white border border-slate-200 text-slate-400 hover:text-blue-600 transition-all disabled:opacity-50" disabled>
-                                <span className="material-symbols-outlined text-[18px]">chevron_left</span>
-                            </button>
-                            <button className="p-2 rounded-xl bg-white border border-slate-200 text-slate-400 hover:text-blue-600 transition-all">
-                                <span className="material-symbols-outlined text-[18px]">chevron_right</span>
-                            </button>
-                        </div>
-                    </div>
+                <div className="flex items-center gap-3">
+                    <button
+                        onClick={() => setIsAddModalOpen(true)}
+                        className="flex items-center gap-2 px-6 py-3.5 bg-blue-600 text-white text-[12px] font-black rounded-2xl hover:bg-blue-700 transition-all shadow-lg shadow-blue-200 uppercase tracking-widest"
+                    >
+                        <span className="material-symbols-outlined text-[20px]">add</span>
+                        Add New Program
+                    </button>
                 </div>
             </div>
 
+            {/* Table Section */}
+            <div className="bg-white rounded-[32px] border border-slate-100 shadow-[0_20px_60px_rgba(15,23,42,0.03)] overflow-hidden">
+                <div className="overflow-x-auto">
+                    <table className="w-full text-left border-collapse">
+                        <thead>
+                            <tr className="bg-slate-50/50 border-b border-slate-100">
+                                <th className="px-8 py-6 text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">Program Name</th>
+                                <th className="px-8 py-6 text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">Degree Level</th>
+                                <th className="px-8 py-6 text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">Department</th>
+                                <th className="px-8 py-6 text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">Duration</th>
+                                <th className="px-8 py-6 text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">Tuition Fee</th>
+                                <th className="px-8 py-6 text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">Status</th>
+                                <th className="px-8 py-6 text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] text-center">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody className="divide-y divide-slate-50">
+                            {filteredPrograms.length > 0 ? (
+                                filteredPrograms.map((program) => (
+                                    <tr key={program.id} className="hover:bg-blue-50/30 transition-all group">
+                                        <td className="px-8 py-6">
+                                            <div className="flex flex-col gap-1">
+                                                <div className="text-[15px] font-black text-slate-900 group-hover:text-blue-600 transition-colors uppercase tracking-tight">{program.name}</div>
+                                                <div className="text-[10px] text-slate-400 font-bold uppercase tracking-widest">ID: {program.id}</div>
+                                            </div>
+                                        </td>
+                                        <td className="px-8 py-6">
+                                            <span className="text-sm font-bold text-slate-600 uppercase tracking-tight">{program.level}</span>
+                                        </td>
+                                        <td className="px-8 py-6">
+                                            <span className="text-sm font-medium text-slate-500 uppercase tracking-tight">{program.department}</span>
+                                        </td>
+                                        <td className="px-8 py-6 text-sm font-bold text-slate-600">
+                                            {program.duration}
+                                        </td>
+                                        <td className="px-8 py-6 text-sm font-black text-slate-900">
+                                            {program.tuitionFee}
+                                        </td>
+                                        <td className="px-8 py-6">
+                                            <span className={`px-3 py-1.5 rounded-xl text-[10px] font-black uppercase tracking-widest flex items-center w-fit gap-2 ${getStatusStyle(program.status)}`}>
+                                                <span className={`w-1.5 h-1.5 rounded-full ${getStatusDot(program.status)} animate-pulse`}></span>
+                                                {program.status}
+                                            </span>
+                                        </td>
+                                        <td className="px-8 py-6">
+                                            <div className="flex items-center justify-center gap-2">
+                                                <button
+                                                    onClick={() => handleEditClick(program)}
+                                                    className="p-2.5 text-slate-400 hover:text-blue-600 hover:bg-blue-50 rounded-xl transition-all"
+                                                    title="Edit"
+                                                >
+                                                    <span className="material-symbols-outlined text-[20px]">edit</span>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                ))
+                            ) : (
+                                <tr>
+                                    <td colSpan={7} className="px-8 py-20 text-center">
+                                        <div className="flex flex-col items-center gap-3">
+                                            <span className="material-symbols-outlined text-[48px] text-slate-200">search_off</span>
+                                            <p className="text-sm font-bold text-slate-400 uppercase tracking-widest">No programs found matching your criteria</p>
+                                        </div>
+                                    </td>
+                                </tr>
+                            )}
+                        </tbody>
+                    </table>
+                </div>
+
+                {/* Pagination Placeholder */}
+                <div className="px-8 py-5 bg-slate-50/50 border-t border-slate-100 flex items-center justify-between">
+                    <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest">
+                        Showing {filteredPrograms.length} of {programs.length} programs
+                    </p>
+                    <div className="flex gap-2">
+                        <button className="p-2 rounded-xl bg-white border border-slate-200 text-slate-400 hover:text-blue-600 transition-all disabled:opacity-50" disabled>
+                            <span className="material-symbols-outlined text-[18px]">chevron_left</span>
+                        </button>
+                        <button className="p-2 rounded-xl bg-white border border-slate-200 text-slate-400 hover:text-blue-600 transition-all">
+                            <span className="material-symbols-outlined text-[18px]">chevron_right</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
             <AddProgramModal
                 isOpen={isAddModalOpen}
                 onClose={() => setIsAddModalOpen(false)}
@@ -234,6 +235,12 @@ const UniversityPrograms = () => {
                 onUpdate={handleUpdateProgram}
                 program={currentEditingProgram}
             />
+        </div>
+    );
+
+    return isEmbedded ? renderContent() : (
+        <UniversityLayout title="University Programs Management">
+            {renderContent()}
         </UniversityLayout>
     );
 };

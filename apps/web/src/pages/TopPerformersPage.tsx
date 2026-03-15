@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import SuperAdminLayout from '@/layouts/SuperAdminLayout';
+import { Link } from 'react-router-dom';
 
 const TopPerformersPage = () => {
     const navigate = useNavigate();
@@ -83,7 +83,7 @@ const TopPerformersPage = () => {
     const rank3 = topThree.find(u => u.rank === 3)!;
 
     return (
-        <SuperAdminLayout title="Top Performers">
+        <>
             <div className="max-w-6xl mx-auto px-4 py-4 space-y-4">
                 {/* Hero Title Section */}
                 <section className="relative overflow-hidden rounded-[24px] bg-gradient-to-br from-[#1E63F3]/10 via-[#1E63F3]/5 to-white p-5 md:p-6 border border-[#1E63F3]/10">
@@ -272,7 +272,7 @@ const TopPerformersPage = () => {
             <footer className="max-w-6xl mx-auto px-10 py-6 border-t border-slate-50 text-center mt-4">
                 <p className="text-slate-300 text-[8px] font-black uppercase tracking-[0.3em]">© 2024 EAOverseas Global Network</p>
             </footer>
-        </SuperAdminLayout>
+        </>
     );
 };
 

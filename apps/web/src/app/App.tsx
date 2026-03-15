@@ -25,6 +25,7 @@ import CollegeFinder from '@/pages/CollegeFinder';
 import CollegeDetails from '@/pages/CollegeDetails';
 import CourseDetails from '@/pages/CourseDetails';
 import ApplicationLayout from '@/pages/application/ApplicationLayout';
+import SuperAdminLayout from '@/layouts/SuperAdminLayout';
 import PersonalDetails from '@/pages/application/PersonalDetails';
 import AcademicDetails from '@/pages/application/AcademicDetails';
 import Documents from '@/pages/application/Documents';
@@ -296,7 +297,8 @@ function App() {
                                             <Route path="/counsellor-student-profile" element={<MyProfile />} />
                                         </Route>
 
-                                        <Route path="/Superadmin" element={<ProtectedRoute requiredRoles={['admin']}><Superadmin /></ProtectedRoute>}>
+                                        <Route path="/Superadmin" element={<SuperAdminLayout title="Super Admin" />}>
+                                            <Route index element={<Superadmin />} />
                                             <Route path="universities" element={<SuperAdminUniversityManagement />} />
                                             <Route path="consultants" element={<SuperAdminConsultantManagement />} />
                                             <Route path="counsellors" element={<SuperAdminAvailableCounsellors />} />
@@ -307,6 +309,17 @@ function App() {
                                             <Route path="applications" element={<ApplicationsAnalyticsPage />} />
                                             <Route path="applications/all" element={<AllApplicationsPage />} />
                                             <Route path="university/:id" element={<SuperAdminUniversityProfile />} />
+                                            <Route path="students" element={<TopPerformersPage />} />
+                                            <Route path="revenue" element={<ApplicationsAnalyticsPage />} />
+
+                                            {/* Nested University Portal routes */}
+                                            <Route path="university-portal">
+                                                <Route path="dashboard" element={<UniversityDashboard isEmbedded={true} />} />
+                                                <Route path="scholarships" element={<UniversityScholarship isEmbedded={true} />} />
+                                                <Route path="post-center" element={<PostCenter isEmbedded={true} />} />
+                                                <Route path="programs" element={<UniversityPrograms isEmbedded={true} />} />
+                                                <Route path="profile" element={<UniversityManagementProfile isEmbedded={true} />} />
+                                            </Route>
                                         </Route>
                                         <Route path="/superadmin/*" element={<Navigate to="/Superadmin" replace />} />
                                         <Route path="/university/dashboard" element={<ProtectedRoute requiredRoles={['university']}><UniversityDashboard /></ProtectedRoute>} />

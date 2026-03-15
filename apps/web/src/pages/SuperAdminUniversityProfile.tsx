@@ -1,6 +1,5 @@
 import React from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
-import SuperAdminLayout from '@/layouts/SuperAdminLayout';
 
 
 
@@ -225,400 +224,383 @@ const SuperAdminUniversityProfile = () => {
 
 
     return (
-        <SuperAdminLayout title="University Profile">
-            <main className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-6">
-                {/* Merged Header & About Card */}
-                <div className="bg-white rounded-xl border border-slate-200 overflow-hidden mb-6">
-                    <div className="p-6 border-b border-slate-50">
-                        <div className="flex flex-col md:flex-row justify-between items-start gap-6">
-                            <div className="flex items-start gap-5">
-                                <div className={`h-22 w-22 rounded-2xl bg-[#2b6cee]/5 p-2 border border-[#2b6cee]/10 flex items-center justify-center overflow-hidden shrink-0 shadow-sm transition-all relative group ${isEditing ? 'cursor-pointer hover:border-[#2b6cee] hover:scale-105' : ''}`}>
-                                    <input
-                                        type="file"
-                                        id="profile-logo-upload"
-                                        accept="image/*"
-                                        className="hidden"
-                                        onChange={handleLogoUpload}
-                                        disabled={!isEditing}
-                                    />
-                                    {isEditing && (
-                                        <label htmlFor="profile-logo-upload" className="absolute inset-0 z-10 cursor-pointer flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity">
-                                            <span className="material-symbols-outlined text-white text-2xl">photo_camera</span>
-                                        </label>
-                                    )}
-                                    {isEditing ? (
-                                        editedData.logo ? (
-                                            <img src={editedData.logo} alt="Logo Preview" className="h-full w-full object-contain" />
-                                        ) : (
-                                            <div className="bg-[#2b6cee]/10 h-full w-full flex items-center justify-center text-[#2b6cee]">
-                                                <span className="material-symbols-outlined text-3xl">add_photo_alternate</span>
-                                            </div>
-                                        )
-                                    ) : (
-                                        uni.logo ? (
-                                            <img src={uni.logo} alt={uni.name} className="h-full w-full object-contain" />
-                                        ) : (
-                                            <div className="bg-[#2b6cee]/10 h-full w-full flex items-center justify-center text-[#2b6cee]">
-                                                <span className="material-symbols-outlined text-3xl">{uni.name.charAt(0)}</span>
-                                            </div>
-                                        )
-                                    )}
-                                </div>
-                                <div className="flex flex-col gap-1.5 flex-1 pt-1">
-                                    <div className="flex items-center gap-3">
-                                        {isEditing ? (
-                                            <div className="flex flex-col gap-1 w-full">
-                                                <input
-                                                    type="text"
-                                                    value={editedData.name}
-                                                    onChange={(e) => setEditedData({ ...editedData, name: e.target.value })}
-                                                    className="text-2xl font-bold text-slate-900 border-b-2 border-[#2b6cee] focus:outline-none bg-blue-50/30 px-2 py-1 rounded-t-lg"
-                                                    placeholder="University Name"
-                                                />
-                                                <p className="text-[10px] text-[#2b6cee] font-bold px-2 flex items-center gap-1">
-                                                    <span className="material-symbols-outlined text-[12px]">info</span>
-                                                    Click the logo box to upload official image
-                                                </p>
-                                            </div>
-                                        ) : (
-                                            <h1 className="text-2xl font-bold text-slate-900">{uni.name}</h1>
-                                        )}
-
-
-                                        <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider ${uni.status === 'Active' ? 'bg-emerald-100 text-emerald-700' :
-                                            uni.status === 'Pending' ? 'bg-amber-100 text-amber-700' : 'bg-rose-100 text-rose-700'
-                                            }`}>
-                                            {uni.status}
-                                        </span>
-                                    </div>
-                                    <div className="flex flex-wrap gap-x-6 gap-y-2 text-slate-500 text-sm">
-                                        {isEditing ? (
-                                            <>
-                                                <div className="flex items-center gap-1.5 font-medium">
-                                                    <span className="material-symbols-outlined text-[20px]">location_on</span>
-                                                    <input
-                                                        type="text"
-                                                        value={editedData.location}
-                                                        onChange={(e) => setEditedData({ ...editedData, location: e.target.value })}
-                                                        className="border-b border-slate-300 focus:border-[#2b6cee] focus:outline-none bg-blue-50/30 px-2 py-0.5 rounded text-sm w-48"
-                                                    />
-                                                </div>
-                                                <div className="flex items-center gap-1.5 font-medium">
-                                                    <span className="material-symbols-outlined text-[20px]">link</span>
-                                                    <input
-                                                        type="text"
-                                                        value={editedData.website}
-                                                        onChange={(e) => setEditedData({ ...editedData, website: e.target.value })}
-                                                        className="border-b border-slate-300 focus:border-[#2b6cee] focus:outline-none bg-blue-50/30 px-2 py-0.5 rounded text-sm w-48"
-                                                    />
-                                                </div>
-                                            </>
-                                        ) : (
-                                            <>
-                                                <span className="flex items-center gap-1.5 font-medium"><span className="material-symbols-outlined text-[20px]">location_on</span> {uni.location}</span>
-                                                <span className="flex items-center gap-1.5 font-medium"><span className="material-symbols-outlined text-[20px]">calendar_today</span> Joined {uni.joined}</span>
-                                                <span className="flex items-center gap-1.5 font-medium"><span className="material-symbols-outlined text-[20px]">link</span> {uni.website}</span>
-                                            </>
-                                        )}
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="flex items-center gap-3 shrink-0">
-                                {!isEditing && (
-                                    <>
-                                        <button
-                                            onClick={() => navigate('/university/management', { state: { university: uni } })}
-                                            className="px-5 py-2.5 bg-blue-50 text-[#1E63F3] hover:bg-blue-100 font-bold rounded-xl transition-all text-sm border border-blue-200 flex items-center gap-2"
-                                        >
-                                            <span className="material-symbols-outlined text-[18px]">settings_suggest</span>
-                                            View Scholarships
-                                        </button>
-                                        <button
-                                            onClick={() => navigate('/university/post-center', { state: { university: uni } })}
-                                            className="px-5 py-2.5 bg-blue-50 text-[#1E63F3] hover:bg-blue-100 font-bold rounded-xl transition-all text-sm border border-blue-200 flex items-center gap-2"
-                                        >
-                                            <span className="material-symbols-outlined text-[18px]">post_add</span>
-                                            View Post Center
-                                        </button>
-                                    </>
+        <main className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-6">
+            {/* Merged Header & About Card */}
+            <div className="bg-white rounded-xl border border-slate-200 overflow-hidden mb-6">
+                <div className="p-6 border-b border-slate-50">
+                    <div className="flex flex-col md:flex-row justify-between items-start gap-6">
+                        <div className="flex items-start gap-5">
+                            <div className={`h-22 w-22 rounded-2xl bg-[#2b6cee]/5 p-2 border border-[#2b6cee]/10 flex items-center justify-center overflow-hidden shrink-0 shadow-sm transition-all relative group ${isEditing ? 'cursor-pointer hover:border-[#2b6cee] hover:scale-105' : ''}`}>
+                                <input
+                                    type="file"
+                                    id="profile-logo-upload"
+                                    accept="image/*"
+                                    className="hidden"
+                                    onChange={handleLogoUpload}
+                                    disabled={!isEditing}
+                                />
+                                {isEditing && (
+                                    <label htmlFor="profile-logo-upload" className="absolute inset-0 z-10 cursor-pointer flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity">
+                                        <span className="material-symbols-outlined text-white text-2xl">photo_camera</span>
+                                    </label>
                                 )}
                                 {isEditing ? (
-                                    <>
-                                        <button
-                                            onClick={handleCancel}
-                                            className="px-5 py-2.5 bg-slate-50 text-slate-500 hover:bg-slate-100 font-bold rounded-xl transition-all text-sm border border-slate-200"
-                                        >
-                                            Cancel
-                                        </button>
-                                        <button
-                                            onClick={handleSave}
-                                            className="px-5 py-2.5 bg-[#2b6cee] text-white hover:bg-[#2b6cee]/90 font-bold rounded-xl transition-all text-sm shadow-lg shadow-blue-200"
-                                        >
-                                            Save Changes
-                                        </button>
-                                    </>
+                                    editedData.logo ? (
+                                        <img src={editedData.logo} alt="Logo Preview" className="h-full w-full object-contain" />
+                                    ) : (
+                                        <div className="bg-[#2b6cee]/10 h-full w-full flex items-center justify-center text-[#2b6cee]">
+                                            <span className="material-symbols-outlined text-3xl">add_photo_alternate</span>
+                                        </div>
+                                    )
                                 ) : (
+                                    uni.logo ? (
+                                        <img src={uni.logo} alt={uni.name} className="h-full w-full object-contain" />
+                                    ) : (
+                                        <div className="bg-[#2b6cee]/10 h-full w-full flex items-center justify-center text-[#2b6cee]">
+                                            <span className="material-symbols-outlined text-3xl">{uni.name.charAt(0)}</span>
+                                        </div>
+                                    )
+                                )}
+                            </div>
+                            <div className="flex flex-col gap-1.5 flex-1 pt-1">
+                                <div className="flex items-center gap-3">
+                                    {isEditing ? (
+                                        <div className="flex flex-col gap-1 w-full">
+                                            <input
+                                                type="text"
+                                                value={editedData.name}
+                                                onChange={(e) => setEditedData({ ...editedData, name: e.target.value })}
+                                                className="text-2xl font-bold text-slate-900 border-b-2 border-[#2b6cee] focus:outline-none bg-blue-50/30 px-2 py-1 rounded-t-lg"
+                                                placeholder="University Name"
+                                            />
+                                            <p className="text-[10px] text-[#2b6cee] font-bold px-2 flex items-center gap-1">
+                                                <span className="material-symbols-outlined text-[12px]">info</span>
+                                                Click the logo box to upload official image
+                                            </p>
+                                        </div>
+                                    ) : (
+                                        <h1 className="text-2xl font-bold text-slate-900">{uni.name}</h1>
+                                    )}
+
+
+                                    <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider ${uni.status === 'Active' ? 'bg-emerald-100 text-emerald-700' :
+                                        uni.status === 'Pending' ? 'bg-amber-100 text-amber-700' : 'bg-rose-100 text-rose-700'
+                                        }`}>
+                                        {uni.status}
+                                    </span>
+                                </div>
+                                <div className="flex flex-wrap gap-x-6 gap-y-2 text-slate-500 text-sm">
+                                    {isEditing ? (
+                                        <>
+                                            <div className="flex items-center gap-1.5 font-medium">
+                                                <span className="material-symbols-outlined text-[20px]">location_on</span>
+                                                <input
+                                                    type="text"
+                                                    value={editedData.location}
+                                                    onChange={(e) => setEditedData({ ...editedData, location: e.target.value })}
+                                                    className="border-b border-slate-300 focus:border-[#2b6cee] focus:outline-none bg-blue-50/30 px-2 py-0.5 rounded text-sm w-48"
+                                                />
+                                            </div>
+                                            <div className="flex items-center gap-1.5 font-medium">
+                                                <span className="material-symbols-outlined text-[20px]">link</span>
+                                                <input
+                                                    type="text"
+                                                    value={editedData.website}
+                                                    onChange={(e) => setEditedData({ ...editedData, website: e.target.value })}
+                                                    className="border-b border-slate-300 focus:border-[#2b6cee] focus:outline-none bg-blue-50/30 px-2 py-0.5 rounded text-sm w-48"
+                                                />
+                                            </div>
+                                        </>
+                                    ) : (
+                                        <>
+                                            <span className="flex items-center gap-1.5 font-medium"><span className="material-symbols-outlined text-[20px]">location_on</span> {uni.location}</span>
+                                            <span className="flex items-center gap-1.5 font-medium"><span className="material-symbols-outlined text-[20px]">calendar_today</span> Joined {uni.joined}</span>
+                                            <span className="flex items-center gap-1.5 font-medium"><span className="material-symbols-outlined text-[20px]">link</span> {uni.website}</span>
+                                        </>
+                                    )}
+                                </div>
+                            </div>
+                        </div>
+                        <div className="flex items-center gap-3 shrink-0">
+                            {!isEditing && (
+                                <></>
+                            )}
+                            {isEditing ? (
+                                <>
                                     <button
-                                        onClick={() => setIsEditing(true)}
-                                        className="px-5 py-2.5 bg-slate-50 text-slate-700 hover:bg-slate-100 font-bold rounded-xl transition-all text-sm border border-slate-200"
+                                        onClick={handleCancel}
+                                        className="px-5 py-2.5 bg-slate-50 text-slate-500 hover:bg-slate-100 font-bold rounded-xl transition-all text-sm border border-slate-200"
                                     >
-                                        Edit Profile
+                                        Cancel
                                     </button>
+                                    <button
+                                        onClick={handleSave}
+                                        className="px-5 py-2.5 bg-[#2b6cee] text-white hover:bg-[#2b6cee]/90 font-bold rounded-xl transition-all text-sm shadow-lg shadow-blue-200"
+                                    >
+                                        Save Changes
+                                    </button>
+                                </>
+                            ) : (
+                                <button
+                                    onClick={() => setIsEditing(true)}
+                                    className="px-5 py-2.5 bg-slate-50 text-slate-700 hover:bg-slate-100 font-bold rounded-xl transition-all text-sm border border-slate-200"
+                                >
+                                    Edit Profile
+                                </button>
+                            )}
+                        </div>
+                    </div>
+
+                    <div className="mt-3 pt-3 border-t border-slate-50">
+                        <div className="flex items-center justify-start mb-3">
+                            <h3 className="font-bold text-slate-900">About University</h3>
+                        </div>
+                        {isEditing ? (
+                            <textarea
+                                value={editedData.about}
+                                onChange={(e) => setEditedData({ ...editedData, about: e.target.value })}
+                                className="w-full h-32 p-4 text-slate-700 leading-relaxed text-[15px] font-medium font-['Outfit'] bg-blue-50/20 border border-[#2b6cee]/30 rounded-2xl focus:outline-none focus:border-[#2b6cee] transition-all resize-none"
+                            />
+                        ) : (
+                            <p className="text-slate-700 leading-relaxed max-w-4xl text-[15px] font-medium font-['Outfit']">
+                                {uni.about}
+                            </p>
+                        )}
+                        <div className="mt-6 flex flex-wrap gap-4">
+                            <div className="bg-slate-50 px-4 py-2.5 rounded-xl border border-slate-100">
+                                <span className="text-[10px] text-slate-400 uppercase font-bold tracking-wider block mb-0.5">University Type</span>
+                                {isEditing ? (
+                                    <input
+                                        type="text"
+                                        value={editedData.type}
+                                        onChange={(e) => setEditedData({ ...editedData, type: e.target.value })}
+                                        className="text-sm font-bold text-slate-700 bg-transparent border-b border-slate-300 focus:outline-none focus:border-[#2b6cee]"
+                                    />
+                                ) : (
+                                    <span className="text-sm font-bold text-slate-700">{uni.type}</span>
+                                )}
+                            </div>
+                            <div className="bg-slate-50 px-4 py-2.5 rounded-xl border border-slate-100">
+                                <span className="text-[10px] text-slate-400 uppercase font-bold tracking-wider block mb-0.5">Accreditation</span>
+                                {isEditing ? (
+                                    <input
+                                        type="text"
+                                        value={editedData.accreditation}
+                                        onChange={(e) => setEditedData({ ...editedData, accreditation: e.target.value })}
+                                        className="text-sm font-bold text-slate-700 bg-transparent border-b border-slate-300 focus:outline-none focus:border-[#2b6cee]"
+                                    />
+                                ) : (
+                                    <span className="text-sm font-bold text-slate-700">{uni.accreditation}</span>
                                 )}
                             </div>
                         </div>
 
-                        <div className="mt-3 pt-3 border-t border-slate-50">
-                            <div className="flex items-center justify-start mb-3">
-                                <h3 className="font-bold text-slate-900">About University</h3>
+
+                        {/* Primary Contact Section */}
+                        <div className="mt-8 pt-6 border-t border-slate-100">
+                            <div className="flex items-center gap-2 mb-4">
+                                <span className="material-symbols-outlined text-[#2b6cee] text-[22px]">contact_page</span>
+                                <h3 className="font-bold text-slate-900">Primary Contact</h3>
                             </div>
-                            {isEditing ? (
-                                <textarea
-                                    value={editedData.about}
-                                    onChange={(e) => setEditedData({ ...editedData, about: e.target.value })}
-                                    className="w-full h-32 p-4 text-slate-700 leading-relaxed text-[15px] font-medium font-['Outfit'] bg-blue-50/20 border border-[#2b6cee]/30 rounded-2xl focus:outline-none focus:border-[#2b6cee] transition-all resize-none"
-                                />
-                            ) : (
-                                <p className="text-slate-700 leading-relaxed max-w-4xl text-[15px] font-medium font-['Outfit']">
-                                    {uni.about}
-                                </p>
-                            )}
-                            <div className="mt-6 flex flex-wrap gap-4">
-                                <div className="bg-slate-50 px-4 py-2.5 rounded-xl border border-slate-100">
-                                    <span className="text-[10px] text-slate-400 uppercase font-bold tracking-wider block mb-0.5">University Type</span>
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                <div className="flex flex-col gap-1">
+                                    <span className="text-[10px] text-slate-400 uppercase font-bold tracking-wider">Contact Person</span>
                                     {isEditing ? (
                                         <input
                                             type="text"
-                                            value={editedData.type}
-                                            onChange={(e) => setEditedData({ ...editedData, type: e.target.value })}
-                                            className="text-sm font-bold text-slate-700 bg-transparent border-b border-slate-300 focus:outline-none focus:border-[#2b6cee]"
+                                            value={editedData.contactName}
+                                            onChange={(e) => setEditedData({ ...editedData, contactName: e.target.value })}
+                                            className="text-sm font-bold text-slate-700 bg-blue-50/30 border-b border-slate-300 focus:outline-none focus:border-[#2b6cee] px-2 py-0.5 rounded"
                                         />
                                     ) : (
-                                        <span className="text-sm font-bold text-slate-700">{uni.type}</span>
+                                        <span className="text-sm font-bold text-slate-700">{(uni as any).contactName}</span>
                                     )}
                                 </div>
-                                <div className="bg-slate-50 px-4 py-2.5 rounded-xl border border-slate-100">
-                                    <span className="text-[10px] text-slate-400 uppercase font-bold tracking-wider block mb-0.5">Accreditation</span>
+                                <div className="flex flex-col gap-1">
+                                    <span className="text-[10px] text-slate-400 uppercase font-bold tracking-wider">Email Address</span>
+                                    {isEditing ? (
+                                        <input
+                                            type="email"
+                                            value={editedData.contactEmail}
+                                            onChange={(e) => setEditedData({ ...editedData, contactEmail: e.target.value })}
+                                            className="text-sm font-bold text-[#2b6cee] bg-blue-50/30 border-b border-slate-300 focus:outline-none focus:border-[#2b6cee] px-2 py-0.5 rounded"
+                                        />
+                                    ) : (
+                                        <span className="text-sm font-bold text-[#2b6cee]">{(uni as any).contactEmail}</span>
+                                    )}
+                                </div>
+                                <div className="flex flex-col gap-1">
+                                    <span className="text-[10px] text-slate-400 uppercase font-bold tracking-wider">Phone Number</span>
                                     {isEditing ? (
                                         <input
                                             type="text"
-                                            value={editedData.accreditation}
-                                            onChange={(e) => setEditedData({ ...editedData, accreditation: e.target.value })}
-                                            className="text-sm font-bold text-slate-700 bg-transparent border-b border-slate-300 focus:outline-none focus:border-[#2b6cee]"
+                                            value={editedData.contactPhone}
+                                            onChange={(e) => setEditedData({ ...editedData, contactPhone: e.target.value })}
+                                            className="text-sm font-bold text-slate-700 bg-blue-50/30 border-b border-slate-300 focus:outline-none focus:border-[#2b6cee] px-2 py-0.5 rounded"
                                         />
                                     ) : (
-                                        <span className="text-sm font-bold text-slate-700">{uni.accreditation}</span>
+                                        <span className="text-sm font-bold text-slate-700">{(uni as any).contactPhone}</span>
                                     )}
                                 </div>
                             </div>
 
-
-                            {/* Primary Contact Section */}
-                            <div className="mt-8 pt-6 border-t border-slate-100">
-                                <div className="flex items-center gap-2 mb-4">
-                                    <span className="material-symbols-outlined text-[#2b6cee] text-[22px]">contact_page</span>
-                                    <h3 className="font-bold text-slate-900">Primary Contact</h3>
-                                </div>
-                                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                                    <div className="flex flex-col gap-1">
-                                        <span className="text-[10px] text-slate-400 uppercase font-bold tracking-wider">Contact Person</span>
-                                        {isEditing ? (
-                                            <input
-                                                type="text"
-                                                value={editedData.contactName}
-                                                onChange={(e) => setEditedData({ ...editedData, contactName: e.target.value })}
-                                                className="text-sm font-bold text-slate-700 bg-blue-50/30 border-b border-slate-300 focus:outline-none focus:border-[#2b6cee] px-2 py-0.5 rounded"
-                                            />
-                                        ) : (
-                                            <span className="text-sm font-bold text-slate-700">{(uni as any).contactName}</span>
-                                        )}
-                                    </div>
-                                    <div className="flex flex-col gap-1">
-                                        <span className="text-[10px] text-slate-400 uppercase font-bold tracking-wider">Email Address</span>
-                                        {isEditing ? (
-                                            <input
-                                                type="email"
-                                                value={editedData.contactEmail}
-                                                onChange={(e) => setEditedData({ ...editedData, contactEmail: e.target.value })}
-                                                className="text-sm font-bold text-[#2b6cee] bg-blue-50/30 border-b border-slate-300 focus:outline-none focus:border-[#2b6cee] px-2 py-0.5 rounded"
-                                            />
-                                        ) : (
-                                            <span className="text-sm font-bold text-[#2b6cee]">{(uni as any).contactEmail}</span>
-                                        )}
-                                    </div>
-                                    <div className="flex flex-col gap-1">
-                                        <span className="text-[10px] text-slate-400 uppercase font-bold tracking-wider">Phone Number</span>
-                                        {isEditing ? (
-                                            <input
-                                                type="text"
-                                                value={editedData.contactPhone}
-                                                onChange={(e) => setEditedData({ ...editedData, contactPhone: e.target.value })}
-                                                className="text-sm font-bold text-slate-700 bg-blue-50/30 border-b border-slate-300 focus:outline-none focus:border-[#2b6cee] px-2 py-0.5 rounded"
-                                            />
-                                        ) : (
-                                            <span className="text-sm font-bold text-slate-700">{(uni as any).contactPhone}</span>
-                                        )}
-                                    </div>
-                                </div>
-
-                            </div>
                         </div>
                     </div>
                 </div>
+            </div>
 
 
-                {/* Stats Grid */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-                    <div className="bg-white p-4 rounded-xl border border-slate-200">
-                        <div className="flex items-center justify-between mb-2">
-                            <span className="text-slate-500 text-sm font-medium">Total Posts</span>
-                            <div className="p-1.5 bg-[#2b6cee]/10 rounded-lg text-[#2b6cee]">
-                                <span className="material-symbols-outlined text-[18px]">description</span>
-                            </div>
-                        </div>
-                        <div className="flex items-end gap-2">
-                            <span className="text-2xl font-bold">{uni.stats.posts}</span>
-                            <span className="text-emerald-500 text-xs font-bold flex items-center mb-1">
-                                <span className="material-symbols-outlined text-[12px]">trending_up</span> 12%
-                            </span>
+            {/* Stats Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+                <div className="bg-white p-4 rounded-xl border border-slate-200">
+                    <div className="flex items-center justify-between mb-2">
+                        <span className="text-slate-500 text-sm font-medium">Total Posts</span>
+                        <div className="p-1.5 bg-[#2b6cee]/10 rounded-lg text-[#2b6cee]">
+                            <span className="material-symbols-outlined text-[18px]">description</span>
                         </div>
                     </div>
-                    <div className="bg-white p-4 rounded-xl border border-slate-200">
-                        <div className="flex items-center justify-between mb-2">
-                            <span className="text-slate-500 text-sm font-medium">Active Opportunities</span>
-                            <div className="p-1.5 bg-emerald-500/10 rounded-lg text-emerald-500">
-                                <span className="material-symbols-outlined text-[18px]">work_outline</span>
-                            </div>
-                        </div>
-                        <div className="flex items-end gap-2">
-                            <span className="text-2xl font-bold">{uni.stats.opportunities}</span>
-                            <span className="text-emerald-500 text-xs font-bold flex items-center mb-1">
-                                <span className="material-symbols-outlined text-[12px]">trending_up</span> 5%
-                            </span>
-                        </div>
-                    </div>
-                    <div className="bg-white p-4 rounded-xl border border-slate-200">
-                        <div className="flex items-center justify-between mb-2">
-                            <span className="text-slate-500 text-sm font-medium">Student Reach</span>
-                            <div className="p-1.5 bg-blue-500/10 rounded-lg text-blue-500">
-                                <span className="material-symbols-outlined text-[18px]">groups</span>
-                            </div>
-                        </div>
-                        <div className="flex items-end gap-2">
-                            <span className="text-2xl font-bold">{uni.stats.reach}</span>
-                            <span className="text-slate-400 text-xs font-bold flex items-center mb-1">
-                                Stable
-                            </span>
-                        </div>
-                    </div>
-                    <div className="bg-white p-4 rounded-xl border border-slate-200">
-                        <div className="flex items-center justify-between mb-2">
-                            <span className="text-slate-500 text-sm font-medium">Verification Score</span>
-                            <div className="p-1.5 bg-amber-500/10 rounded-lg text-amber-500">
-                                <span className="material-symbols-outlined text-[18px]">verified</span>
-                            </div>
-                        </div>
-                        <div className="flex items-end gap-2">
-                            <span className="text-2xl font-bold">{uni.stats.score}</span>
-                            <span className="text-emerald-500 text-xs font-bold flex items-center mb-1">
-                                High
-                            </span>
-                        </div>
+                    <div className="flex items-end gap-2">
+                        <span className="text-2xl font-bold">{uni.stats.posts}</span>
+                        <span className="text-emerald-500 text-xs font-bold flex items-center mb-1">
+                            <span className="material-symbols-outlined text-[12px]">trending_up</span> 12%
+                        </span>
                     </div>
                 </div>
+                <div className="bg-white p-4 rounded-xl border border-slate-200">
+                    <div className="flex items-center justify-between mb-2">
+                        <span className="text-slate-500 text-sm font-medium">Active Opportunities</span>
+                        <div className="p-1.5 bg-emerald-500/10 rounded-lg text-emerald-500">
+                            <span className="material-symbols-outlined text-[18px]">work_outline</span>
+                        </div>
+                    </div>
+                    <div className="flex items-end gap-2">
+                        <span className="text-2xl font-bold">{uni.stats.opportunities}</span>
+                        <span className="text-emerald-500 text-xs font-bold flex items-center mb-1">
+                            <span className="material-symbols-outlined text-[12px]">trending_up</span> 5%
+                        </span>
+                    </div>
+                </div>
+                <div className="bg-white p-4 rounded-xl border border-slate-200">
+                    <div className="flex items-center justify-between mb-2">
+                        <span className="text-slate-500 text-sm font-medium">Student Reach</span>
+                        <div className="p-1.5 bg-blue-500/10 rounded-lg text-blue-500">
+                            <span className="material-symbols-outlined text-[18px]">groups</span>
+                        </div>
+                    </div>
+                    <div className="flex items-end gap-2">
+                        <span className="text-2xl font-bold">{uni.stats.reach}</span>
+                        <span className="text-slate-400 text-xs font-bold flex items-center mb-1">
+                            Stable
+                        </span>
+                    </div>
+                </div>
+                <div className="bg-white p-4 rounded-xl border border-slate-200">
+                    <div className="flex items-center justify-between mb-2">
+                        <span className="text-slate-500 text-sm font-medium">Verification Score</span>
+                        <div className="p-1.5 bg-amber-500/10 rounded-lg text-amber-500">
+                            <span className="material-symbols-outlined text-[18px]">verified</span>
+                        </div>
+                    </div>
+                    <div className="flex items-end gap-2">
+                        <span className="text-2xl font-bold">{uni.stats.score}</span>
+                        <span className="text-emerald-500 text-xs font-bold flex items-center mb-1">
+                            High
+                        </span>
+                    </div>
+                </div>
+            </div>
 
-                {/* Content Sections Grid */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                    {/* Recent Activity */}
-                    <section className="bg-white rounded-xl border border-slate-200 overflow-hidden flex flex-col">
-                        <div className="px-5 py-4 border-b border-slate-100 flex items-center justify-between">
-                            <h3 className="font-bold text-base text-slate-900">Recent Activity</h3>
-                            <button className="text-[10px] font-bold text-[#2b6cee] uppercase tracking-wider">View All</button>
-                        </div>
-                        <div className="p-6 space-y-8 flex-1">
-                            {/* Timeline Items */}
-                            <div className="relative pl-8 before:content-[''] before:absolute before:left-[11px] before:top-2 before:bottom-[-32px] before:w-[2px] before:bg-slate-100">
-                                <div className="absolute left-0 top-1 size-6 rounded-full bg-emerald-100 flex items-center justify-center border-4 border-white z-10">
-                                    <span className="material-symbols-outlined text-[12px] text-emerald-500 font-bold">add</span>
-                                </div>
-                                <div className="flex flex-col gap-1">
-                                    <p className="text-sm font-bold text-slate-900">New Post Published</p>
-                                    <p className="text-xs text-slate-500 font-medium">Summer Internship 2024 - AI Research</p>
-                                    <span className="text-[10px] text-slate-400 font-bold uppercase tracking-wider mt-1">Today, 10:45 AM</span>
-                                </div>
+            {/* Content Sections Grid */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                {/* Recent Activity */}
+                <section className="bg-white rounded-xl border border-slate-200 overflow-hidden flex flex-col">
+                    <div className="px-5 py-4 border-b border-slate-100 flex items-center justify-between">
+                        <h3 className="font-bold text-base text-slate-900">Recent Activity</h3>
+                        <button className="text-[10px] font-bold text-[#2b6cee] uppercase tracking-wider">View All</button>
+                    </div>
+                    <div className="p-6 space-y-8 flex-1">
+                        {/* Timeline Items */}
+                        <div className="relative pl-8 before:content-[''] before:absolute before:left-[11px] before:top-2 before:bottom-[-32px] before:w-[2px] before:bg-slate-100">
+                            <div className="absolute left-0 top-1 size-6 rounded-full bg-emerald-100 flex items-center justify-center border-4 border-white z-10">
+                                <span className="material-symbols-outlined text-[12px] text-emerald-500 font-bold">add</span>
                             </div>
-                            <div className="relative pl-8 before:content-[''] before:absolute before:left-[11px] before:top-2 before:bottom-[-32px] before:w-[2px] before:bg-slate-100">
-                                <div className="absolute left-0 top-1 size-6 rounded-full bg-blue-100 flex items-center justify-center border-4 border-white z-10">
-                                    <span className="material-symbols-outlined text-[12px] text-[#2b6cee] font-bold">edit</span>
-                                </div>
-                                <div className="flex flex-col gap-1">
-                                    <p className="text-sm font-bold text-slate-900">Profile Updated</p>
-                                    <p className="text-xs text-slate-500 font-medium">Modified primary contact details</p>
-                                    <span className="text-[10px] text-slate-400 font-bold uppercase tracking-wider mt-1">Yesterday, 4:20 PM</span>
-                                </div>
-                            </div>
-                            <div className="relative pl-8 last:before:hidden before:content-[''] before:absolute before:left-[11px] before:top-2 before:bottom-[-32px] before:w-[2px] before:bg-slate-100">
-                                <div className="absolute left-0 top-1 size-6 rounded-full bg-amber-100 flex items-center justify-center border-4 border-white z-10">
-                                    <span className="material-symbols-outlined text-[12px] text-amber-500 font-bold">login</span>
-                                </div>
-                                <div className="flex flex-col gap-1">
-                                    <p className="text-sm font-bold text-slate-900">Admin Login</p>
-                                    <p className="text-xs text-slate-500 font-medium">University admin logged in from SF</p>
-                                    <span className="text-[10px] text-slate-400 font-bold uppercase tracking-wider mt-1">Oct 14, 2023</span>
-                                </div>
+                            <div className="flex flex-col gap-1">
+                                <p className="text-sm font-bold text-slate-900">New Post Published</p>
+                                <p className="text-xs text-slate-500 font-medium">Summer Internship 2024 - AI Research</p>
+                                <span className="text-[10px] text-slate-400 font-bold uppercase tracking-wider mt-1">Today, 10:45 AM</span>
                             </div>
                         </div>
-                    </section>
+                        <div className="relative pl-8 before:content-[''] before:absolute before:left-[11px] before:top-2 before:bottom-[-32px] before:w-[2px] before:bg-slate-100">
+                            <div className="absolute left-0 top-1 size-6 rounded-full bg-blue-100 flex items-center justify-center border-4 border-white z-10">
+                                <span className="material-symbols-outlined text-[12px] text-[#2b6cee] font-bold">edit</span>
+                            </div>
+                            <div className="flex flex-col gap-1">
+                                <p className="text-sm font-bold text-slate-900">Profile Updated</p>
+                                <p className="text-xs text-slate-500 font-medium">Modified primary contact details</p>
+                                <span className="text-[10px] text-slate-400 font-bold uppercase tracking-wider mt-1">Yesterday, 4:20 PM</span>
+                            </div>
+                        </div>
+                        <div className="relative pl-8 last:before:hidden before:content-[''] before:absolute before:left-[11px] before:top-2 before:bottom-[-32px] before:w-[2px] before:bg-slate-100">
+                            <div className="absolute left-0 top-1 size-6 rounded-full bg-amber-100 flex items-center justify-center border-4 border-white z-10">
+                                <span className="material-symbols-outlined text-[12px] text-amber-500 font-bold">login</span>
+                            </div>
+                            <div className="flex flex-col gap-1">
+                                <p className="text-sm font-bold text-slate-900">Admin Login</p>
+                                <p className="text-xs text-slate-500 font-medium">University admin logged in from SF</p>
+                                <span className="text-[10px] text-slate-400 font-bold uppercase tracking-wider mt-1">Oct 14, 2023</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
 
-                    {/* University Courses */}
-                    <section className="bg-white rounded-xl border border-slate-200 overflow-hidden flex flex-col">
-                        <div className="px-5 py-4 border-b border-slate-100 flex items-center justify-between">
-                            <h3 className="font-bold text-base text-slate-900">University Courses</h3>
-                            <div className="flex items-center gap-2">
-                                <button className="p-1.5 hover:bg-slate-50 rounded-lg transition-colors">
-                                    <span className="material-symbols-outlined text-slate-400 text-[18px]">search</span>
-                                </button>
-                                <button className="text-[10px] font-bold text-[#2b6cee] uppercase tracking-wider">Expand Details</button>
-                            </div>
+                {/* University Courses */}
+                <section className="bg-white rounded-xl border border-slate-200 overflow-hidden flex flex-col">
+                    <div className="px-5 py-4 border-b border-slate-100 flex items-center justify-between">
+                        <h3 className="font-bold text-base text-slate-900">University Courses</h3>
+                        <div className="flex items-center gap-2">
+                            <button className="p-1.5 hover:bg-slate-50 rounded-lg transition-colors">
+                                <span className="material-symbols-outlined text-slate-400 text-[18px]">search</span>
+                            </button>
+                            <button className="text-[10px] font-bold text-[#2b6cee] uppercase tracking-wider">Expand Details</button>
                         </div>
-                        <div className="p-6 space-y-4 flex-1 overflow-y-auto max-h-[480px]">
-                            {uni.courses.length > 0 ? (
-                                uni.courses.map((course, idx) => (
-                                    <div key={idx} className="p-5 rounded-2xl border border-slate-100 hover:border-blue-100 hover:shadow-sm transition-all group cursor-pointer bg-slate-50/30">
-                                        <h4 className="text-base font-bold text-slate-900 group-hover:text-[#2b6cee] transition-colors">{course.name}</h4>
-                                        <div className="mt-4 flex flex-wrap items-center gap-x-6 gap-y-3">
-                                            <div className="flex items-center gap-2 text-slate-500">
-                                                <span className="material-symbols-outlined text-[18px] opacity-60">schedule</span>
-                                                <span className="text-xs font-bold">{course.duration}</span>
+                    </div>
+                    <div className="p-6 space-y-4 flex-1 overflow-y-auto max-h-[480px]">
+                        {uni.courses.length > 0 ? (
+                            uni.courses.map((course, idx) => (
+                                <div key={idx} className="p-5 rounded-2xl border border-slate-100 hover:border-blue-100 hover:shadow-sm transition-all group cursor-pointer bg-slate-50/30">
+                                    <h4 className="text-base font-bold text-slate-900 group-hover:text-[#2b6cee] transition-colors">{course.name}</h4>
+                                    <div className="mt-4 flex flex-wrap items-center gap-x-6 gap-y-3">
+                                        <div className="flex items-center gap-2 text-slate-500">
+                                            <span className="material-symbols-outlined text-[18px] opacity-60">schedule</span>
+                                            <span className="text-xs font-bold">{course.duration}</span>
+                                        </div>
+                                        <div className="flex items-center gap-2 text-slate-500">
+                                            <span className="material-symbols-outlined text-[18px] opacity-60">calendar_month</span>
+                                            <div className="flex flex-col">
+                                                <span className="text-[8px] uppercase font-bold text-slate-400 leading-none">Starts</span>
+                                                <span className="text-xs font-bold text-slate-700">{course.start}</span>
                                             </div>
-                                            <div className="flex items-center gap-2 text-slate-500">
-                                                <span className="material-symbols-outlined text-[18px] opacity-60">calendar_month</span>
-                                                <div className="flex flex-col">
-                                                    <span className="text-[8px] uppercase font-bold text-slate-400 leading-none">Starts</span>
-                                                    <span className="text-xs font-bold text-slate-700">{course.start}</span>
-                                                </div>
-                                            </div>
-                                            <div className="flex items-center gap-2 text-slate-500">
-                                                <span className="material-symbols-outlined text-[18px] opacity-60">payments</span>
-                                                <div className="flex flex-col">
-                                                    <span className="text-[8px] uppercase font-bold text-slate-400 leading-none">Tuition Fee</span>
-                                                    <span className="text-xs font-bold text-slate-700">{course.price}</span>
-                                                </div>
+                                        </div>
+                                        <div className="flex items-center gap-2 text-slate-500">
+                                            <span className="material-symbols-outlined text-[18px] opacity-60">payments</span>
+                                            <div className="flex flex-col">
+                                                <span className="text-[8px] uppercase font-bold text-slate-400 leading-none">Tuition Fee</span>
+                                                <span className="text-xs font-bold text-slate-700">{course.price}</span>
                                             </div>
                                         </div>
                                     </div>
-                                ))
-                            ) : (
-                                <div className="h-full flex flex-col items-center justify-center py-12 text-slate-400">
-                                    <span className="material-symbols-outlined text-4xl mb-2">school</span>
-                                    <p className="text-sm font-bold">No courses listed yet</p>
                                 </div>
-                            )}
-                        </div>
-                    </section>
-                </div>
-            </main>
-        </SuperAdminLayout>
+                            ))
+                        ) : (
+                            <div className="h-full flex flex-col items-center justify-center py-12 text-slate-400">
+                                <span className="material-symbols-outlined text-4xl mb-2">school</span>
+                                <p className="text-sm font-bold">No courses listed yet</p>
+                            </div>
+                        )}
+                    </div>
+                </section>
+            </div>
+        </main>
 
 
     );

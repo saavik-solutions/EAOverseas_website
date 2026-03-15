@@ -1,10 +1,10 @@
 import React, { ReactNode, useState } from 'react';
-import { useNavigate, useLocation, Link } from 'react-router-dom';
+import { useNavigate, useLocation, Link, Outlet } from 'react-router-dom';
 import logo from '../assets/logo.jpg';
 import { useAuth } from '@/shared/contexts/AuthContext';
 
 interface SuperAdminLayoutProps {
-    children: ReactNode;
+    children?: ReactNode;
     title: string;
 }
 
@@ -21,6 +21,18 @@ const SuperAdminLayout: React.FC<SuperAdminLayoutProps> = ({ children, title }) 
         { name: 'Students', icon: 'group', path: '/Superadmin/students' },
         { name: 'Revenue', icon: 'payments', path: '/Superadmin/revenue' },
         {
+            name: 'University Portal',
+            icon: 'account_balance',
+            isDropdown: true,
+            children: [
+                { name: 'Overview', icon: 'dashboard', path: '/Superadmin/university-portal/dashboard' },
+                { name: 'Scholarships', icon: 'settings_suggest', path: '/Superadmin/university-portal/scholarships' },
+                { name: 'Post Center', icon: 'post_add', path: '/Superadmin/university-portal/post-center' },
+                { name: 'Programs', icon: 'school', path: '/Superadmin/university-portal/programs' },
+                { name: 'Profile', icon: 'person', path: '/Superadmin/university-portal/profile' },
+            ]
+        },
+        {
             name: 'Data Intelligence',
             icon: 'analytics',
             isDropdown: true,
@@ -31,6 +43,7 @@ const SuperAdminLayout: React.FC<SuperAdminLayoutProps> = ({ children, title }) 
     ];
 
     const [isDataIntelOpen, setIsDataIntelOpen] = useState(location.pathname.startsWith('/Superadmin/scraper'));
+    const [isUniPortalOpen, setIsUniPortalOpen] = useState(location.pathname.startsWith('/Superadmin/university-portal'));
 
     return (
         <div className="flex h-screen bg-[#f8f6f6] flex-col lg:flex-row">
@@ -77,8 +90,11 @@ const SuperAdminLayout: React.FC<SuperAdminLayoutProps> = ({ children, title }) 
                             {item.isDropdown ? (
                                 <>
                                     <button
-                                        onClick={() => setIsDataIntelOpen(!isDataIntelOpen)}
-                                        className={`w-full flex items-center justify-between px-4 py-3 rounded-xl transition-colors ${location.pathname.startsWith('/Superadmin/scraper')
+                                        onClick={() => {
+                                            if (item.name === 'Data Intelligence') setIsDataIntelOpen(!isDataIntelOpen);
+                                            if (item.name === 'University Portal') setIsUniPortalOpen(!isUniPortalOpen);
+                                        }}
+                                        className={`w-full flex items-center justify-between px-4 py-3 rounded-xl transition-colors ${(item.name === 'Data Intelligence' && isDataIntelOpen) || (item.name === 'University Portal' && isUniPortalOpen)
                                             ? 'bg-[#2b6cee]/10 text-[#2b6cee] font-semibold'
                                             : 'text-slate-600 hover:bg-slate-50 font-medium'
                                             }`}
@@ -87,12 +103,12 @@ const SuperAdminLayout: React.FC<SuperAdminLayoutProps> = ({ children, title }) 
                                             <span className="material-symbols-outlined">{item.icon}</span>
                                             <span className="text-sm">{item.name}</span>
                                         </div>
-                                        <span className={`material-symbols-outlined text-[20px] transition-transform duration-300 ${isDataIntelOpen ? 'rotate-180' : ''}`}>
+                                        <span className={`material-symbols-outlined text-[20px] transition-transform duration-300 ${(item.name === 'Data Intelligence' && isDataIntelOpen) || (item.name === 'University Portal' && isUniPortalOpen) ? 'rotate-180' : ''}`}>
                                             expand_more
                                         </span>
                                     </button>
 
-                                    <div className={`overflow-hidden transition-all duration-300 ${isDataIntelOpen ? 'max-h-40 mt-1 opacity-100' : 'max-h-0 opacity-0'}`}>
+                                    <div className={`overflow-hidden transition-all duration-300 ${(item.name === 'Data Intelligence' && isDataIntelOpen) || (item.name === 'University Portal' && isUniPortalOpen) ? 'max-h-60 mt-1 opacity-100' : 'max-h-0 opacity-0'}`}>
                                         <div className="pl-12 pr-4 py-1 flex flex-col gap-1 border-l-2 border-slate-100 ml-7">
                                             {item.children?.map(child => (
                                                 <Link
@@ -196,6 +212,7 @@ const SuperAdminLayout: React.FC<SuperAdminLayoutProps> = ({ children, title }) 
                 {/* Page Content */}
                 <div className="flex-1 overflow-y-auto min-h-0">
                     {children}
+                    <Outlet />
                 </div>
             </main>
         </div>
