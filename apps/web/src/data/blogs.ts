@@ -5,6 +5,7 @@ import blogVisa from '../features/landing/assets/blog_visa.png';
 export const blogs = [
     {
         id: 1,
+        slug: 'mastering-the-ielts-expert-tips',
         category: 'Test Prep',
         title: 'Mastering the IELTS: Expert Tips for a High Band Score',
         author: 'Anjali Rao',
@@ -36,6 +37,7 @@ export const blogs = [
     },
     {
         id: 2,
+        slug: 'top-10-study-destinations-2026',
         category: 'Global Education',
         title: 'Top 10 Study Destinations for 2026: Where to Go and Why',
         author: 'Vikram Iyer',
@@ -67,6 +69,7 @@ export const blogs = [
     },
     {
         id: 3,
+        slug: 'navigating-visa-regulations-2026',
         category: 'Visa Guide',
         title: 'Navigating Visa Regulations: What You Need to Know for 2026',
         author: 'Ishita Verma',
@@ -95,6 +98,7 @@ export const blogs = [
     },
     {
         id: 4,
+        slug: 'impact-of-technology-on-workplace',
         category: 'Technology',
         title: 'The Impact of Technology on the Workplace: How Technology is Changing',
         author: 'Ernie Smith',
@@ -121,6 +125,7 @@ export const blogs = [
     },
     {
         id: 5,
+        slug: 'impact-of-technology-on-workplace-2',
         category: 'Technology',
         title: 'The Impact of Technology on the Workplace: How Technology is Changing',
         author: 'Eric Smith',
@@ -139,6 +144,7 @@ export const blogs = [
     },
     {
         id: 6,
+        slug: 'impact-of-technology-on-workplace-3',
         category: 'Technology',
         title: 'The Impact of Technology on the Workplace: How Technology is Changing',
         author: 'Tracey Wilson',
@@ -151,6 +157,7 @@ export const blogs = [
     },
     {
         id: 7,
+        slug: 'impact-of-technology-on-workplace-4',
         category: 'Technology',
         title: 'The Impact of Technology on the Workplace: How Technology is Changing',
         author: 'Jason Francisco',
@@ -163,6 +170,7 @@ export const blogs = [
     },
     {
         id: 8,
+        slug: 'impact-of-technology-on-workplace-5',
         category: 'Technology',
         title: 'The impact of Technology on the Workplace: How Technology is Changing',
         author: 'Elizabeth Slavin',
@@ -175,6 +183,7 @@ export const blogs = [
     },
     {
         id: 9,
+        slug: 'impact-of-technology-on-workplace-6',
         category: 'Technology',
         title: 'The Impact of Technology on the Workplace: How Technology is Changing',
         author: 'Ernie Smith',

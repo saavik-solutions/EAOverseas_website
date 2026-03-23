@@ -1,0 +1,24 @@
+/* Keyframe for auto-scrolling animation */
+@keyframes slide {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* Flip Card Styles */
+.perspective { perspective: 1500px; }
+.transformStyle3d { transform-style: preserve-3d; }
+.backfaceHidden { backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+.rotateY180 { transform: rotateY(180deg); }
+
+/* Animation class */
+.animateSlide { animation: slide 35s linear infinite; }
+
+/* Pause animation on hover */
+.animateSlide:hover { animation-play-state: paused; }
+
+/* Hide scrollbar */
+.scrollbarHide { -ms-overflow-style: none; scrollbar-width: none; }
+.scrollbarHide::-webkit-scrollbar { display: none; }
+
+/* Card Hover effect */
+.cardContainer:hover .flipInner { transform: rotateY(180deg); }

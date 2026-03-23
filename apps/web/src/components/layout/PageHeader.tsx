@@ -49,9 +49,9 @@ const PageHeader: React.FC<PageHeaderProps> = ({ title, actions, breadcrumbs = [
                             <React.Fragment key={i}>
                                 {i > 0 && <span className="text-gray-300">/</span>}
                                 {b.link ? (
-                                    <Link to={b.link} className="hover:text-blue-600 transition-colors">{b.label}</Link>
+                                    <Link to={b.link} className="hover:text-[#7a29c2] transition-colors">{b.label}</Link>
                                 ) : (
-                                    <span className={!title ? 'text-gray-900 font-bold' : 'text-blue-600'}>{b.label}</span>
+                                    <span className={!title ? 'text-gray-900 font-bold' : 'text-[#7a29c2]'}>{b.label}</span>
                                 )}
                             </React.Fragment>
                         ))}

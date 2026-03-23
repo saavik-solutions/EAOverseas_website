@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { submitLead } from '@/services/leadVault';
 
 const EnquireModal = ({ isOpen, onClose, accommodation }) => {
     const [step, setStep] = useState('form'); // 'form' | 'success'
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
+    const formRef = useRef<HTMLFormElement>(null);
 
     // Reset state when opening
     useEffect(() => {
@@ -27,14 +29,26 @@ const EnquireModal = ({ isOpen, onClose, accommodation }) => {
 
     if (!isOpen) return null;
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         setIsLoading(true);
-        // Simulate API call
-        setTimeout(() => {
-            setIsLoading(false);
-            setStep('success');
-        }, 1500);
+        
+        if (formRef.current) {
+            const formDataData = new FormData(formRef.current);
+            const formDataObj = Object.fromEntries(formDataData.entries());
+            await submitLead({
+                source: 'EAOverseas_Main_Website',
+                data: {
+                    ...formDataObj,
+                    accommodationTitle: accommodation?.title,
+                    formName: 'Accommodation Enquire Modal'
+                }
+            });
+        }
+
+        setIsLoading(false);
+        navigate('/thank-you');
+        onClose();
     };
 
     return (
@@ -91,15 +105,15 @@ const EnquireModal = ({ isOpen, onClose, accommodation }) => {
                                 </span>
                             </div>
 
-                            <form className="space-y-5" onSubmit={handleSubmit}>
+                            <form ref={formRef} className="space-y-5" onSubmit={handleSubmit}>
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                                     <div className="space-y-1.5 text-left">
                                         <label className="text-xs font-bold text-[#60728a] uppercase tracking-wider ml-1">Full Name <span className="text-red-500">*</span></label>
-                                        <input type="text" required placeholder="Enter your full name" className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-[#0d6cf2] focus:border-transparent outline-none transition-all placeholder:text-gray-400 font-medium hover:bg-white focus:bg-white" />
+                                        <input type="text" name="name" required placeholder="Enter your full name" className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-[#0d6cf2] focus:border-transparent outline-none transition-all placeholder:text-gray-400 font-medium hover:bg-white focus:bg-white" />
                                     </div>
                                     <div className="space-y-1.5 text-left">
                                         <label className="text-xs font-bold text-[#60728a] uppercase tracking-wider ml-1">Email <span className="text-red-500">*</span></label>
-                                        <input type="email" required placeholder="your.email@example.com" className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-[#0d6cf2] focus:border-transparent outline-none transition-all placeholder:text-gray-400 font-medium hover:bg-white focus:bg-white" />
+                                        <input type="email" name="email" required placeholder="your.email@example.com" className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-[#0d6cf2] focus:border-transparent outline-none transition-all placeholder:text-gray-400 font-medium hover:bg-white focus:bg-white" />
                                     </div>
                                 </div>
 
@@ -107,13 +121,13 @@ const EnquireModal = ({ isOpen, onClose, accommodation }) => {
                                     <div className="space-y-1.5 text-left">
                                         <label className="text-xs font-bold text-[#60728a] uppercase tracking-wider ml-1">Phone Number <span className="text-red-500">*</span></label>
                                         <div className="relative">
-                                            <input type="tel" required placeholder="+1 (555) 000-0000" className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-[#0d6cf2] focus:border-transparent outline-none transition-all placeholder:text-gray-400 font-medium hover:bg-white focus:bg-white" />
+                                            <input type="tel" name="phone" required placeholder="+1 (555) 000-0000" className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-[#0d6cf2] focus:border-transparent outline-none transition-all placeholder:text-gray-400 font-medium hover:bg-white focus:bg-white" />
                                             <span className="material-symbols-outlined absolute right-3 top-3 text-gray-400 text-[20px]">call</span>
                                         </div>
                                     </div>
                                     <div className="space-y-1.5 text-left">
                                         <label className="text-xs font-bold text-[#60728a] uppercase tracking-wider ml-1">Nationality <span className="text-red-500">*</span></label>
-                                        <select required className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-[#0d6cf2] focus:border-transparent outline-none transition-all font-medium text-[#111418] hover:bg-white focus:bg-white">
+                                        <select name="nationality" required className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-[#0d6cf2] focus:border-transparent outline-none transition-all font-medium text-[#111418] hover:bg-white focus:bg-white">
                                             <option value="" disabled selected>Select Nationality</option>
                                             <option>Indian</option>
                                             <option>American</option>
@@ -128,7 +142,7 @@ const EnquireModal = ({ isOpen, onClose, accommodation }) => {
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                                     <div className="space-y-1.5 text-left">
                                         <label className="text-xs font-bold text-[#60728a] uppercase tracking-wider ml-1">University <span className="text-red-500">*</span></label>
-                                        <select required className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-[#0d6cf2] focus:border-transparent outline-none transition-all font-medium text-[#111418] hover:bg-white focus:bg-white">
+                                        <select name="university" required className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-[#0d6cf2] focus:border-transparent outline-none transition-all font-medium text-[#111418] hover:bg-white focus:bg-white">
                                             <option value="" disabled selected>Select University</option>
                                             <option>University College London (UCL)</option>
                                             <option>King's College London</option>
@@ -139,7 +153,7 @@ const EnquireModal = ({ isOpen, onClose, accommodation }) => {
                                     </div>
                                     <div className="space-y-1.5 text-left">
                                         <label className="text-xs font-bold text-[#60728a] uppercase tracking-wider ml-1">Best Platform</label>
-                                        <select className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-[#0d6cf2] focus:border-transparent outline-none transition-all font-medium text-[#111418] hover:bg-white focus:bg-white">
+                                        <select name="platform" className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-[#0d6cf2] focus:border-transparent outline-none transition-all font-medium text-[#111418] hover:bg-white focus:bg-white">
                                             <option value="" disabled selected>Select Platform</option>
                                             <option>WhatsApp</option>
                                             <option>Email</option>
@@ -150,7 +164,7 @@ const EnquireModal = ({ isOpen, onClose, accommodation }) => {
 
                                 <div className="space-y-1.5 text-left">
                                     <label className="text-xs font-bold text-[#60728a] uppercase tracking-wider ml-1">Message</label>
-                                    <textarea rows="3" placeholder="Any specific questions regarding this property?" className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-[#0d6cf2] focus:border-transparent outline-none transition-all placeholder:text-gray-400 font-medium resize-none hover:bg-white focus:bg-white"></textarea>
+                                    <textarea name="message" rows={3} placeholder="Any specific questions regarding this property?" className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-[#0d6cf2] focus:border-transparent outline-none transition-all placeholder:text-gray-400 font-medium resize-none hover:bg-white focus:bg-white"></textarea>
                                 </div>
 
                                 <button

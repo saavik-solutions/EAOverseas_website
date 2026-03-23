@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import './StudentStoriesSection.css';
+import styles from './StudentStoriesSection.module.css';
 // Adding Avneet card back as requested
 import avneetCard from '@/assets/story_card_avneet.png';
 import sanjuktaCard from '@/assets/story_card_sanjukta.jpg';
@@ -15,25 +15,25 @@ const StudentStoriesSection = () => {
             name: "Avneet Kaur",
             image: avneetCard,
             review: "EAOverseas made my dream of studying in USA a reality. The visa process was incredibly smooth and the support was always there when I needed it.",
-            theme: { bg: "bg-purple-50", border: "border-purple-100", iconBg: "bg-purple-100", iconText: "text-purple-600", nameText: "text-purple-600" }
+            theme: { bg: "bg-purple-50", border: "border-purple-200", iconBg: "bg-purple-100", iconText: "text-purple-600", nameText: "text-purple-700" }
         },
         {
             name: "Sanjukta Koli",
             image: sanjuktaCard,
             review: "I was confused about choosing the right college in Canada. The team guided me to Durham College which perfectly fits my career goals. Highly recommended!",
-            theme: { bg: "bg-orange-50", border: "border-orange-100", iconBg: "bg-orange-100", iconText: "text-orange-600", nameText: "text-orange-600" }
+            theme: { bg: "bg-fuchsia-50", border: "border-fuchsia-200", iconBg: "bg-fuchsia-100", iconText: "text-fuchsia-600", nameText: "text-fuchsia-700" }
         },
         {
             name: "Manish Gupta",
             image: manishCard,
             review: "From university application to finding accommodation, EAOverseas handled everything. Studying at University of Winnipeg has been a life-changing experience.",
-            theme: { bg: "bg-green-50", border: "border-green-200", iconBg: "bg-green-100", iconText: "text-green-600", nameText: "text-green-600" }
+            theme: { bg: "bg-indigo-50", border: "border-indigo-200", iconBg: "bg-indigo-100", iconText: "text-indigo-600", nameText: "text-indigo-700" }
         },
         {
             name: "Manisha Rani",
             image: manishaCard,
             review: "The counseling sessions were very detailed. They helped me secure admission at Arizona State University with a scholarship. Thank you EAOverseas!",
-            theme: { bg: "bg-blue-50", border: "border-blue-100", iconBg: "bg-blue-100", iconText: "text-blue-600", nameText: "text-blue-600" }
+            theme: { bg: "bg-pink-50", border: "border-pink-200", iconBg: "bg-pink-100", iconText: "text-pink-600", nameText: "text-pink-700" }
         }
     ];
 
@@ -41,7 +41,7 @@ const StudentStoriesSection = () => {
     const displayStories = [...stories, ...stories];
 
     return (
-        <section className="py-16 bg-white overflow-hidden relative font-sans">
+        <section className="py-16 bg-transparent overflow-hidden relative font-sans">
             {/* Header */}
             <div className="max-w-7xl mx-auto text-center mb-12 px-4">
                 <span className="inline-block px-4 py-1.5 rounded-full bg-purple-100 text-purple-600 text-sm font-semibold mb-4">
@@ -63,15 +63,15 @@ const StudentStoriesSection = () => {
                 {/* Right Fade Overlay */}
                 <div className="absolute right-0 top-0 bottom-0 w-24 md:w-48 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
 
-                <div className="flex w-max animate-slide">
+                <div className={`flex w-max ${styles.animateSlide}`}>
                     {displayStories.map((story, index) => (
                         <div
                             key={index}
-                            className="flex-shrink-0 w-[320px] md:w-[400px] h-[520px] md:h-[580px] pr-5 group perspective"
+                            className={`flex-shrink-0 w-[320px] md:w-[400px] h-[520px] md:h-[580px] pr-5 group ${styles.perspective} ${styles.cardContainer}`}
                         >
-                            <div className="relative w-full h-full transition-transform duration-700 transform-style-3d group-hover:rotate-y-180 cursor-pointer">
+                            <div className={`relative w-full h-full transition-transform duration-700 ${styles.transformStyle3d} ${styles.flipInner} cursor-pointer`}>
                                 {/* Front Face */}
-                                <div className="absolute inset-0 backface-hidden rounded-2xl overflow-hidden shadow-lg border border-gray-100">
+                                <div className={`absolute inset-0 ${styles.backfaceHidden} rounded-2xl overflow-hidden shadow-lg border border-gray-100`}>
                                     <img
                                         src={story.image}
                                         alt={story.name}
@@ -84,7 +84,7 @@ const StudentStoriesSection = () => {
                                 </div>
 
                                 {/* Back Face (Review) */}
-                                <div className={`absolute inset-0 ${story.theme.bg} backface-hidden rotate-y-180 rounded-2xl shadow-xl p-8 flex flex-col items-center justify-center text-center border-2 ${story.theme.border}`}>
+                                <div className={`absolute inset-0 ${story.theme.bg} ${styles.backfaceHidden} ${styles.rotateY180} rounded-2xl shadow-xl p-8 flex flex-col items-center justify-center text-center border-2 ${story.theme.border}`}>
                                     <div className={`w-16 h-16 ${story.theme.iconBg} rounded-full flex items-center justify-center mb-6`}>
                                         <svg className={`w-8 h-8 ${story.theme.iconText}`} fill="currentColor" viewBox="0 0 24 24">
                                             <path d="M14.017 21L14.017 18C14.017 16.8954 13.1216 16 12.017 16H9.01701V14H12.017C14.2261 14 16.017 12.2091 16.017 10V5C16.017 3.89543 15.1216 3 14.017 3H5.01701C3.91244 3 3.01701 3.89543 3.01701 5V15C3.01701 16.1046 3.91244 17 5.01701 17H7.01701V21L14.017 21ZM17.017 16V14H20.017V5C20.017 3.89543 19.1216 3 18.017 3H14.017V5H18.017V14H17.017C15.9124 14 15.017 14.8954 15.017 16V21L17.017 16Z" />

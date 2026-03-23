@@ -1,0 +1,354 @@
+/* Blog Section Styling */
+
+.blog-section {
+    position: relative;
+    padding: 6rem 1rem;
+    overflow: hidden;
+    background-color: transparent; /* Transparent to show global grid */
+    border-top: 1px solid rgba(122, 41, 194, 0.05);
+}
+
+.blog-container {
+    max-width: 1400px; /* Wider to accommodate carousel */
+    margin: 0 auto;
+    position: relative;
+    z-index: 10;
+}
+
+/* Header */
+.blog-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.blog-badge {
+    display: inline-block;
+    padding: 6px 16px;
+    background: #e9d5ff; /* Light purple */
+    color: #7a29c2;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    position: relative;
+}
+
+/* Add the side arrows to the pill like in the image */
+.blog-badge::before,
+.blog-badge::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-style: solid;
+}
+.blog-badge::before {
+    left: -10px;
+    border-width: 6px 10px 6px 0;
+    border-color: transparent #e9d5ff transparent transparent;
+}
+.blog-badge::after {
+    right: -10px;
+    border-width: 6px 0 6px 10px;
+    border-color: transparent transparent transparent #e9d5ff;
+}
+
+.blog-heading {
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: #1f2937;
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+}
+
+.blog-heading-accent {
+    color: #d97706; /* Golden/Amber color matching the specific "Blogs & News" highlight in the image, or we could use purple. Let's stick to golden to match the image contrast, but a bit more premium. */
+    color: #eab308;
+}
+
+@media (min-width: 768px) {
+    .blog-heading {
+        font-size: 3rem;
+    }
+}
+
+.blog-subheading {
+    font-size: 1rem;
+    color: #4b5563;
+    max-width: 48rem;
+    margin: 0 auto;
+    font-weight: 500;
+}
+
+/* Carousel */
+.blog-carousel-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin: 0 -1rem; /* Negative margin for full bleed on mobile */
+    padding: 0 1rem;
+}
+
+@media (min-width: 768px) {
+    .blog-carousel-wrapper {
+        margin: 0;
+        padding: 0;
+    }
+}
+
+.blog-scroll-container {
+    display: flex;
+    gap: 1.5rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding: 1rem 0 2rem 0; /* Padding bottom for shadows */
+    width: 100%;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.blog-scroll-container::-webkit-scrollbar {
+    display: none;
+}
+
+.blog-nav-btn {
+    position: absolute;
+    top: 40%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: white;
+    border: 1px solid #e5e7eb;
+    color: #4b5563;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 20;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s;
+}
+
+.blog-nav-btn:hover {
+    color: #7a29c2;
+    border-color: #7a29c2;
+    box-shadow: 0 10px 15px -3px rgba(122, 41, 194, 0.2);
+}
+
+.blog-nav-left {
+    left: -20px;
+}
+
+.blog-nav-right {
+    right: -20px;
+}
+
+/* Cards */
+.blog-card {
+    flex: 0 0 calc(85vw); /* Responsive width */
+    max-width: 320px;
+    scroll-snap-align: start;
+    background: white;
+    border-radius: 1rem;
+    overflow: visible; /* Important for the overlapping date badge */
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+@media (min-width: 768px) {
+    .blog-card {
+        flex: 0 0 calc(33.333% - 1rem);
+    }
+}
+
+@media (min-width: 1024px) {
+    .blog-card {
+        flex: 0 0 calc(25% - 1.125rem); /* 4 cards visible */
+    }
+}
+
+.blog-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px -5px rgba(122, 41, 194, 0.12);
+}
+
+.blog-card-img {
+    height: 160px;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    position: relative;
+    overflow: hidden; /* For inner border radius */
+}
+
+.blog-tag {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: white;
+    color: #374151;
+    font-size: 0.65rem;
+    font-weight: 800;
+    padding: 4px 10px;
+    border-radius: 4px;
+    letter-spacing: 0.05em;
+    z-index: 2;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border: 1px solid #f3f4f6;
+}
+
+.blog-date-badge {
+    position: absolute;
+    bottom: -20px; /* Overlaps bottom edge of image */
+    left: 16px;
+    background: #14b8a6; /* Teal color from image, or we could use purple. Let's use teal for the pop of color matching the reference. */
+    color: white;
+    width: 48px;
+    height: 56px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.blog-date-day {
+    font-size: 1.125rem;
+    font-weight: 800;
+    line-height: 1;
+}
+
+.blog-date-month {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.blog-card-content {
+    padding: 1.5rem 1.25rem 1.25rem 1.25rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.blog-author-row {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-left: auto; /* Push to right, beside the date badge area */
+    margin-bottom: 0.75rem;
+}
+
+.blog-author-text {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #6b7280;
+    text-transform: uppercase;
+}
+
+.blog-card-title {
+    font-size: 1.125rem;
+    font-weight: 800;
+    color: #1f2937;
+    margin-bottom: 0.75rem;
+    line-height: 1.4;
+    transition: color 0.2s;
+    height: 3.1rem; /* approx 2 lines */
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.blog-card:hover .blog-card-title {
+    color: #7a29c2;
+}
+
+.blog-card-snippet {
+    font-size: 0.8125rem;
+    color: #6b7280;
+    line-height: 1.5;
+    margin-bottom: 1.25rem;
+    height: 3.6rem; /* approx 3 lines */
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+.blog-card-footer {
+    margin-top: auto;
+    padding-top: 1rem;
+    border-top: 1px solid #f3f4f6;
+}
+
+.blog-read-more {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: #4b5563; /* Neutral color, matching reference */
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.blog-card:hover .blog-read-more {
+    color: #14b8a6; /* Change to match date badge on hover */
+}
+
+/* Footer Button */
+.blog-footer {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.blog-view-all {
+    background-color: #fcd34d; /* Yellow matching the image */
+    color: #1f2937;
+    font-weight: 700;
+    padding: 0.75rem 2.5rem;
+    border-radius: 0.5rem;
+    border: 1px solid #fbbf24;
+    box-shadow: 0 4px 6px -1px rgba(251, 191, 36, 0.4);
+    transition: all 0.3s;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.blog-view-all:hover {
+    background-color: #fbbf24;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px -2px rgba(251, 191, 36, 0.6);
+}
+
+/* Animations */
+.fade-in-up {
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

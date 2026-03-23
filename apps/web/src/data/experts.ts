@@ -8,38 +8,11 @@ import ishitaImg from '../features/landing/assets/ishita_verma.png';
 import vikramImg from '../features/landing/assets/vikram_iyer.png';
 
 // New team member images
-import ceoImg from '../features/landing/assets/team_sui.jpg';
 import graphicImg from '../features/landing/assets/team_lara.jpg';
 import frontendImg from '../features/landing/assets/team_sam.jpg';
 import backendImg from '../features/landing/assets/team_edrik.jpg';
 
 export const experts = [
-    {
-        id: "david-kim",
-        name: "David Kim",
-        role: "CEO & Founder",
-        image: ceoImg,
-        tags: ["Leadership", "Vision"],
-        bio: "Visionary leader dedicated to transforming global education accessibility through technology and personalized guidance.",
-        category: "Leadership",
-        color: "#111218",
-        tagBg: "#E0E0E0",
-        stats: {
-            studentsGuided: "10,000+",
-            visaSuccess: "99.9%",
-            yearsExperience: "20+"
-        },
-        journey: [
-            "David founded EAOverseas with a singular mission: to democratize access to world-class education. His journey from a student immigrant to an ed-tech pioneer inspires our entire team.",
-            "Under his leadership, EAOverseas has grown from a small consultancy to a global platform.",
-            "He focuses on strategic partnerships and technological innovation to keep us ahead of the curve."
-        ],
-        expertise: [
-            { title: "Strategic Vision", icon: "visibility", desc: "Long-term planning and industry disruption strategies." },
-            { title: "Global Partnerships", icon: "public", desc: "Building alliances with top universities worldwide." },
-            { title: "Leadership", icon: "groups", desc: "Mentoring the next generation of educational leaders." }
-        ]
-    },
     {
         id: "riya-mehta",
         name: "Riya Mehta",

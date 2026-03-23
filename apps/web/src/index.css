@@ -1,78 +1,113 @@
 @import "tailwindcss";
+@config "../tailwind.config.js";
 
+@layer base {
+  :root {
+    --primary: 122 41 194;
+    --primary-foreground: 0 0% 100%;
+    
+    /* System variables for Tailwind 4 base */
+    --color-primary: #7a29c2;
+    --color-background-light: #f6f6f8;
+    --color-background-dark: #111621;
+    --color-surface-light: #ffffff;
+    --color-text-main: #0e121b;
+    --color-text-secondary: #4d6599;
+  }
+}
+
+@theme {
+  --color-primary: #7a29c2;
+  --font-display: "Plus Jakarta Sans", sans-serif;
+  --font-bricolage: "Bricolage Grotesque", sans-serif;
+  
+
+  /* Add animations to theme for tailwind 4 */
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-bounce-subtle: bounce-subtle 3s ease-in-out infinite;
+  --animate-scroll-right: scroll-right 40s linear infinite;
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+  }
+
+  @keyframes bounce-subtle {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+
+  @keyframes scroll-right {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(calc(-50% - 2rem)); }
+  }
+}
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  color: #111827;
+  background-color: #fcfcfd;
+  background-image: linear-gradient(to right, rgba(249, 115, 22, 0.04) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(249, 115, 22, 0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom Utility Classes */
 @layer utilities {
-    .scrollbar-thin::-webkit-scrollbar {
-        width: 6px;
-    }
-
-    .scrollbar-thin::-webkit-scrollbar-track {
-        background: transparent;
-    }
-
-    .scrollbar-thin::-webkit-scrollbar-thumb {
-        background: #e5e7eb;
-        border-radius: 3px;
-    }
-
-    .no-scrollbar::-webkit-scrollbar {
-        display: none;
-    }
-
-    .no-scrollbar {
-        -ms-overflow-style: none;
-        /* IE and Edge */
-        scrollbar-width: none;
-        /* Firefox */
-    }
-
-    @media (max-width: 768px) {
-        .mobile-scale-down {
-            zoom: 0.95;
-        }
-    }
+  .bg-grid-pattern {
+    background-image: linear-gradient(to right, rgba(249, 115, 22, 0.06) 1px, transparent 1px),
+                      linear-gradient(to bottom, rgba(249, 115, 22, 0.06) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+  .bg-grid-pattern-dark {
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                      linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+  .bg-grid-purple {
+    background-image: linear-gradient(#f0e6ff 1px, transparent 1px), 
+                      linear-gradient(90deg, #f0e6ff 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+}
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
 }
 
-.circular-chart {
-    display: block;
-    margin: 0 auto;
-    max-width: 100%;
-    max-height: 250px;
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
 }
 
-.circle-bg {
-    fill: none;
-    stroke: #eee;
-    stroke-width: 3.8;
+::-webkit-scrollbar-thumb {
+  background: #7a29c2;
+  border-radius: 4px;
 }
 
-.circle {
-    fill: none;
-    stroke-width: 2.8;
-    stroke-linecap: round;
-    animation: progress 1s ease-out forwards;
+::-webkit-scrollbar-thumb:hover {
+  background: #6a24aa;
 }
 
-@keyframes progress {
-    0% {
-        stroke-dasharray: 0 100;
-    }
+/* ─── Infinite Marquee ─────────────────────────────────────────────────────── */
+
+@keyframes csMarqueeScroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 
-@keyframes scroll-right {
-    0% {
-        transform: translateX(-50%);
-    }
-
-    100% {
-        transform: translateX(0);
-    }
+.marquee-track {
+  animation: csMarqueeScroll 28s linear infinite;
+  will-change: transform;
 }
 
-.animate-scroll-right {
-    animation: scroll-right 30s linear infinite;
-}
-
-/* Ensure flags don't get squished */
-.flag-img {
-    flex-shrink: 0;
+.marquee-track:hover {
+  animation-play-state: paused;
 }

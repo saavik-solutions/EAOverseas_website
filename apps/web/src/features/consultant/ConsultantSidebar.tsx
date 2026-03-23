@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import logo from '@/assets/logo.jpg';
+import logo from '@/assets/logo.png';
 import { useAuth } from '@/shared/contexts/AuthContext';
 
 const ConsultantSidebar = ({ isOpen, onClose }) => {
@@ -39,7 +39,7 @@ const ConsultantSidebar = ({ isOpen, onClose }) => {
                 `}
             >
                 <div className="p-5 flex items-center justify-start">
-                    <img src={logo} alt="EA Overseas" className="h-10 w-auto object-contain" />
+                    <img src={logo} alt="EAOverseas" className="h-10 w-auto object-contain" />
                 </div>
 
                 <nav className="flex-1 overflow-y-auto px-3 py-2 space-y-1">

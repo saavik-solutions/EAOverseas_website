@@ -5,11 +5,26 @@
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="/vite.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>EAOverseas</title>
+  
+  <title>EAOverseas - Global Education Decisions with Clarity</title>
+  <meta name="description" content="EAOverseas helps you make informed study-abroad decisions with data, expert consulting, and personalized AI strategies." />
+
+  <!-- Open Graph Fallback -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="EAOverseas - Global Education Consulting" />
+  <meta property="og:description" content="Start your global education journey today with AI-powered matching and expert visa guidance." />
+  <meta property="og:image" content="https://eaoverseas.com/og-default.jpg" />
+  
+  <!-- Security: Content Security Policy -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https:; connect-src 'self' https://*.eaoverseas.com http://localhost:* ws://localhost:*; border-src 'none';">
+
+    <!-- Google Analytics placeholder - scripts moved to CookieConsentBanner for GDPR compliance -->
+
   <!-- Google Fonts & Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap" rel="stylesheet" />
   <link
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
     rel="stylesheet" />
@@ -22,6 +37,29 @@
 
 <body>
   <div id="root"></div>
+  <!-- Global Image Fallback: replaces any broken <img> with the EAOverseas logo automatically -->
+  <script>
+    (function () {
+      // Path to the logo served as a static asset
+      var LOGO_FALLBACK = '/logo.png';
+
+      window.addEventListener('error', function (e) {
+        var target = e.target;
+        if (target && target.tagName === 'IMG') {
+          // Prevent infinite loop if logo itself fails
+          if (target.src && target.src.indexOf(LOGO_FALLBACK) !== -1) return;
+
+          target.onerror = null; // prevent looping
+          target.src = LOGO_FALLBACK;
+          // Make the logo look centred & contained inside its container
+          target.style.objectFit = 'contain';
+          target.style.padding = '8px';
+          target.style.opacity = '0.55';
+          target.setAttribute('data-fallback', 'true');
+        }
+      }, true /* capture phase so it fires for all elements */);
+    })();
+  </script>
   <script type="module" src="/src/app/main.tsx"></script>
 </body>
 

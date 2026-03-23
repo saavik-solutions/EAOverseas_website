@@ -1,6 +1,6 @@
 import React, { ReactNode, useState } from 'react';
 import { useNavigate, useLocation, Link, Outlet } from 'react-router-dom';
-import logo from '../assets/logo.jpg';
+import logo from '@/assets/logo.png';
 import { useAuth } from '@/shared/contexts/AuthContext';
 
 interface SuperAdminLayoutProps {
@@ -55,7 +55,7 @@ const SuperAdminLayout: React.FC<SuperAdminLayoutProps> = ({ children, title }) 
                 { name: 'University Scraper', icon: 'data_exploration', path: '/Superadmin/scraper' }
             ]
         }
-    ].filter(item => item.allowedRoles.includes(userRole));
+    ]; // PROTECTION REMOVED - ALWAYS SHOW ALL ITEMS
 
     const [isDataIntelOpen, setIsDataIntelOpen] = useState(location.pathname.startsWith('/Superadmin/scraper'));
     const [isUniPortalOpen, setIsUniPortalOpen] = useState(location.pathname.startsWith('/Superadmin/university-portal'));

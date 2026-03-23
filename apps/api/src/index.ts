@@ -32,6 +32,7 @@ import authRoutes from './routes/auth.routes';
 import universityRoutes from './routes/university.routes';
 import applicationRoutes from './routes/application.routes';
 import inquiryRoutes from './routes/inquiry.routes';
+import externalRoutes from './routes/externalRoutes';
 
 // ── Security Middleware ──────────────────────────────────────────────────────
 app.use(helmet());
@@ -72,6 +73,7 @@ app.use('/api/scraper', scraperRoutes);
 app.use('/api/chat', chatRoutes);
 app.use('/api/applications', applicationRoutes);
 app.use('/api/inquiries', inquiryRoutes);
+app.use('/api/external', externalRoutes);
 
 app.get('/api/health', (req, res) => {
     res.status(200).json({ status: 'ok', message: 'API is running' });

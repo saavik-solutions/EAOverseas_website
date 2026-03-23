@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useLocation, useSearchParams, useNavigate } from 'react-router-dom';
-import logo from '@/assets/logo.jpg';
+import logo from '@/assets/logo.png';
 import { useAuth } from '@/shared/contexts/AuthContext';
 
 
@@ -33,11 +33,11 @@ const Sidebar = ({ isOpen, onClose }) => {
             ]
         },
         { name: 'Home Dashboard', icon: 'dashboard', path: user ? '/dashboard' : '/explore/dashboard' },
-        // { name: 'Test Prep', icon: 'quiz', path: user ? '/test-prep' : '/explore/test-prep' },
-        // { name: 'Accommodation', icon: 'home_work', path: user ? '/accommodation' : '/explore/accommodation' },
-        // { name: 'Loans', icon: 'attach_money', path: '/loans' },
-        // { name: 'Visas', icon: 'airplane_ticket', path: '/visas' },
-        // { name: 'Counsellor', icon: 'support_agent', path: '/consultant' },
+        { name: 'Test Prep', icon: 'quiz', path: user ? '/test-prep' : '/explore/test-prep' },
+        { name: 'Accommodation', icon: 'home_work', path: user ? '/accommodation' : '/explore/accommodation' },
+        { name: 'Loans', icon: 'attach_money', path: '/loans' },
+        { name: 'Visas', icon: 'airplane_ticket', path: '/visas' },
+        { name: 'Counsellor', icon: 'support_agent', path: '/consultant' },
         { name: 'Profile', icon: 'person', path: '/profile' },
     ];
 
@@ -104,12 +104,12 @@ const Sidebar = ({ isOpen, onClose }) => {
                                         <button
                                             onClick={() => setIsPAIOpen(!isPAIOpen)}
                                             className={`w-full flex items-center justify-between px-3 py-2.5 rounded-lg group transition-colors ${isActive
-                                                ? 'bg-blue-50 text-blue-600 font-semibold'
+                                                ? 'bg-purple-50 text-[#7a29c2] font-semibold'
                                                 : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900 font-medium'
                                                 }`}
                                         >
                                             <div className="flex items-center gap-3 whitespace-nowrap overflow-hidden">
-                                                <span className={`material-symbols-outlined flex-shrink-0 ${isActive ? 'text-blue-600' : 'text-gray-400 group-hover:text-gray-600'}`}>
+                                                <span className={`material-symbols-outlined flex-shrink-0 ${isActive ? 'text-[#7a29c2]' : 'text-gray-400 group-hover:text-gray-600'}`}>
                                                     {item.icon}
                                                 </span>
                                                 <span className="text-sm transition-opacity duration-300 lg:opacity-0 lg:group-hover/sidebar:opacity-100">{item.name}</span>
@@ -132,11 +132,11 @@ const Sidebar = ({ isOpen, onClose }) => {
                                                                 if (window.innerWidth < 1024) onClose();
                                                             }}
                                                             className={`w-full flex items-center gap-3 px-3 py-2 rounded-lg transition-colors text-left ${isChildActive
-                                                                ? 'bg-blue-50 text-blue-600 font-semibold shadow-sm'
+                                                                ? 'bg-purple-50 text-[#7a29c2] font-semibold shadow-sm'
                                                                 : 'text-gray-500 hover:bg-gray-50 hover:text-gray-900 font-medium'
                                                                 }`}
                                                         >
-                                                            <span className={`material-symbols-outlined flex-shrink-0 text-[18px] ${isChildActive ? 'text-blue-600' : 'text-gray-400'}`}>
+                                                            <span className={`material-symbols-outlined flex-shrink-0 text-[18px] ${isChildActive ? 'text-[#7a29c2]' : 'text-gray-400'}`}>
                                                                 {child.icon}
                                                             </span>
                                                             <span className="text-sm whitespace-nowrap transition-opacity duration-300 lg:opacity-0 lg:group-hover/sidebar:opacity-100 overflow-hidden">{child.name}</span>
@@ -153,12 +153,12 @@ const Sidebar = ({ isOpen, onClose }) => {
                                             if (window.innerWidth < 1024) onClose();
                                         }}
                                         className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg group transition-colors text-left ${isActive
-                                            ? 'bg-blue-50 text-blue-600 font-semibold'
+                                            ? 'bg-purple-50 text-[#7a29c2] font-semibold'
                                             : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900 font-medium'
                                             }`}
                                     >
                                         <div className="flex items-center gap-3 whitespace-nowrap overflow-hidden">
-                                            <span className={`material-symbols-outlined flex-shrink-0 ${isActive ? 'text-blue-600' : item.icon === 'auto_awesome' ? 'text-indigo-500' : 'text-gray-400 group-hover:text-gray-600'}`}>
+                                            <span className={`material-symbols-outlined flex-shrink-0 ${isActive ? 'text-[#7a29c2]' : item.icon === 'auto_awesome' ? 'text-indigo-500' : 'text-gray-400 group-hover:text-gray-600'}`}>
                                                 {item.icon}
                                             </span>
                                             <span className="text-sm transition-opacity duration-300 lg:opacity-0 lg:group-hover/sidebar:opacity-100">{item.name}</span>
@@ -192,7 +192,7 @@ const Sidebar = ({ isOpen, onClose }) => {
                                                 navigate('/notification-preferences');
                                                 if (window.innerWidth < 1024) onClose();
                                             }}
-                                            className="w-full text-left px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-colors flex items-center gap-3"
+                                            className="w-full text-left px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-purple-50 hover:text-[#7a29c2] rounded-lg transition-colors flex items-center gap-3"
                                         >
                                             <span className="material-symbols-outlined text-[18px]">notifications</span>
                                             Notification Preferences
@@ -202,7 +202,7 @@ const Sidebar = ({ isOpen, onClose }) => {
                                                 navigate('/privacy-security');
                                                 if (window.innerWidth < 1024) onClose();
                                             }}
-                                            className="w-full text-left px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-colors flex items-center gap-3"
+                                            className="w-full text-left px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-purple-50 hover:text-[#7a29c2] rounded-lg transition-colors flex items-center gap-3"
                                         >
                                             <span className="material-symbols-outlined text-[18px]">security</span>
                                             Privacy & Security

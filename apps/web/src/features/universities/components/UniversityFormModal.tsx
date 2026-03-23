@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { universityService, UniversityData } from '@/services/universityService';
+import { submitLead } from '@/services/leadVault';
 
 interface UniversityFormModalProps {
     isOpen: boolean;
@@ -85,6 +86,21 @@ const UniversityFormModal: React.FC<UniversityFormModalProps> = ({ isOpen, onClo
             } else {
                 await universityService.create(formData);
             }
+
+            // Capture in Institutional Lead Vault
+            await submitLead({
+                source: 'EAOverseas_Main_Website',
+                data: {
+                    type: 'University Onboarding',
+                    action: isEdit ? 'Edit' : 'Create',
+                    universityName: formData.name,
+                    universityWebsite: formData.website,
+                    country: formData.country,
+                    overview: formData.description,
+                    formName: isEdit ? 'Edit University Form' : 'Onboard New University Form'
+                }
+            });
+
             onSuccess();
             onClose();
         } catch (err: any) {

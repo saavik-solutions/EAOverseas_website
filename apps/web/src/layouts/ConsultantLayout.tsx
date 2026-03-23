@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import ConsultantSidebar from '@/features/consultant/ConsultantSidebar';
-import logo from '@/assets/logo.jpg';
+import logo from '@/assets/logo.png';
 import { useAuth } from '@/shared/contexts/AuthContext';
 
 const ConsultantLayout = () => {

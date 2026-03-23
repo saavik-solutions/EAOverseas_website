@@ -101,3 +101,19 @@ html {
     object-fit: cover;
     z-index: -1;
 }
+
+/* ─── Infinite Marquee (Trust Strip) ──────────────────────────────────────── */
+
+@keyframes csMarqueeScroll {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+.marquee-track {
+    animation: csMarqueeScroll 28s linear infinite;
+    will-change: transform;
+}
+
+.marquee-track:hover {
+    animation-play-state: paused;
+}

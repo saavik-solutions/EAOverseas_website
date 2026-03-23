@@ -1,108 +1,237 @@
-import { Link, useLocation } from 'react-router-dom';
-import './Footer.css';
+import React from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { CONTACTS, getWhatsAppLink } from '@/shared/constants/contacts';
+import { destinations } from '@/data/countries';
+
+const FALLBACK = 'https://student.eaoverseas.com';
 
 const Footer = () => {
-    const location = useLocation();
+  const navigate = useNavigate();
 
-    const handleHomeClick = () => {
-        if (location.pathname === '/landing' || location.pathname === '/') {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-    };
+  const companyLinks = [
+    { name: 'About us',            path: '/about' },
+    { name: 'Contact us',          path: '/contact' },
+    { name: 'Our Team',            path: '/team' },
+    { name: 'Privacy Policy',      path: '/privacy-policy' },
+    { name: 'Terms & Conditions',  path: '/terms' },
+    { name: 'Cookie Policy',       path: '/cookie-policy' },
+    { name: 'Help Center',         path: FALLBACK, external: true },
+    { name: 'Careers',             path: FALLBACK, external: true },
+    { name: 'EAOverseas USA',      path: FALLBACK, external: true },
+    { name: 'Sitemap',             path: FALLBACK, external: true },
+  ];
 
-    return (
-        <footer className="footer">
-            <div className="footer-content">
-                <div className="footer-column footer-brand">
-                    <h3 className="footer-brand-name">Eaoverseas</h3>
-                    <p className="footer-description">
-                        Your trusted partner for international education opportunities and guidance. We help students achieve their global education dreams.
-                    </p>
-                    <div className="footer-social desktop-social">
-                        <a href="#" className="social-icon" aria-label="Twitter">
-                            <svg width="16" height="12" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M15.21 1.42C14.66 1.65 14.08 1.81 13.47 1.89C14.09 1.52 14.56 0.94 14.78 0.24C14.2 0.58 13.56 0.83 12.88 0.96C12.32 0.38 11.53 0 10.64 0C8.92 0 7.53 1.39 7.53 3.11C7.53 3.34 7.55 3.56 7.6 3.77C4.97 3.65 2.63 2.42 1.07 0.56C0.82 1.01 0.67 1.52 0.67 2.07C0.67 3.11 1.2 4.02 2 4.56C1.5 4.54 1.03 4.41 0.63 4.18V4.22C0.63 5.71 1.7 6.95 3.12 7.22C2.87 7.29 2.61 7.33 2.34 7.33C2.15 7.33 1.96 7.31 1.78 7.27C2.16 8.49 3.3 9.38 4.66 9.41C3.6 10.24 2.26 10.74 0.79 10.74C0.53 10.74 0.27 10.73 0 10.69C1.37 11.57 3 12.11 4.75 12.11C10.64 12.11 13.86 7.38 13.86 3.45C13.86 3.32 13.86 3.19 13.85 3.06C14.45 2.64 14.98 2.11 15.41 1.5L15.21 1.42Z" fill="white" />
-                            </svg>
-                        </a>
-                        <a href="#" className="social-icon" aria-label="Facebook">
-                            <svg width="9" height="16" viewBox="0 0 9 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M8.17 0H5.86C3.39 0 1.83 1.66 1.83 4.23V6.18H0V9.12H1.83V16H4.84V9.12H7.96L8.61 6.18H4.84V4.54C4.84 3.62 5.07 3.15 6.25 3.15H8.61V0H8.17Z" fill="white" />
-                            </svg>
-                        </a>
-                        <a href="#" className="social-icon" aria-label="Instagram">
-                            <svg width="19" height="18" viewBox="0 0 19 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M9.22 0C6.73 0 6.42 0.01 5.48 0.05C4.54 0.09 3.9 0.24 3.34 0.45C2.76 0.67 2.27 0.96 1.78 1.45C1.29 1.94 1 2.43 0.78 3.01C0.57 3.57 0.42 4.21 0.38 5.15C0.34 6.09 0.33 6.4 0.33 8.89C0.33 11.38 0.34 11.69 0.38 12.63C0.42 13.57 0.57 14.21 0.78 14.77C1 15.35 1.29 15.84 1.78 16.33C2.27 16.82 2.76 17.11 3.34 17.33C3.9 17.54 4.54 17.69 5.48 17.73C6.42 17.77 6.73 17.78 9.22 17.78C11.71 17.78 12.02 17.77 12.96 17.73C13.9 17.69 14.54 17.54 15.1 17.33C15.68 17.11 16.17 16.82 16.66 16.33C17.15 15.84 17.44 15.35 17.66 14.77C17.87 14.21 18.02 13.57 18.06 12.63C18.1 11.69 18.11 11.38 18.11 8.89C18.11 6.4 18.1 6.09 18.06 5.15C18.02 4.21 17.87 3.57 17.66 3.01C17.44 2.43 17.15 1.94 16.66 1.45C16.17 0.96 15.68 0.67 15.1 0.45C14.54 0.24 13.9 0.09 12.96 0.05C12.02 0.01 11.71 0 9.22 0ZM9.22 1.58C11.67 1.58 11.97 1.59 12.9 1.63C13.76 1.67 14.23 1.81 14.54 1.93C14.95 2.09 15.24 2.28 15.55 2.59C15.86 2.9 16.05 3.19 16.21 3.6C16.33 3.91 16.47 4.38 16.51 5.24C16.55 6.17 16.56 6.47 16.56 8.92C16.56 11.37 16.55 11.67 16.51 12.6C16.47 13.46 16.33 13.93 16.21 14.24C16.05 14.65 15.86 14.94 15.55 15.25C15.24 15.56 14.95 15.75 14.54 15.91C14.23 16.03 13.76 16.17 12.9 16.21C11.97 16.25 11.67 16.26 9.22 16.26C6.77 16.26 6.47 16.25 5.54 16.21C4.68 16.17 4.21 16.03 3.9 15.91C3.49 15.75 3.2 15.56 2.89 15.25C2.58 14.94 2.39 14.65 2.23 14.24C2.11 13.93 1.97 13.46 1.93 12.6C1.89 11.67 1.88 11.37 1.88 8.92C1.88 6.47 1.89 6.17 1.93 5.24C1.97 4.38 2.11 3.91 2.23 3.6C2.39 3.19 2.58 2.9 2.89 2.59C3.2 2.28 3.49 2.09 3.9 1.93C4.21 1.81 4.68 1.67 5.54 1.63C6.47 1.59 6.77 1.58 9.22 1.58Z" fill="white" />
-                                <path d="M9.22 12.24C7.34 12.24 5.82 10.72 5.82 8.84C5.82 6.96 7.34 5.44 9.22 5.44C11.1 5.44 12.62 6.96 12.62 8.84C12.62 10.72 11.1 12.24 9.22 12.24ZM9.22 3.86C6.47 3.86 4.24 6.09 4.24 8.84C4.24 11.59 6.47 13.82 9.22 13.82C11.97 13.82 14.2 11.59 14.2 8.84C14.2 6.09 11.97 3.86 9.22 3.86Z" fill="white" />
-                                <circle cx="14.42" cy="3.66" r="1.04" fill="white" />
-                            </svg>
-                        </a>
-                    </div>
-                </div>
+  const servicesLinks = [
+    { name: 'University Shortlisting', path: FALLBACK, external: true },
+    { name: 'SOP / LOR Assistance',    path: FALLBACK, external: true },
+    { name: 'Visa Guidance',           path: FALLBACK, external: true },
+    { name: 'Scholarship Navigation',  path: FALLBACK, external: true },
+    { name: 'Education Loans',         path: FALLBACK, external: true },
+    { name: 'Test Prep (IELTS/TOEFL)', path: FALLBACK, external: true },
+    { name: 'Accommodation Help',      path: FALLBACK, external: true },
+    { name: 'Pre-Departure Briefing',  path: FALLBACK, external: true },
+    { name: 'AI Profile Intelligence', path: FALLBACK, external: true },
+    { name: 'Loan Calculator',         path: '/loan-calculator' },
+  ];
 
-                <div className="footer-column">
-                    <h4 className="footer-heading">Quick Links</h4>
-                    <ul className="footer-links">
-                        <li><Link to="/landing" onClick={handleHomeClick}>Home</Link></li>
-                        <li><Link to="/blogs" onClick={() => { if (location.pathname === '/blogs') window.scrollTo({ top: 0, behavior: 'smooth' }); }}>Blogs</Link></li>
-                        <li><Link to="/login" state={{ from: '/test-prep' }}>Test Prep</Link></li>
-                        <li><Link to="/testimonials" onClick={() => { if (location.pathname === '/testimonials') window.scrollTo({ top: 0, behavior: 'smooth' }); }}>Testimonials</Link></li>
-                    </ul>
-                </div>
+  const resourcesLinks = [
+    { name: 'Blogs & Insights',       path: '/blogs' },
+    { name: 'Global Testimonials',    path: '/testimonials' },
+    { name: 'Student Stories',        path: '/testimonials' },
+    { name: 'Event Webinars',         path: FALLBACK, external: true },
+    { name: 'Discover Courses',       path: '/discover-courses' },
+    { name: 'Country Guides',         path: '/countries' },
+    { name: 'Scholarship Database',   path: FALLBACK, external: true },
+    { name: 'Visa Checklists',        path: FALLBACK, external: true },
+    { name: 'IELTS Preparation',      path: FALLBACK, external: true },
+    { name: 'Community Feed',         path: '/ointake-feed' },
+  ];
 
-                <div className="footer-column desktop-help-section">
-                    <h4 className="footer-heading">Help</h4>
-                    <ul className="footer-links">
+  const quickLinks = [
+    { name: 'Expert Advisors',        path: '/team' },
+    { name: 'Partner with Us',        path: FALLBACK, external: true },
+    { name: 'Refer & Earn',           path: FALLBACK, external: true },
+    { name: 'Book a Consultation',    path: '/contact' },
+    { name: 'Check Eligibility',      path: '/contact' },
+    { name: 'Join Student Community', path: '/ointake-feed' },
+    { name: 'News & Updates',         path: '/blogs' },
+    { name: 'Work With Us',           path: FALLBACK, external: true },
+    { name: 'Media & Press',          path: FALLBACK, external: true },
+    { name: 'Feedback',               path: FALLBACK, external: true },
+  ];
 
-                        <li><Link to="/terms" onClick={() => { if (location.pathname === '/terms') window.scrollTo({ top: 0, behavior: 'smooth' }); }}>Terms & Conditions</Link></li>
-                        <li><Link to="/privacy-policy" onClick={() => { if (location.pathname === '/privacy-policy') window.scrollTo({ top: 0, behavior: 'smooth' }); }}>Privacy Policy</Link></li>
-                        <li><Link to="/cookie-policy" onClick={() => { if (location.pathname === '/cookie-policy') window.scrollTo({ top: 0, behavior: 'smooth' }); }}>Cookie Policy</Link></li>
-                    </ul>
-                </div>
-
-                <div className="footer-column">
-                    <h4 className="footer-heading">Contact Us</h4>
-                    <ul className="footer-contact">
-                        <li><a href="mailto:info@eaoverseas.com">info@eaoverseas.com</a></li>
-                        <li><a href="tel:+919701563362">+91 9701563362</a></li>
-                        <li>
-                            123 Education Ave, Suite 200<br />
-                            New York, NY 10001<br />
-                            United States
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <div className="footer-bottom">
-                <p>© 2025 Eaoverseas. All rights reserved.</p>
-                <div className="mobile-footer-links">
-                    <Link to="/terms" onClick={() => { if (location.pathname === '/terms') window.scrollTo({ top: 0, behavior: 'smooth' }); }}>Terms & Conditions</Link>
-                    <Link to="/privacy-policy" onClick={() => { if (location.pathname === '/privacy-policy') window.scrollTo({ top: 0, behavior: 'smooth' }); }}>Privacy Policy</Link>
-                    <Link to="/cookie-policy" onClick={() => { if (location.pathname === '/cookie-policy') window.scrollTo({ top: 0, behavior: 'smooth' }); }}>Cookie Policy</Link>
-                </div>
-                <div className="footer-social mobile-social">
-                    <a href="#" className="social-icon" aria-label="Twitter">
-                        <svg width="16" height="12" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M15.21 1.42C14.66 1.65 14.08 1.81 13.47 1.89C14.09 1.52 14.56 0.94 14.78 0.24C14.2 0.58 13.56 0.83 12.88 0.96C12.32 0.38 11.53 0 10.64 0C8.92 0 7.53 1.39 7.53 3.11C7.53 3.34 7.55 3.56 7.6 3.77C4.97 3.65 2.63 2.42 1.07 0.56C0.82 1.01 0.67 1.52 0.67 2.07C0.67 3.11 1.2 4.02 2 4.56C1.5 4.54 1.03 4.41 0.63 4.18V4.22C0.63 5.71 1.7 6.95 3.12 7.22C2.87 7.29 2.61 7.33 2.34 7.33C2.15 7.33 1.96 7.31 1.78 7.27C2.16 8.49 3.3 9.38 4.66 9.41C3.6 10.24 2.26 10.74 0.79 10.74C0.53 10.74 0.27 10.73 0 10.69C1.37 11.57 3 12.11 4.75 12.11C10.64 12.11 13.86 7.38 13.86 3.45C13.86 3.32 13.86 3.19 13.85 3.06C14.45 2.64 14.98 2.11 15.41 1.5L15.21 1.42Z" fill="white" />
-                        </svg>
-                    </a>
-                    <a href="#" className="social-icon" aria-label="Facebook">
-                        <svg width="9" height="16" viewBox="0 0 9 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M8.17 0H5.86C3.39 0 1.83 1.66 1.83 4.23V6.18H0V9.12H1.83V16H4.84V9.12H7.96L8.61 6.18H4.84V4.54C4.84 3.62 5.07 3.15 6.25 3.15H8.61V0H8.17Z" fill="white" />
-                        </svg>
-                    </a>
-                    <a href="#" className="social-icon" aria-label="Instagram">
-                        <svg width="19" height="18" viewBox="0 0 19 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M9.22 0C6.73 0 6.42 0.01 5.48 0.05C4.54 0.09 3.9 0.24 3.34 0.45C2.76 0.67 2.27 0.96 1.78 1.45C1.29 1.94 1 2.43 0.78 3.01C0.57 3.57 0.42 4.21 0.38 5.15C0.34 6.09 0.33 6.4 0.33 8.89C0.33 11.38 0.34 11.69 0.38 12.63C0.42 13.57 0.57 14.21 0.78 14.77C1 15.35 1.29 15.84 1.78 16.33C2.27 16.82 2.76 17.11 3.34 17.33C3.9 17.54 4.54 17.69 5.48 17.73C6.42 17.77 6.73 17.78 9.22 17.78C11.71 17.78 12.02 17.77 12.96 17.73C13.9 17.69 14.54 17.54 15.1 17.33C15.68 17.11 16.17 16.82 16.66 16.33C17.15 15.84 17.44 15.35 17.66 14.77C17.87 14.21 18.02 13.57 18.06 12.63C18.1 11.69 18.11 11.38 18.11 8.89C18.11 6.4 18.1 6.09 18.06 5.15C18.02 4.21 17.87 3.57 17.66 3.01C17.44 2.43 17.15 1.94 16.66 1.45C16.17 0.96 15.68 0.67 15.1 0.45C14.54 0.24 13.9 0.09 12.96 0.05C12.02 0.01 11.71 0 9.22 0ZM9.22 1.58C11.67 1.58 11.97 1.59 12.9 1.63C13.76 1.67 14.23 1.81 14.54 1.93C14.95 2.09 15.24 2.28 15.55 2.59C15.86 2.9 16.05 3.19 16.21 3.6C16.33 3.91 16.47 4.38 16.51 5.24C16.55 6.17 16.56 6.47 16.56 8.92C16.56 11.37 16.55 11.67 16.51 12.6C16.47 13.46 16.33 13.93 16.21 14.24C16.05 14.65 15.86 14.94 15.55 15.25C15.24 15.56 14.95 15.75 14.54 15.91C14.23 16.03 13.76 16.17 12.9 16.21C11.97 16.25 11.67 16.26 9.22 16.26C6.77 16.26 6.47 16.25 5.54 16.21C4.68 16.17 4.21 16.03 3.9 15.91C3.49 15.75 3.2 15.56 2.89 15.25C2.58 14.94 2.39 14.65 2.23 14.24C2.11 13.93 1.97 13.46 1.93 12.6C1.89 11.67 1.88 11.37 1.88 8.92C1.88 6.47 1.89 6.17 1.93 5.24C1.97 4.38 2.11 3.91 2.23 3.6C2.39 3.19 2.58 2.9 2.89 2.59C3.2 2.28 3.49 2.09 3.9 1.93C4.21 1.81 4.68 1.67 5.54 1.63C6.47 1.59 6.77 1.58 9.22 1.58Z" fill="white" />
-                            <path d="M9.22 12.24C7.34 12.24 5.82 10.72 5.82 8.84C5.82 6.96 7.34 5.44 9.22 5.44C11.1 5.44 12.62 6.96 12.62 8.84C12.62 10.72 11.1 12.24 9.22 12.24ZM9.22 3.86C6.47 3.86 4.24 6.09 4.24 8.84C4.24 11.59 6.47 13.82 9.22 13.82C11.97 13.82 14.2 11.59 14.2 8.84C14.2 6.09 11.97 3.86 9.22 3.86Z" fill="white" />
-                            <circle cx="14.42" cy="3.66" r="1.04" fill="white" />
-                        </svg>
-                    </a>
-                </div>
-            </div>
-        </footer>
+  const renderLink = (link: { name: string; path: string; external?: boolean }) =>
+    link.external ? (
+      <a href={link.path} target="_blank" rel="noopener noreferrer"
+        className="text-[13px] text-gray-400 font-medium hover:text-white hover:translate-x-1 transition-all duration-200 inline-block">
+        {link.name}
+      </a>
+    ) : (
+      <Link to={link.path}
+        className="text-[13px] text-gray-400 font-medium hover:text-white hover:translate-x-1 transition-all duration-200 inline-block">
+        {link.name}
+      </Link>
     );
+
+  return (
+    <>
+      <footer className="bg-[#0f111a] text-white pt-20 pb-10 font-sans relative border-t border-gray-800/50 overflow-hidden">
+        {/* Ambient blobs */}
+        <div className="absolute top-[-100px] left-[-100px] w-[600px] h-[600px] bg-purple-600/10 blur-[120px] rounded-full pointer-events-none" />
+        <div className="absolute bottom-[-100px] right-[-100px] w-[600px] h-[600px] bg-purple-600/10 blur-[120px] rounded-full pointer-events-none" />
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none" />
+
+        <div className="max-w-[1400px] mx-auto px-6 relative z-10">
+
+          {/* ─── Top: Brand + 4 link columns ─── */}
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-[1.4fr_1fr_1fr_1fr_1fr] gap-10 xl:gap-8 pb-14 border-b border-white/[0.06]">
+
+            {/* Brand & Contact */}
+            <div className="flex flex-col">
+              <div className="bg-[#7a29c2] text-white w-12 h-12 flex items-center justify-center rounded-full text-2xl font-serif italic mb-5 shadow-lg shadow-purple-500/20">
+                EA
+              </div>
+              <h3 className="text-[18px] font-bold mb-2 tracking-tight text-white">Need an Admission Roadmap?</h3>
+              <p className="text-[13px] text-gray-400 mb-5 leading-relaxed">
+                Our senior advisors are ready to help you build a winning application for your dream university.
+              </p>
+
+              <button
+                onClick={() => navigate('/contact')}
+                className="bg-[#7a29c2] hover:bg-[#6d28d9] text-white w-full py-3 rounded-xl text-[13px] font-bold flex items-center justify-center gap-2 mb-3 transition-all shadow-lg shadow-purple-500/25 border border-white/10 hover:scale-[1.02] active:scale-[0.98]"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
+                  <path fillRule="evenodd" d="M7.5 6a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM3.751 20.105a8.25 8.25 0 0116.498 0 .75.75 0 01-.437.695A18.683 18.683 0 0112 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 01-.437-.695z" clipRule="evenodd" />
+                </svg>
+                Talk To Advisor
+              </button>
+
+              <a href={getWhatsAppLink()} target="_blank" rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl border border-[#25D366]/30 text-[#25D366] text-[13px] font-bold hover:bg-[#25D366]/10 transition-all mb-6">
+                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.532 5.859L.057 23.143a.75.75 0 00.917.917l5.284-1.475A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.706 9.706 0 01-4.95-1.356l-.354-.211-3.666 1.023 1.023-3.55-.228-.366A9.706 9.706 0 012.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/></svg>
+                Chat on WhatsApp
+              </a>
+
+              <div className="border-t border-white/10 pt-5">
+                <p className="text-[11px] text-gray-500 font-bold uppercase tracking-widest mb-3">Contact</p>
+                <div className="space-y-2">
+                  <a href={`tel:${CONTACTS.support.tollFree}`} className="flex items-center gap-2 text-[12px] text-gray-400 hover:text-white transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-3.5 h-3.5 text-[#7a29c2]"><path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-2.896-1.596-5.273-3.973-6.869-6.869l1.293-.97c.362-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" /></svg>
+                    {CONTACTS.support.tollFree}
+                  </a>
+                  <a href={`tel:${CONTACTS.support.phone}`} className="flex items-center gap-2 text-[12px] text-gray-400 hover:text-white transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-3.5 h-3.5 text-[#7a29c2]"><path strokeLinecap="round" strokeLinejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" /></svg>
+                    {CONTACTS.support.phone}
+                  </a>
+                  <a href={`mailto:${CONTACTS.support.email}`} className="flex items-center gap-2 text-[12px] text-gray-400 hover:text-white transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-3.5 h-3.5 text-[#7a29c2]"><path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" /></svg>
+                    {CONTACTS.support.email}
+                  </a>
+                  <p className="flex items-start gap-2 text-[12px] text-gray-500 leading-relaxed">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-3.5 h-3.5 text-[#7a29c2] shrink-0 mt-0.5"><path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" /><path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" /></svg>
+                    {CONTACTS.support.address}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Company */}
+            <div>
+              <h4 className="text-[11px] font-extrabold tracking-widest text-[#7a29c2] uppercase mb-6">Company</h4>
+              <ul className="space-y-3.5">
+                {companyLinks.map(link => <li key={link.name}>{renderLink(link)}</li>)}
+              </ul>
+            </div>
+
+            {/* Services */}
+            <div>
+              <h4 className="text-[11px] font-extrabold tracking-widest text-[#7a29c2] uppercase mb-6">Our Services</h4>
+              <ul className="space-y-3.5">
+                {servicesLinks.map(link => <li key={link.name}>{renderLink(link)}</li>)}
+              </ul>
+            </div>
+
+            {/* Resources */}
+            <div>
+              <h4 className="text-[11px] font-extrabold tracking-widest text-[#7a29c2] uppercase mb-6">Resources</h4>
+              <ul className="space-y-3.5">
+                {resourcesLinks.map(link => <li key={link.name}>{renderLink(link)}</li>)}
+              </ul>
+            </div>
+
+            {/* Quick Access */}
+            <div>
+              <h4 className="text-[11px] font-extrabold tracking-widest text-[#7a29c2] uppercase mb-6">Quick Access</h4>
+              <ul className="space-y-3.5">
+                {quickLinks.map(link => <li key={link.name}>{renderLink(link)}</li>)}
+              </ul>
+            </div>
+
+          </div>
+
+          {/* ─── Countries row ─── */}
+          <div className="py-10 border-b border-white/[0.06]">
+            <div className="flex items-center justify-between mb-5">
+              <h4 className="text-[11px] font-extrabold tracking-widest text-[#7a29c2] uppercase">Study Destinations</h4>
+              <Link to="/countries" className="text-[11px] font-bold text-white/40 hover:text-[#7a29c2] transition-colors inline-flex items-center gap-1 group">
+                View all
+                <span className="material-symbols-outlined text-[13px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+              </Link>
+            </div>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2">
+              {destinations.map(dest => (
+                <Link
+                  key={dest.code}
+                  to={`/country/${dest.code}`}
+                  className="flex items-center gap-2.5 px-3 py-2 rounded-xl bg-white/[0.03] border border-white/[0.05] hover:bg-white/[0.07] hover:border-[#7a29c2]/40 transition-all group"
+                >
+                  <img
+                    src={`https://flagcdn.com/w40/${dest.code.toLowerCase()}.png`}
+                    alt={dest.name}
+                    className="w-5 h-3.5 object-cover rounded-[2px] flex-shrink-0"
+                  />
+                  <span className="text-[11px] font-semibold text-gray-400 group-hover:text-white transition-colors truncate">{dest.name}</span>
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          {/* ─── Bottom bar ─── */}
+          <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-5">
+
+            {/* Socials */}
+            <div className="flex gap-2.5 flex-wrap">
+              {['facebook', 'youtube', 'twitter', 'instagram', 'linkedin', 'whatsapp'].map(social => (
+                <a
+                  key={social}
+                  href={social === 'whatsapp' ? getWhatsAppLink() : CONTACTS.socials[social as keyof typeof CONTACTS.socials] || FALLBACK}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-8 h-8 rounded-full bg-white/5 border border-white/10 text-gray-400 flex items-center justify-center hover:bg-[#7a29c2] hover:text-white hover:border-[#7a29c2] transition-all"
+                >
+                  <div className="w-[13px] h-[13px] bg-current" style={{ maskImage: `url(https://unpkg.com/simple-icons@v9/icons/${social}.svg)`, WebkitMaskImage: `url(https://unpkg.com/simple-icons@v9/icons/${social}.svg)`, maskSize: 'contain', maskRepeat: 'no-repeat', maskPosition: 'center' }}></div>
+                </a>
+              ))}
+            </div>
+
+            {/* Legal pills */}
+            <div className="flex flex-wrap gap-4 justify-center sm:justify-end text-[12px] text-gray-500">
+              <Link to="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</Link>
+              <span className="opacity-30">·</span>
+              <Link to="/terms" className="hover:text-white transition-colors">Terms of Service</Link>
+              <span className="opacity-30">·</span>
+              <Link to="/cookie-policy" className="hover:text-white transition-colors">Cookie Policy</Link>
+            </div>
+
+            <p className="text-[12px] text-gray-500 font-medium whitespace-nowrap">
+              © 2026 EAOverseas. All rights reserved
+            </p>
+          </div>
+
+        </div>
+      </footer>
+    </>
+  );
 };
 
 export default Footer;
-
