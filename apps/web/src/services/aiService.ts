@@ -62,8 +62,13 @@ export async function* streamAIResponse(
         }),
     });
 
+    if (!OPENAI_API_KEY) {
+        throw new Error("AI Configuration missing. Please check your environment variables.");
+    }
+
     if (!response.ok || !response.body) {
-        throw new Error("Streaming request failed");
+        const errorDetail = await response.json().catch(() => ({}));
+        throw new Error(errorDetail.error?.message || "Secure gateway connection failed.");
     }
 
     const reader = response.body.getReader();
