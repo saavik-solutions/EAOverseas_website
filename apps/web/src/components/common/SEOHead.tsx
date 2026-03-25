@@ -11,11 +11,16 @@ interface SEOHeadProps {
 export function SEOHead({ 
     title, 
     description, 
-    image = 'https://eaoverseas.com/assets/logo.png', // Official Logo Fallback
+    image = '/assets/logo.png', // Default Logo
     url = 'https://eaoverseas.com',
     type = 'website'
 }: SEOHeadProps) {
     const siteTitle = title.includes('EAOverseas') ? title : `${title} | EAOverseas`;
+    
+    // Ensure absolute image URL for social scrapers
+    const siteBaseUrl = 'https://eaoverseas.com';
+    const absoluteImage = image.startsWith('http') ? image : `${siteBaseUrl}${image}`;
+    const absoluteUrl = url.startsWith('http') ? url : `${siteBaseUrl}${url}`;
 
     return (
         <Helmet>
@@ -25,17 +30,18 @@ export function SEOHead({
 
             {/* Open Graph / Facebook */}
             <meta property="og:type" content={type} />
-            <meta property="og:url" content={url} />
+            <meta property="og:url" content={absoluteUrl} />
             <meta property="og:title" content={siteTitle} />
             <meta property="og:description" content={description} />
-            <meta property="og:image" content={image} />
+            <meta property="og:image" content={absoluteImage} />
+            <meta property="og:site_name" content="EAOverseas" />
 
             {/* Twitter */}
             <meta property="twitter:card" content="summary_large_image" />
-            <meta property="twitter:url" content={url} />
+            <meta property="twitter:url" content={absoluteUrl} />
             <meta property="twitter:title" content={siteTitle} />
             <meta property="twitter:description" content={description} />
-            <meta property="twitter:image" content={image} />
+            <meta property="twitter:image" content={absoluteImage} />
         </Helmet>
     );
 }
