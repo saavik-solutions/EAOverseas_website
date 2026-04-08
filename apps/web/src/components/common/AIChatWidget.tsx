@@ -59,7 +59,7 @@ const AIChatWidget: React.FC = () => {
                 return updated;
             });
         } catch {
-            setMessages(prev => [...prev, { role: 'assistant', content: "I'm having a brief connection issue. Our executive team is available at **+1 408 741 6166** for immediate support.", streaming: false }]);
+            setMessages(prev => [...prev, { role: 'assistant', content: "I'm having a brief connection issue. Our executive team is available at **+91 97015 63362** for immediate support.", streaming: false }]);
         } finally {
             setIsLoading(false);
         }
@@ -84,7 +84,7 @@ const AIChatWidget: React.FC = () => {
             <div className={`fixed z-[9999] transition-all duration-500 cubic-bezier(0.4, 0, 0.2, 1)
                 ${isFullView 
                     ? 'inset-x-0 bottom-0 md:inset-auto md:bottom-8 md:right-8 flex items-end justify-center md:justify-end' 
-                    : 'bottom-4 right-[74px] md:bottom-8 md:right-[110px] pointer-events-none'}`}>
+                    : 'bottom-20 right-4 md:bottom-28 md:right-8 pointer-events-none'}`}>
 
                 {isOpen && !isMinimized && (
                     <div className="bg-white flex flex-col w-full h-[90vh] md:w-[420px] md:h-[650px] shadow-[0_20px_60px_rgba(0,0,0,0.15)] md:rounded-[2rem] overflow-hidden pointer-events-auto border border-slate-100 animate-[enterpriseEnter_0.4s_ease-out]">
@@ -188,16 +188,16 @@ const AIChatWidget: React.FC = () => {
                         )}
                         <button
                             onClick={() => { if (isMinimized) setIsMinimized(false); else setIsOpen(!isOpen); setShowTooltip(false); }}
-                            className={`group relative w-[76px] h-[76px] rounded-[1.75rem] flex items-center justify-center transition-all duration-500 hover:rotate-3 shadow-2xl overflow-hidden
+                            className={`group relative w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center transition-all duration-500 hover:rotate-3 shadow-[0_20px_50px_rgba(0,0,0,0.15)] overflow-hidden
                                 ${isOpen && !isMinimized ? 'bg-slate-900' : 'bg-white border border-slate-100'}`}
                         >
-                            <span className={`material-symbols-outlined text-[32px] font-bold transition-all duration-500 ${isOpen && !isMinimized ? 'text-white' : 'text-[#7a29c2]'}`}>
+                            <span className={`material-symbols-outlined text-[20px] sm:text-[24px] md:text-[32px] font-bold transition-all duration-500 ${isOpen && !isMinimized ? 'text-white' : 'text-[#7a29c2]'}`}>
                                 {isMinimized ? 'unfold_more' : 'auto_awesome'}
                             </span>
                         </button>
                         {!isOpen && (
-                            <span className="absolute -top-1 -right-1 w-7 h-7 bg-[#7a29c2] border-4 border-white rounded-xl shadow-lg flex items-center justify-center z-10 pointer-events-none">
-                                <span className="text-[10px] font-black text-white leading-none">AI</span>
+                            <span className="absolute -top-1 -right-1 w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 bg-[#7a29c2] border-2 md:border-4 border-white rounded-lg md:rounded-xl shadow-lg flex items-center justify-center z-10 pointer-events-none">
+                                <span className="text-[8px] sm:text-[9px] md:text-[10px] font-black text-white leading-none">AI</span>
                             </span>
                         )}
                     </div>

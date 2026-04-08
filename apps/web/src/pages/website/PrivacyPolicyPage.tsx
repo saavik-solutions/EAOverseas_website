@@ -18,33 +18,33 @@ const PrivacyPolicy = () => {
                 {/* Privacy at a Glance */}
                 <section className="mb-20" id="summary">
                     <div className="flex items-center gap-3 mb-8 px-2">
-                        <span className="material-symbols-outlined text-[#3f6ee4]">dashboard</span>
+                        <span className="material-symbols-outlined text-[#7a29c2]">dashboard</span>
                         <h2 className="text-2xl font-bold tracking-tight">Privacy at a Glance</h2>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                         <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
-                            <div className="w-10 h-10 bg-blue-50 text-[#3f6ee4] rounded-full flex items-center justify-center mb-4">
+                            <div className="w-10 h-10 bg-purple-50 text-[#7a29c2] rounded-full flex items-center justify-center mb-4">
                                 <span className="material-symbols-outlined text-xl">data_usage</span>
                             </div>
                             <h3 className="font-bold text-lg mb-2">What We Collect</h3>
                             <p className="text-gray-500 text-sm leading-relaxed">Personal and academic data required for your applications.</p>
                         </div>
                         <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
-                            <div className="w-10 h-10 bg-blue-50 text-[#3f6ee4] rounded-full flex items-center justify-center mb-4">
+                            <div className="w-10 h-10 bg-purple-50 text-[#7a29c2] rounded-full flex items-center justify-center mb-4">
                                 <span className="material-symbols-outlined text-xl">lightbulb</span>
                             </div>
                             <h3 className="font-bold text-lg mb-2">Why We Collect It</h3>
                             <p className="text-gray-500 text-sm leading-relaxed">To personalize your experience and improve our services.</p>
                         </div>
                         <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
-                            <div className="w-10 h-10 bg-blue-50 text-[#3f6ee4] rounded-full flex items-center justify-center mb-4">
+                            <div className="w-10 h-10 bg-purple-50 text-[#7a29c2] rounded-full flex items-center justify-center mb-4">
                                 <span className="material-symbols-outlined text-xl">encrypted</span>
                             </div>
                             <h3 className="font-bold text-lg mb-2">How We Protect It</h3>
                             <p className="text-gray-500 text-sm leading-relaxed">Enterprise-grade encryption and secure infrastructure.</p>
                         </div>
                         <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
-                            <div className="w-10 h-10 bg-blue-50 text-[#3f6ee4] rounded-full flex items-center justify-center mb-4">
+                            <div className="w-10 h-10 bg-purple-50 text-[#7a29c2] rounded-full flex items-center justify-center mb-4">
                                 <span className="material-symbols-outlined text-xl">settings_accessibility</span>
                             </div>
                             <h3 className="font-bold text-lg mb-2">Your Control</h3>
@@ -58,14 +58,14 @@ const PrivacyPolicy = () => {
                     {/* Data Collection */}
                     <section className="bg-white rounded-xl p-8 md:p-12 shadow-sm border border-gray-100" id="collection">
                         <div className="max-w-3xl">
-                            <h2 className="text-[#3f6ee4] text-sm font-black uppercase tracking-widest mb-4">Section 1</h2>
+                            <h2 className="text-[#7a29c2] text-sm font-black uppercase tracking-widest mb-4">Section 1</h2>
                             <h3 className="text-3xl font-bold mb-6">Data Collection</h3>
                             <p className="text-gray-600 text-lg mb-8 leading-relaxed">
                                 We collect information to provide better services to all our users. This includes everything from basic details like your name to complex data like academic transcripts.
                             </p>
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                                 <div className="flex flex-col gap-3">
-                                    <span className="material-symbols-outlined text-[#3f6ee4] text-3xl">person_search</span>
+                                    <span className="material-symbols-outlined text-[#7a29c2] text-3xl">person_search</span>
                                     <h4 className="font-bold text-lg">Personal Data</h4>
                                     <ul className="text-gray-500 text-sm space-y-2">
                                         <li>• Name & Email</li>
@@ -74,7 +74,7 @@ const PrivacyPolicy = () => {
                                     </ul>
                                 </div>
                                 <div className="flex flex-col gap-3">
-                                    <span className="material-symbols-outlined text-[#3f6ee4] text-3xl">school</span>
+                                    <span className="material-symbols-outlined text-[#7a29c2] text-3xl">school</span>
                                     <h4 className="font-bold text-lg">Academic Data</h4>
                                     <ul className="text-gray-500 text-sm space-y-2">
                                         <li>• Transcripts & Grades</li>
@@ -83,7 +83,7 @@ const PrivacyPolicy = () => {
                                     </ul>
                                 </div>
                                 <div className="flex flex-col gap-3">
-                                    <span className="material-symbols-outlined text-[#3f6ee4] text-3xl">devices</span>
+                                    <span className="material-symbols-outlined text-[#7a29c2] text-3xl">devices</span>
                                     <h4 className="font-bold text-lg">Usage Data</h4>
                                     <ul className="text-gray-500 text-sm space-y-2">
                                         <li>• IP Address</li>
@@ -100,29 +100,29 @@ const PrivacyPolicy = () => {
                         {/* Usage */}
                         <section className="bg-white rounded-xl p-8 shadow-sm border border-gray-100">
                             <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
-                                <span className="material-symbols-outlined text-[#3f6ee4]">trending_up</span>
+                                <span className="material-symbols-outlined text-[#7a29c2]">trending_up</span>
                                 Data Usage
                             </h3>
                             <p className="text-gray-500 mb-6 text-sm">We use your data to improve our platform and personalize your journey.</p>
                             <ul className="space-y-4">
                                 <li className="flex gap-3">
-                                    <span className="material-symbols-outlined text-[#3f6ee4]">check_circle</span>
+                                    <span className="material-symbols-outlined text-[#7a29c2]">check_circle</span>
                                     <span className="text-sm font-medium">To personalize university recommendations</span>
                                 </li>
                                 <li className="flex gap-3">
-                                    <span className="material-symbols-outlined text-[#3f6ee4]">check_circle</span>
+                                    <span className="material-symbols-outlined text-[#7a29c2]">check_circle</span>
                                     <span className="text-sm font-medium">To facilitate your application process</span>
                                 </li>
                                 <li className="flex gap-3">
-                                    <span className="material-symbols-outlined text-[#3f6ee4]">check_circle</span>
+                                    <span className="material-symbols-outlined text-[#7a29c2]">check_circle</span>
                                     <span className="text-sm font-medium">To improve site navigation and performance</span>
                                 </li>
                             </ul>
                         </section>
                         {/* Sharing */}
-                        <section className="bg-blue-50 rounded-xl p-8 shadow-sm border border-blue-100">
+                        <section className="bg-purple-50 rounded-xl p-8 shadow-sm border border-purple-100">
                             <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
-                                <span className="material-symbols-outlined text-[#3f6ee4]">handshake</span>
+                                <span className="material-symbols-outlined text-[#7a29c2]">handshake</span>
                                 Data Sharing
                             </h3>
                             <p className="text-gray-500 mb-6 text-sm">We prioritize your trust. Here is how we handle sharing.</p>
@@ -132,11 +132,11 @@ const PrivacyPolicy = () => {
                                     <span className="text-sm font-semibold">We NEVER sell your data to third parties</span>
                                 </li>
                                 <li className="flex gap-3">
-                                    <span className="material-symbols-outlined text-[#3f6ee4]">info</span>
+                                    <span className="material-symbols-outlined text-[#7a29c2]">info</span>
                                     <span className="text-sm font-medium">Shared only with selected universities</span>
                                 </li>
                                 <li className="flex gap-3">
-                                    <span className="material-symbols-outlined text-[#3f6ee4]">info</span>
+                                    <span className="material-symbols-outlined text-[#7a29c2]">info</span>
                                     <span className="text-sm font-medium">Trusted service providers (AWS, Stripe)</span>
                                 </li>
                             </ul>
@@ -145,7 +145,7 @@ const PrivacyPolicy = () => {
 
                     {/* Security & Rights */}
                     <section className="grid grid-cols-1 md:grid-cols-2 gap-8" id="security">
-                        <div className="bg-[#3f6ee4] text-white rounded-xl p-8 shadow-lg">
+                        <div className="bg-[#7a29c2] text-white rounded-xl p-8 shadow-lg">
                             <div className="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center mb-6">
                                 <span className="material-symbols-outlined text-white">admin_panel_settings</span>
                             </div>
@@ -159,8 +159,8 @@ const PrivacyPolicy = () => {
                             </div>
                         </div>
                         <div className="bg-white rounded-xl p-8 shadow-sm border border-gray-100" id="rights">
-                            <div className="w-12 h-12 bg-[#3f6ee4]/10 rounded-lg flex items-center justify-center mb-6">
-                                <span className="material-symbols-outlined text-[#3f6ee4]">gavel</span>
+                            <div className="w-12 h-12 bg-[#7a29c2]/10 rounded-lg flex items-center justify-center mb-6">
+                                <span className="material-symbols-outlined text-[#7a29c2]">gavel</span>
                             </div>
                             <h3 className="text-2xl font-bold mb-4">Your Rights</h3>
                             <p className="text-gray-500 text-sm leading-relaxed mb-6">

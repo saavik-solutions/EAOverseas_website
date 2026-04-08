@@ -7,7 +7,7 @@ import { destinations } from '@/data/countries';
 const Navbar = () => {
     const navigate = useNavigate();
     const location = useLocation();
-    const { user, logout } = useAuth();
+    const { user, logout, setLoginModalOpen } = useAuth();
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isSearchOpen, setIsSearchOpen] = useState(false);
     const [searchQuery, setSearchQuery] = useState('');
@@ -295,15 +295,23 @@ const Navbar = () => {
                             Check Eligibility
                         </button>
 
-                        {/* Authentication buttons removed for simplified mobile UI */}
+                        {user && (
+                            <button
+                                onClick={() => { logout(); setIsMobileMenuOpen(false); }}
+                                className="w-full text-red-500 font-bold py-3 flex items-center justify-center gap-2 rounded-xl hover:bg-red-50 transition-colors"
+                            >
+                                <span className="material-symbols-outlined">logout</span>
+                                Logout
+                            </button>
+                        )}
 
                         {/* Mobile Phone */}
                         <a
-                            href="tel:+14087416166"
+                            href="tel:+919701563362"
                             className="flex items-center justify-center gap-2 text-[#7a29c2] font-semibold text-sm py-2"
                         >
                             <span className="material-symbols-outlined text-[17px]">call</span>
-                            +1 (408) 741 6166
+                            +91 97015 63362
                         </a>
                     </div>
                 </div>

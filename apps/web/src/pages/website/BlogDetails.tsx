@@ -29,6 +29,7 @@ const BlogDetails = () => {
         likes: 0,
         views: 0
     });
+    const [hasLiked, setHasLiked] = useState(false);
 
     const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:3001';
 
@@ -54,15 +55,43 @@ const BlogDetails = () => {
     };
 
     const handleLike = async () => {
+        if (hasLiked) {
+            toast('You have already liked this strategy!', { icon: '✨' });
+            return;
+        }
+
         try {
             const response = await fetch(`${apiUrl}/api/v1/blogs/${slug}/like`, { method: 'POST' });
             const data = await response.json();
             if (data.success) {
                 setEngagement(prev => ({ ...prev, likes: data.likes }));
+                setHasLiked(true);
                 toast.success('Strategy liked!', { icon: '🔥' });
             }
         } catch (error) {
             toast.error('Engagement sync failed');
+        }
+    };
+
+    const handleShare = async () => {
+        const shareData = {
+            title: blog?.title || 'EAOverseas Strategy',
+            text: blog?.excerpt || 'Check out this strategy from EAOverseas!',
+            url: window.location.href,
+        };
+
+        try {
+            if (navigator.share) {
+                await navigator.share(shareData);
+                toast.success('Shared successfully!');
+            } else {
+                await navigator.clipboard.writeText(window.location.href);
+                toast.success('Link copied to clipboard!', { icon: '📋' });
+            }
+        } catch (error) {
+            if ((error as Error).name !== 'AbortError') {
+                toast.error('Failed to share');
+            }
         }
     };
 
@@ -99,12 +128,12 @@ const BlogDetails = () => {
                     <div className="sticky top-32 space-y-12 flex flex-col items-center">
                         <button 
                             onClick={handleLike}
-                            className="group flex flex-col items-center gap-2"
+                            className={`group flex flex-col items-center gap-2 ${hasLiked ? 'cursor-default' : ''}`}
                         >
-                            <div className="w-14 h-14 bg-white border border-gray-100 rounded-2xl flex items-center justify-center text-gray-400 group-hover:bg-red-50 group-hover:text-red-500 group-active:scale-90 transition-all shadow-sm">
-                                <span className="material-symbols-outlined">favorite</span>
+                            <div className={`w-14 h-14 bg-white border border-gray-100 rounded-2xl flex items-center justify-center transition-all shadow-sm ${hasLiked ? 'text-red-500 bg-red-50' : 'text-gray-400 group-hover:bg-red-50 group-hover:text-red-500 group-active:scale-90'}`}>
+                                <span className={`material-symbols-outlined ${hasLiked ? 'fill-current' : ''}`}>favorite</span>
                             </div>
-                            <span className="text-xs font-black text-gray-900">{engagement.likes}</span>
+                            <span className={`text-xs font-black ${hasLiked ? 'text-red-600' : 'text-gray-900'}`}>{engagement.likes}</span>
                         </button>
 
                         <div className="flex flex-col items-center gap-2">
@@ -114,14 +143,17 @@ const BlogDetails = () => {
                             <span className="text-xs font-black text-gray-900">{engagement.views}</span>
                         </div>
 
-                        <button className="w-14 h-14 bg-white border border-gray-100 rounded-2xl flex items-center justify-center text-gray-400 hover:text-blue-600 transition-all shadow-sm">
+                        <button 
+                            onClick={handleShare}
+                            className="w-14 h-14 bg-white border border-gray-100 rounded-2xl flex items-center justify-center text-gray-400 hover:text-blue-600 transition-all shadow-sm"
+                        >
                             <span className="material-symbols-outlined">share</span>
                         </button>
                     </div>
                 </div>
 
                 {/* ── Center: Content ── */}
-                <article className="lg:col-span-8 space-y-12 text-left">
+                <article className="lg:col-span-11 space-y-12 text-left">
                     <div className="space-y-6">
                         <span className="bg-blue-600 text-white px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest">
                             {blog.category}
@@ -167,44 +199,16 @@ const BlogDetails = () => {
                                 {engagement.views}
                             </div>
                          </div>
-                         <button className="text-blue-600 font-black flex items-center gap-2">
-                             <span className="material-symbols-outlined">share</span>
-                             Share
-                         </button>
+                             <button 
+                                 onClick={handleShare}
+                                 className="text-blue-600 font-black flex items-center gap-2"
+                             >
+                                 <span className="material-symbols-outlined">share</span>
+                                 Share
+                             </button>
                     </div>
                 </article>
 
-                {/* ── Right: Sidebar ── */}
-                <div className="lg:col-span-3 space-y-12">
-                    <div className="bg-gray-900 rounded-[2.5rem] p-10 space-y-8 relative overflow-hidden group">
-                        <div className="absolute top-0 right-0 w-32 h-32 bg-blue-600/20 rounded-full blur-3xl"></div>
-                        <h4 className="text-white font-black text-xl leading-snug">Elite Study Strategy Waitlist</h4>
-                        <p className="text-gray-400 font-medium text-sm leading-relaxed">
-                            Join 4,000+ scholars receiving weekly institutional intelligence direct to their inbox.
-                        </p>
-                        <div className="space-y-4">
-                            <input 
-                                type="email" 
-                                placeholder="Strategy Email"
-                                className="w-full bg-white/10 border-none rounded-2xl px-6 py-4 text-white placeholder-white/40 font-bold focus:ring-2 focus:ring-blue-500"
-                            />
-                            <button className="w-full bg-white text-gray-900 font-[950] py-4 rounded-2xl shadow-xl hover:scale-[1.02] transition-all">
-                                Subscribe
-                            </button>
-                        </div>
-                    </div>
-
-                    <div className="space-y-6">
-                        <h4 className="text-[10px] font-black uppercase text-gray-400 tracking-[0.2em] ml-1">Elite Tags</h4>
-                        <div className="flex flex-wrap gap-2">
-                            {['Visa Intelligence', 'Scholarship', 'Global Strategy', 'Compliance'].map(tag => (
-                                <span key={tag} className="px-4 py-2 bg-gray-50 text-gray-500 font-bold text-xs rounded-xl hover:bg-blue-50 hover:text-blue-600 transition-colors cursor-pointer">
-                                    {tag}
-                                </span>
-                            ))}
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     );

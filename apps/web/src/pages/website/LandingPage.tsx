@@ -18,6 +18,8 @@ import FAQSection from '@/features/landing/components/FAQSection';
 import BookingCTASection from '@/features/landing/components/BookingCTASection';
 import AIChatWidget from '@/components/common/AIChatWidget';
 import ConsultationBookingModal from '@/features/consultant/ConsultationBookingModal';
+import LoginModal from '@/features/auth/LoginModal';
+import { useAuth } from '@/shared/contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { SEOHead } from '@/components/common/SEOHead';
 import { getWhatsAppLink } from '@/shared/constants/contacts';
@@ -41,6 +43,14 @@ const LandingPage = () => {
 
 
     const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
+    const { isLoginModalOpen, setLoginModalOpen } = useAuth();
+
+    const scrollToBooking = () => {
+        const element = document.getElementById('booking-section');
+        if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
 
     return (
         <div className="min-h-screen bg-white relative font-sans text-[#111418] overflow-x-hidden">
@@ -71,9 +81,9 @@ const LandingPage = () => {
                 <div className="w-full relative z-0">
                     <HeroCarousel 
                         slides={[
-                            <MainSlide onBookingClick={() => setIsBookingModalOpen(true)} />,
-                            <DestinationsSlide onBookingClick={() => setIsBookingModalOpen(true)} />,
-                            <ScholarshipSlide onBookingClick={() => setIsBookingModalOpen(true)} />
+                            <ScholarshipSlide onBookingClick={scrollToBooking} />,
+                            <MainSlide onBookingClick={scrollToBooking} />,
+                            <DestinationsSlide onBookingClick={scrollToBooking} />
                         ]} 
                         interval={6000}
                     />
@@ -116,7 +126,7 @@ const LandingPage = () => {
                 href={getWhatsAppLink()}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="fixed bottom-6 right-4 md:bottom-8 md:right-8 z-[9999] block transition-transform hover:scale-110 active:scale-95"
+                className="fixed bottom-4 right-4 md:bottom-8 md:right-8 z-[9999] block transition-transform hover:scale-110 active:scale-95"
                 aria-label="Chat on WhatsApp"
             >
                 <img
@@ -142,6 +152,10 @@ const LandingPage = () => {
             <JourneyCTASection />
             <Footer />
             <AIChatWidget />
+            <LoginModal 
+                isOpen={isLoginModalOpen} 
+                onClose={() => setLoginModalOpen(false)} 
+            />
             </div>
         </div >
     );

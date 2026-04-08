@@ -33,8 +33,16 @@ const BlogSchema: Schema = new Schema(
     { timestamps: true }
 );
 
-// Index for slug and category
-BlogSchema.index({ slug: 1 });
-BlogSchema.index({ category: 1 });
+// Pre-save hook to generate slug
+BlogSchema.pre('save', function(next) {
+    const blog = this as any;
+    if (!blog.slug && blog.title) {
+        blog.slug = blog.title
+            .toLowerCase()
+            .replace(/[^\w ]+/g, '')
+            .replace(/ +/g, '-');
+    }
+    next();
+});
 
 export const Blog = mongoose.model<IBlog>('Blog', BlogSchema);

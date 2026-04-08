@@ -46,8 +46,8 @@ const MOCK_USER: User = {
 };
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-    const [user, setUser] = useState<User | null>(MOCK_USER);
-    const [accessToken, setAccessToken] = useState<string | null>(MOCK_USER ? 'DEV_ADMIN_TOKEN_2026' : null);
+    const [user, setUser] = useState<User | null>(null);
+    const [accessToken, setAccessToken] = useState<string | null>(null);
     const [refreshTokenValue, setRefreshTokenValue] = useState<string | null>(null);
     const [loading, setLoading] = useState(true);
     const [isLoginModalOpen, setLoginModalOpen] = useState(false);
@@ -64,14 +64,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
                 console.error("Failed to parse stored user", e);
                 setUser(MOCK_USER);
             }
-        } else {
-            setUser(MOCK_USER);
         }
         if (storedToken) {
             setAccessToken(storedToken);
-        } else if (!storedUser && MOCK_USER) {
-            setAccessToken('DEV_ADMIN_TOKEN_2026');
-            localStorage.setItem('token', 'DEV_ADMIN_TOKEN_2026');
         }
         if (storedRefresh) {
             setRefreshTokenValue(storedRefresh);

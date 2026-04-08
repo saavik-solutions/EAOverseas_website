@@ -12,14 +12,14 @@ const CookiePolicy = () => {
 
                 <section className="space-y-6 md:space-y-8">
                     <div className="bg-white p-5 md:p-8 rounded-xl md:rounded-2xl border border-gray-100 shadow-sm">
-                        <h2 className="text-xl md:text-2xl font-bold mb-3 md:mb-4 text-[#307de8]">What are Cookies?</h2>
+                        <h2 className="text-xl md:text-2xl font-bold mb-3 md:mb-4 text-[#7a29c2]">What are Cookies?</h2>
                         <p className="text-gray-600 text-sm md:text-base leading-relaxed">
                             Cookies are small text files placed on your device when you visit our website. They help us recognize your browser and remember certain information to enhance your experience.
                         </p>
                     </div>
 
                     <div className="bg-white p-5 md:p-8 rounded-xl md:rounded-2xl border border-gray-100 shadow-sm">
-                        <h2 className="text-xl md:text-2xl font-bold mb-3 md:mb-4 text-[#307de8]">How We Use Cookies</h2>
+                        <h2 className="text-xl md:text-2xl font-bold mb-3 md:mb-4 text-[#7a29c2]">How We Use Cookies</h2>
                         <p className="text-gray-600 text-sm md:text-base leading-relaxed mb-3 md:mb-4">
                             We use cookies for various purposes:
                         </p>
@@ -32,9 +32,9 @@ const CookiePolicy = () => {
                     </div>
 
                     <div className="bg-white p-5 md:p-8 rounded-xl md:rounded-2xl border border-gray-100 shadow-sm">
-                        <h2 className="text-xl md:text-2xl font-bold mb-3 md:mb-4 text-[#307de8]">Types of Cookies</h2>
+                        <h2 className="text-xl md:text-2xl font-bold mb-3 md:mb-4 text-[#7a29c2]">Types of Cookies</h2>
                         <div className="space-y-3 md:space-y-4">
-                            <div className="border-l-4 border-blue-600 pl-3 md:pl-4">
+                            <div className="border-l-4 border-purple-600 pl-3 md:pl-4">
                                 <h3 className="font-bold mb-1 md:mb-2 text-sm md:text-base">Essential Cookies</h3>
                                 <p className="text-gray-600 text-xs md:text-sm">
                                     Required for the website to function. Cannot be disabled.
@@ -56,14 +56,14 @@ const CookiePolicy = () => {
                     </div>
 
                     <div className="bg-white p-5 md:p-8 rounded-xl md:rounded-2xl border border-gray-100 shadow-sm">
-                        <h2 className="text-xl md:text-2xl font-bold mb-3 md:mb-4 text-[#307de8]">Your Choices</h2>
+                        <h2 className="text-xl md:text-2xl font-bold mb-3 md:mb-4 text-[#7a29c2]">Your Choices</h2>
                         <p className="text-gray-600 text-sm md:text-base leading-relaxed">
                             You can control cookies through your browser settings. However, blocking certain cookies may impact your experience on our website. Most modern browsers allow you to manage cookie preferences in their privacy settings.
                         </p>
                     </div>
 
                     <div className="bg-white p-5 md:p-8 rounded-xl md:rounded-2xl border border-gray-100 shadow-sm">
-                        <h2 className="text-xl md:text-2xl font-bold mb-3 md:mb-4 text-[#307de8]">Contact Us</h2>
+                        <h2 className="text-xl md:text-2xl font-bold mb-3 md:mb-4 text-[#7a29c2]">Contact Us</h2>
                         <p className="text-gray-600 text-sm md:text-base leading-relaxed mb-3 md:mb-4">
                             If you have questions about our cookie policy, please contact us:
                         </p>

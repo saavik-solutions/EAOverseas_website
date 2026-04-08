@@ -18,19 +18,36 @@ dotenv.config();
 const app = express();
 
 // ── Critical Global Middleware (Must be BEFORE routes) ──────────────────────
+const allowedOrigins = [
+    'http://localhost:5173',
+    'http://localhost:5174',
+    'http://localhost:5175',
+    'http://localhost:5176',
+    'http://localhost:5177',
+    'http://localhost:5178',
+    'http://localhost:5179',
+    'http://localhost:5180',
+    'http://localhost:5181',
+    'http://localhost:5182',
+    'http://localhost:5183',
+    'http://localhost:5184',
+    'http://localhost:5185',
+    'http://localhost:3000',
+    'http://localhost:3001',
+    'https://eaoverseas.com',
+    process.env.FRONTEND_URL
+].filter(Boolean);
+
 app.use(cors({
-    origin: [
-        'http://localhost:5173',
-        'http://localhost:5174',
-        'http://localhost:5175',
-        'http://localhost:5176',
-        'http://localhost:5177',
-        'http://localhost:5178',
-        'http://localhost:3000',
-        'http://localhost:3001',
-        'https://eaoverseas.com',
-        process.env.FRONTEND_URL || ''
-    ].filter(Boolean),
+    origin: (origin, callback) => {
+        logger.info('CORS Origin Check', { origin });
+        if (!origin || allowedOrigins.includes(origin) || origin.startsWith('http://localhost:')) {
+            callback(null, true);
+        } else {
+            logger.warn('CORS Origin Denied', { origin });
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
     credentials: true,
 }));
 app.use(express.json({ limit: '10mb' }));
@@ -58,6 +75,7 @@ import authRoutes from './routes/auth.routes';
 import universityRoutes from './routes/university.routes';
 import applicationRoutes from './routes/application.routes';
 import inquiryRoutes from './routes/inquiry.routes';
+import aiRoutes from './routes/ai.routes';
 
 // ── Security Middleware ──────────────────────────────────────────────────────
 app.use(helmet());
@@ -84,6 +102,7 @@ app.use('/api/scraper', scraperRoutes);
 app.use('/api/chat', chatRoutes);
 app.use('/api/applications', applicationRoutes);
 app.use('/api/inquiries', inquiryRoutes);
+app.use('/api/ai', aiRoutes);
 
 // Already mounted above for precedence
 // app.use('/api/external', externalRoutes);

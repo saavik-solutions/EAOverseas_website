@@ -20,7 +20,7 @@ export const MainSlide: React.FC<SlideProps> = ({ onBookingClick }) => {
   return (
     <div className="relative w-full min-h-[500px] md:min-h-[550px] md:h-full flex items-center justify-center overflow-hidden pt-28 pb-10 md:pt-40 md:pb-20">
       <div className="max-w-[1400px] w-full px-6 lg:px-16 grid lg:grid-cols-2 gap-10 md:gap-24 items-center z-10 text-left">
-        <div className="space-y-6 md:space-y-8 animate-fade-in-up order-2 lg:order-1">
+        <div className="space-y-6 md:space-y-8 animate-fade-in-up order-1 lg:order-1">
           <div className="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-slate-50 border border-slate-200 text-slate-500 font-bold text-[10px] md:text-[11px] tracking-[0.2em] uppercase">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
@@ -52,7 +52,7 @@ export const MainSlide: React.FC<SlideProps> = ({ onBookingClick }) => {
             </button>
           </div>
         </div>
-        <div className="relative order-1 lg:order-2 mt-8 lg:mt-0 animate-fade-in-right">
+        <div className="relative order-2 lg:order-2 mt-8 lg:mt-0 animate-fade-in-right">
             <div className="relative z-10 group bg-slate-50 p-3 rounded-[3.5rem] border border-slate-100 shadow-inner">
                 <img 
                     src={heroSuccess} 
@@ -83,7 +83,7 @@ export const ScholarshipSlide: React.FC<SlideProps> = ({ onBookingClick }) => {
   return (
     <div className="relative w-full min-h-[500px] md:min-h-[550px] md:h-full flex items-center justify-center overflow-hidden pt-28 pb-10 md:pt-40 md:pb-20">
       <div className="max-w-[1400px] w-full px-6 lg:px-16 grid lg:grid-cols-2 gap-10 md:gap-24 items-center z-10 text-left">
-        <div className="space-y-6 md:space-y-8 animate-fade-in-up order-2 lg:order-1">
+        <div className="space-y-6 md:space-y-8 animate-fade-in-up order-1 lg:order-1">
           <div className="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-purple-50 border border-purple-100 text-[#7a29c2] font-bold text-[10px] md:text-[11px] tracking-[0.2em] uppercase">
             Financial Strategy & Awards
           </div>
@@ -97,7 +97,7 @@ export const ScholarshipSlide: React.FC<SlideProps> = ({ onBookingClick }) => {
           </p>
           <div className="flex flex-col sm:flex-row gap-5 pt-4">
             <button
-              onClick={() => navigate('/loan-calculator')}
+              onClick={() => navigate('/contact')}
               className="px-8 md:px-10 py-4 md:py-5 bg-[#7a29c2] text-white font-bold rounded-2xl hover:bg-[#6a24aa] transition-all hover:translate-y-[-2px] active:translate-y-[0px] shadow-xl shadow-purple-900/10"
             >
               Check Eligibility
@@ -114,7 +114,7 @@ export const ScholarshipSlide: React.FC<SlideProps> = ({ onBookingClick }) => {
             </div>
           </div>
         </div>
-        <div className="relative order-1 lg:order-2 mt-8 lg:mt-0 animate-fade-in-right">
+        <div className="relative order-2 lg:order-2 mt-8 lg:mt-0 animate-fade-in-right">
             <div className="relative p-3 bg-slate-50 rounded-[3.5rem] border border-slate-100 shadow-inner group">
                 <img 
                     src={heroScholarship} 
@@ -133,7 +133,7 @@ export const DestinationsSlide: React.FC<SlideProps> = ({ onBookingClick }) => {
     return (
     <div className="relative w-full min-h-[500px] md:min-h-[550px] md:h-full flex items-center justify-center overflow-hidden pt-28 pb-10 md:pt-40 md:pb-20">
         <div className="max-w-[1400px] w-full px-6 lg:px-16 grid lg:grid-cols-2 gap-10 md:gap-24 items-center z-10 text-left">
-          <div className="space-y-6 md:space-y-8 animate-fade-in-up order-2 lg:order-1">
+          <div className="space-y-6 md:space-y-8 animate-fade-in-up order-1 lg:order-1">
             <div className="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-purple-50 border border-purple-100 text-[#7a29c2] font-bold text-[10px] md:text-[11px] tracking-[0.2em] uppercase">
                 Global Network Centers
             </div>
@@ -157,7 +157,7 @@ export const DestinationsSlide: React.FC<SlideProps> = ({ onBookingClick }) => {
               Explore Network
             </button>
           </div>
-          <div className="relative flex justify-center lg:justify-end mt-8 lg:mt-0 order-1 lg:order-2">
+          <div className="relative flex justify-center lg:justify-end mt-8 lg:mt-0 order-2 lg:order-2">
             <div className="relative overflow-hidden group">
                 <img 
                     src={heroDestinations} 
@@ -176,7 +176,7 @@ export const VisaSlide: React.FC<SlideProps> = ({ onBookingClick }) => {
   return (
     <div className="relative w-full min-h-[500px] md:min-h-[550px] md:h-full flex items-center justify-center overflow-hidden pt-28 pb-10 md:pt-40 md:pb-20">
       <div className="max-w-[1400px] w-full px-6 lg:px-16 grid lg:grid-cols-2 gap-10 md:gap-24 items-center z-10 text-left">
-        <div className="space-y-6 md:space-y-8 animate-fade-in-up order-2 lg:order-1">
+        <div className="space-y-6 md:space-y-8 animate-fade-in-up order-1 lg:order-1">
           <div className="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-emerald-50 border border-emerald-100 text-emerald-700 font-bold text-[10px] md:text-[11px] tracking-[0.2em] uppercase">
             Visa Compliance Excellence
           </div>
@@ -203,7 +203,7 @@ export const VisaSlide: React.FC<SlideProps> = ({ onBookingClick }) => {
             </button>
           </div>
         </div>
-        <div className="relative order-1 lg:order-2 mt-8 lg:mt-0 animate-fade-in-right">
+        <div className="relative order-2 lg:order-2 mt-8 lg:mt-0 animate-fade-in-right">
             <div className="relative p-3 bg-slate-50 rounded-[3.5rem] border border-slate-100 shadow-inner group">
                 <img src={visaSuccessHero} alt="Visa Success" className="w-full h-[280px] sm:h-[400px] lg:h-[500px] object-cover rounded-[3rem] grayscale-[0.1] group-hover:grayscale-0 transition-all duration-700" />
             </div>
@@ -218,7 +218,7 @@ export const UniversityMatchSlide: React.FC<SlideProps> = ({ onBookingClick }) =
   return (
     <div className="relative w-full min-h-[500px] md:min-h-[550px] md:h-full flex items-center justify-center overflow-hidden pt-28 pb-10 md:pt-40 md:pb-20">
       <div className="max-w-[1400px] w-full px-6 lg:px-16 grid lg:grid-cols-2 gap-10 md:gap-24 items-center z-10 text-left">
-        <div className="space-y-6 md:space-y-8 animate-fade-in-up order-2 lg:order-1">
+        <div className="space-y-6 md:space-y-8 animate-fade-in-up order-1 lg:order-1">
           <div className="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-blue-50 border border-blue-100 text-blue-700 font-bold text-[10px] md:text-[11px] tracking-[0.2em] uppercase">
             AI-Powered Matchmaking
           </div>
@@ -239,7 +239,7 @@ export const UniversityMatchSlide: React.FC<SlideProps> = ({ onBookingClick }) =
             </button>
           </div>
         </div>
-        <div className="relative order-1 lg:order-2 mt-8 lg:mt-0 animate-fade-in-right">
+        <div className="relative order-2 lg:order-2 mt-8 lg:mt-0 animate-fade-in-right">
             <div className="relative p-3 bg-slate-50 rounded-[3.5rem] border border-slate-100 shadow-inner group">
                 <img src={universityMatchHero} alt="University Match" className="w-full h-[280px] sm:h-[400px] lg:h-[500px] object-cover rounded-[3rem] grayscale-[0.1] group-hover:grayscale-0 transition-all duration-700" />
             </div>
@@ -254,7 +254,7 @@ export const IELTSSlide: React.FC<SlideProps> = ({ onBookingClick }) => {
   return (
     <div className="relative w-full min-h-[500px] md:min-h-[550px] md:h-full flex items-center justify-center overflow-hidden pt-28 pb-10 md:pt-40 md:pb-20">
       <div className="max-w-[1400px] w-full px-6 lg:px-16 grid lg:grid-cols-2 gap-10 md:gap-24 items-center z-10 text-left">
-        <div className="space-y-6 md:space-y-8 animate-fade-in-up order-2 lg:order-1">
+        <div className="space-y-6 md:space-y-8 animate-fade-in-up order-1 lg:order-1">
           <div className="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-rose-50 border border-rose-100 text-rose-700 font-bold text-[10px] md:text-[11px] tracking-[0.2em] uppercase">
             Language Proficiency Hub
           </div>
@@ -281,7 +281,7 @@ export const IELTSSlide: React.FC<SlideProps> = ({ onBookingClick }) => {
             </button>
           </div>
         </div>
-        <div className="relative order-1 lg:order-2 mt-8 lg:mt-0 animate-fade-in-right">
+        <div className="relative order-2 lg:order-2 mt-8 lg:mt-0 animate-fade-in-right">
             <div className="relative p-3 bg-slate-50 rounded-[3.5rem] border border-slate-100 shadow-inner group">
                 <img src={ieltsPrepHero} alt="IELTS Prep" className="w-full h-[280px] sm:h-[400px] lg:h-[500px] object-cover rounded-[3rem] grayscale-[0.1] group-hover:grayscale-0 transition-all duration-700" />
             </div>
@@ -296,7 +296,7 @@ export const PreDepartureSlide: React.FC<SlideProps> = ({ onBookingClick }) => {
   return (
     <div className="relative w-full min-h-[500px] md:min-h-[550px] md:h-full flex items-center justify-center overflow-hidden pt-28 pb-10 md:pt-40 md:pb-20">
       <div className="max-w-[1400px] w-full px-6 lg:px-16 grid lg:grid-cols-2 gap-10 md:gap-24 items-center z-10 text-left">
-        <div className="space-y-6 md:space-y-8 animate-fade-in-up order-2 lg:order-1">
+        <div className="space-y-6 md:space-y-8 animate-fade-in-up order-1 lg:order-1">
           <div className="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-amber-50 border border-amber-100 text-amber-700 font-bold text-[10px] md:text-[11px] tracking-[0.2em] uppercase">
             Orientation & Beyond
           </div>
@@ -317,7 +317,7 @@ export const PreDepartureSlide: React.FC<SlideProps> = ({ onBookingClick }) => {
             </button>
           </div>
         </div>
-        <div className="relative order-1 lg:order-2 mt-8 lg:mt-0 animate-fade-in-right">
+        <div className="relative order-2 lg:order-2 mt-8 lg:mt-0 animate-fade-in-right">
             <div className="relative p-3 bg-slate-50 rounded-[3.5rem] border border-slate-100 shadow-inner group">
                 <img src={preDepartureHero} alt="Pre-Departure" className="w-full h-[280px] sm:h-[400px] lg:h-[500px] object-cover rounded-[3rem] grayscale-[0.1] group-hover:grayscale-0 transition-all duration-700" />
             </div>
@@ -332,7 +332,7 @@ export const AccommodationSlide: React.FC<SlideProps> = ({ onBookingClick }) => 
   return (
     <div className="relative w-full min-h-[500px] md:min-h-[550px] md:h-full flex items-center justify-center overflow-hidden pt-28 pb-10 md:pt-40 md:pb-20">
       <div className="max-w-[1400px] w-full px-6 lg:px-16 grid lg:grid-cols-2 gap-10 md:gap-24 items-center z-10 text-left">
-        <div className="space-y-6 md:space-y-8 animate-fade-in-up order-2 lg:order-1">
+        <div className="space-y-6 md:space-y-8 animate-fade-in-up order-1 lg:order-1">
           <div className="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-violet-50 border border-violet-100 text-violet-700 font-bold text-[10px] md:text-[11px] tracking-[0.2em] uppercase">
             Premium Living Solutions
           </div>
@@ -353,7 +353,7 @@ export const AccommodationSlide: React.FC<SlideProps> = ({ onBookingClick }) => 
             </button>
           </div>
         </div>
-        <div className="relative order-1 lg:order-2 mt-8 lg:mt-0 animate-fade-in-right">
+        <div className="relative order-2 lg:order-2 mt-8 lg:mt-0 animate-fade-in-right">
             <div className="relative p-3 bg-slate-50 rounded-[3.5rem] border border-slate-100 shadow-inner group">
                 <img src={accommodationHero} alt="Accommodation" className="w-full h-[280px] sm:h-[400px] lg:h-[500px] object-cover rounded-[3rem] grayscale-[0.1] group-hover:grayscale-0 transition-all duration-700" />
             </div>

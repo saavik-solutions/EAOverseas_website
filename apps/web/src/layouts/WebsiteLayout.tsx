@@ -2,6 +2,8 @@ import React from 'react';
 import { Outlet } from 'react-router-dom';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
+import LoginModal from '@/features/auth/LoginModal';
+import { useAuth } from '@/shared/contexts/AuthContext';
 import { CookieConsentBanner } from '@/components/common/CookieConsentBanner';
 
 /**
@@ -10,6 +12,7 @@ import { CookieConsentBanner } from '@/components/common/CookieConsentBanner';
  * and the Footer.
  */
 const WebsiteLayout = () => {
+    const { isLoginModalOpen, setLoginModalOpen } = useAuth();
     return (
         <div className="min-h-screen bg-white flex flex-col relative overflow-x-hidden">
             {/* Unified Grid Background - Same as Home Page */}
@@ -28,6 +31,10 @@ const WebsiteLayout = () => {
 
                 <Footer />
             </div>
+            <LoginModal 
+                isOpen={isLoginModalOpen} 
+                onClose={() => setLoginModalOpen(false)} 
+            />
             <CookieConsentBanner />
         </div>
     );

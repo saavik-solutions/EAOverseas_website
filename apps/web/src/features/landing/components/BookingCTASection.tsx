@@ -302,18 +302,17 @@ const BookingCTASection = () => {
           </button>
         )}
         <button 
-          onClick={handleBookingSubmit}
-          disabled={isSubmitting}
-          className="w-full bg-[#7c3aed] hover:bg-[#6d28d9] disabled:opacity-50 text-white font-bold py-4 rounded-xl transition-colors shadow-[0_4px_14px_rgba(124,58,237,0.3)] tracking-wide text-[15px]"
+          onClick={() => navigate('/contact')}
+          className="w-full bg-[#7c3aed] hover:bg-[#6d28d9] text-white font-bold py-4 rounded-xl transition-colors shadow-[0_4px_14px_rgba(124,58,237,0.3)] tracking-wide text-[15px]"
         >
-          {isSubmitting ? 'Submitting...' : 'Check Eligibility'}
+          Check Eligibility
         </button>
       </div>
     </div>
   );
 
   return (
-    <section className="bg-transparent w-full py-24 px-6 lg:px-12 overflow-hidden">
+    <section id="booking-section" className="bg-transparent w-full py-24 px-6 lg:px-12 overflow-hidden">
       <div className="max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-12 items-center">
         
         {/* Left Column: Text & Features */}

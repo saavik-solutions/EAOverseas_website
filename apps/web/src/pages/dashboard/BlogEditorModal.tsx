@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { updateBlog } from '@/services/blogService';
+import { updateBlog, createBlog } from '@/services/blogService';
 
 interface BlogEditorModalProps {
   isOpen: boolean;
@@ -20,29 +20,49 @@ const BlogEditorModal: React.FC<BlogEditorModalProps> = ({ isOpen, onClose, onSu
         content: blog.content || '',
         tags: blog.tags?.join(', ') || '',
         coverImage: blog.coverImage || '',
-        isPublished: blog.isPublished ?? false
+        isPublished: blog.isPublished ?? false,
+        category: blog.category || 'Article'
       });
     }
   }, [blog]);
 
   const handleSave = async (publish?: boolean) => {
-    if (!formData || !blog?._id) return;
+    if (!formData) return;
     setIsSaving(true);
     try {
+      const generateSlug = (text: string) => {
+        return text
+          .toLowerCase()
+          .replace(/[^\w ]+/g, '')
+          .replace(/ +/g, '-');
+      };
+
       const updatedData = {
         ...formData,
-        tags: formData.tags.split(',').map((t: string) => t.trim()).filter(Boolean),
+        slug: blog?.slug || generateSlug(formData.title),
+        category: formData.category || 'Article',
+        tags: typeof formData.tags === 'string' 
+          ? formData.tags.split(',').map((t: string) => t.trim()).filter(Boolean)
+          : formData.tags,
         isPublished: publish !== undefined ? publish : formData.isPublished
       };
-      const success = await updateBlog(blog._id, updatedData);
+      
+      let success = false;
+      if (blog?._id) {
+        success = await updateBlog(blog._id, updatedData);
+      } else {
+        success = await createBlog(updatedData);
+      }
+
       if (success) {
         onSuccess();
         onClose();
       } else {
-        alert('Failed to update blog.');
+        alert('Failed to save blog.');
       }
     } catch (error) {
-      console.error('Update failed', error);
+      console.error('Save failed', error);
+      alert('An error occurred while saving.');
     } finally {
       setIsSaving(false);
     }
@@ -131,22 +151,6 @@ const BlogEditorModal: React.FC<BlogEditorModalProps> = ({ isOpen, onClose, onSu
         {/* Footer Actions */}
         <div className="p-8 border-t border-slate-100 bg-slate-50/50 flex flex-col sm:flex-row gap-4">
           <button
-            onClick={async () => {
-              if (window.confirm('Delete this blog permanently?')) {
-                const { deleteBlog } = await import('@/services/blogService');
-                const success = await deleteBlog(blog._id);
-                if (success) {
-                  onSuccess();
-                  onClose();
-                }
-              }
-            }}
-            className="px-6 py-4 bg-white border-2 border-red-100 text-red-600 rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-red-50 transition-all flex items-center justify-center gap-2"
-          >
-            <span className="material-symbols-outlined text-[20px]">delete</span> Delete
-          </button>
-          
-          <button
             onClick={() => handleSave()}
             disabled={isSaving}
             className="flex-1 py-4 bg-white border-2 border-slate-200 text-slate-900 rounded-2xl font-black text-sm uppercase tracking-widest hover:border-slate-300 transition-all flex items-center justify-center gap-2"
@@ -162,7 +166,7 @@ const BlogEditorModal: React.FC<BlogEditorModalProps> = ({ isOpen, onClose, onSu
                <span className="material-symbols-outlined text-[20px]">publish</span> Publish Now
             </button>
           ) : (
-             <button
+            <button
               onClick={() => handleSave(false)}
               disabled={isSaving}
               className="flex-1 py-4 bg-slate-900 text-white rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-black transition-all flex items-center justify-center gap-2"

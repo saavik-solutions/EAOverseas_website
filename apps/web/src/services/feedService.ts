@@ -47,7 +47,7 @@ export const feedService = {
 
     create: async (data: any) => {
         const token = localStorage.getItem('token');
-        const res = await fetch(`${API_BASE}/api/feed/create`, {
+        const res = await fetch(`${API_BASE}/api/feed`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

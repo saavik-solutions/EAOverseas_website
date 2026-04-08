@@ -591,9 +591,7 @@ const CommunityFeed = () => {
         <div className="flex flex-col flex-1 h-full overflow-hidden bg-slate-50 font-['Inter']">
             <LoginModal isOpen={isLoginModalOpen} onClose={closeLoginModal} />
 
-            <div className="hidden lg:block">
-                <PageHeader title="Community Intelligence Feed" />
-            </div>
+            {/* Removed PageHeader to match specific new design layout */}
 
             <div className="flex flex-1 overflow-hidden">
                 {/* ── CHAT SIDEBAR (Left) ──────────────────────────── */}
@@ -623,26 +621,15 @@ const CommunityFeed = () => {
                 {/* ── MAIN FEED ──────────────────────────────────────── */}
                 <main className="flex-1 flex flex-col h-full overflow-hidden relative">
 
-                    {/* Sticky Search Bar */}
-                    <div className="bg-white border-b border-slate-200 px-6 py-4 z-20 sticky top-0 shadow-sm">
-                        <div className="max-w-3xl mx-auto flex items-center gap-3">
-                            {/* Chat Toggle Button */}
-                            <button
-                                onClick={() => setChatSidebarOpen(prev => !prev)}
-                                className={`shrink-0 size-10 rounded-xl flex items-center justify-center transition-all shadow-sm ${chatSidebarOpen
-                                    ? 'bg-indigo-600 text-white shadow-indigo-200'
-                                    : 'bg-white border border-slate-200 text-slate-500 hover:text-indigo-600 hover:border-indigo-200'
-                                    }`}
-                                title="Toggle Chat"
-                            >
-                                <span className="material-symbols-outlined text-xl">chat</span>
-                            </button>
+                    {/* Sticky Search Bar - Full Width/Centered */}
+                    <div className="bg-white px-6 py-6 z-20 sticky top-0 border-b border-gray-100">
+                        <div className="max-w-4xl mx-auto flex items-center gap-4">
                             <div className="flex-1 relative group">
-                                <span className={`material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-[20px] transition-colors ${isSemanticSearching ? 'text-indigo-500' : 'text-slate-400 group-focus-within:text-indigo-500'}`}>
+                                <span className={`material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-[22px] transition-colors ${isSemanticSearching ? 'text-[#7a29c2]' : 'text-slate-400 group-focus-within:text-[#7a29c2]'}`}>
                                     search
                                 </span>
                                 <input
-                                    className="w-full h-11 pl-11 pr-24 rounded-xl bg-slate-100 border border-transparent outline-none text-sm placeholder:text-slate-500 focus:bg-white focus:border-indigo-200 focus:ring-4 focus:ring-indigo-50 transition-all"
+                                    className="w-full h-12 pl-12 pr-12 rounded-xl bg-[#f0f2f5] border-none outline-none text-[15px] placeholder:text-slate-500 focus:bg-white focus:ring-2 focus:ring-[#7a29c2]/10 transition-all"
                                     placeholder="Search posts, topics or questions..."
                                     value={searchQuery}
                                     onChange={handleSearchChange}
@@ -655,27 +642,25 @@ const CommunityFeed = () => {
                                         <span className="material-symbols-outlined text-[18px]">close</span>
                                     </button>
                                 )}
-                                {isSemanticSearching && (
-                                    <span className="absolute right-10 top-1/2 -translate-y-1/2 text-[10px] text-indigo-500 font-bold animate-pulse tracking-wide">
-                                        NLP…
-                                    </span>
-                                )}
                             </div>
+                            
+                            {/* Chat Toggle Button - Moved to end of bar or hidden on mobile if needed */}
+                            <button
+                                onClick={() => setChatSidebarOpen(prev => !prev)}
+                                className={`shrink-0 size-11 rounded-xl flex items-center justify-center transition-all border ${chatSidebarOpen
+                                    ? 'bg-[#7a29c2] text-white border-[#7a29c2] shadow-[0px_4px_12px_rgba(122,41,194,0.3)]'
+                                    : 'bg-white border-slate-200 text-slate-500 hover:text-[#7a29c2] hover:border-[#7a29c2]'
+                                    }`}
+                                title="Toggle Chat"
+                            >
+                                <span className="material-symbols-outlined text-xl">chat</span>
+                            </button>
                         </div>
-
-                        {/* Search result count */}
-                        {searchQuery.trim() && (
-                            <p className="max-w-3xl mx-auto mt-2 text-xs text-slate-400 font-medium">
-                                {filteredPosts.length === 0
-                                    ? `No results for "${searchQuery}"`
-                                    : `${filteredPosts.length} result${filteredPosts.length > 1 ? 's' : ''} for "${searchQuery}"`}
-                            </p>
-                        )}
                     </div>
 
                     {/* Feed Content */}
-                    <div className="flex-1 overflow-y-auto scroll-smooth p-6">
-                        <div className="max-w-3xl mx-auto flex flex-col gap-6 pb-20">
+                    <div className="flex-1 overflow-y-auto scroll-smooth p-6 bg-[#f9fafb]">
+                        <div className="max-w-4xl mx-auto flex flex-col gap-6 pb-20">
 
                             {error && (
                                 <div className="bg-rose-50 border border-rose-200 text-rose-700 px-4 py-3 rounded-2xl flex items-center gap-3 animate-in fade-in slide-in-from-top-2">
@@ -689,46 +674,54 @@ const CommunityFeed = () => {
 
 
                             {/* Post Composer */}
-                            <div className="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm">
-                                <div className="flex gap-3">
-                                    <div
-                                        className="size-9 rounded-full bg-slate-200 bg-cover bg-center shrink-0"
-                                        style={{ backgroundImage: `url("${user?.avatarUrl || user?.photoURL || 'https://api.dicebear.com/7.x/avataaars/svg?seed=Guest'}")` }}
-                                    />
-                                    <textarea
-                                        className="flex-1 min-h-[56px] text-sm outline-none placeholder:text-slate-400 bg-transparent resize-none border-0 focus:ring-0"
-                                        placeholder="What do you want to ask or share? AI will auto-categorize your post."
-                                        value={newPostText}
-                                        onChange={e => setNewPostText(e.target.value)}
-                                        onKeyDown={e => e.key === 'Enter' && !e.shiftKey && handlePostSubmit()}
-                                    />
-                                </div>
-                                <div className="flex items-center justify-end pt-3 mt-3 border-t border-slate-100">
-                                    <button
-                                        onClick={handlePostSubmit}
-                                        disabled={!newPostText.trim() || isPosting}
-                                        className={`px-6 py-2 rounded-xl text-sm font-bold transition-all shadow flex items-center gap-2 ${newPostText.trim() && !isPosting ? 'bg-slate-900 text-white hover:bg-slate-800' : 'bg-slate-100 text-slate-400 cursor-not-allowed'}`}
-                                    >
-                                        {isPosting && <span className="size-3 border-2 border-slate-400 border-t-transparent rounded-full animate-spin"></span>}
-                                        {isPosting ? 'Uploading...' : 'Post'}
-                                    </button>
+                            <div className="bg-white rounded-2xl border border-gray-200 shadow-[0_2px_12px_rgba(0,0,0,0.03)] overflow-hidden">
+                                <div className="p-6">
+                                    <div className="flex gap-4">
+                                        <div
+                                            className="size-11 rounded-full bg-slate-200 bg-cover bg-center shrink-0 border border-gray-100"
+                                            style={{ backgroundImage: `url("${user?.avatarUrl || user?.photoURL || 'https://api.dicebear.com/7.x/avataaars/svg?seed=Guest'}")` }}
+                                        />
+                                        <div className="flex-1 min-h-[80px] bg-white pt-2">
+                                            <textarea
+                                                className="w-full min-h-[60px] text-[15px] outline-none placeholder:text-[#9ca3af] bg-transparent resize-none border-0 focus:ring-0 p-0 text-slate-800"
+                                                placeholder="What do you want to ask or share? AI will auto-categorize your post."
+                                                value={newPostText}
+                                                onChange={e => setNewPostText(e.target.value)}
+                                                onKeyDown={e => e.key === 'Enter' && !e.shiftKey && handlePostSubmit()}
+                                            />
+                                        </div>
+                                    </div>
+                                    <div className="flex items-center justify-end pt-4 mt-2 border-t border-gray-50">
+                                        <button
+                                            onClick={handlePostSubmit}
+                                            disabled={!newPostText.trim() || isPosting}
+                                            className={`px-8 py-2.5 rounded-xl text-[14px] font-bold transition-all flex items-center gap-2 ${
+                                                newPostText.trim() && !isPosting 
+                                                ? 'bg-[#7a29c2] text-white hover:bg-[#6a24a8] shadow-md shadow-[#7a29c2]/20' 
+                                                : 'bg-[#f0f2f5] text-[#bcc7d4] cursor-not-allowed'
+                                            }`}
+                                        >
+                                            {isPosting && <span className="size-3 border-2 border-slate-400 border-t-transparent rounded-full animate-spin"></span>}
+                                            {isPosting ? 'Uploading...' : 'Post'}
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
 
                             {/* Filter Chips */}
-                            <div className="flex items-center gap-2 overflow-x-auto pb-1 -mx-6 px-6 scrollbar-hide">
+                            <div className="flex items-center gap-3 overflow-x-auto pb-2 -mx-4 px-4 scrollbar-hide">
                                 {['Algorithmic Feed', 'Admissions', 'Scholarships', 'Visas', 'Finances', 'Career Advice'].map(filter => (
                                     <button
                                         key={filter}
                                         onClick={() => setSelectedFilter(filter)}
-                                        className={`shrink-0 px-4 py-2 rounded-xl text-xs font-bold border transition-all flex items-center gap-1.5
+                                        className={`shrink-0 px-5 py-2.5 rounded-xl text-[13px] font-bold border transition-all flex items-center gap-2
                                             ${selectedFilter === filter
-                                                ? 'bg-indigo-600 text-white border-indigo-600 shadow-md shadow-indigo-600/20'
-                                                : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50'
+                                                ? 'bg-[#4c44f6] text-white border-[#4c44f6] shadow-sm'
+                                                : 'bg-white text-slate-600 border-gray-200 hover:bg-gray-50'
                                             }`}
                                     >
                                         {filter === 'Algorithmic Feed' && (
-                                            <span className="material-symbols-outlined text-[14px]">dynamic_feed</span>
+                                            <span className="material-symbols-outlined text-[18px]">dynamic_feed</span>
                                         )}
                                         {filter}
                                     </button>
@@ -790,20 +783,10 @@ const CommunityFeed = () => {
                                                 <span>{post.time}</span>
                                             </div>
 
-                                            <div className="flex justify-between items-start mb-2">
-                                                <h3 className="text-base font-bold text-slate-900 leading-snug">
+                                            <div className="flex justify-between items-start mb-3">
+                                                <h3 className="text-[18px] font-extrabold text-slate-900 leading-tight">
                                                     {translations[post._id]?.isLoading ? 'Translating...' : (translations[post._id]?.title || post.title)}
                                                 </h3>
-
-                                                <select
-                                                    className="text-[10px] bg-slate-50 border-none rounded p-1 text-slate-500 font-bold focus:ring-0 cursor-pointer"
-                                                    value={translations[post._id]?.lang || 'en'}
-                                                    onChange={(e) => handleTranslate(post._id, post.title, post.content, e.target.value)}
-                                                >
-                                                    {SUPPORTED_LANGUAGES.map(l => (
-                                                        <option key={l.code} value={l.code}>{l.name}</option>
-                                                    ))}
-                                                </select>
                                             </div>
 
                                             {post.content && (
@@ -832,36 +815,50 @@ const CommunityFeed = () => {
                                             )}
 
                                             {/* Action Row */}
-                                            <div className="flex items-center gap-4 text-xs text-slate-500 font-semibold border-t border-slate-50 pt-3">
-                                                {/* Like button in Action Row */}
+                                            <div className="flex items-center gap-6 text-[13px] text-slate-500 font-bold border-t border-gray-50 pt-4 mt-2">
                                                 <button
                                                     onClick={() => handleLike(post._id)}
-                                                    className={`flex items-center gap-1.5 transition-colors ${post.hasLiked ? 'text-rose-500' : 'hover:text-rose-500'}`}
+                                                    className={`flex items-center gap-2 transition-colors ${post.hasLiked ? 'text-rose-500' : 'hover:text-rose-500'}`}
                                                 >
-                                                    <span className="material-symbols-outlined text-[18px]" style={{ fontVariationSettings: post.hasLiked ? "'FILL' 1" : "'FILL' 0" }}>
+                                                    <span className="material-symbols-outlined text-[20px]" style={{ fontVariationSettings: post.hasLiked ? "'FILL' 1" : "'FILL' 0" }}>
                                                         favorite
                                                     </span>
-                                                    <span className="tabular-nums">{post.score}</span>
-                                                    <span>{post.score === 1 ? 'Like' : 'Likes'}</span>
+                                                    <span>{post.score}</span>
                                                 </button>
 
                                                 <button
                                                     onClick={() => toggleComments(post._id)}
-                                                    className={`flex items-center gap-1.5 transition-colors ${visibleComments[post._id] ? 'text-indigo-600' : 'hover:text-indigo-600'}`}
+                                                    className={`flex items-center gap-2 transition-colors ${visibleComments[post._id] ? 'text-[#7a29c2]' : 'hover:text-[#7a29c2]'}`}
                                                 >
-                                                    <span className="material-symbols-outlined text-[18px]">
-                                                        {visibleComments[post._id] ? 'chat_bubble' : 'chat_bubble_outline'}
+                                                    <span className="material-symbols-outlined text-[20px]">
+                                                        chat_bubble
                                                     </span>
-                                                    {post.commentsCount} {post.commentsCount === 1 ? 'Comment' : 'Comments'}
+                                                    <span>{post.commentsCount}</span>
                                                 </button>
 
                                                 <button
                                                     onClick={() => { setShareData(post); setIsShareModalOpen(true); }}
-                                                    className="flex items-center gap-1.5 hover:text-indigo-600 transition-colors"
+                                                    className="flex items-center gap-2 hover:text-[#7a29c2] transition-colors"
                                                 >
-                                                    <span className="material-symbols-outlined text-[18px]">ios_share</span>
-                                                    Share
+                                                    <span className="material-symbols-outlined text-[20px]">share</span>
+                                                    <span className="uppercase tracking-wider">Share</span>
                                                 </button>
+
+                                                {/* Translate Button - Styled per Image 2 */}
+                                                <div className="ml-auto flex items-center gap-2">
+                                                    <button
+                                                        onClick={() => {
+                                                            // Default translate to Hindi if not already translated, otherwise toggle back to English
+                                                            const currentLang = translations[post._id]?.lang || 'en';
+                                                            const target = currentLang === 'en' ? 'hi' : 'en';
+                                                            handleTranslate(post._id, post.title, post.content, target);
+                                                        }}
+                                                        className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-gray-100 hover:bg-gray-50 transition-all ${translations[post._id]?.lang && translations[post._id]?.lang !== 'en' ? 'text-[#7a29c2] bg-indigo-50 border-indigo-100' : 'text-slate-500'}`}
+                                                    >
+                                                        <span className="material-symbols-outlined text-[18px]">language</span>
+                                                        <span className="text-[11px] font-black uppercase tracking-widest">Translate</span>
+                                                    </button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -1032,33 +1029,37 @@ const CommunityFeed = () => {
                 </main>
 
                 {/* ── RIGHT SIDEBAR ──────────────────────────────────── */}
-                <aside className="hidden xl:flex w-72 flex-col h-full border-l border-slate-200 bg-white overflow-y-auto shrink-0 p-5 gap-6">
+                <aside className="hidden xl:flex w-80 flex-col h-full border-l border-gray-100 bg-white overflow-y-auto shrink-0 p-6 gap-6">
 
-                    {/* Trending */}
-                    <div className="bg-slate-50 rounded-2xl border border-slate-100 p-4 shadow-sm">
-                        <div className="flex items-center gap-2 mb-3">
-                            <span className="material-symbols-outlined text-rose-500 text-[20px]">local_fire_department</span>
-                            <h3 className="font-extrabold text-slate-900 text-sm">Algorithmic Trending</h3>
+                    {/* Trending Sidebar - Redesigned per Image 1 */}
+                    <div className="bg-white rounded-2xl border border-gray-200 p-5 shadow-[0_2px_12px_rgba(0,0,0,0.03)]">
+                        <div className="flex items-center gap-3 mb-4">
+                            <div className="size-9 rounded-xl bg-rose-50 flex items-center justify-center">
+                                <span className="material-symbols-outlined text-rose-500 text-[22px]">local_fire_department</span>
+                            </div>
+                            <h3 className="font-black text-slate-900 text-[15px] tracking-tight">Algorithmic Trending</h3>
                         </div>
-                        <p className="text-[10px] text-slate-400 font-medium mb-3 pb-3 border-b border-slate-200 uppercase tracking-wide">
-                            TF-IDF scan · last 24hrs
+                        <p className="text-[10px] text-slate-400 font-bold mb-4 pb-4 border-b border-gray-50 uppercase tracking-[0.1em]">
+                            TF-IDF SCAN • LAST 24HRS
                         </p>
-                        <div className="flex flex-col divide-y divide-slate-100">
+                        <div className="flex flex-col gap-1">
                             {trendingTopics.map((t, i) => (
                                 <button
                                     key={i}
                                     onClick={() => setSelectedFilter(t.label)}
-                                    className="py-2.5 text-left hover:bg-slate-100 rounded-lg -mx-1 px-1 transition-colors group"
+                                    className="py-3 px-3 text-left hover:bg-gray-50 rounded-xl transition-all group"
                                 >
-                                    <p className="text-[10px] font-bold text-indigo-600 uppercase tracking-wide">{t.label}</p>
-                                    <p className="text-sm font-bold text-slate-800 leading-snug line-clamp-1 group-hover:text-indigo-700 transition-colors">{t.topic}</p>
-                                    <p className="text-[10px] text-slate-400 mt-0.5">{t.activityCount} mentions</p>
+                                    <p className="text-[10px] font-black text-[#7a29c2] uppercase tracking-wider mb-0.5">{t.label}</p>
+                                    <p className="text-[14px] font-bold text-slate-800 leading-tight group-hover:text-[#7a29c2] transition-colors">{t.topic}</p>
+                                    <p className="text-[11px] text-slate-400 mt-1 font-medium">{t.activityCount} mentions</p>
                                 </button>
                             ))}
                         </div>
                     </div>
 
-                    <p className="text-[10px] text-slate-300 text-center font-medium">© 2024 EAOverseas Community v2</p>
+                    <div className="mt-auto pt-6 text-center">
+                        <p className="text-[11px] text-slate-300 font-bold tracking-widest uppercase mb-2">© 2024 EAOverseas Community v2</p>
+                    </div>
                 </aside>
             </div>
 

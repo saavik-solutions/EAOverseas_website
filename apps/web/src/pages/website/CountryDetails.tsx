@@ -612,7 +612,7 @@ const CountryDetails = () => {
                             </p>
                             <div className="flex justify-center">
                                 <button
-                                    onClick={() => user ? navigate('/consultant') : navigate('/login', { state: { from: '/consultant' } })}
+                                    onClick={() => window.location.href = 'https://student.eaoverseas.com/auth/login'}
                                     className="bg-[#7a29c2] text-white font-bold py-4 px-10 rounded-xl text-lg shadow-xl shadow-purple-600/20 hover:bg-purple-700 hover:shadow-purple-600/30 hover:-translate-y-1 transition-all duration-300 flex items-center gap-2"
                                 >
                                     Book Free Consultation

@@ -48,7 +48,7 @@ export const generateBlogContent = async (category: string, mode: 'experiment' |
         `;
 
         const response = await openai.chat.completions.create({
-            model: "gpt-4-turbo-preview",
+            model: "gpt-4o",
             messages: [
                 { role: "system", content: systemPrompt },
                 { role: "user", content: "Generate the blog post JSON now." }

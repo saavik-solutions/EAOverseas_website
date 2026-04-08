@@ -46,20 +46,20 @@ const BlogManagement = () => {
         <div className="space-y-10">
             <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
                 <div className="space-y-2">
-                    <h1 className="text-3xl font-black text-gray-900 uppercase tracking-tighter">Blog Management</h1>
-                    <p className="text-gray-500 font-medium">Create and refine EAOverseas global insights with AI assistance.</p>
+                    <h1 className="text-2xl md:text-3xl font-black text-gray-900 uppercase tracking-tighter">Blog Management</h1>
+                    <p className="text-gray-500 font-medium text-sm md:text-base">Create and refine EAOverseas global insights with AI assistance.</p>
                 </div>
-                <div className="flex flex-wrap gap-4">
+                <div className="flex flex-col sm:flex-row w-full md:w-auto gap-4">
                     <button 
                         onClick={() => setIsAIGeneratorOpen(true)}
-                        className="bg-slate-900 text-white font-black px-6 py-4 rounded-2xl shadow-xl shadow-slate-200 hover:bg-black transition-all flex items-center gap-2 group"
+                        className="w-full sm:w-auto bg-slate-900 text-white font-black px-6 py-4 rounded-2xl shadow-xl shadow-slate-200 hover:bg-black transition-all flex items-center justify-center gap-2 group"
                     >
                         <span className="material-symbols-outlined text-indigo-400 group-hover:rotate-12 transition-transform">auto_awesome</span>
-                        AI Blog Generator
+                        AI Generator
                     </button>
                     <button 
                         onClick={() => { setEditingBlog({ title: '', content: '', excerpt: '', category: 'Article', coverImage: 'https://images.unsplash.com/photo-1523050335391-4df6515a4632', isPublished: false }); setIsEditorOpen(true); }}
-                        className="bg-white border-2 border-slate-200 text-slate-900 font-black px-6 py-4 rounded-2xl hover:bg-slate-50 transition-all flex items-center gap-2"
+                        className="w-full sm:w-auto bg-white border-2 border-slate-200 text-slate-900 font-black px-6 py-4 rounded-2xl hover:bg-slate-50 transition-all flex items-center justify-center gap-2"
                     >
                         <span className="material-symbols-outlined">add</span>
                         Manual Entry

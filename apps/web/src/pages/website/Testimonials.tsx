@@ -23,7 +23,7 @@ const Testimonials = () => {
                 {/* Page Heading */}
                 <section className="mb-12">
                     <div className="max-w-3xl">
-                        <h1 className="text-5xl font-black leading-tight tracking-[-0.033em] mb-4">Real Stories, <span className="text-primary text-[#193ce6]">Real Success</span></h1>
+                        <h1 className="text-5xl font-black leading-tight tracking-[-0.033em] mb-4">Real Stories, <span className="text-[#7a29c2]">Real Success</span></h1>
                         <p className="text-lg text-gray-600 leading-relaxed">Discover authentic experiences from our global community of students and parents who turned their international education dreams into reality.</p>
                     </div>
                 </section>
@@ -92,7 +92,7 @@ const Testimonials = () => {
                                 : 'opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0'
                                 }`}>
                                 <div>
-                                    <div className="text-[#193ce6] mb-4">
+                                    <div className="text-[#7a29c2] mb-4">
                                         <span className="material-symbols-outlined text-[40px]">format_quote</span>
                                     </div>
                                     <p className="text-gray-700 italic leading-relaxed text-lg">"{item.quote}"</p>
@@ -115,7 +115,7 @@ const Testimonials = () => {
                 {/* In Their Own Words: Long-Form Stories */}
                 <section className="mb-24">
                     <div className="flex items-center justify-between mb-6 md:mb-10 px-4">
-                        <h2 className="text-2xl md:text-3xl font-bold tracking-tight">In Their Own Words: <span className="text-[#193ce6]">Journey Highlights</span></h2>
+                        <h2 className="text-2xl md:text-3xl font-bold tracking-tight">In Their Own Words: <span className="text-[#7a29c2]">Journey Highlights</span></h2>
                         {/* View All Stories link removed as requested */}
                     </div>
                     <div className="space-y-6 md:space-y-12">
@@ -124,13 +124,13 @@ const Testimonials = () => {
                                 <div className="w-full md:w-1/3 min-h-[220px] md:min-h-[300px] bg-cover bg-center" style={{ backgroundImage: `url('${story.heroImage}')` }}></div>
                                 <div className="p-5 md:p-10 flex-1">
                                     <div className="flex items-center gap-2 md:gap-3 mb-4 md:mb-6">
-                                        <span className="px-2.5 md:px-3 py-1 bg-[#193ce6]/10 text-[#193ce6] text-[10px] md:text-[11px] font-bold uppercase tracking-wider rounded-full">{story.badge}</span>
+                                        <span className="px-2.5 md:px-3 py-1 bg-[#7a29c2]/10 text-[#7a29c2] text-[10px] md:text-[11px] font-bold uppercase tracking-wider rounded-full">{story.badge}</span>
                                         <span className="text-gray-400 text-xs md:text-sm">• {story.readTime}</span>
                                     </div>
                                     <h3 className="text-xl md:text-2xl font-bold mb-3 md:mb-4">{story.title}</h3>
                                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-8">
                                         <div>
-                                            <h4 className="text-xs md:text-sm font-bold text-[#193ce6] uppercase tracking-widest mb-2 flex items-center gap-1.5 md:gap-2">
+                                            <h4 className="text-xs md:text-sm font-bold text-[#7a29c2] uppercase tracking-widest mb-2 flex items-center gap-1.5 md:gap-2">
                                                 <span className="material-symbols-outlined text-[14px] md:text-[16px]">{story.challenge.icon}</span> {story.challenge.title}
                                             </h4>
                                             <p className="text-gray-600 text-xs md:text-sm leading-relaxed">
@@ -154,7 +154,7 @@ const Testimonials = () => {
                                                 <p className="text-[10px] md:text-xs text-gray-500">{story.student.role}</p>
                                             </div>
                                         </div>
-                                        <Link to={`/testimonials/${story.id}`} className="text-[#193ce6] font-bold text-xs md:text-sm hover:translate-x-1 transition-transform flex items-center gap-1">
+                                        <Link to={`/testimonials/${story.id}`} className="text-[#7a29c2] font-bold text-xs md:text-sm hover:translate-x-1 transition-transform flex items-center gap-1">
                                             Read Full Narrative <span className="material-symbols-outlined text-base md:text-lg">chevron_right</span>
                                         </Link>
                                     </div>
@@ -166,9 +166,9 @@ const Testimonials = () => {
                     {/* Load More Button */}
                     {visibleCount < stories.length && (
                         <div className="flex justify-center mt-12">
-                            <button
+                                <button
                                 onClick={handleLoadMore}
-                                className="group relative px-8 py-3 bg-white border-2 border-[#193ce6] text-[#193ce6] font-bold rounded-full hover:bg-[#193ce6] hover:text-white transition-all duration-300 flex items-center gap-2 shadow-sm hover:shadow-lg"
+                                className="group relative px-8 py-3 bg-white border-2 border-[#7a29c2] text-[#7a29c2] font-bold rounded-full hover:bg-[#7a29c2] hover:text-white transition-all duration-300 flex items-center gap-2 shadow-sm hover:shadow-lg"
                             >
                                 <span>Load More Stories</span>
                                 <span className="material-symbols-outlined group-hover:translate-y-1 transition-transform duration-300">expand_more</span>
@@ -177,35 +177,7 @@ const Testimonials = () => {
                     )}
                 </section>
 
-                {/* CTA Section */}
-                <section className="bg-[#193ce6] rounded-3xl p-12 text-center text-white relative overflow-hidden">
-                    {/* Background decorations */}
-                    <div className="absolute top-0 left-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
-                    <div className="absolute bottom-0 right-0 w-80 h-80 bg-white/10 rounded-full blur-3xl translate-x-1/3 translate-y-1/3"></div>
 
-                    <div className="relative z-10 max-w-4xl mx-auto">
-                        <h2 className="text-4xl font-black mb-8">Talk to Our Consultant Now</h2>
-
-                        <form className="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-2xl mx-auto" onSubmit={(e) => e.preventDefault()}>
-                            <input
-                                type="text"
-                                placeholder="First Name"
-                                className="w-full sm:flex-1 h-12 px-6 rounded-lg bg-white/20 border border-white/30 text-white placeholder:text-white/60 focus:outline-none focus:bg-white/30 focus:border-white/50 transition-all"
-                            />
-                            <input
-                                type="tel"
-                                placeholder="Phone No."
-                                className="w-full sm:flex-1 h-12 px-6 rounded-lg bg-white/20 border border-white/30 text-white placeholder:text-white/60 focus:outline-none focus:bg-white/30 focus:border-white/50 transition-all"
-                            />
-                            <button
-                                type="submit"
-                                className="w-full sm:w-auto px-8 h-12 bg-[#111218] text-white font-bold rounded-lg hover:shadow-xl hover:bg-black transition-all"
-                            >
-                                Send
-                            </button>
-                        </form>
-                    </div>
-                </section>
         </div>
     );
 };
