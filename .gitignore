@@ -28,3 +28,5 @@ dist-ssr
 .cache
 *.env
 *.env.local
+*.env.production
+*.env.production.local
