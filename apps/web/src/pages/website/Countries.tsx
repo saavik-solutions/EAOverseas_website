@@ -131,7 +131,7 @@ const Countries = () => {
             <SEOHead 
                 title="Study Destinations | EAOverseas"
                 description="Explore top global study destinations and find your perfect academic home with AI-powered insights."
-                image="/assets/destinations_hero.png"
+                image="/assets/destinations_hero.webp"
             />
             {/* Hero Section with Abstract Map */}
                 {/* Hero Section with Abstract Map */}
@@ -208,7 +208,7 @@ const Countries = () => {
                                     <div className="relative z-10 flex flex-col items-start text-left">
                                         <div className="size-12 md:size-16 rounded-2xl bg-white flex items-center justify-center mb-4 md:mb-6 shadow-sm border border-slate-100 overflow-hidden">
                                             <img
-                                                src={`https://flagcdn.com/w160/${dest.code.toLowerCase()}.png`}
+                                                src={`https://flagcdn.com/w160/${dest.code.toLowerCase()}.webp`}
                                                 alt={`${dest.name} flag`}
                                                 className="w-full h-full object-cover"
                                             />

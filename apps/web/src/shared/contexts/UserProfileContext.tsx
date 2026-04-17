@@ -249,8 +249,8 @@ export const UserProfileProvider: React.FC<{ children: React.ReactNode }> = ({ c
                 { id: 5, name: "Affidavit of Support.pdf", date: "Oct 19, 2023", size: "1.8 MB", type: "pdf" }
             ],
             identity: [
-                { id: 6, name: "Passport Front Page.jpg", date: "Aug 15, 2023", size: "2.1 MB", type: "image" },
-                { id: 7, name: "Passport Back Page.jpg", date: "Aug 15, 2023", size: "1.9 MB", type: "image" }
+                { id: 6, name: "Passport Front Page.webp", date: "Aug 15, 2023", size: "2.1 MB", type: "image" },
+                { id: 7, name: "Passport Back Page.webp", date: "Aug 15, 2023", size: "1.9 MB", type: "image" }
             ],
         },
         applications: [

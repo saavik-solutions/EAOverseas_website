@@ -1,6 +1,5 @@
 import { useParams, Link } from 'react-router-dom';
 import PageHeader from '@/components/layout/PageHeader';
-import { jsPDF } from 'jspdf';
 import { universitiesData } from '@workspace/common';
 import { useAuthAction } from '@/shared/hooks/useAuthAction';
 import { useAuth } from '@/shared/contexts/AuthContext';
@@ -24,8 +23,9 @@ const UniversityDetails = ({ isEmbedded = false }: { isEmbedded?: boolean }) => 
         );
     }
 
-    const handleDownload = () => {
-        executeAction(() => {
+    const handleDownload = async () => {
+        executeAction(async () => {
+            const { jsPDF } = await import('jspdf');
             const doc = new jsPDF();
 
             // Title

@@ -20,15 +20,12 @@
   --color-primary: #7a29c2;
   --font-display: "Plus Jakarta Sans", sans-serif;
   --font-bricolage: "Bricolage Grotesque", sans-serif;
-  
 
-  /* Add animations to theme for tailwind 4 */
+  /* Optimized animations */
   --animate-float: float 6s ease-in-out infinite;
   --animate-bounce-subtle: bounce-subtle 3s ease-in-out infinite;
-  --animate-scroll-right: scroll-right 40s linear infinite;
-  --animate-fade-in-up: fade-in-up 1s ease-out forwards;
-  --animate-fade-in-right: fade-in-right 1s ease-out forwards;
-  --animate-gradient-x: gradient-x 15s ease infinite;
+  --animate-fade-in-up: fade-in-up 0.8s ease-out forwards;
+  --animate-fade-in-right: fade-in-right 0.8s ease-out forwards;
 
   @keyframes float {
     0%, 100% { transform: translateY(0px); }
@@ -40,11 +37,6 @@
     50% { transform: translateY(-8px); }
   }
 
-  @keyframes scroll-right {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(calc(-50% - 2rem)); }
-  }
-
   @keyframes fade-in-up {
     0% { opacity: 0; transform: translateY(20px); }
     100% { opacity: 1; transform: translateY(0); }
@@ -53,11 +45,6 @@
   @keyframes fade-in-right {
     0% { opacity: 0; transform: translateX(20px); }
     100% { opacity: 1; transform: translateX(0); }
-  }
-
-  @keyframes gradient-x {
-    0%, 100% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
   }
 }
 

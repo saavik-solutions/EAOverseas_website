@@ -63,7 +63,7 @@ const INITIAL_POOL: Application[] = [
         ieltsScore: '8.0',
         greScore: '325',
         workExperience: '12 months as Junior Dev at TechCorp.',
-        documents: { transcript: 'Alex_Transcript.pdf', idCopy: 'Alex_ID.png', sop: 'Alex_SOP.pdf', cv: 'Alex_Resume.pdf' }
+        documents: { transcript: 'Alex_Transcript.pdf', idCopy: 'Alex_ID.webp', sop: 'Alex_SOP.pdf', cv: 'Alex_Resume.pdf' }
     },
     {
         id: 'SCH-1029',
@@ -83,7 +83,7 @@ const INITIAL_POOL: Application[] = [
         gpa: '3.88',
         achievements: 'Model UN Delegate; Volunteer at local community center for 2 years.',
         statement: 'This scholarship will enable me to focus on my studies and continue my advocacy work in international development.',
-        documents: { transcript: 'Sarah_Transcript.pdf', idCopy: 'Sarah_ID.jpg' }
+        documents: { transcript: 'Sarah_Transcript.pdf', idCopy: 'Sarah_ID.webp' }
     },
     {
         id: 'APP-7634',
@@ -126,7 +126,7 @@ const INITIAL_POOL: Application[] = [
         statement: 'Pursuing an MBA at York will help me scale my sustainable business initiatives globally.',
         workExperience: '36 months in Project Management.',
         greScore: '318',
-        documents: { idCopy: 'Emma_Identity.png', cv: 'Emma_CV_MBA.pdf' }
+        documents: { idCopy: 'Emma_Identity.webp', cv: 'Emma_CV_MBA.pdf' }
     },
     {
         id: 'SCH-3342',
@@ -167,7 +167,7 @@ const INITIAL_POOL: Application[] = [
         achievements: 'Top of class in Economics; Published 2 articles in student journal.',
         statement: 'Waterloo is my top choice for Economics due to its strong coop program and academic reputation.',
         extraCurriculars: 'Debate Captain, Varsity Soccer player.',
-        documents: { transcript: 'Olivia_Economics_Transcript.pdf', passport: 'Olivia_Passport.png' }
+        documents: { transcript: 'Olivia_Economics_Transcript.pdf', passport: 'Olivia_Passport.webp' }
     }
 ];
 

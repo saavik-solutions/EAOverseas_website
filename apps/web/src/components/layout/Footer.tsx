@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { CONTACTS, getWhatsAppLink } from '@/shared/constants/contacts';
 import { destinations } from '@/data/countries';
-import logo from '@/assets/logo.png';
+import logo from '@/assets/logo.webp';
 
 const FALLBACK = 'https://student.eaoverseas.com';
 
@@ -53,8 +53,8 @@ const Footer = () => {
     { name: 'Partner with Us',        path: FALLBACK, external: true },
     { name: 'Refer & Earn',           path: FALLBACK, external: true },
     { name: 'Book a Consultation',    path: '/contact' },
-    { name: 'Check Eligibility',      path: '/contact' },
-    { name: 'Join Student Community', path: '/ointake-feed' },
+    { name: 'Sign In',                path: 'https://student.eaoverseas.com/auth/login', external: true },
+    { name: 'Sign Up',                path: 'https://student.eaoverseas.com/auth/signup', external: true },
     { name: 'News & Updates',         path: '/blogs' },
     { name: 'Work With Us',           path: FALLBACK, external: true },
     { name: 'Media & Press',          path: FALLBACK, external: true },
@@ -89,17 +89,18 @@ const Footer = () => {
 
             {/* Brand & Contact */}
             <div className="flex flex-col">
-              <div 
-                className="flex-shrink-0 cursor-pointer select-none mb-5"
-                onClick={() => navigate('/')}
+              <Link
+                to="/"
+                className="flex-shrink-0 cursor-pointer select-none mb-5 inline-block"
+                aria-label="EAOverseas Home"
               >
                 <img 
                   src={logo} 
-                  alt="EAOverseas" 
+                  alt="EAOverseas Logo" 
                   className="h-12 w-auto object-contain transition-all duration-300 ease-in-out" 
                   style={{ filter: 'brightness(0) saturate(100%) invert(100%)' }}
                 />
-              </div>
+              </Link>
               <h3 className="text-[18px] font-bold mb-2 tracking-tight text-white">Need an Admission Roadmap?</h3>
               <p className="text-[13px] text-gray-400 mb-5 leading-relaxed">
                 Our senior advisors are ready to help you build a winning application for your dream university.
@@ -189,7 +190,7 @@ const Footer = () => {
                   className="flex items-center gap-2.5 px-3 py-2 rounded-xl bg-white/[0.03] border border-white/[0.05] hover:bg-white/[0.07] hover:border-[#7a29c2]/40 transition-all group"
                 >
                   <img
-                    src={`https://flagcdn.com/w40/${dest.code.toLowerCase()}.png`}
+                    src={`https://flagcdn.com/w40/${dest.code.toLowerCase()}.webp`}
                     alt={dest.name}
                     className="w-5 h-3.5 object-cover rounded-[2px] flex-shrink-0"
                   />
@@ -211,8 +212,9 @@ const Footer = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-8 h-8 rounded-full bg-white/5 border border-white/10 text-gray-400 flex items-center justify-center hover:bg-[#7a29c2] hover:text-white hover:border-[#7a29c2] transition-all"
+                  aria-label={`Follow EAOverseas on ${social}`}
                 >
-                  <div className="w-[13px] h-[13px] bg-current" style={{ maskImage: `url(https://unpkg.com/simple-icons@v9/icons/${social}.svg)`, WebkitMaskImage: `url(https://unpkg.com/simple-icons@v9/icons/${social}.svg)`, maskSize: 'contain', maskRepeat: 'no-repeat', maskPosition: 'center' }}></div>
+                  <div className="w-[13px] h-[13px] bg-current" style={{ maskImage: `url(https://unpkg.com/simple-icons@v9/icons/${social}.svg)`, WebkitMaskImage: `url(https://unpkg.com/simple-icons@v9/icons/${social}.svg)`, maskSize: 'contain', maskRepeat: 'no-repeat', maskPosition: 'center' }} aria-hidden="true"></div>
                 </a>
               ))}
             </div>

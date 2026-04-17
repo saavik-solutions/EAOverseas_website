@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import logo from '@/assets/logo.png';
+import logo from '@/assets/logo.webp';
 import ImageWithFallback from '@/components/common/ImageWithFallback';
 import { experts } from '../../../data/experts';
 
@@ -112,9 +112,10 @@ const TeamSection: React.FC = () => {
                     <button
                         onClick={() => scroll('left')}
                         disabled={activeIdx === 0}
+                        aria-label="Previous team member"
                         className="hidden md:flex absolute -left-5 top-[110px] z-20 w-11 h-11 rounded-full bg-white border border-gray-100 shadow-lg items-center justify-center text-gray-500 hover:border-[#7a29c2] hover:text-[#7a29c2] transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed"
                     >
-                        <span className="material-symbols-outlined text-[20px]">chevron_left</span>
+                        <span className="material-symbols-outlined text-[20px]" aria-hidden="true">chevron_left</span>
                     </button>
 
                     <div
@@ -153,7 +154,7 @@ const TeamSection: React.FC = () => {
                                         className="absolute bottom-3 left-3 inline-flex items-center gap-1.5 text-[9.5px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full z-10 shadow-sm"
                                         style={{ backgroundColor: member.tagBg, color: member.color }}
                                     >
-                                        <span className="material-symbols-outlined text-[11px]">
+                                        <span className="material-symbols-outlined text-[11px]" aria-hidden="true">
                                             {CATEGORY_ICON[member.category] ?? 'person'}
                                         </span>
                                         {member.category}
@@ -161,7 +162,7 @@ const TeamSection: React.FC = () => {
 
                                     {/* Online indicator */}
                                     <span className="absolute top-3 right-3 flex items-center gap-1 bg-black/30 backdrop-blur-sm text-white text-[9px] font-semibold px-2 py-0.5 rounded-full z-10">
-                                        <span className="w-1.5 h-1.5 bg-emerald-400 rounded-full" />
+                                        <span className="w-1.5 h-1.5 bg-emerald-400 rounded-full" aria-hidden="true" />
                                         Available
                                     </span>
                                 </div>
@@ -204,7 +205,7 @@ const TeamSection: React.FC = () => {
                                         </div>
                                         <span className="flex items-center gap-1 text-[12px] font-bold group-hover:gap-2 transition-all duration-200" style={{ color: member.color }}>
                                             Profile
-                                            <span className="material-symbols-outlined text-[14px] group-hover:translate-x-1 transition-transform duration-200">arrow_forward</span>
+                                            <span className="material-symbols-outlined text-[14px] group-hover:translate-x-1 transition-transform duration-200" aria-hidden="true">arrow_forward</span>
                                         </span>
                                     </div>
                                 </div>
@@ -216,9 +217,10 @@ const TeamSection: React.FC = () => {
                     <button
                         onClick={() => scroll('right')}
                         disabled={activeIdx === team.length - 1}
+                        aria-label="Next team member"
                         className="hidden md:flex absolute -right-5 top-[110px] z-20 w-11 h-11 rounded-full bg-white border border-gray-100 shadow-lg items-center justify-center text-gray-500 hover:border-[#7a29c2] hover:text-[#7a29c2] transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed"
                     >
-                        <span className="material-symbols-outlined text-[20px]">chevron_right</span>
+                        <span className="material-symbols-outlined text-[20px]" aria-hidden="true">chevron_right</span>
                     </button>
                 </div>
 

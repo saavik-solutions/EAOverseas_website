@@ -51,13 +51,27 @@ const HeroCarousel = ({ slides, interval = 5000 }: HeroCarouselProps) => {
                     transform: `translateX(-${currentIndex * 100}%)`,
                 }}
             >
-                {slides.map((slide, index) => (
-                    <div key={index} className="min-w-full box-border flex flex-col items-center justify-center relative overflow-hidden">
-                        <div className={`w-full h-full transition-all duration-1000 ${currentIndex === index ? 'opacity-100' : 'opacity-0'}`}>
-                            {slide}
+                {slides.map((slide, index) => {
+                    // Only render the slide content if it's the current, next, or previous for smooth transitions
+                    const isNear = Math.abs(index - currentIndex) <= 1 || 
+                                 (currentIndex === 0 && index === slides.length - 1) ||
+                                 (currentIndex === slides.length - 1 && index === 0);
+                    
+                    return (
+                        <div 
+                            key={index} 
+                            className="min-w-full box-border flex flex-col items-center justify-center relative overflow-hidden"
+                            style={{ 
+                                contentVisibility: currentIndex === index ? 'auto' : 'hidden', 
+                                containIntrinsicSize: '0 800px' 
+                            }}
+                        >
+                            <div className={`w-full h-full transition-all duration-1000 ${currentIndex === index ? 'opacity-100' : 'opacity-0'}`}>
+                                {isNear ? slide : <div className="min-h-[600px] w-full bg-slate-50/20" />}
+                            </div>
                         </div>
-                    </div>
-                ))}
+                    );
+                })}
             </div>
 
             {/* Executive Navigation Arrows */}

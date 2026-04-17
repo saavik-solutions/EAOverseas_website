@@ -1,11 +1,11 @@
 import React from 'react';
-import loanHero from '../../../assets/loan_hero.png';
+import loanHero from '../../../assets/loan_hero.webp';
 
 const ImpactSection = () => {
     return (
         <section className="relative py-[100px] px-10 max-w-[1500px] w-[95%] mx-auto my-10 rounded-[40px] text-white overflow-visible bg-gradient-to-br from-[#f47895] to-[#cf44c3] font-sans">
             {/* Background Map Overlay */}
-            <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/black-linen.png')] opacity-10 pointer-events-none rounded-[40px]" />
+            <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/black-linen.webp')] opacity-10 pointer-events-none rounded-[40px]" />
 
             <div className="relative z-10 max-w-[1200px] mx-auto flex flex-col lg:flex-row items-center justify-between gap-[60px] lg:gap-[80px] lg:pb-0">
                 <div className="flex flex-col lg:justify-start gap-6 w-full max-w-[450px]">

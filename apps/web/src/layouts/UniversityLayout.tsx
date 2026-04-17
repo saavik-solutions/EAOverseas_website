@@ -4,7 +4,7 @@ import { useAuth } from '@/shared/contexts/AuthContext';
 import { useNotification } from '@/shared/contexts/NotificationContext';
 import { useScholarships } from '@/shared/contexts/ScholarshipsContext';
 import NotificationDropdown from '@/features/notifications/NotificationDropdown';
-import logo from '@/assets/logo.png';
+import logo from '@/assets/logo.webp';
 import { useRef, useEffect } from 'react';
 
 interface UniversityLayoutProps {

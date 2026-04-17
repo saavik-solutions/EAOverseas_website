@@ -1073,7 +1073,7 @@ const CommunityFeed = () => {
                     preview={{
                         title: shareData.title,
                         subtitle: "EAOverseas Community",
-                        image: "https://cdn-icons-png.flaticon.com/512/1256/1256650.png"
+                        image: "https://cdn-icons-png.flaticon.com/512/1256/1256650.webp"
                     }}
                 />
             )}

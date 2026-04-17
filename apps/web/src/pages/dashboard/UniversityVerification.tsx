@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import logo from '@/assets/logo.jpg';
+import logo from '@/assets/logo.webp';
 
 const UniversityVerification = () => {
     const [formData, setFormData] = useState({
@@ -150,7 +150,7 @@ const UniversityVerification = () => {
                                     type="file"
                                     ref={proofInputRef}
                                     className="hidden"
-                                    accept=".pdf,.jpg,.png"
+                                    accept=".pdf,.webp,.webp"
                                     onChange={(e) => handleFileChange(e, 'proofOfRecognition')}
                                 />
                                 <div
@@ -176,7 +176,7 @@ const UniversityVerification = () => {
                                     type="file"
                                     ref={authLetterInputRef}
                                     className="hidden"
-                                    accept=".pdf,.jpg,.png"
+                                    accept=".pdf,.webp,.webp"
                                     onChange={(e) => handleFileChange(e, 'authorizationLetter')}
                                 />
                                 <div

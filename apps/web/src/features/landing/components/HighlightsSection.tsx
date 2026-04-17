@@ -1,10 +1,10 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import logo from '@/assets/logo.png';
+import logo from '@/assets/logo.webp';
 
 // Using the local placeholder images from the public directory
-const studentSuitcaseImage = '/student-suitcase.png';
-const worldMonumentsImage = '/world-monuments.png';
+const studentSuitcaseImage = '/student-suitcase.webp';
+const worldMonumentsImage = '/world-monuments.webp';
 
 const HighlightsSection = () => {
     const navigate = useNavigate();
@@ -83,6 +83,9 @@ const HighlightsSection = () => {
                         <img 
                             src={studentSuitcaseImage} 
                             alt="Happy student sitting on suitcase ready to travel" 
+                            width={500}
+                            height={600}
+                            loading="lazy"
                             onError={(e) => {
                                 (e.target as HTMLImageElement).src = logo;
                             }}

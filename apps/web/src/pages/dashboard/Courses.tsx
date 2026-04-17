@@ -136,7 +136,7 @@ const allCourses: Course[] = [
     {
         title: "MSc Mechanical Eng",
         university: "TU Delft",
-        image: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/TU_Delft_Library.jpg/640px-TU_Delft_Library.jpg",
+        image: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/TU_Delft_Library.webp/640px-TU_Delft_Library.webp",
         eligibility: "Eligible",
         eligibilityColor: "green",
         duration: "2 Years",
@@ -150,7 +150,7 @@ const allCourses: Course[] = [
     {
         title: "Bachelor of Business",
         university: "Singapore Management University",
-        image: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Singapore_Management_University_School_of_Information_Systems.jpg/640px-Singapore_Management_University_School_of_Information_Systems.jpg",
+        image: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Singapore_Management_University_School_of_Information_Systems.webp/640px-Singapore_Management_University_School_of_Information_Systems.webp",
         eligibility: "Borderline",
         eligibilityColor: "yellow",
         duration: "4 Years",
@@ -164,7 +164,7 @@ const allCourses: Course[] = [
     {
         title: "MSc Psychology",
         university: "University of Melbourne",
-        image: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/University_of_Melbourne_Old_Arts.jpg/640px-University_of_Melbourne_Old_Arts.jpg",
+        image: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/University_of_Melbourne_Old_Arts.webp/640px-University_of_Melbourne_Old_Arts.webp",
         eligibility: "High Eligibility",
         eligibilityColor: "green",
         duration: "2 Years",
@@ -178,7 +178,7 @@ const allCourses: Course[] = [
     {
         title: "Data Science Certificate",
         university: "MIT Professional",
-        image: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/MIT_dome_night1.jpg/640px-MIT_dome_night1.jpg",
+        image: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/MIT_dome_night1.webp/640px-MIT_dome_night1.webp",
         eligibility: "Eligible",
         eligibilityColor: "green",
         duration: "6 Months",

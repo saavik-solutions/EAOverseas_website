@@ -37,37 +37,37 @@ const Testimonials = () => {
                             quote: "The step-by-step guidance for my UK university applications made a complex process feel effortless. I couldn't have done it without them.",
                             name: "Aarav Mehta",
                             role: "MSc Data Science, UK",
-                            image: "/images/testimonials/aarav_mehta_portrait_1769769634237.png"
+                            image: "/images/testimonials/aarav_mehta_portrait_1769769634237.webp"
                         },
                         {
                             quote: "As a parent, I was worried about the visa process. EAOverseas was professional, transparent, and kept us updated every single day.",
                             name: "Sarah Jenkins",
                             role: "Parent of Graduate",
-                            image: "/images/testimonials/sarah_jenkins_portrait_1769769651144.png"
+                            image: "/images/testimonials/sarah_jenkins_portrait_1769769651144.webp"
                         },
                         {
                             quote: "The test prep courses helped me jump from a 6.5 to an 8.0 in IELTS. The teachers are truly experts in their field.",
                             name: "Li Wei",
                             role: "Test Prep Candidate",
-                            image: "/images/testimonials/li_wei_portrait_1769769551760.png"
+                            image: "/images/testimonials/li_wei_portrait_1769769551760.webp"
                         },
                         {
                             quote: "I was confused between Canada and Australia. Their university selection tool and counseling session gave me total clarity.",
                             name: "Pragya Singh",
                             role: "Bachelors, Australia",
-                            image: "/images/testimonials/priya_singh_portrait_1769769569078.png"
+                            image: "/images/testimonials/priya_singh_portrait_1769769569078.webp"
                         },
                         {
                             quote: "The visa guidance was flawless. I received my F-1 visa for the USA without a single hitch. Highly recommended.",
                             name: "David Miller",
                             role: "MBA, USA",
-                            image: "/images/testimonials/david_miller_portrait_1769769667933.png"
+                            image: "/images/testimonials/david_miller_portrait_1769769667933.webp"
                         },
                         {
                             quote: "Finding a scholarship felt impossible until I joined EAOverseas. They found opportunities I didn't even know existed.",
                             name: "Elena Rossi",
                             role: "Scholarship Recipient, EU",
-                            image: "/images/testimonials/elena_rossi_portrait_1769769684028.png"
+                            image: "/images/testimonials/elena_rossi_portrait_1769769684028.webp"
                         },
                     ].map((item, index) => (
                         <div

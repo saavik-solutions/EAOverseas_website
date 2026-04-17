@@ -97,7 +97,7 @@ const VisaDocumentUpload = () => {
                 ref={fileInputRef}
                 className="hidden"
                 onChange={handleFileChange}
-                accept=".pdf,.jpg,.jpeg,.png"
+                accept=".pdf,.webp,.webp,.webp"
             />
             <PageHeader
                 title={

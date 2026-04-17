@@ -285,7 +285,7 @@ export const SavedItemsProvider: React.FC<{ children: React.ReactNode }> = ({ ch
 
     const [profileDocuments] = useState<ProfileDocument[]>([
         { name: 'Passport_Copy.pdf', size: '2.4 MB', type: 'passport' },
-        { name: 'Photo.jpg', size: '1.2 MB', type: 'photo' },
+        { name: 'Photo.webp', size: '1.2 MB', type: 'photo' },
         { name: 'BSc_Transcripts.pdf', size: '5.8 MB', type: 'transcripts' },
         { name: 'SOP_DataScience.pdf', size: '0.8 MB', type: 'sop' },
         { name: 'LOR_Professor_Smith.pdf', size: '1.5 MB', type: 'lor' }

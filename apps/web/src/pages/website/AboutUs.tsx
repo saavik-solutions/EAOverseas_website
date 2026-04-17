@@ -1,9 +1,9 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/shared/contexts/AuthContext';
-import blogDestinations from '@/features/landing/assets/blog_destinations.png';
-import blogIelts from '@/features/landing/assets/blog_ielts.png';
-import blogVisa from '@/features/landing/assets/blog_visa.png';
+import blogDestinations from '@/features/landing/assets/blog_destinations.webp';
+import blogIelts from '@/features/landing/assets/blog_ielts.webp';
+import blogVisa from '@/features/landing/assets/blog_visa.webp';
 import { SEOHead } from '@/components/common/SEOHead';
 
 const Counter = ({ end, duration = 2000 }) => {
@@ -80,7 +80,7 @@ const AboutUs = () => {
             <SEOHead 
                 title="About Us | EAOverseas"
                 description="Learn about our mission to empower global scholars through data-driven insights and ethical guidance."
-                image="/assets/student_story_hero.png"
+                image="/assets/student_story_hero.webp"
             />
             {/* Hero Section */}
                 <section className="relative py-12 md:py-32 overflow-hidden">

@@ -1,12 +1,12 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import icon3dCareer from '@/assets/services/service_icon_career_1774048481739.png';
-import icon3dTest from '@/assets/services/service_icon_test_1774048515441.png';
-import icon3dApplication from '@/assets/services/service_icon_application_1774048527946.png';
-import icon3dVisa from '@/assets/services/service_icon_visa_1774049158836.png';
-import icon3dUniversity from '@/assets/services/service_icon_university.png';
-import icon3dSpecial from '@/assets/services/service_icon_special.png';
+import icon3dCareer from '@/assets/services/service_icon_career_1774048481739.webp';
+import icon3dTest from '@/assets/services/service_icon_test_1774048515441.webp';
+import icon3dApplication from '@/assets/services/service_icon_application_1774048527946.webp';
+import icon3dVisa from '@/assets/services/service_icon_visa_1774049158836.webp';
+import icon3dUniversity from '@/assets/services/service_icon_university.webp';
+import icon3dSpecial from '@/assets/services/service_icon_special.webp';
 
 
 // ─── Data ─────────────────────────────────────────────────────────────────────

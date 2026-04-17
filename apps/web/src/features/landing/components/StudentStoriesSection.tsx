@@ -3,10 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import ImageWithFallback from '@/components/common/ImageWithFallback';
 import styles from './StudentStoriesSection.module.css';
 // Adding Avneet card back as requested
-import avneetCard from '@/assets/story_card_avneet.png';
-import sanjuktaCard from '@/assets/story_card_sanjukta.jpg';
-import manishCard from '@/assets/story_card_manish.jpg';
-import manishaCard from '@/assets/story_card_manisha.jpg';
+import avneetCard from '@/assets/story_card_avneet.webp';
+import sanjuktaCard from '@/assets/story_card_sanjukta.webp';
+import manishCard from '@/assets/story_card_manish.webp';
+import manishaCard from '@/assets/story_card_manisha.webp';
 
 const StudentStoriesSection = () => {
     const navigate = useNavigate();

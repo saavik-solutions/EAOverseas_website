@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
-import logo from '@/assets/logo.png';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
+import logo from '@/assets/logo.webp';
 import { useAuth } from '@/shared/contexts/AuthContext';
 import { destinations } from '@/data/countries';
 
@@ -59,8 +59,9 @@ const Navbar = () => {
     ];
 
     return (
-        <div className="fixed top-6 left-0 right-0 z-[100] px-4 w-full flex justify-center pointer-events-none">
+        <header className="fixed top-6 left-0 right-0 z-[100] px-4 w-full flex justify-center pointer-events-none">
             <nav
+                aria-label="Primary Navigation"
                 className={`
                     pointer-events-auto w-full max-w-[1400px] rounded-[19px] border shadow-xl
                     backdrop-blur-md backdrop-brightness-100 transition-all duration-300
@@ -77,19 +78,18 @@ const Navbar = () => {
             {/* ──────────────────── Main Row ──────────────────── */}
             <div className="max-w-[1600px] mx-auto px-4 lg:px-10 h-[68px] flex items-center gap-6 lg:gap-8">
 
-                {/* 1. Logo */}
-                <div
-                    className="flex-shrink-0 cursor-pointer select-none"
-                    onClick={() => navigate('/landing')}
+                <Link
+                    to="/landing"
+                    className="flex-shrink-0 cursor-pointer select-none pointer-events-auto"
                     aria-label="EAOverseas Home"
                 >
                     <img 
                         src={logo} 
-                        alt="EAOverseas" 
+                        alt="EAOverseas Logo" 
                         className="h-12 lg:h-14 w-auto object-contain transition-all duration-300 ease-in-out" 
                         style={{ filter: 'brightness(0) saturate(100%) invert(19%) sepia(80%) saturate(6011%) hue-rotate(272deg) brightness(83%) contrast(98%)' }}
                     />
-                </div>
+                </Link>
 
                 {/* Desktop Navigation – centered via flex-1 */}
                 <div className="hidden lg:flex flex-1 items-center justify-center gap-1">
@@ -100,7 +100,9 @@ const Navbar = () => {
                             onMouseEnter={() => link.hasDropdown && setIsCountriesOpen(true)}
                             onMouseLeave={() => link.hasDropdown && setIsCountriesOpen(false)}
                         >
-                            <button
+                             <button
+                                aria-haspopup={link.hasDropdown ? "true" : undefined}
+                                aria-expanded={link.hasDropdown ? isCountriesOpen : undefined}
                                 onClick={() =>
                                     (link as any).external
                                         ? window.open((link as any).path, '_blank', 'noopener,noreferrer')
@@ -118,7 +120,7 @@ const Navbar = () => {
                             >
                                 {link.name}
                                 {link.hasDropdown && (
-                                    <span className={`material-symbols-outlined text-[15px] transition-transform duration-200 ${isCountriesOpen ? 'rotate-180' : ''}`}>
+                                    <span className={`material-symbols-outlined text-[15px] transition-transform duration-200 ${isCountriesOpen ? 'rotate-180' : ''}`} aria-hidden="true">
                                         expand_more
                                     </span>
                                 )}
@@ -141,7 +143,7 @@ const Navbar = () => {
                                                 className="flex items-center gap-3 p-2.5 rounded-xl hover:bg-purple-50 transition-colors cursor-pointer group/item"
                                             >
                                                 <div className="w-10 h-8 rounded-lg overflow-hidden border border-gray-100 flex-shrink-0">
-                                                    <img src={`https://flagcdn.com/w160/${dest.code.toLowerCase()}.png`} alt={dest.name} className="w-full h-full object-cover" />
+                                                    <img src={`https://flagcdn.com/w160/${dest.code.toLowerCase()}.webp`} alt="" aria-hidden="true" className="w-full h-full object-cover" />
                                                 </div>
                                                 <div className="flex flex-col">
                                                     <span className="text-[13px] font-bold text-gray-900 group-hover/item:text-[#7a29c2] transition-colors">{dest.name}</span>
@@ -169,25 +171,25 @@ const Navbar = () => {
 
                     {/* Check Eligibility Button (Figma) */}
                     <button
-                        onClick={() => navigate('/contact')}
+                        onClick={() => window.open('https://student.eaoverseas.com/auth/login', '_blank', 'noopener,noreferrer')}
                         className="group relative hidden lg:flex items-center justify-center px-4 py-2 rounded-xl border-none shadow-[inset_0px_1px_4px_rgba(255,236,218,0.2),0px_4px_12px_rgba(234,88,12,0.3)] hover:shadow-[0px_8px_25px_rgba(234,88,12,0.5)] transition-all hover:scale-105 active:scale-95"
                         style={{ background: 'linear-gradient(180deg, #f97316 0%, #c2410c 100%)' }}
                     >
                         <span className="relative z-10 font-sans font-medium text-white text-[15px] tracking-wide">
-                            Check Eligibility
+                            Sign In
                         </span>
                     </button>
 
                     {/* Join Community Button → external student portal (Hidden on mobile to save space) */}
                     <button
-                        onClick={() => window.open('https://student.eaoverseas.com', '_blank', 'noopener,noreferrer')}
+                        onClick={() => window.open('https://student.eaoverseas.com/auth/signup', '_blank', 'noopener,noreferrer')}
                         className="group relative hidden lg:flex items-center justify-center px-5 py-2.5 rounded-xl border border-white/30 shadow-[0px_4px_20px_rgba(88,28,135,0.4)] hover:shadow-[0px_6px_25px_rgba(88,28,135,0.6)] transition-all hover:scale-105 active:scale-95"
                         style={{ background: 'linear-gradient(212deg, rgba(124,58,237,0.4) 0%, rgba(88,28,135,0.9) 54%, rgba(124,58,237,0.4) 100%)' }}
                     >
                         <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity bg-gradient-to-t from-transparent to-white/20 pointer-events-none" />
                         <span className="relative z-10 font-sans font-medium text-white text-[15px] tracking-wide flex items-center gap-1.5">
-                            <span className="material-symbols-outlined text-[17px]">groups</span>
-                            Join Community
+                            <span className="material-symbols-outlined text-[17px]">person_add</span>
+                            Sign Up
                         </span>
                     </button>
 
@@ -198,7 +200,7 @@ const Navbar = () => {
                             className="p-2 transition-colors rounded-lg text-gray-700 hover:text-[#7a29c2] hover:bg-purple-50"
                             aria-label="Toggle menu"
                         >
-                            <span className="material-symbols-outlined text-[26px]">
+                            <span className="material-symbols-outlined text-[26px]" aria-hidden="true">
                                 {isMobileMenuOpen ? 'close' : 'menu'}
                             </span>
                         </button>
@@ -259,7 +261,7 @@ const Navbar = () => {
                                                 className="flex items-center gap-2.5 p-2 rounded-xl bg-white border border-gray-100 shadow-sm text-left"
                                             >
                                                 <div className="w-8 h-6 rounded-md overflow-hidden border border-gray-100 flex-shrink-0">
-                                                    <img src={`https://flagcdn.com/w160/${dest.code.toLowerCase()}.png`} alt={dest.name} className="w-full h-full object-cover" />
+                                                    <img src={`https://flagcdn.com/w160/${dest.code.toLowerCase()}.webp`} alt={dest.name} className="w-full h-full object-cover" />
                                                 </div>
                                                 <span className="text-[12px] font-bold text-gray-900 truncate">{dest.name}</span>
                                             </button>
@@ -279,20 +281,20 @@ const Navbar = () => {
                     <div className="pt-4 mt-2 border-t border-gray-100 flex flex-col gap-3">
                         {/* Mobile Join Community */}
                         <button
-                            onClick={() => window.open('https://student.eaoverseas.com', '_blank', 'noopener,noreferrer')}
+                            onClick={() => window.open('https://student.eaoverseas.com/auth/signup', '_blank', 'noopener,noreferrer')}
                             className="w-full bg-[#7a29c2] text-white font-bold py-3.5 rounded-2xl flex items-center justify-center gap-2 shadow-lg shadow-purple-200"
                         >
-                            <span className="material-symbols-outlined text-[18px]">groups</span>
-                            Join Community
+                            <span className="material-symbols-outlined text-[18px]">person_add</span>
+                            Sign Up
                         </button>
 
                         {/* Mobile Check Eligibility */}
                         <button
-                            onClick={() => { navigate('/contact'); setIsMobileMenuOpen(false); }}
+                            onClick={() => window.open('https://student.eaoverseas.com/auth/login', '_blank', 'noopener,noreferrer')}
                             className="w-full bg-gradient-to-r from-[#f97316] to-[#ea580c] text-white font-bold py-3.5 rounded-2xl flex items-center justify-center gap-2 shadow-lg shadow-orange-200"
                         >
-                            <span className="material-symbols-outlined text-[18px]">verified</span>
-                            Check Eligibility
+                            <span className="material-symbols-outlined text-[18px]">login</span>
+                            Sign In
                         </button>
 
                         {user && (
@@ -317,7 +319,7 @@ const Navbar = () => {
                 </div>
             </div>
             </nav>
-        </div>
+        </header>
     );
 };
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useAuth } from '@/shared/contexts/AuthContext';
-import universityImg from '@/features/landing/assets/university_modern_building.png';
+import universityImg from '@/features/landing/assets/university_modern_building.webp';
 
 const CountryDetails = () => {
     const { countryCode } = useParams();
@@ -47,11 +47,11 @@ const CountryDetails = () => {
                 { title: 'Culture & Sports', icon: 'stadium', desc: 'World-renowned museums (often free), historic architecture, and the home of the Premier League.' }
             ],
             universities: [
-                { name: 'OXFORD', logoColor: 'bg-gray-400', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Radcliffe_Camera%2C_Oxford_-_Oct_2006.jpg/400px-Radcliffe_Camera%2C_Oxford_-_Oct_2006.jpg' },
-                { name: 'CAMBRIDGE', logoColor: 'bg-gray-400', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Kings_College_Chapel_from_the_river.jpg/400px-Kings_College_Chapel_from_the_river.jpg' },
-                { name: 'LSE', logoColor: 'bg-gray-400', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/LSE_Old_Building.JPG/400px-LSE_Old_Building.JPG' },
-                { name: 'UCL', logoColor: 'bg-gray-400', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/UCL_Portico.jpg/400px-UCL_Portico.jpg' },
-                { name: 'IMPERIAL', logoColor: 'bg-gray-400', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Queens_Tower_Imperial_College.jpg/400px-Queens_Tower_Imperial_College.jpg' }
+                { name: 'OXFORD', logoColor: 'bg-gray-400', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Radcliffe_Camera%2C_Oxford_-_Oct_2006.webp/400px-Radcliffe_Camera%2C_Oxford_-_Oct_2006.webp' },
+                { name: 'CAMBRIDGE', logoColor: 'bg-gray-400', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Kings_College_Chapel_from_the_river.webp/400px-Kings_College_Chapel_from_the_river.webp' },
+                { name: 'LSE', logoColor: 'bg-gray-400', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/LSE_Old_Building.webp/400px-LSE_Old_Building.webp' },
+                { name: 'UCL', logoColor: 'bg-gray-400', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/UCL_Portico.webp/400px-UCL_Portico.webp' },
+                { name: 'IMPERIAL', logoColor: 'bg-gray-400', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Queens_Tower_Imperial_College.webp/400px-Queens_Tower_Imperial_College.webp' }
             ]
         },
         'US': {
@@ -79,11 +79,11 @@ const CountryDetails = () => {
                 { title: 'Natural Wonders', icon: 'landscape', desc: 'Explore diverse landscapes from the Grand Canyon to the beaches of California and Florida.' }
             ],
             universities: [
-                { name: 'MIT', logoColor: 'bg-red-400', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Mitgreatdome.jpg/400px-Mitgreatdome.jpg' },
-                { name: 'HARVARD', logoColor: 'bg-red-900', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Memorial_Hall_at_Harvard_University.JPG/400px-Memorial_Hall_at_Harvard_University.JPG' },
-                { name: 'STANFORD', logoColor: 'bg-red-700', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Stanford_Quad.jpg/400px-Stanford_Quad.jpg' },
-                { name: 'CALTECH', logoColor: 'bg-orange-500', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Caltech_Beckman_Auditorium.jpg/400px-Caltech_Beckman_Auditorium.jpg' },
-                { name: 'BERKELEY', logoColor: 'bg-blue-800', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Sather_Tower_at_UC_Berkeley.jpg/400px-Sather_Tower_at_UC_Berkeley.jpg' }
+                { name: 'MIT', logoColor: 'bg-red-400', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Mitgreatdome.webp/400px-Mitgreatdome.webp' },
+                { name: 'HARVARD', logoColor: 'bg-red-900', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Memorial_Hall_at_Harvard_University.webp/400px-Memorial_Hall_at_Harvard_University.webp' },
+                { name: 'STANFORD', logoColor: 'bg-red-700', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Stanford_Quad.webp/400px-Stanford_Quad.webp' },
+                { name: 'CALTECH', logoColor: 'bg-orange-500', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Caltech_Beckman_Auditorium.webp/400px-Caltech_Beckman_Auditorium.webp' },
+                { name: 'BERKELEY', logoColor: 'bg-blue-800', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Sather_Tower_at_UC_Berkeley.webp/400px-Sather_Tower_at_UC_Berkeley.webp' }
             ]
         },
         'CA': {
@@ -111,11 +111,11 @@ const CountryDetails = () => {
                 { title: 'Safe & Friendly', icon: 'health_and_safety', desc: 'One of the safest countries in the world with a reputation for friendliness and politeness.' }
             ],
             universities: [
-                { name: 'TORONTO', logoColor: 'bg-blue-900', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/UT_University_College.JPG/400px-UT_University_College.JPG' },
-                { name: 'UBC', logoColor: 'bg-blue-700', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/UBC_Rose_Garden_01.jpg/400px-UBC_Rose_Garden_01.jpg' },
-                { name: 'MCGILL', logoColor: 'bg-red-600', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Arts_Building%2C_McGill_University.jpg/400px-Arts_Building%2C_McGill_University.jpg' },
-                { name: 'WATERLOO', logoColor: 'bg-yellow-500', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/University_of_Waterloo_Engineering_5_Building.jpg/400px-University_of_Waterloo_Engineering_5_Building.jpg' },
-                { name: 'ALBERTA', logoColor: 'bg-green-700', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/University_of_Alberta_Campus%2C_Edmonton.jpg/400px-University_of_Alberta_Campus%2C_Edmonton.jpg' }
+                { name: 'TORONTO', logoColor: 'bg-blue-900', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/UT_University_College.webp/400px-UT_University_College.webp' },
+                { name: 'UBC', logoColor: 'bg-blue-700', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/UBC_Rose_Garden_01.webp/400px-UBC_Rose_Garden_01.webp' },
+                { name: 'MCGILL', logoColor: 'bg-red-600', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Arts_Building%2C_McGill_University.webp/400px-Arts_Building%2C_McGill_University.webp' },
+                { name: 'WATERLOO', logoColor: 'bg-yellow-500', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/University_of_Waterloo_Engineering_5_Building.webp/400px-University_of_Waterloo_Engineering_5_Building.webp' },
+                { name: 'ALBERTA', logoColor: 'bg-green-700', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/University_of_Alberta_Campus%2C_Edmonton.webp/400px-University_of_Alberta_Campus%2C_Edmonton.webp' }
             ]
         },
         'AU': {
@@ -143,11 +143,11 @@ const CountryDetails = () => {
                 { title: 'Unique Wildlife', icon: 'pets', desc: 'Encounter kangaroos, koalas, and quokkas in their natural habitats.' }
             ],
             universities: [
-                { name: 'MELBOURNE', logoColor: 'bg-blue-900', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Old_Quad_colonnade_University_of_Melbourne_2018.jpg/400px-Old_Quad_colonnade_University_of_Melbourne_2018.jpg' },
-                { name: 'SYDNEY', logoColor: 'bg-red-900', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/University_of_Sydney_Main_Quadrangle.jpg/400px-University_of_Sydney_Main_Quadrangle.jpg' },
-                { name: 'UNSW', logoColor: 'bg-yellow-400', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/UNSW_Clancy_Auditorium.jpg/400px-UNSW_Clancy_Auditorium.jpg' },
-                { name: 'ANU', logoColor: 'bg-orange-600', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/ANU_School_of_Music.jpg/400px-ANU_School_of_Music.jpg' },
-                { name: 'MONASH', logoColor: 'bg-blue-600', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Monash_Caulfield_Green.jpg/400px-Monash_Caulfield_Green.jpg' }
+                { name: 'MELBOURNE', logoColor: 'bg-blue-900', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Old_Quad_colonnade_University_of_Melbourne_2018.webp/400px-Old_Quad_colonnade_University_of_Melbourne_2018.webp' },
+                { name: 'SYDNEY', logoColor: 'bg-red-900', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/University_of_Sydney_Main_Quadrangle.webp/400px-University_of_Sydney_Main_Quadrangle.webp' },
+                { name: 'UNSW', logoColor: 'bg-yellow-400', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/UNSW_Clancy_Auditorium.webp/400px-UNSW_Clancy_Auditorium.webp' },
+                { name: 'ANU', logoColor: 'bg-orange-600', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/ANU_School_of_Music.webp/400px-ANU_School_of_Music.webp' },
+                { name: 'MONASH', logoColor: 'bg-blue-600', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Monash_Caulfield_Green.webp/400px-Monash_Caulfield_Green.webp' }
             ]
         },
         'DE': {
@@ -175,11 +175,11 @@ const CountryDetails = () => {
                 { title: 'Festivals', icon: 'festival', desc: 'From Oktoberfest to Christmas markets, experience rich traditions and celebrations year-round.' }
             ],
             universities: [
-                { name: 'TUM', logoColor: 'bg-blue-600', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/TUM_Innenhof_Stammgelaende.jpg/400px-TUM_Innenhof_Stammgelaende.jpg' },
-                { name: 'LMU', logoColor: 'bg-green-700', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Geschwister-Scholl-Platz_2011_LMU_Muenchen_3.jpg/400px-Geschwister-Scholl-Platz_2011_LMU_Muenchen_3.jpg' },
-                { name: 'HEIDELBERG', logoColor: 'bg-red-800', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Heidelberg_Universitaetsbibliothek_2003.jpg/400px-Heidelberg_Universitaetsbibliothek_2003.jpg' },
-                { name: 'RWTH AACHEN', logoColor: 'bg-blue-800', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/RWTH_Aachen_Hauptgeb%C3%A4ude.jpg/400px-RWTH_Aachen_Hauptgeb%C3%A4ude.jpg' },
-                { name: 'KIT', logoColor: 'bg-green-600', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Karlsruhe_Schloss_2010.jpg/400px-Karlsruhe_Schloss_2010.jpg' }
+                { name: 'TUM', logoColor: 'bg-blue-600', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/TUM_Innenhof_Stammgelaende.webp/400px-TUM_Innenhof_Stammgelaende.webp' },
+                { name: 'LMU', logoColor: 'bg-green-700', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Geschwister-Scholl-Platz_2011_LMU_Muenchen_3.webp/400px-Geschwister-Scholl-Platz_2011_LMU_Muenchen_3.webp' },
+                { name: 'HEIDELBERG', logoColor: 'bg-red-800', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Heidelberg_Universitaetsbibliothek_2003.webp/400px-Heidelberg_Universitaetsbibliothek_2003.webp' },
+                { name: 'RWTH AACHEN', logoColor: 'bg-blue-800', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/RWTH_Aachen_Hauptgeb%C3%A4ude.webp/400px-RWTH_Aachen_Hauptgeb%C3%A4ude.webp' },
+                { name: 'KIT', logoColor: 'bg-green-600', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Karlsruhe_Schloss_2010.webp/400px-Karlsruhe_Schloss_2010.webp' }
             ]
         },
         'IE': {
@@ -207,11 +207,11 @@ const CountryDetails = () => {
                 { title: 'Scenic Beauty', icon: 'terrain', desc: 'Discover the Cliffs of Moher, Ring of Kerry, and lush green landscapes on weekends.' }
             ],
             universities: [
-                { name: 'TRINITY', logoColor: 'bg-blue-900', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/The_Campanile_of_Trinity_College%2C_Dublin.jpg/400px-The_Campanile_of_Trinity_College%2C_Dublin.jpg' },
-                { name: 'UCD', logoColor: 'bg-yellow-600', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/UCD_Science_Centre.jpg/400px-UCD_Science_Centre.jpg' },
-                { name: 'GALWAY', logoColor: 'bg-green-800', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/NUI_Galway_Quadrangle.jpg/400px-NUI_Galway_Quadrangle.jpg' },
-                { name: 'UCC', logoColor: 'bg-red-700', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/UCC_Quadrangle.jpg/400px-UCC_Quadrangle.jpg' },
-                { name: 'DCU', logoColor: 'bg-blue-500', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/DCU_Helix.jpg/400px-DCU_Helix.jpg' }
+                { name: 'TRINITY', logoColor: 'bg-blue-900', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/The_Campanile_of_Trinity_College%2C_Dublin.webp/400px-The_Campanile_of_Trinity_College%2C_Dublin.webp' },
+                { name: 'UCD', logoColor: 'bg-yellow-600', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/UCD_Science_Centre.webp/400px-UCD_Science_Centre.webp' },
+                { name: 'GALWAY', logoColor: 'bg-green-800', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/NUI_Galway_Quadrangle.webp/400px-NUI_Galway_Quadrangle.webp' },
+                { name: 'UCC', logoColor: 'bg-red-700', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/UCC_Quadrangle.webp/400px-UCC_Quadrangle.webp' },
+                { name: 'DCU', logoColor: 'bg-blue-500', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/DCU_Helix.webp/400px-DCU_Helix.webp' }
             ]
         },
         'NZ': {
@@ -239,11 +239,11 @@ const CountryDetails = () => {
                 { title: 'Film Tourism', icon: 'movie', desc: 'Visit Hobbiton and other iconic filming locations from Lord of the Rings.' }
             ],
             universities: [
-                { name: 'AUCKLAND', logoColor: 'bg-blue-700', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/University_of_Auckland_Clock_Tower.jpg/400px-University_of_Auckland_Clock_Tower.jpg' },
-                { name: 'OTAGO', logoColor: 'bg-yellow-700', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/University_of_Otago_Clocktower_Building.jpg/400px-University_of_Otago_Clocktower_Building.jpg' },
-                { name: 'VICTORIA', logoColor: 'bg-green-900', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Hunter_Building_VUW_Wellington_New_Zealand.jpg/400px-Hunter_Building_VUW_Wellington_New_Zealand.jpg' },
-                { name: 'CANTERBURY', logoColor: 'bg-red-800', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/University_of_Canterbury_Central_Library.jpg/400px-University_of_Canterbury_Central_Library.jpg' },
-                { name: 'WAIKATO', logoColor: 'bg-red-600', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/University_of_Waikato_Gate_1.jpg/400px-University_of_Waikato_Gate_1.jpg' }
+                { name: 'AUCKLAND', logoColor: 'bg-blue-700', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/University_of_Auckland_Clock_Tower.webp/400px-University_of_Auckland_Clock_Tower.webp' },
+                { name: 'OTAGO', logoColor: 'bg-yellow-700', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/University_of_Otago_Clocktower_Building.webp/400px-University_of_Otago_Clocktower_Building.webp' },
+                { name: 'VICTORIA', logoColor: 'bg-green-900', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Hunter_Building_VUW_Wellington_New_Zealand.webp/400px-Hunter_Building_VUW_Wellington_New_Zealand.webp' },
+                { name: 'CANTERBURY', logoColor: 'bg-red-800', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/University_of_Canterbury_Central_Library.webp/400px-University_of_Canterbury_Central_Library.webp' },
+                { name: 'WAIKATO', logoColor: 'bg-red-600', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/University_of_Waikato_Gate_1.webp/400px-University_of_Waikato_Gate_1.webp' }
             ]
         },
         // Fallback for other countries
@@ -345,7 +345,7 @@ const CountryDetails = () => {
                     <div className="lg:col-span-3 flex flex-col gap-3 md:gap-6">
                         <div className="inline-flex items-center gap-2 md:gap-3 bg-[#7a29c2]/10 text-[#7a29c2] px-3 py-1.5 md:px-4 md:py-2 rounded-full w-fit">
                             <img
-                                src={`https://flagcdn.com/w40/${countryCode.toLowerCase()}.png`}
+                                src={`https://flagcdn.com/w40/${countryCode.toLowerCase()}.webp`}
                                 alt={`${country.name} Flag`}
                                 className="w-6 h-auto md:w-8 rounded shadow-sm object-cover"
                             />

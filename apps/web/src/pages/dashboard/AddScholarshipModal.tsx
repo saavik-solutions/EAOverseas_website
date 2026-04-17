@@ -130,7 +130,7 @@ const AddScholarshipModal: React.FC<AddScholarshipModalProps> = ({ isOpen, onClo
             extraApplicants: '0 Applicants',
             analyticsData: [],
             institution: user?.university || 'University of Toronto',
-            logo: (user as any)?.logo || 'https://upload.wikimedia.org/wikipedia/en/thumb/0/04/Utoronto_coa.svg/1200px-Utoronto_coa.svg.png'
+            logo: (user as any)?.logo || 'https://upload.wikimedia.org/wikipedia/en/thumb/0/04/Utoronto_coa.svg/1200px-Utoronto_coa.svg.webp'
         };
 
         onAdd(newScholarship);

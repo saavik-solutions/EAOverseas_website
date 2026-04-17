@@ -74,7 +74,7 @@ const ApplyScholarshipModal: React.FC<ApplyScholarshipModalProps> = ({ isOpen, o
             statement: formData.statement,
             documents: {
                 transcript: files.transcript?.name || 'Academic_Transcript.pdf',
-                idCopy: files.idCopy?.name || 'ID_Card.jpg'
+                idCopy: files.idCopy?.name || 'ID_Card.webp'
             }
         };
 

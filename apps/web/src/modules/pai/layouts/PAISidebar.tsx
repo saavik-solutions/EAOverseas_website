@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import logo from '@/assets/logo.png';
+import logo from '@/assets/logo.webp';
 import { useAuth } from '@/shared/contexts/AuthContext';
 
 const PAISidebar = ({ isOpen, onClose }: { isOpen: boolean, onClose: () => void }) => {

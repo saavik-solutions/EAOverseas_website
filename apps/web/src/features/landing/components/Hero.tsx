@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import chatIcon from '@/assets/icon_chat.png';
-import whatsappIcon from '@/assets/icon_whatsapp.png';
+import chatIcon from '@/assets/icon_chat.webp';
+import whatsappIcon from '@/assets/icon_whatsapp.webp';
 import { getWhatsAppLink } from '@/shared/constants/contacts';
 
 const Hero = () => {

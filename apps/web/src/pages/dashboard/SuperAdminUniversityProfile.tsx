@@ -245,7 +245,7 @@ const ProfileView = ({ uni, isEditing, editedData, setEditedData, handleSave }: 
                                         rel="noreferrer"
                                         className="flex items-center gap-2 px-4 py-2 bg-slate-50 hover:bg-slate-100 rounded-xl border border-slate-200 transition-all group"
                                     >
-                                        <img src={`https://cdn-icons-png.flaticon.com/512/${platform === 'linkedin' ? '174/174857' : platform === 'twitter' ? '5968/5968830' : platform === 'facebook' ? '5968/5968764' : '2111/2111463'}.png`} className="size-4 grayscale group-hover:grayscale-0 transition-all" alt={platform} />
+                                        <img src={`https://cdn-icons-png.flaticon.com/512/${platform === 'linkedin' ? '174/174857' : platform === 'twitter' ? '5968/5968830' : platform === 'facebook' ? '5968/5968764' : '2111/2111463'}.webp`} className="size-4 grayscale group-hover:grayscale-0 transition-all" alt={platform} />
                                         <span className="text-[10px] font-black uppercase text-slate-500">{platform}</span>
                                     </a>
                                 ) : null

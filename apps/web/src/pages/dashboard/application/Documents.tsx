@@ -82,7 +82,7 @@ const Documents = () => {
                     type="file"
                     id={`input-${type}`}
                     className="hidden"
-                    accept={type === 'photo' ? 'image/*' : '.pdf,.jpg,.png'}
+                    accept={type === 'photo' ? 'image/*' : '.pdf,.webp,.webp'}
                     onChange={(e) => handleFileChange(type, e)}
                 />
             </div>

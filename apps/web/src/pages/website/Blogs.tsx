@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
 import { BlogsGridSkeleton } from '@/components/shared/BlogSkeleton';
-import logo from '@/assets/logo.png';
+import logo from '@/assets/logo.webp';
 
 // Featured blog hero image with logo fallback
 const FeaturedImage: React.FC<{ src: string; alt: string }> = ({ src, alt }) => {

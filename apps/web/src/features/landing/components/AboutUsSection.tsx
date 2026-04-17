@@ -1,8 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import img1 from '@/assets/about_us_1.jpg';
-import img2 from '@/assets/about_us_2.jpg';
-import img4 from '@/assets/about_us_4.jpg';
+import img1 from '@/assets/about_us_1.webp';
+import img2 from '@/assets/about_us_2.webp';
+import img4 from '@/assets/about_us_4.webp';
 
 const AboutUsSection = () => {
     const navigate = useNavigate();

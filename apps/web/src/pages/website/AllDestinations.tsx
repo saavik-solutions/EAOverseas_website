@@ -108,7 +108,7 @@ const AllDestinations = () => {
                                 <div className="relative z-10 flex flex-col items-start text-left">
                                     <div className="size-10 md:size-16 rounded-xl md:rounded-2xl bg-white flex items-center justify-center mb-2 md:mb-6 shadow-sm border border-slate-100 overflow-hidden">
                                         <img
-                                            src={`https://flagcdn.com/w160/${dest.code.toLowerCase()}.png`}
+                                            src={`https://flagcdn.com/w160/${dest.code.toLowerCase()}.webp`}
                                             alt={`${dest.name} flag`}
                                             className="w-full h-full object-cover"
                                         />

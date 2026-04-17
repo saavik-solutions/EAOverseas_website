@@ -54,7 +54,7 @@ const DEFAULT_SCHOLARSHIPS: Scholarship[] = [
         extraApplicants: '+42',
         analyticsData: [],
         institution: 'University of Toronto',
-        logo: 'https://upload.wikimedia.org/wikipedia/en/thumb/0/04/Utoronto_coa.svg/1200px-Utoronto_coa.svg.png'
+        logo: 'https://upload.wikimedia.org/wikipedia/en/thumb/0/04/Utoronto_coa.svg/1200px-Utoronto_coa.svg.webp'
     },
     {
         id: '4',
@@ -73,7 +73,7 @@ const DEFAULT_SCHOLARSHIPS: Scholarship[] = [
         extraApplicants: '+15',
         analyticsData: [],
         institution: "King's College London",
-        logo: 'https://upload.wikimedia.org/wikipedia/en/thumb/8/8b/King%27s_College_London_logo.svg/1200px-King%27s_College_London_logo.svg.png'
+        logo: 'https://upload.wikimedia.org/wikipedia/en/thumb/8/8b/King%27s_College_London_logo.svg/1200px-King%27s_College_London_logo.svg.webp'
     },
     {
         id: '5',
@@ -90,7 +90,7 @@ const DEFAULT_SCHOLARSHIPS: Scholarship[] = [
         extraApplicants: '0 Applicants',
         analyticsData: [],
         institution: 'University of Melbourne',
-        logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/University_of_Melbourne_logo.svg/1200px-University_of_Melbourne_logo.svg.png'
+        logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/University_of_Melbourne_logo.svg/1200px-University_of_Melbourne_logo.svg.webp'
     }
 ];
 

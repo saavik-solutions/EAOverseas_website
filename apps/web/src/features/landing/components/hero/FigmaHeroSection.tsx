@@ -1,5 +1,5 @@
 import React from 'react';
-import destHero from '@/assets/figma_hero_bg.png'; // Using the user's uploaded image
+import destHero from '@/assets/figma_hero_bg.webp'; // Using the user's uploaded image
 
 const FigmaHeroSection: React.FC = () => {
   return (

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import logo from '@/assets/logo.png';
+import logo from '@/assets/logo.webp';
 
 const ConsultationBookingModal = ({ isOpen, onClose, onConfirm }) => {
     const [isVisible, setIsVisible] = useState(false);

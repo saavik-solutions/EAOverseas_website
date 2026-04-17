@@ -6,7 +6,7 @@
  *   <SafeImg src={url} alt="desc" className="w-full h-full object-cover" />
  */
 import React, { useState } from 'react';
-import logo from '@/assets/logo.png';
+import logo from '@/assets/logo.webp';
 
 interface SafeImgProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   /** Extra classes applied to the logo placeholder only */

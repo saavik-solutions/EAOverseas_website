@@ -60,7 +60,7 @@ const VisaPrep = () => {
                         </div>
                         {/* Right Content (Visual) */}
                         <div className="hidden md:flex flex-1 relative bg-gradient-to-br from-blue-600/5 via-blue-50 to-indigo-50 items-center justify-center p-8 overflow-hidden">
-                            <div className="absolute inset-0 opacity-30 pointer-events-none bg-center bg-no-repeat bg-cover" style={{ backgroundImage: "url('/world-map.png')" }}></div>
+                            <div className="absolute inset-0 opacity-30 pointer-events-none bg-center bg-no-repeat bg-cover" style={{ backgroundImage: "url('/world-map.webp')" }}></div>
                             {/* Floating Pills */}
                             {/* Map Pins */}
                             <div className="relative w-full h-full">

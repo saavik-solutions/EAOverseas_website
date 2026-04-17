@@ -11,7 +11,7 @@ interface SEOHeadProps {
 export function SEOHead({ 
     title, 
     description, 
-    image = '/assets/logo.png', // Default Logo
+    image = '/assets/logo.webp', // Default Logo
     url = 'https://eaoverseas.com',
     type = 'website'
 }: SEOHeadProps) {
@@ -26,6 +26,8 @@ export function SEOHead({
         <Helmet>
             <title>{siteTitle}</title>
             <meta name="description" content={description} />
+            <link rel="preconnect" href="https://fonts.googleapis.com" />
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
             <link rel="canonical" href={url} />
 
             {/* Open Graph / Facebook */}

@@ -1,6 +1,6 @@
-import blogDestinations from '../features/landing/assets/blog_destinations.png';
-import blogIelts from '../features/landing/assets/blog_ielts.png';
-import blogVisa from '../features/landing/assets/blog_visa.png';
+import blogDestinations from '../features/landing/assets/blog_destinations.webp';
+import blogIelts from '../features/landing/assets/blog_ielts.webp';
+import blogVisa from '../features/landing/assets/blog_visa.webp';
 
 export const blogs = [
     {

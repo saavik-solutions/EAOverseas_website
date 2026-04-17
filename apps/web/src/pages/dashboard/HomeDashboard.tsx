@@ -59,7 +59,7 @@ const HomeDashboard = () => {
                 'Insurance': 70,
                 'Misc': 180
             },
-            flag: 'https://cdn.britannica.com/68/7068-004-7848FEB4/Flag-Canada.jpg'
+            flag: 'https://cdn.britannica.com/68/7068-004-7848FEB4/Flag-Canada.webp'
         },
         'Australia': {
             tuition: 40000,
@@ -72,7 +72,7 @@ const HomeDashboard = () => {
                 'Insurance': 50,
                 'Misc': 300
             },
-            flag: 'https://cdn.britannica.com/78/6078-004-77AF7322/Flag-Australia.jpg'
+            flag: 'https://cdn.britannica.com/78/6078-004-77AF7322/Flag-Australia.webp'
         },
         'Germany': {
             tuition: 3000,
@@ -85,7 +85,7 @@ const HomeDashboard = () => {
                 'Insurance': 110,
                 'Misc': 150
             },
-            flag: 'https://cdn.britannica.com/97/897-004-232BDF01/Flag-Germany.jpg'
+            flag: 'https://cdn.britannica.com/97/897-004-232BDF01/Flag-Germany.webp'
         },
         'India': {
             tuition: 400000,
@@ -98,7 +98,7 @@ const HomeDashboard = () => {
                 'Insurance': 500,
                 'Misc': 2000
             },
-            flag: 'https://cdn.britannica.com/97/1597-004-05816F4E/Flag-India.jpg'
+            flag: 'https://cdn.britannica.com/97/1597-004-05816F4E/Flag-India.webp'
         },
         'Ireland': {
             tuition: 15000,
@@ -111,7 +111,7 @@ const HomeDashboard = () => {
                 'Insurance': 50,
                 'Misc': 200
             },
-            flag: 'https://cdn.britannica.com/33/1733-004-53FA3798/Flag-Ireland.jpg'
+            flag: 'https://cdn.britannica.com/33/1733-004-53FA3798/Flag-Ireland.webp'
         },
         'New Zealand': {
             tuition: 35000,
@@ -124,7 +124,7 @@ const HomeDashboard = () => {
                 'Insurance': 60,
                 'Misc': 250
             },
-            flag: 'https://cdn.britannica.com/17/3017-004-DCC13F9D/Flag-New-Zealand.jpg'
+            flag: 'https://cdn.britannica.com/17/3017-004-DCC13F9D/Flag-New-Zealand.webp'
         }
     };
 
@@ -280,7 +280,7 @@ const HomeDashboard = () => {
                                     </div>
                                     <div className="flex items-center justify-between">
                                         <div className="flex items-center gap-3">
-                                            <div className="size-8 rounded-full bg-gray-100 bg-cover bg-center border border-gray-200 flex items-center justify-center text-xs" style={{ backgroundImage: "url('https://cdn.britannica.com/68/7068-004-7848FEB4/Flag-Canada.jpg')" }}></div>
+                                            <div className="size-8 rounded-full bg-gray-100 bg-cover bg-center border border-gray-200 flex items-center justify-center text-xs" style={{ backgroundImage: "url('https://cdn.britannica.com/68/7068-004-7848FEB4/Flag-Canada.webp')" }}></div>
                                             <span className="font-medium text-sm md:text-base text-gray-700">Canada</span>
                                         </div>
                                         <span className="text-[10px] md:text-xs bg-red-50 text-red-600 px-2 py-0.5 rounded font-bold">Low Match</span>

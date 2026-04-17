@@ -6,28 +6,28 @@ const testimonials = [
     text: "I got admission into the University of Minnesota in the US, with a $40,000 scholarship, which made me feel very excited and happy. My experience with SIEC was wonderful. They helped me at every step of the application process, to pursue my studies in the United States, as well as with my visa application.",
     name: "Raunak Sharma",
     course: "Study Abroad",
-    image: "https://randomuser.me/api/portraits/men/32.jpg"
+    image: "https://randomuser.me/api/portraits/men/32.webp"
   },
   {
     id: 2,
     text: "I got my student visa to go to Berlin, Germany to pursue a language course, followed by a Bachelors in Computer Science. I found out about SIEC through a Google search, and I visited the Janakpuri office. All the counsellors I encountered were very helpful and guided me throughout.",
     name: "Ankit",
     course: "Study Abroad",
-    image: "https://randomuser.me/api/portraits/men/45.jpg"
+    image: "https://randomuser.me/api/portraits/men/45.webp"
   },
   {
     id: 3,
     text: "I have applied to study a Bachelor of Commerce at Curtin University, Singapore. With the help of SIEC counselling and coaching, I have successfully received my student visa. They helped me with everything.",
     name: "Priya",
     course: "Study Abroad",
-    image: "https://randomuser.me/api/portraits/women/44.jpg"
+    image: "https://randomuser.me/api/portraits/women/44.webp"
   },
   {
     id: 4,
     text: "My journey to the UK was seamless thanks to the expert guidance. The counsellors were very attentive and made sure all my documents were pristine. I highly recommend their services to anyone looking to study abroad.",
     name: "Rahul",
     course: "Study Abroad",
-    image: "https://randomuser.me/api/portraits/men/22.jpg"
+    image: "https://randomuser.me/api/portraits/men/22.webp"
   }
 ];
 

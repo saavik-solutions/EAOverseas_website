@@ -4,7 +4,7 @@ export const longFormStories = [
         title: "From Confusion to Cambridge: Marcus's Journey",
         badge: "Success Story",
         readTime: "5 min read",
-        heroImage: "/images/testimonials/marcus_hero_1769769714631.png",
+        heroImage: "/images/testimonials/marcus_hero_1769769714631.webp",
         challenge: {
             icon: "help",
             title: "The Challenge",
@@ -18,7 +18,7 @@ export const longFormStories = [
         student: {
             name: "Marcus Thorne",
             role: "Engineering Student",
-            image: "/images/testimonials/marcus_thorne_portrait_1769769586962.png"
+            image: "/images/testimonials/marcus_thorne_portrait_1769769586962.webp"
         },
         content: `
             <p>Growing up, I always knew I wanted to be an engineer. But when it came time to apply to universities in the UK, I hit a wall. The UCAS system was completely foreign to me, and the sheer number of engineering specializations left me paralyzed with indecision.</p>
@@ -36,7 +36,7 @@ export const longFormStories = [
         title: "Navigating the Scholarship Maze: Anjali's Story",
         badge: "Scholarship spotlight",
         readTime: "4 min read",
-        heroImage: "/images/testimonials/anjali_hero_1769769731376.png",
+        heroImage: "/images/testimonials/anjali_hero_1769769731376.webp",
         challenge: {
             icon: "psychology",
             title: "The Strategy",
@@ -50,7 +50,7 @@ export const longFormStories = [
         student: {
             name: "Anjali Sharma",
             role: "Intl. Relations, Canada",
-            image: "/images/testimonials/anjali_sharma_portrait_1769769606819.png"
+            image: "/images/testimonials/anjali_sharma_portrait_1769769606819.webp"
         },
         content: `
             <p>International education comes with a hefty price tag. For my family, it seemed out of reach. I had the grades—top of my class in History and Political Science—but the tuition fees in Canada were daunting.</p>
@@ -68,7 +68,7 @@ export const longFormStories = [
         title: "Breaking the Language Barrier: Li Wei's Triumph",
         badge: "Language Success",
         readTime: "3 min read",
-        heroImage: "/images/testimonials/li_wei_hero_1769769749394.png",
+        heroImage: "/images/testimonials/li_wei_hero_1769769749394.webp",
         challenge: {
             icon: "translate",
             title: "The Hurdle",
@@ -82,7 +82,7 @@ export const longFormStories = [
         student: {
             name: "Li Wei",
             role: "MS CS, USA",
-            image: "/images/testimonials/li_wei_portrait_1769769551760.png"
+            image: "/images/testimonials/li_wei_portrait_1769769551760.webp"
         },
         content: `
             <p>Coding was my first language; English was a distant second. I could write complex algorithms in Python, but writing an essay in English felt like decoding an alien script.</p>
@@ -98,7 +98,7 @@ export const longFormStories = [
         title: "Designing a Future: Pragya's Path to Parsons",
         badge: "Portfolio Magic",
         readTime: "6 min read",
-        heroImage: "/images/testimonials/priya_hero_1769769766699.png",
+        heroImage: "/images/testimonials/priya_hero_1769769766699.webp",
         challenge: {
             icon: "palette",
             title: "The Creative Block",
@@ -112,7 +112,7 @@ export const longFormStories = [
         student: {
             name: "Pragya Singh",
             role: "Design Student, NYC",
-            image: "/images/testimonials/priya_singh_portrait_1769769569078.png"
+            image: "/images/testimonials/priya_singh_portrait_1769769569078.webp"
         },
         content: `
             <p>My sketchbook was chaos. Sketches of dresses, buildings, and abstract shapes were all jumbled together. I knew I had talent, but I didn't know how to present it.</p>

@@ -51,7 +51,7 @@ const ContactUs = () => {
             <SEOHead 
                 title="Contact Us | EAOverseas"
                 description="Get in touch with our global education strategists to start architecting your global future."
-                image="/assets/visa_success_hero.png"
+                image="/assets/visa_success_hero.webp"
             />
             {/* Premium Background Layers */}
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,#f3e8ff_0%,transparent_50%)] opacity-70"></div>

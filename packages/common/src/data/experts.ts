@@ -1,17 +1,17 @@
-import riyaImg from '../assets/riya_mehta.png';
-import arjunImg from '../assets/arjun_singh.png';
-import snehaImg from '../assets/sneha_kapoor.png';
-import rohanImg from '../assets/rohan_mehra.png';
-import anjaliImg from '../assets/anjali_rao.png';
-import kabirImg from '../assets/kabir_malhotra.png';
-import ishitaImg from '../assets/ishita_verma.png';
-import vikramImg from '../assets/vikram_iyer.png';
+import riyaImg from '../assets/riya_mehta.webp';
+import arjunImg from '../assets/arjun_singh.webp';
+import snehaImg from '../assets/sneha_kapoor.webp';
+import rohanImg from '../assets/rohan_mehra.webp';
+import anjaliImg from '../assets/anjali_rao.webp';
+import kabirImg from '../assets/kabir_malhotra.webp';
+import ishitaImg from '../assets/ishita_verma.webp';
+import vikramImg from '../assets/vikram_iyer.webp';
 
 // New team member images
-import ceoImg from '../assets/team_sui.jpg';
-import graphicImg from '../assets/team_lara.jpg';
-import frontendImg from '../assets/team_sam.jpg';
-import backendImg from '../assets/team_edrik.jpg';
+import ceoImg from '../assets/team_sui.webp';
+import graphicImg from '../assets/team_lara.webp';
+import frontendImg from '../assets/team_sam.webp';
+import backendImg from '../assets/team_edrik.webp';
 
 export const experts = [
     {

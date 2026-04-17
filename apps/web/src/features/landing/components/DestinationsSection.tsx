@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import orbitGraphic from '@/features/landing/assets/destinations_orbit_graphic.png';
-import logo from '@/assets/logo.png';
+import orbitGraphic from '@/features/landing/assets/destinations_orbit_graphic.webp';
+import logo from '@/assets/logo.webp';
 import ImageWithFallback from '@/components/common/ImageWithFallback';
 
 type CountryKey = 'Netherlands' | 'UK' | 'USA' | 'Canada' | 'Ireland';
@@ -120,6 +120,9 @@ const DestinationsSection: React.FC = () => {
                                     <ImageWithFallback 
                                         src={uni.image || logo} 
                                         alt={uni.name} 
+                                        width={400}
+                                        height={200}
+                                        loading="lazy"
                                         className={`w-full h-[200px] max-sm:h-[160px] rounded-[16px] block group-hover:scale-[1.02] transition-transform duration-500 ${!uni.image ? 'object-contain p-8 bg-white/30' : 'object-cover'}`} 
                                         fallbackContainerClassName="w-full h-[200px] max-sm:h-[160px] rounded-[16px]"
                                     />

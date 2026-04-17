@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
-import logo from '@/assets/logo.png';
+import logo from '@/assets/logo.webp';
 
 // Cover image with purple-theme logo fallback
 const CoverImage: React.FC<{ src: string; alt: string }> = ({ src, alt }) => {

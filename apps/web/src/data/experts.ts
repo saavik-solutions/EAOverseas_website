@@ -1,16 +1,16 @@
-import riyaImg from '../features/landing/assets/riya_mehta.png';
-import arjunImg from '../features/landing/assets/arjun_singh.png';
-import snehaImg from '../features/landing/assets/sneha_kapoor.png';
-import rohanImg from '../features/landing/assets/rohan_mehra.png';
-import anjaliImg from '../features/landing/assets/anjali_rao.png';
-import kabirImg from '../features/landing/assets/kabir_malhotra.png';
-import ishitaImg from '../features/landing/assets/ishita_verma.png';
-import vikramImg from '../features/landing/assets/vikram_iyer.png';
+import riyaImg from '../features/landing/assets/riya_mehta.webp';
+import arjunImg from '../features/landing/assets/arjun_singh.webp';
+import snehaImg from '../features/landing/assets/sneha_kapoor.webp';
+import rohanImg from '../features/landing/assets/rohan_mehra.webp';
+import anjaliImg from '../features/landing/assets/anjali_rao.webp';
+import kabirImg from '../features/landing/assets/kabir_malhotra.webp';
+import ishitaImg from '../features/landing/assets/ishita_verma.webp';
+import vikramImg from '../features/landing/assets/vikram_iyer.webp';
 
 // New team member images
-import graphicImg from '../features/landing/assets/team_lara.jpg';
-import frontendImg from '../features/landing/assets/team_sam.jpg';
-import backendImg from '../features/landing/assets/team_edrik.jpg';
+import graphicImg from '../features/landing/assets/team_lara.webp';
+import frontendImg from '../features/landing/assets/team_sam.webp';
+import backendImg from '../features/landing/assets/team_edrik.webp';
 
 export const experts = [
     {
