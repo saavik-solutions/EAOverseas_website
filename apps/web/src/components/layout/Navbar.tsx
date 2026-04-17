@@ -172,7 +172,7 @@ const Navbar = () => {
                     {/* Check Eligibility Button (Figma) */}
                     <button
                         onClick={() => window.open('https://student.eaoverseas.com/auth/login', '_blank', 'noopener,noreferrer')}
-                        className="group relative hidden lg:flex items-center justify-center px-4 py-2 rounded-xl border-none shadow-[inset_0px_1px_4px_rgba(255,236,218,0.2),0px_4px_12px_rgba(234,88,12,0.3)] hover:shadow-[0px_8px_25px_rgba(234,88,12,0.5)] transition-all hover:scale-105 active:scale-95"
+                        className="group relative hidden lg:flex items-center justify-center px-6 py-2.5 min-w-[130px] rounded-xl border-none shadow-[inset_0px_1px_4px_rgba(255,236,218,0.2),0px_4px_12px_rgba(234,88,12,0.3)] hover:shadow-[0px_8px_25px_rgba(234,88,12,0.5)] transition-all hover:scale-105 active:scale-95"
                         style={{ background: 'linear-gradient(180deg, #f97316 0%, #c2410c 100%)' }}
                     >
                         <span className="relative z-10 font-sans font-medium text-white text-[15px] tracking-wide">
@@ -183,7 +183,7 @@ const Navbar = () => {
                     {/* Join Community Button → external student portal (Hidden on mobile to save space) */}
                     <button
                         onClick={() => window.open('https://student.eaoverseas.com/auth/signup', '_blank', 'noopener,noreferrer')}
-                        className="group relative hidden lg:flex items-center justify-center px-5 py-2.5 rounded-xl border border-white/30 shadow-[0px_4px_20px_rgba(88,28,135,0.4)] hover:shadow-[0px_6px_25px_rgba(88,28,135,0.6)] transition-all hover:scale-105 active:scale-95"
+                        className="group relative hidden lg:flex items-center justify-center px-6 py-2.5 min-w-[130px] rounded-xl border border-white/30 shadow-[0px_4px_20px_rgba(88,28,135,0.4)] hover:shadow-[0px_6px_25px_rgba(88,28,135,0.6)] transition-all hover:scale-105 active:scale-95"
                         style={{ background: 'linear-gradient(212deg, rgba(124,58,237,0.4) 0%, rgba(88,28,135,0.9) 54%, rgba(124,58,237,0.4) 100%)' }}
                     >
                         <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity bg-gradient-to-t from-transparent to-white/20 pointer-events-none" />
