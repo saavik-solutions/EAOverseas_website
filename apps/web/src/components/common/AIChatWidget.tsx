@@ -76,12 +76,12 @@ const AIChatWidget: React.FC = () => {
             {/* ── Background Overlay (Desktop Only) ── */}
             {isFullView && (
                 <div 
-                    className="fixed inset-0 z-[9998] bg-black/40 backdrop-blur-sm md:block hidden"
+                    className="fixed inset-0 z-[44] bg-black/40 backdrop-blur-sm md:block hidden"
                     onClick={() => setIsMinimized(true)}
                 />
             )}
 
-            <div className={`fixed z-[9999] transition-all duration-500 cubic-bezier(0.4, 0, 0.2, 1)
+            <div className={`fixed z-[45] transition-all duration-500 cubic-bezier(0.4, 0, 0.2, 1)
                 ${isFullView 
                     ? 'inset-x-0 bottom-0 md:inset-auto md:bottom-8 md:right-8 flex items-end justify-center md:justify-end' 
                     : 'bottom-20 right-4 md:bottom-28 md:right-8 pointer-events-none'}`}>
