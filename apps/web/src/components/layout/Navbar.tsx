@@ -110,6 +110,9 @@ const Navbar = () => {
                                             ? scrollToSection(link.sectionId)
                                             : navigate(link.path!)
                                 }
+                                className={`
+                                    relative inline-flex items-center gap-0.5 px-3 py-2 rounded-lg
+                                    text-[14px] font-semibold transition-all duration-200
                                     ${link.name === 'Dashboard' 
                                         ? 'bg-[#7a29c2] text-white hover:bg-[#6d28d9] px-4 shadow-[0_4px_12px_rgba(122,41,194,0.2)]' 
                                         : ('path' in link && isActive(link.path!)
@@ -228,12 +231,12 @@ const Navbar = () => {
                                     }
                                 }}
                                 className={`
+                                    w-full text-left px-4 py-2.5 rounded-xl text-[15px] font-semibold transition-all flex items-center justify-between
                                     ${link.name === 'Dashboard' 
                                         ? 'bg-[#7a29c2] text-white' 
                                         : ('path' in link && isActive(link.path!)
                                             ? 'text-[#7a29c2] bg-purple-50'
                                             : 'text-gray-700 hover:text-[#7a29c2] hover:bg-purple-50/60')}
-                                `}
                                 `}
                             >
                                 {link.name}
