@@ -50,11 +50,11 @@ const Navbar = () => {
             const currentScroll = window.scrollY;
             setScrolled(currentScroll > 10);
             
-            if (currentScroll > 100) {
-                if (currentScroll > lastScroll) {
-                    setIsHidden(true);
-                } else if (currentScroll < lastScroll) {
-                    setIsHidden(false);
+            if (currentScroll > 150) {
+                if (currentScroll > lastScroll + 10) {
+                    setIsHidden(true); // scrolling down
+                } else if (currentScroll < lastScroll - 10) {
+                    setIsHidden(false); // scrolling up
                 }
             } else {
                 setIsHidden(false);
@@ -75,15 +75,16 @@ const Navbar = () => {
     ];
 
     return (
-        <header className={`fixed top-6 left-0 right-0 z-[100] px-4 w-full flex justify-center pointer-events-none transition-all duration-500 ease-in-out ${isHidden ? '-translate-y-32 opacity-0 pointer-events-none' : 'translate-y-0 opacity-100'}`}>
+        <header className="fixed top-6 left-0 right-0 z-[100] px-4 w-full flex justify-center pointer-events-none">
             <nav
                 aria-label="Primary Navigation"
                 className={`
                     pointer-events-auto w-full max-w-[1400px] rounded-[19px] border shadow-xl
-                    backdrop-blur-md backdrop-brightness-100 transition-all duration-300
+                    backdrop-blur-md backdrop-brightness-100 transition-all duration-500 ease-in-out
+                    ${isHidden ? '-translate-y-[150px] opacity-0 pointer-events-none' : 'translate-y-0 opacity-100'}
                     ${isHero
                         ? 'bg-white/80 border-purple-100 shadow-[0px_10px_30px_rgba(122,41,194,0.08)]'
-                        : 'bg-white/95 border-purple-100 shadow-2xl ' + (scrolled ? 'scale-[0.98]' : '')}
+                        : 'bg-white/95 border-purple-100 shadow-2xl ' + (scrolled && !isHidden ? 'scale-[0.98]' : '')}
                 `}
                 style={{
                     boxShadow: isHero ? '0px 4px 20px rgba(122,41,194,0.1)' : '0px 10px 30px rgba(122,41,194,0.12)',
