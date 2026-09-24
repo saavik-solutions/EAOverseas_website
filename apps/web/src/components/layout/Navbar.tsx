@@ -13,7 +13,7 @@ const Navbar = () => {
     const [searchQuery, setSearchQuery] = useState('');
     const [scrolled, setScrolled] = useState(false);
     const [isHidden, setIsHidden] = useState(false);
-    const lastScrollY = useRef(0);
+
     const [isCountriesOpen, setIsCountriesOpen] = useState(false);
     const [isMobileCountriesOpen, setIsMobileCountriesOpen] = useState(false);
 
