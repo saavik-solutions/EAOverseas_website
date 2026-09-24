@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import logo from '@/assets/logo.png';
 import { useAuth } from '@/shared/contexts/AuthContext';
@@ -44,24 +44,22 @@ const Navbar = () => {
 
     // Detect scroll for elevated shadow effect and hide on scroll down
     useEffect(() => {
-        let ticking = false;
+        let lastScroll = window.scrollY;
 
         const handleScroll = () => {
-            if (!ticking) {
-                window.requestAnimationFrame(() => {
-                    const currentScrollY = window.scrollY;
-                    setScrolled(currentScrollY > 10);
-                    
-                    if (currentScrollY > lastScrollY.current && currentScrollY > 80) {
-                        setIsHidden(true);
-                    } else if (currentScrollY < lastScrollY.current) {
-                        setIsHidden(false);
-                    }
-                    lastScrollY.current = currentScrollY;
-                    ticking = false;
-                });
-                ticking = true;
+            const currentScroll = window.scrollY;
+            setScrolled(currentScroll > 10);
+            
+            if (currentScroll > 100) {
+                if (currentScroll > lastScroll) {
+                    setIsHidden(true);
+                } else if (currentScroll < lastScroll) {
+                    setIsHidden(false);
+                }
+            } else {
+                setIsHidden(false);
             }
+            lastScroll = currentScroll;
         };
         
         window.addEventListener('scroll', handleScroll, { passive: true });
@@ -77,7 +75,7 @@ const Navbar = () => {
     ];
 
     return (
-        <header className={`fixed top-6 left-0 right-0 z-[100] px-4 w-full flex justify-center pointer-events-none transition-all duration-500 ease-in-out ${isHidden ? '-translate-y-[150%] opacity-0' : 'translate-y-0 opacity-100'}`}>
+        <header className={`fixed top-6 left-0 right-0 z-[100] px-4 w-full flex justify-center pointer-events-none transition-all duration-500 ease-in-out ${isHidden ? '-translate-y-32 opacity-0 pointer-events-none' : 'translate-y-0 opacity-100'}`}>
             <nav
                 aria-label="Primary Navigation"
                 className={`
