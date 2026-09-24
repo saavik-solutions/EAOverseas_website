@@ -59,7 +59,7 @@ export const destinations: Country[] = [
         code: 'IE',
         flag: '🇮🇪',
         tag: 'Tech Hub',
-        tagColor: 'bg-purple-100 text-purple-700',
+        tagColor: 'bg-primary-light text-primary-hover',
         subtitle: 'Silicon Valley of Europe',
         icon: 'settings_ethernet'
     },

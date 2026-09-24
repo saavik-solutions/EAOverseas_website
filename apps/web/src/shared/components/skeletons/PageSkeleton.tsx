@@ -18,7 +18,7 @@ const PageSkeleton = () => {
             <main className="flex-1 p-6 lg:p-12 max-w-[1400px] mx-auto w-full space-y-8">
                 {/* Hero Skeleton */}
                 <div className="space-y-4">
-                    <div className="h-4 w-24 bg-purple-100 rounded-full animate-pulse" />
+                    <div className="h-4 w-24 bg-primary-light rounded-full animate-pulse" />
                     <div className="h-12 md:h-16 w-3/4 bg-slate-200 rounded-2xl animate-pulse" />
                     <div className="h-6 w-1/2 bg-slate-100 rounded-xl animate-pulse" />
                 </div>

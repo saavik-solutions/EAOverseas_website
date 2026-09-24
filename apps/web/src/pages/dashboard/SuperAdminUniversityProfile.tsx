@@ -341,7 +341,7 @@ const AnalyticsView = ({ analytics, name }: any) => {
                 {[
                     { label: 'Total Profile Views', value: analytics.visitCount, icon: 'visibility', color: 'text-blue-600', bg: 'bg-blue-50' },
                     { label: 'Total Applications', value: analytics.applicationsCount, icon: 'description', color: 'text-emerald-600', bg: 'bg-emerald-50' },
-                    { label: 'Conversion Rate', value: ((analytics.applicationsCount / Math.max(analytics.visitCount, 1)) * 100).toFixed(1) + '%', icon: 'auto_graph', color: 'text-purple-600', bg: 'bg-purple-50' }
+                    { label: 'Conversion Rate', value: ((analytics.applicationsCount / Math.max(analytics.visitCount, 1)) * 100).toFixed(1) + '%', icon: 'auto_graph', color: 'text-primary', bg: 'bg-primary-light/50' }
                 ].map((stat, i) => (
                     <div key={i} className="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm flex flex-col gap-4">
                         <div className={`${stat.bg} size-12 rounded-2xl flex items-center justify-center ${stat.color}`}>

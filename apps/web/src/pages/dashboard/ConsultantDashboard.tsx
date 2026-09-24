@@ -101,7 +101,7 @@ const ConsultantDashboard = ({ isEmbedded = false }: { isEmbedded?: boolean }) =
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                         {[
                             { label: 'My Universities', val: stats.myUniversities, icon: 'account_balance', color: 'text-blue-600', bg: 'bg-blue-50', link: '/Superadmin/universities' },
-                            { label: 'Active Programs', val: stats.myCourses, icon: 'library_books', color: 'text-purple-600', bg: 'bg-purple-50', link: '#' },
+                            { label: 'Active Programs', val: stats.myCourses, icon: 'library_books', color: 'text-primary', bg: 'bg-primary-light/50', link: '#' },
                             { label: 'Live Broadcasts', val: stats.myBroadcasts, icon: 'campaign', color: 'text-orange-600', bg: 'bg-orange-50', link: '/Superadmin/university-portal/posts-feed' },
                             { label: 'Student Leads', val: stats.dailyLeads, icon: 'person_add', color: 'text-emerald-600', bg: 'bg-emerald-50', link: '/Superadmin/counsellor-portal/students' },
                         ].map((kpi, i) => (

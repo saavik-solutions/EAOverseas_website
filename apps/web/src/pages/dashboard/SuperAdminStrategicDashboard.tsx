@@ -42,7 +42,7 @@ const SuperAdminStrategicDashboard = () => {
         { label: 'Market Content', value: stats.posts, icon: 'feed', color: 'bg-orange-500', path: '/Superadmin/university-portal/posts-feed', desc: 'Active Broadcasts' },
         { label: 'Active Counsellors', value: stats.counsellors, icon: 'support_agent', color: 'bg-emerald-600', path: '/Superadmin/counsellors', desc: 'Managed Partners' },
         { label: 'Platform Inquiries', value: 0, icon: 'contact_support', color: 'bg-indigo-600', path: '/Superadmin/inquiries', desc: 'Landing Page Leads' },
-        { label: 'Portfolio Value', value: stats.portfolioValue, icon: 'payments', color: 'bg-purple-600', path: '#', desc: 'Est. Application Revenue' },
+        { label: 'Portfolio Value', value: stats.portfolioValue, icon: 'payments', color: 'bg-primary', path: '#', desc: 'Est. Application Revenue' },
     ];
 
     return (

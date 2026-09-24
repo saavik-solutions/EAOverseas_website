@@ -4,7 +4,7 @@ import { HelmetProvider } from 'react-helmet-async'
 import '@/index.css'
 import App from './App'
 import { AuthProvider } from '@/shared/contexts/AuthContext'
-import logoUrl from '@/assets/logo.webp'
+import logoUrl from '@/assets/logo.png'
 
 
 

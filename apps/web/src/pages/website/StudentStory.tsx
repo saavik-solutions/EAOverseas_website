@@ -26,7 +26,7 @@ const StudentStory = () => {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
                     <div className="absolute bottom-0 left-0 right-0 p-5 md:p-8 lg:p-16 max-w-[1200px] mx-auto text-white">
                         <div className="flex items-center gap-2 md:gap-3 mb-3 md:mb-4">
-                            <span className="px-2.5 md:px-3 py-1 bg-primary text-white text-[10px] md:text-[11px] font-bold uppercase tracking-wider rounded-full">{story.badge}</span>
+                            <span className="px-2.5 md:px-3 py-1 bg-white border-2 border-primary hover:bg-primary-light/20 text-primary font-bold text-[10px] md:text-[11px] font-bold uppercase tracking-wider rounded-full">{story.badge}</span>
                             <span className="text-gray-300 text-xs md:text-sm">• {story.readTime}</span>
                         </div>
                         <h1 className="text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-black mb-4 md:mb-6 leading-tight max-w-4xl">{story.title}</h1>
@@ -77,7 +77,7 @@ const StudentStory = () => {
 
                     {/* Sidebar CTA */}
                     <div className="lg:col-span-4 space-y-6 md:space-y-8">
-                        <div className="bg-primary text-white p-6 md:p-8 rounded-xl md:rounded-2xl lg:sticky lg:top-24">
+                        <div className="bg-white border-2 border-primary hover:bg-primary-light/20 text-primary font-bold p-6 md:p-8 rounded-xl md:rounded-2xl lg:sticky lg:top-24">
                             <h3 className="text-xl md:text-2xl font-bold mb-3 md:mb-4">Inspired by {story.student.name.split(' ')[0]}?</h3>
                             <p className="text-white/80 text-sm md:text-base mb-5 md:mb-6 leading-relaxed">
                                 Your journey could be the next success story. Let's find your dream university together.

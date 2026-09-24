@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
 import { BlogsGridSkeleton } from '@/components/shared/BlogSkeleton';
-import logo from '@/assets/logo.webp';
+import logo from '@/assets/logo.png';
 
 // Featured blog hero image with logo fallback
 const FeaturedImage: React.FC<{ src: string; alt: string }> = ({ src, alt }) => {
     const [imgError, setImgError] = useState(!src);
     return imgError ? (
-        <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-purple-700 via-violet-600 to-purple-900 relative">
+        <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-purple-700 via-violet-600 to-primary-dark relative">
             <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'linear-gradient(white 1px, transparent 1px), linear-gradient(90deg, white 1px, transparent 1px)', backgroundSize: '36px 36px' }} />
             <img src={logo} alt="Eduwoy" className="relative z-10 h-56 w-auto object-contain drop-shadow-2xl" style={{ filter: 'brightness(0) invert(1)' }} />
         </div>
@@ -21,7 +21,7 @@ const FeaturedImage: React.FC<{ src: string; alt: string }> = ({ src, alt }) => 
 const BlogCardImage: React.FC<{ src: string; alt: string }> = ({ src, alt }) => {
     const [imgError, setImgError] = useState(!src);
     return imgError ? (
-        <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-purple-700 via-violet-600 to-purple-900 relative">
+        <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-purple-700 via-violet-600 to-primary-dark relative">
             <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'linear-gradient(white 1px, transparent 1px), linear-gradient(90deg, white 1px, transparent 1px)', backgroundSize: '28px 28px' }} />
             <img src={logo} alt="Eduwoy" className="relative z-10 h-16 w-auto object-contain drop-shadow-xl" style={{ filter: 'brightness(0) invert(1)' }} />
         </div>
@@ -78,7 +78,7 @@ const Blogs = () => {
                 >
                     <FeaturedImage src={featuredBlog.coverImage} alt={featuredBlog.title} />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent flex flex-col justify-end p-6 md:p-20">
-                        <span className="bg-primary text-white px-4 py-2 rounded-xl text-[10px] md:text-xs font-black uppercase tracking-widest w-fit mb-4 md:mb-6 shadow-xl shadow-purple-500/20">
+                        <span className="bg-white border-2 border-primary hover:bg-primary-light/20 text-primary font-bold px-4 py-2 rounded-xl text-[10px] md:text-xs font-black uppercase tracking-widest w-fit mb-4 md:mb-6 shadow-xl shadow-purple-500/20">
                             Featured Strategy
                         </span>
                         <h1 className="text-3xl md:text-6xl font-black text-white mb-4 md:mb-6 max-w-4xl leading-[1.2] md:leading-[1.1]">
@@ -89,7 +89,7 @@ const Blogs = () => {
                         </p>
                         <div className="flex flex-wrap items-center gap-4 md:gap-6">
                             <div className="flex items-center gap-2 md:gap-3">
-                                <div className="w-8 h-8 md:w-10 md:h-10 bg-purple-100 rounded-full flex items-center justify-center text-primary font-black text-[10px] md:text-xs">
+                                <div className="w-8 h-8 md:w-10 md:h-10 bg-primary-light rounded-full flex items-center justify-center text-primary font-black text-[10px] md:text-xs">
                                     EA
                                 </div>
                                 <span className="text-white text-sm md:text-base font-bold">{featuredBlog.author || 'Eduwoy Expert'}</span>

@@ -70,9 +70,9 @@ const PILLARS: PillarItem[] = [
         title: 'Expert Counsellors',
         description: 'Dedicated advisors guide every step — from shortlisting universities to final enrolment — with personalised one-on-one sessions.',
         tag: 'Guidance',
-        tagColor: 'bg-purple-100 text-purple-700',
-        iconColor: 'text-purple-600',
-        iconBg: 'bg-purple-100',
+        tagColor: 'bg-primary-light text-primary-hover',
+        iconColor: 'text-primary',
+        iconBg: 'bg-primary-light',
         borderAccent: 'border-t-purple-400',
     },
     {

@@ -66,7 +66,7 @@ const Countries = () => {
             code: 'IE',
             flag: '🇮🇪',
             tag: 'Tech Hub',
-            tagColor: 'bg-purple-100 text-purple-700',
+            tagColor: 'bg-primary-light text-primary-hover',
             subtitle: 'Silicon Valley of Europe',
             icon: 'settings_ethernet'
         },
@@ -264,7 +264,7 @@ const Countries = () => {
 
                                 <button
                                     onClick={handleAIAssistant}
-                                    className="group relative overflow-hidden rounded-xl md:rounded-2xl bg-primary px-6 py-3 md:px-10 md:py-4 text-white font-bold shadow-xl shadow-purple-600/20 transition-all hover:scale-105 hover:shadow-purple-600/40"
+                                    className="group relative overflow-hidden rounded-xl md:rounded-2xl bg-white border-2 border-primary hover:bg-primary-light/20 px-6 py-3 md:px-10 md:py-4 text-primary font-bold font-bold shadow-xl shadow-purple-600/20 transition-all hover:scale-105 hover:shadow-purple-600/40"
                                 >
                                     <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-200%] group-hover:animate-[shimmer_1.5s_infinite]"></div>
                                     <span className="relative flex items-center gap-2 md:gap-3 text-sm md:text-base">

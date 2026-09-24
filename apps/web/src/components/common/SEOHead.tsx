@@ -11,7 +11,7 @@ interface SEOHeadProps {
 export function SEOHead({ 
     title, 
     description, 
-    image = '/assets/logo.webp', // Default Logo
+    image = '/assets/logo.png', // Default Logo
     url = 'https://eduwoy.com',
     type = 'website'
 }: SEOHeadProps) {

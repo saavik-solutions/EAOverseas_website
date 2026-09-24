@@ -3,14 +3,14 @@
 
 @layer base {
   :root {
-    --primary: 122 41 194;
+    --primary: 11 52 146;
     --primary-foreground: 0 0% 100%;
     
     /* System variables for Tailwind 4 base */
-    --color-primary: #7a29c2;
-    --color-primary-hover: #6824a6;
-    --color-primary-light: #f3e8ff;
-    --color-primary-dark: #581c87;
+    --color-primary: #0B3492;
+    --color-primary-hover: #092B7A;
+    --color-primary-light: #E7F0FF;
+    --color-primary-dark: #061D52;
     --color-accent: #0d6cf2;
     --color-accent-hover: #0b5ed7;
     --color-accent-light: #eff6ff;
@@ -23,10 +23,10 @@
 }
 
 @theme {
-  --color-primary: #7a29c2;
-  --color-primary-hover: #6824a6;
-  --color-primary-light: #f3e8ff;
-  --color-primary-dark: #581c87;
+  --color-primary: #0B3492;
+  --color-primary-hover: #092B7A;
+  --color-primary-light: #E7F0FF;
+  --color-primary-dark: #061D52;
   --color-accent: #0d6cf2;
   --color-accent-hover: #0b5ed7;
   --color-accent-light: #eff6ff;
@@ -95,9 +95,9 @@ body {
                       linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
     background-size: 32px 32px;
   }
-  .bg-grid-purple {
-    background-image: linear-gradient(#f0e6ff 1px, transparent 1px), 
-                      linear-gradient(90deg, #f0e6ff 1px, transparent 1px);
+  .bg-grid-primary {
+    background-image: linear-gradient(#E7F0FF 1px, transparent 1px), 
+                      linear-gradient(90deg, #E7F0FF 1px, transparent 1px);
     background-size: 50px 50px;
   }
 }

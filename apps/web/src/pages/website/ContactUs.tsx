@@ -54,9 +54,9 @@ const ContactUs = () => {
                 image="/assets/visa_success_hero.webp"
             />
             {/* Premium Background Layers */}
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,#f3e8ff_0%,transparent_50%)] opacity-70"></div>
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,#E7F0FF_0%,transparent_50%)] opacity-70"></div>
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,#eef2ff_0%,transparent_50%)] opacity-70"></div>
-            <div className="absolute inset-0 bg-grid-purple opacity-[0.15] pointer-events-none"></div>
+            <div className="absolute inset-0 bg-grid-primary opacity-[0.15] pointer-events-none"></div>
 
             <div className="max-w-[1180px] mx-auto px-4 sm:px-6 md:px-8 py-8 md:py-12 relative z-10">
                 <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
@@ -64,10 +64,10 @@ const ContactUs = () => {
                     {/* ── Left Column: Institutional Info ── */}
                     <div className="space-y-6 animate-fade-in-up">
                         <div className="space-y-3">
-                            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-purple-50 border border-purple-100 text-primary font-bold text-[10px] tracking-wider uppercase">
+                            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary-light/50 border border-purple-100 text-primary font-bold text-[10px] tracking-wider uppercase">
                                 <span className="relative flex h-1.5 w-1.5">
                                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
-                                  <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-purple-600"></span>
+                                  <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-primary"></span>
                                 </span>
                                 Global Command Center
                             </div>
@@ -82,7 +82,7 @@ const ContactUs = () => {
 
                         <div className="grid gap-3.5">
                             {[
-                                { icon: 'mail', label: 'Institutional Email', value: CONTACTS.support.email, color: 'bg-purple-50 text-primary' },
+                                { icon: 'mail', label: 'Institutional Email', value: CONTACTS.support.email, color: 'bg-primary-light/50 text-primary' },
                                 { icon: 'call', label: 'Strategic Hotline', value: CONTACTS.support.phone, color: 'bg-indigo-50 text-indigo-600' },
                             ].map((item, idx) => (
                                 <div key={idx} className="flex items-center gap-3.5 group p-2.5 rounded-xl bg-gray-50/60 border border-gray-100/80">
@@ -116,7 +116,7 @@ const ContactUs = () => {
 
                         {/* Professional Support Badge */}
                         <div className="p-4 sm:p-5 bg-[#0f172a] rounded-2xl relative overflow-hidden group shadow-lg">
-                            <div className="absolute top-0 right-0 w-32 h-32 bg-purple-500/10 rounded-full blur-[50px] group-hover:bg-purple-500/20 transition-all"></div>
+                            <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-[50px] group-hover:bg-primary/20 transition-all"></div>
                             <div className="relative z-10 flex items-center gap-3.5">
                                 <div className="w-10 h-10 bg-white/5 backdrop-blur-xl rounded-xl border border-white/10 flex items-center justify-center text-white shrink-0">
                                     <span className="material-symbols-outlined text-xl text-purple-400">shield_with_heart</span>
@@ -132,7 +132,7 @@ const ContactUs = () => {
                     {/* ── Right Column: Premium Glass Form ── */}
                     <div className="relative animate-fade-in-right">
                         <div className="absolute -top-10 -right-10 w-48 h-48 bg-purple-200/40 rounded-full blur-[80px] -z-10"></div>
-                        <div className="absolute -bottom-10 -left-10 w-48 h-48 bg-violet-200/40 rounded-full blur-[80px] -z-10"></div>
+                        <div className="absolute -bottom-10 -left-10 w-48 h-48 bg-primary-light/40 rounded-full blur-[80px] -z-10"></div>
                         
                         <div className="bg-white/85 backdrop-blur-2xl border border-gray-100 p-6 sm:p-8 md:p-8 rounded-2xl shadow-xl space-y-6">
                             <div className="space-y-1.5">
@@ -214,7 +214,7 @@ const ContactUs = () => {
                                 <button 
                                     type="submit"
                                     disabled={isSubmitting}
-                                    className={`group relative w-full bg-primary hover:bg-purple-700 text-white font-bold text-sm sm:text-base py-3.5 sm:py-4 rounded-xl transition-all shadow-md shadow-purple-500/25 hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2 overflow-hidden ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
+                                    className={`group relative w-full bg-white border-2 border-primary hover:bg-primary-light/20 hover:bg-white border-2 border-primary hover:bg-primary-light/20-hover text-primary font-bold font-bold text-sm sm:text-base py-3.5 sm:py-4 rounded-xl transition-all shadow-md shadow-purple-500/25 hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2 overflow-hidden ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
                                 >
                                     <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
                                     {isSubmitting ? (
@@ -256,7 +256,7 @@ const ContactUs = () => {
                         ></iframe>
                         <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-md px-3.5 py-2 rounded-xl border border-gray-100 shadow-md pointer-events-none transition-transform group-hover:scale-105 duration-500">
                             <div className="flex items-center gap-2.5">
-                                <div className="w-7 h-7 bg-purple-600 rounded-lg flex items-center justify-center text-white shrink-0">
+                                <div className="w-7 h-7 bg-white border-2 border-primary hover:bg-primary-light/20 rounded-lg flex items-center justify-center text-primary font-bold shrink-0">
                                     <span className="material-symbols-outlined text-sm">hub</span>
                                 </div>
                                 <div>

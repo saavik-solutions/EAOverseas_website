@@ -10,14 +10,14 @@ const AboutUsSection = () => {
     return (
         <section className="relative py-24 w-full overflow-hidden bg-[#fafafa]" id="about">
             {/* Grid Background pattern mimicking notebook/graph paper */}
-            <div className="absolute inset-0 bg-grid-purple opacity-80 pointer-events-none z-0"></div>
+            <div className="absolute inset-0 bg-grid-primary opacity-80 pointer-events-none z-0"></div>
 
             <div className="max-w-[1300px] mx-auto px-6 lg:px-12 relative z-10">
                 <div className="flex flex-col lg:flex-row items-center justify-between gap-16 lg:gap-20">
                     
                     {/* Left Column: Text Content */}
                     <div className="flex-1 flex flex-col items-start space-y-7 lg:max-w-xl">
-                        <div className="bg-[#f3e8ff] text-[#7e22ce] px-5 py-1.5 rounded-full font-bold text-sm tracking-wide">
+                        <div className="bg-[#E7F0FF] text-[#7e22ce] px-5 py-1.5 rounded-full font-bold text-sm tracking-wide">
                             About Us
                         </div>
                         

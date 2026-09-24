@@ -216,7 +216,7 @@ const HomeDashboard = () => {
                             onClick={() => navigate('/colleges')}
                             className="flex items-center gap-3 p-4 bg-white border border-gray-100 rounded-xl hover:shadow-md transition-all cursor-pointer group"
                         >
-                            <div className="size-10 md:size-12 rounded-lg bg-purple-50 text-purple-600 flex items-center justify-center shrink-0 group-hover:bg-purple-600 group-hover:text-white transition-colors">
+                            <div className="size-10 md:size-12 rounded-lg bg-white border-2 border-primary hover:bg-primary-light/20-light/50 text-primary flex items-center justify-center shrink-0 group-hover:bg-white border-2 border-primary hover:bg-primary-light/20 group-hover:text-primary font-bold transition-colors">
                                 <span className="material-symbols-outlined !text-[20px] md:!text-[24px]">school</span>
                             </div>
                             <div>
@@ -579,7 +579,7 @@ const HomeDashboard = () => {
                                     className="bg-gray-50 rounded-xl p-3 md:p-5 hover:bg-gray-100 transition-colors cursor-pointer group flex items-center justify-between relative overflow-hidden gap-4"
                                 >
                                     <div className="flex items-center gap-4 relative z-10">
-                                        <div className="size-10 md:size-16 rounded-xl bg-white text-purple-600 flex items-center justify-center shadow-sm shrink-0">
+                                        <div className="size-10 md:size-16 rounded-xl bg-white text-primary flex items-center justify-center shadow-sm shrink-0">
                                             <span className="material-symbols-outlined !text-[24px] md:!text-[40px]">book</span>
                                         </div>
                                         <div>
@@ -591,7 +591,7 @@ const HomeDashboard = () => {
                                         <span className="font-bold text-gray-900 text-lg md:text-2xl">{savedCourses.length}</span>
                                     </div>
                                     <div className="absolute top-1/2 -translate-y-1/2 right-[-20px] opacity-5 group-hover:opacity-10 transition-opacity">
-                                        <span className="material-symbols-outlined !text-[100px] md:!text-[140px] text-purple-600">book</span>
+                                        <span className="material-symbols-outlined !text-[100px] md:!text-[140px] text-primary">book</span>
                                     </div>
                                 </div>
 

@@ -123,7 +123,7 @@ const AIChatWidget: React.FC = () => {
                                 <div key={i} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'} animate-[execFade_0.3s_ease-out]`}>
                                     <div className={`max-w-[85%] px-5 py-3.5 rounded-[1.5rem] text-[14.5px] leading-relaxed shadow-sm
                                         ${msg.role === 'user' 
-                                            ? 'bg-primary text-white rounded-tr-none' 
+                                            ? 'bg-white border-2 border-primary hover:bg-primary-light/20 text-primary font-bold rounded-tr-none' 
                                             : 'bg-slate-50 text-slate-700 rounded-tl-none border border-slate-100'}`}>
                                         <ReactMarkdown
                                             components={{

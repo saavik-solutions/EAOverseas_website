@@ -9,7 +9,7 @@ const PAILanding: React.FC = () => {
             {/* Background Ambient Glow */}
             <div className="absolute top-0 left-0 w-full h-[600px] overflow-hidden -z-10 pointer-events-none">
                 <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[80%] bg-indigo-50/50 rounded-full blur-[120px]"></div>
-                <div className="absolute top-[10%] right-[-10%] w-[40%] h-[60%] bg-purple-50/40 rounded-full blur-[100px]"></div>
+                <div className="absolute top-[10%] right-[-10%] w-[40%] h-[60%] bg-primary-light/50/40 rounded-full blur-[100px]"></div>
             </div>
 
             <div className="max-w-[1400px] mx-auto px-6 md:px-12 xl:px-20 py-16 sm:py-24 space-y-32">
@@ -149,9 +149,9 @@ const PAILanding: React.FC = () => {
 
                         <div className="relative text-center xl:px-12">
                             <div className="w-14 h-14 mx-auto bg-white border-2 border-slate-100 rounded-2xl flex items-center justify-center mb-6 shadow-sm shadow-slate-200/50">
-                                <span className="material-symbols-outlined text-purple-600">psychology</span>
+                                <span className="material-symbols-outlined text-primary">psychology</span>
                             </div>
-                            <div className="text-xs font-bold text-purple-600 uppercase tracking-widest mb-2">Step 2</div>
+                            <div className="text-xs font-bold text-primary uppercase tracking-widest mb-2">Step 2</div>
                             <h3 className="text-xl font-bold text-slate-900 mb-3">AI Profile Analysis</h3>
                             <p className="text-slate-600 text-sm leading-relaxed">Our AI evaluates your academic, technical, and career readiness.</p>
                         </div>
@@ -178,7 +178,7 @@ const PAILanding: React.FC = () => {
                             <p className="text-slate-600 leading-relaxed">Automatically extracts data from your Resume, LinkedIn, GitHub, and Portfolio without tedious manual input.</p>
                         </div>
                         <div className="group p-8 rounded-3xl bg-slate-50 border border-slate-100 hover:bg-white hover:shadow-[0_8px_30px_rgb(0,0,0,0.06)] hover:border-slate-200 transition-all duration-300">
-                            <div className="w-12 h-12 rounded-xl bg-purple-100/50 text-purple-600 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                            <div className="w-12 h-12 rounded-xl bg-primary-light/50 text-primary flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                                 <span className="material-symbols-outlined">analytics</span>
                             </div>
                             <h3 className="text-xl font-bold text-slate-900 mb-3">Holistic Profile Analysis</h3>
@@ -204,7 +204,7 @@ const PAILanding: React.FC = () => {
                 {/* 5. MOTIVATIONAL SECTION */}
                 <section className="bg-slate-900 rounded-[2.5rem] p-10 sm:p-16 relative overflow-hidden animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
                     <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-indigo-500/20 rounded-full blur-[100px] -mr-48 -mt-48 pointer-events-none"></div>
-                    <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-purple-500/20 rounded-full blur-[80px] -ml-24 -mb-24 pointer-events-none"></div>
+                    <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-primary/20 rounded-full blur-[80px] -ml-24 -mb-24 pointer-events-none"></div>
 
                     <div className="relative z-10 flex flex-col lg:flex-row gap-12 items-center justify-between">
                         <div className="flex-1 space-y-6 max-w-3xl">

@@ -207,8 +207,8 @@ const ApplyScholarshipModal: React.FC<ApplyScholarshipModalProps> = ({ isOpen, o
                                 {/* Academic Info */}
                                 <div className="bg-white p-6 rounded-[24px] border border-slate-100 shadow-sm">
                                     <h3 className="text-sm font-black text-slate-900 mb-6 flex items-center gap-3 uppercase tracking-widest">
-                                        <div className="w-8 h-8 rounded-xl bg-purple-50 flex items-center justify-center border border-purple-100/50">
-                                            <span className="material-symbols-outlined text-purple-600 !text-[18px]">menu_book</span>
+                                        <div className="w-8 h-8 rounded-xl bg-primary-light/50 flex items-center justify-center border border-purple-100/50">
+                                            <span className="material-symbols-outlined text-primary !text-[18px]">menu_book</span>
                                         </div>
                                         Academic Details
                                     </h3>

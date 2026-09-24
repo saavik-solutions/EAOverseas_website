@@ -129,7 +129,7 @@ const PostCenter: React.FC<PostCenterProps> = ({ isEmbedded = false }) => {
             title: title,
             category: category,
             label: category?.includes('Admissions') ? 'Admission Open' : (category || 'update'),
-            labelColor: category?.toLowerCase().includes('scholarship') ? "text-blue-700 border-blue-400 bg-blue-50" : (category?.toLowerCase().includes('policy') ? "text-purple-700 border-purple-100 bg-purple-50" : "text-green-700 border-green-100 bg-green-50"),
+            labelColor: category?.toLowerCase().includes('scholarship') ? "text-blue-700 border-blue-400 bg-blue-50" : (category?.toLowerCase().includes('policy') ? "text-primary-hover border-purple-100 bg-primary-light/50" : "text-green-700 border-green-100 bg-green-50"),
             banner: imagePreview || "",
             image: imagePreview || "", // Keep for local PostCenter compat
             logo: effectiveUniversity ? `https://ui-avatars.com/api/?name=${encodeURIComponent(effectiveUniversity)}&background=2b6cee&color=fff&bold=true&format=svg` : "https://lh3.googleusercontent.com/aida-public/AB6AXuB_Rmzt3binRkT7Z5nyfJoMYpxPN7cjfZnI3TLgP9IEOI7GytkZN5_7PxkPtG8Ulri18LdtuglOl6jntqjo-rlYw5XdnQcrm6Atna9muAezaoNcrk29F1l2oWira77-SQk48EjeQuyiF_Z1VQqfjXbSNu06d-m2-U4zITnlOSeAYIrRkTn-FAmNA0oDQ9QxpPYevooTrqgK18TnGny5j0HyvHWN9ZLUyoO338wGttL2bARVFxLHsIIyWS29CNIs2Fejyz6Fo24WBrnK",
@@ -783,7 +783,7 @@ const PostCenter: React.FC<PostCenterProps> = ({ isEmbedded = false }) => {
                                         </div>
                                     </div>
                                     <span className={`px-4 py-1.5 rounded-full text-[11px] font-bold border shadow-sm ${isAdmission ? 'bg-emerald-50 text-emerald-600 border-emerald-100' :
-                                        isPolicy ? 'bg-purple-50 text-purple-600 border-purple-100' :
+                                        isPolicy ? 'bg-primary-light/50 text-primary border-purple-100' :
                                             'bg-blue-50 text-blue-600 border-blue-400'
                                         }`}>
                                         {isAdmission ? 'Admission Open' : isPolicy ? 'Policy Update' : isScholarship ? 'Scholarship' : 'Event & Webinar'}

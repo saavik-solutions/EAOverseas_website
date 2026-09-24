@@ -360,7 +360,7 @@ const CountryDetails = () => {
                         <div className="flex gap-4">
                             <button
                                 onClick={handleExplore}
-                                className="bg-primary text-white font-bold py-3 px-6 md:py-4 md:px-8 rounded-xl flex items-center gap-2 shadow-lg shadow-primary/20 hover:opacity-90 transition-opacity text-sm md:text-base"
+                                className="bg-white border-2 border-primary hover:bg-primary-light/20 text-primary font-bold font-bold py-3 px-6 md:py-4 md:px-8 rounded-xl flex items-center gap-2 shadow-lg shadow-primary/20 hover:opacity-90 transition-opacity text-sm md:text-base"
                             >
                                 Explore Universities
                                 <span className="material-symbols-outlined text-lg md:text-2xl">arrow_forward</span>
@@ -500,7 +500,7 @@ const CountryDetails = () => {
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-6">
                         {country.studentLife.map((item, index) => (
                             <div key={index} className="group p-4 md:p-8 rounded-2xl bg-white border border-slate-100 hover:border-primary transition-all duration-300">
-                                <div className="size-10 md:size-14 rounded-xl bg-primary text-white flex items-center justify-center mb-4 md:mb-6 shadow-lg shadow-purple-600/30 group-hover:-translate-y-1 transition-transform">
+                                <div className="size-10 md:size-14 rounded-xl bg-white border-2 border-primary hover:bg-primary-light/20 text-primary font-bold flex items-center justify-center mb-4 md:mb-6 shadow-lg shadow-purple-600/30 group-hover:-translate-y-1 transition-transform">
                                     <span className="material-symbols-outlined text-xl md:text-3xl">{item.icon}</span>
                                 </div>
                                 <h3 className="text-lg md:text-xl font-bold mb-2 md:mb-3">{item.title}</h3>
@@ -513,7 +513,7 @@ const CountryDetails = () => {
                 {/* Work & Career */}
                 {/* Work & Career */}
                 <section className="mb-10 md:mb-20">
-                    <div className="bg-primary rounded-2xl md:rounded-[2rem] p-6 md:p-12 text-white overflow-hidden relative">
+                    <div className="bg-white border-2 border-primary hover:bg-primary-light/20 rounded-2xl md:rounded-[2rem] p-6 md:p-12 text-primary font-bold overflow-hidden relative">
                         <div className="absolute top-0 right-0 w-1/2 h-full opacity-10 pointer-events-none">
                             <div className="w-full h-full bg-contain bg-right bg-no-repeat" style={{ backgroundImage: 'url("https://lh3.googleusercontent.com/aida-public/AB6AXuDdPJRZUjKmjb8MwGxYkoDUsmVQnjC6_gitGiWN152X5SyYbcqikv44yC_57Pi6D8tWaof4umn88CeM76XFN0uStCPgIPwjeOATpHqLZrSx7t-g5GUomL1Jak6Z_VlVKoHjE9xgXQ6D8WcffMpQp0lU0-78HBtThV6CWWz1dgKCo8t3iBL4pFWa3n4Tb8rVzLHdHz-ueHJJjZezNRTKOVWvO6jW_6GBCKOiHCZ8EIG3X7RjbtTsU-INGFHID4IZfT95WM_bqQPniD0")' }}></div>
                         </div>
@@ -600,10 +600,10 @@ const CountryDetails = () => {
 
                         {/* Interactive Background Elements */}
                         <div className="absolute top-0 right-0 w-64 h-64 bg-fuchsia-50/50 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl group-hover:bg-fuchsia-100/50 transition-colors duration-500"></div>
-                        <div className="absolute bottom-0 left-0 w-64 h-64 bg-purple-50/50 rounded-full translate-y-1/2 -translate-x-1/2 blur-3xl group-hover:bg-purple-100/50 transition-colors duration-500"></div>
+                        <div className="absolute bottom-0 left-0 w-64 h-64 bg-primary-light/50/50 rounded-full translate-y-1/2 -translate-x-1/2 blur-3xl group-hover:bg-primary-light/50 transition-colors duration-500"></div>
 
                         <div className="relative z-10">
-                            <span className="inline-block py-1 px-3 rounded-full bg-purple-100 text-primary text-xs font-bold mb-4 tracking-wide uppercase">Free Expert Guidance</span>
+                            <span className="inline-block py-1 px-3 rounded-full bg-primary-light text-primary text-xs font-bold mb-4 tracking-wide uppercase">Free Expert Guidance</span>
                             <h3 className="text-2xl md:text-4xl font-bold mb-4 md:mb-6 tracking-tight text-slate-900 leading-tight">
                                 Ready to start your <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-violet-600">study abroad journey</span>?
                             </h3>
@@ -613,7 +613,7 @@ const CountryDetails = () => {
                             <div className="flex justify-center">
                                 <button
                                     onClick={() => window.location.href = 'https://student.eduwoy.com/auth/login'}
-                                    className="bg-primary text-white font-bold py-4 px-10 rounded-xl text-lg shadow-xl shadow-purple-600/20 hover:bg-purple-700 hover:shadow-purple-600/30 hover:-translate-y-1 transition-all duration-300 flex items-center gap-2"
+                                    className="bg-white border-2 border-primary hover:bg-primary-light/20 text-primary font-bold font-bold py-4 px-10 rounded-xl text-lg shadow-xl shadow-purple-600/20 hover:bg-white border-2 border-primary hover:bg-primary-light/20-hover hover:shadow-purple-600/30 hover:-translate-y-1 transition-all duration-300 flex items-center gap-2"
                                 >
                                     Book Free Consultation
                                     <span className="material-symbols-outlined text-xl">arrow_forward</span>

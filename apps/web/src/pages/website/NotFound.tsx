@@ -38,7 +38,7 @@ const NotFound = () => {
                     <div className="flex flex-col sm:flex-row gap-4 justify-center pt-6">
                         <button
                             onClick={() => navigate('/')}
-                            className="px-8 py-4 bg-primary text-white font-bold rounded-2xl hover:bg-primary-hover transition-all hover:translate-y-[-2px] active:translate-y-[0px] shadow-xl shadow-purple-900/20"
+                            className="px-8 py-4 bg-white border-2 border-primary hover:bg-primary-light/20 text-primary font-bold font-bold rounded-2xl hover:bg-white border-2 border-primary hover:bg-primary-light/20-hover transition-all hover:translate-y-[-2px] active:translate-y-[0px] shadow-xl shadow-purple-900/20"
                         >
                             Back to Safety
                         </button>
@@ -61,7 +61,7 @@ const NotFound = () => {
                                 onClick={() => navigate(item.path)}
                                 className="p-4 rounded-xl border border-slate-100 bg-slate-50/50 hover:bg-white hover:border-purple-200 hover:shadow-md transition-all group"
                             >
-                                <div className="text-[11px] font-black text-slate-400 uppercase tracking-widest mb-1 group-hover:text-purple-600">Quick Link</div>
+                                <div className="text-[11px] font-black text-slate-400 uppercase tracking-widest mb-1 group-hover:text-primary">Quick Link</div>
                                 <div className="font-bold text-slate-900">{item.name}</div>
                             </button>
                         ))}

@@ -26,11 +26,11 @@ export const DURATIONS = ['1 Year', '2 Years', '3 Years', '4 Years', '5+ Years']
 // ─── Course Fields (all categories) ─────────────────────────────────────────
 
 export const allCourseFields = [
-    { title: 'Computer Science & IT', field: 'Computer Science & IT', specs: 18, courses: 12400, icon: 'computer', color: 'text-purple-600' },
+    { title: 'Computer Science & IT', field: 'Computer Science & IT', specs: 18, courses: 12400, icon: 'computer', color: 'text-primary' },
     { title: 'Business & Management', field: 'Business & Management', specs: 14, courses: 9820, icon: 'business_center', color: 'text-fuchsia-600' },
     { title: 'Engineering', field: 'Engineering', specs: 22, courses: 11300, icon: 'engineering', color: 'text-indigo-600' },
     { title: 'Medicine & Health', field: 'Medicine & Health', specs: 11, courses: 5711, icon: 'medical_services', color: 'text-pink-600' },
-    { title: 'Architecture & Design', field: 'Architecture & Design', specs: 2, courses: 1391, icon: 'architecture', color: 'text-violet-600' },
+    { title: 'Architecture & Design', field: 'Architecture & Design', specs: 2, courses: 1391, icon: 'architecture', color: 'text-primary' },
     { title: 'Law', field: 'Law', specs: 1, courses: 1088, icon: 'gavel', color: 'text-rose-600' },
     { title: 'Education', field: 'Education', specs: 3, courses: 4371, icon: 'school', color: 'text-sky-600' },
     { title: 'Arts & Humanities', field: 'Arts & Humanities', specs: 7, courses: 3200, icon: 'palette', color: 'text-amber-600' },
@@ -38,11 +38,11 @@ export const allCourseFields = [
 
 // Career goals → field mapping
 export const careerGoalCards = [
-    { title: 'Software Developer', field: 'Computer Science & IT', specs: 6, courses: 3400, icon: 'code', color: 'text-purple-600' },
+    { title: 'Software Developer', field: 'Computer Science & IT', specs: 6, courses: 3400, icon: 'code', color: 'text-primary' },
     { title: 'Data Scientist', field: 'Computer Science & IT', specs: 4, courses: 1800, icon: 'analytics', color: 'text-fuchsia-600' },
     { title: 'MBA / Entrepreneur', field: 'Business & Management', specs: 5, courses: 2600, icon: 'trending_up', color: 'text-indigo-600' },
     { title: 'Doctor / Surgeon', field: 'Medicine & Health', specs: 3, courses: 890, icon: 'stethoscope', color: 'text-pink-600' },
-    { title: 'Civil Engineer', field: 'Engineering', specs: 7, courses: 2100, icon: 'construction', color: 'text-violet-600' },
+    { title: 'Civil Engineer', field: 'Engineering', specs: 7, courses: 2100, icon: 'construction', color: 'text-primary' },
     { title: 'Lawyer / Advocate', field: 'Law', specs: 2, courses: 740, icon: 'balance', color: 'text-rose-600' },
     { title: 'UX / Product Designer', field: 'Architecture & Design', specs: 3, courses: 980, icon: 'design_services', color: 'text-sky-600' },
     { title: 'Educator / Researcher', field: 'Education', specs: 4, courses: 1200, icon: 'person_book', color: 'text-amber-600' },
@@ -50,11 +50,11 @@ export const careerGoalCards = [
 
 // Destination cards
 export const destinationCards = [
-    { title: 'United States', country: 'United States', courses: 28000, unis: 320, icon: '🇺🇸', color: 'text-purple-600', badge: '#1 Destination' },
+    { title: 'United States', country: 'United States', courses: 28000, unis: 320, icon: '🇺🇸', color: 'text-primary', badge: '#1 Destination' },
     { title: 'United Kingdom', country: 'United Kingdom', courses: 21000, unis: 160, icon: '🇬🇧', color: 'text-fuchsia-600', badge: 'Oxford & More' },
     { title: 'Canada', country: 'Canada', courses: 12000, unis: 98, icon: '🇨🇦', color: 'text-indigo-600', badge: 'PR Friendly' },
     { title: 'Australia', country: 'Australia', courses: 15000, unis: 112, icon: '🇦🇺', color: 'text-pink-600', badge: 'Post-Study Visa' },
-    { title: 'Germany', country: 'Germany', courses: 9200, unis: 74, icon: '🇩🇪', color: 'text-violet-600', badge: 'Low Tuition' },
+    { title: 'Germany', country: 'Germany', courses: 9200, unis: 74, icon: '🇩🇪', color: 'text-primary', badge: 'Low Tuition' },
     { title: 'New Zealand', country: 'New Zealand', courses: 4800, unis: 38, icon: '🇳🇿', color: 'text-sky-600', badge: 'Safe & Beautiful' },
     { title: 'Ireland', country: 'Ireland', courses: 5600, unis: 45, icon: '🇮🇪', color: 'text-emerald-600', badge: 'Tech Hub' },
     { title: 'Singapore', country: 'Singapore', courses: 3900, unis: 30, icon: '🇸🇬', color: 'text-rose-600', badge: 'Asia Gateway' },

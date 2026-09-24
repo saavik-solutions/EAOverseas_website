@@ -215,7 +215,7 @@ const CommunityPostsSection: React.FC = () => {
             <div className="max-w-[1400px] mx-auto relative z-10 w-full px-4">
                 {/* Header */}
                 <div className={`text-center mb-16 flex flex-col items-center ${isVisible ? 'animate-[fadeInUp_0.8s_ease-out_forwards]' : 'opacity-0'}`}>
-                    <div className="inline-flex items-center gap-2 py-2 px-5 bg-[#f3e8ff] text-primary border border-[#e9d5ff] rounded-full text-[11px] font-black uppercase tracking-[0.2em] mb-6">
+                    <div className="inline-flex items-center gap-2 py-2 px-5 bg-[#E7F0FF] text-primary border border-[#e9d5ff] rounded-full text-[11px] font-black uppercase tracking-[0.2em] mb-6">
                         <span className="w-2 h-2 bg-[#9333ea] rounded-full animate-pulse shadow-[0_0_8px_#9333ea]" />
                         Dashboard Activity
                     </div>
@@ -240,7 +240,7 @@ const CommunityPostsSection: React.FC = () => {
                                 <img src={post.user.avatar} alt={post.user.name} className="w-10 h-10 rounded-full border border-slate-100 group-hover:scale-105 transition-transform" />
                                 <div className="flex-1 min-w-0">
                                     <h4 className="text-sm font-bold text-slate-900 truncate">{post.user.name}</h4>
-                                    <p className="text-[10px] text-purple-600 font-bold uppercase truncate">{post.user.role} {post.user.university && `• ${post.user.university}`}</p>
+                                    <p className="text-[10px] text-primary font-bold uppercase truncate">{post.user.role} {post.user.university && `• ${post.user.university}`}</p>
                                 </div>
                             </div>
 
@@ -259,7 +259,7 @@ const CommunityPostsSection: React.FC = () => {
                                         <span className="material-symbols-outlined text-[18px]">favorite</span>
                                         <span className="text-[11px] font-bold">{post.stats.likes}</span>
                                     </div>
-                                    <div className="flex items-center gap-1 text-slate-400 group-hover:text-purple-500 transition-colors">
+                                    <div className="flex items-center gap-1 text-slate-400 group-hover:text-primary transition-colors">
                                         <span className="material-symbols-outlined text-[18px]">chat_bubble</span>
                                         <span className="text-[11px] font-bold">{post.stats.comments}</span>
                                     </div>
@@ -274,7 +274,7 @@ const CommunityPostsSection: React.FC = () => {
                 <div className={`mt-16 flex justify-center ${isVisible ? 'animate-[fadeInUp_0.8s_ease-out_forwards]' : 'opacity-0'}`} style={{ animationDelay: '0.4s' }}>
                     <button 
                         onClick={() => navigate('/ointake-feed')}
-                        className="group flex items-center gap-3 bg-white text-primary py-4 px-10 rounded-2xl text-base font-black border-2 border-purple-100 cursor-pointer shadow-sm transition-all duration-300 hover:border-primary hover:bg-primary hover:text-white hover:shadow-[0_15px_30px_-5px_rgba(122,41,194,0.3)] hover:-translate-y-1 active:translate-y-0"
+                        className="group flex items-center gap-3 bg-white text-primary py-4 px-10 rounded-2xl text-base font-black border-2 border-purple-100 cursor-pointer shadow-sm transition-all duration-300 hover:border-primary hover:bg-white border-2 border-primary hover:bg-primary-light/20 hover:text-primary font-bold hover:shadow-[0_15px_30px_-5px_rgba(122,41,194,0.3)] hover:-translate-y-1 active:translate-y-0"
                     >
                         Explore Dashboard Feed
                         <span className="material-symbols-outlined text-[20px] group-hover:translate-x-1 transition-transform">forum</span>

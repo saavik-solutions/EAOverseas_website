@@ -83,14 +83,14 @@ const ContactSection = () => {
                 {/* Main Contact Card Container */}
                 <div className="bg-white rounded-[2.5rem] overflow-hidden flex flex-col lg:flex-row min-h-[750px] shadow-[0_30px_70px_-15px_rgba(122,41,194,0.15)] border border-purple-50">
                     {/* Left Info Column */}
-                    <aside className="lg:w-[38%] p-10 md:p-14 flex flex-col justify-between text-white relative overflow-hidden bg-primary">
+                    <aside className="lg:w-[38%] p-10 md:p-14 flex flex-col justify-between text-primary font-bold relative overflow-hidden bg-white border-2 border-primary hover:bg-primary-light/20">
                         {/* Decorative background circle */}
                         <div className="absolute top-[-20%] right-[-20%] w-[80%] h-[40%] bg-white/10 blur-[80px] rounded-full"></div>
                         <div className="absolute bottom-[-10%] left-[-10%] w-[60%] h-[30%] bg-purple-400/20 blur-[60px] rounded-full"></div>
 
                         <div className="relative z-10">
                             <h2 className="text-3xl md:text-4xl font-extrabold mb-6 tracking-tight">Contact Information</h2>
-                            <p className="text-purple-100 text-lg leading-relaxed mb-12 font-medium">
+                            <p className="text-primary-light text-lg leading-relaxed mb-12 font-medium">
                                 Ready to start your journey? Our experts are here to guide you through every step of your international education.
                             </p>
                             
@@ -152,7 +152,7 @@ const ContactSection = () => {
                                 <div className="space-y-2">
                                     <label className="text-[13px] font-extrabold text-gray-400 uppercase tracking-wider ml-1" htmlFor="name">Full Name</label>
                                     <input
-                                        className="w-full px-6 py-4 rounded-2xl bg-gray-50 border-gray-100 border-2 focus:border-primary focus:bg-white focus:ring-4 focus:ring-purple-500/5 transition-all placeholder:text-gray-300 font-bold outline-none"
+                                        className="w-full px-6 py-4 rounded-2xl bg-gray-50 border-gray-100 border-2 focus:border-primary focus:bg-white focus:ring-4 focus:ring-primary/5 transition-all placeholder:text-gray-300 font-bold outline-none"
                                         id="name" name="name" placeholder="Prasenjeet Kashyap" required type="text"
                                         value={formData.name} onChange={handleChange}
                                     />
@@ -160,14 +160,14 @@ const ContactSection = () => {
                                 <div className="space-y-2">
                                     <label className="text-[13px] font-extrabold text-gray-400 uppercase tracking-wider ml-1" htmlFor="email">Email Address</label>
                                     <input
-                                        className="w-full px-6 py-4 rounded-2xl bg-gray-50 border-gray-100 border-2 focus:border-primary focus:bg-white focus:ring-4 focus:ring-purple-500/5 transition-all placeholder:text-gray-300 font-bold outline-none"
+                                        className="w-full px-6 py-4 rounded-2xl bg-gray-50 border-gray-100 border-2 focus:border-primary focus:bg-white focus:ring-4 focus:ring-primary/5 transition-all placeholder:text-gray-300 font-bold outline-none"
                                         id="email" name="email" placeholder="kashyap@example.com" required type="email"
                                         value={formData.email} onChange={handleChange}
                                     />
                                 </div>
                                 <div className="space-y-2 md:col-span-2">
                                     <label className="text-[13px] font-extrabold text-gray-400 uppercase tracking-wider ml-1" htmlFor="phone">Phone Number</label>
-                                    <div className="flex rounded-2xl bg-gray-50 border-gray-100 border-2 focus-within:border-primary focus-within:bg-white focus-within:ring-4 focus-within:ring-purple-500/5 transition-all outline-none">
+                                    <div className="flex rounded-2xl bg-gray-50 border-gray-100 border-2 focus-within:border-primary focus-within:bg-white focus-within:ring-4 focus-within:ring-primary/5 transition-all outline-none">
                                         <select
                                             name="countryCode"
                                             value={formData.countryCode}
@@ -188,7 +188,7 @@ const ContactSection = () => {
                             <div className="space-y-2">
                                 <label className="text-[13px] font-extrabold text-gray-400 uppercase tracking-wider ml-1" htmlFor="subject">What's this about?</label>
                                 <input
-                                    className="w-full px-6 py-4 rounded-2xl bg-gray-50 border-gray-100 border-2 focus:border-primary focus:bg-white focus:ring-4 focus:ring-purple-500/5 transition-all placeholder:text-gray-300 font-bold outline-none"
+                                    className="w-full px-6 py-4 rounded-2xl bg-gray-50 border-gray-100 border-2 focus:border-primary focus:bg-white focus:ring-4 focus:ring-primary/5 transition-all placeholder:text-gray-300 font-bold outline-none"
                                     id="subject" name="subject" placeholder="Inquiry about UK Universities" required type="text"
                                     value={formData.subject} onChange={handleChange}
                                 />
@@ -197,7 +197,7 @@ const ContactSection = () => {
                             <div className="space-y-2">
                                 <label className="text-[13px] font-extrabold text-gray-400 uppercase tracking-wider ml-1" htmlFor="message">Your Message</label>
                                 <textarea
-                                    className="w-full px-6 py-4 rounded-2xl bg-gray-50 border-gray-100 border-2 focus:border-primary focus:bg-white focus:ring-4 focus:ring-purple-500/5 transition-all placeholder:text-gray-300 font-bold min-h-[160px] resize-none outline-none"
+                                    className="w-full px-6 py-4 rounded-2xl bg-gray-50 border-gray-100 border-2 focus:border-primary focus:bg-white focus:ring-4 focus:ring-primary/5 transition-all placeholder:text-gray-300 font-bold min-h-[160px] resize-none outline-none"
                                     id="message" name="message" placeholder="Tell us more about your academic goals..." required
                                     value={formData.message} onChange={handleChange}
                                 ></textarea>
@@ -205,9 +205,9 @@ const ContactSection = () => {
 
                             <div className="pt-4">
                                 <button
-                                    className={`w-full py-4.5 font-black text-lg rounded-2xl shadow-xl transition-all flex items-center justify-center gap-3 active:scale-[0.97] disabled:opacity-70 ${submitStatus === 'success' ? 'bg-green-500 text-white shadow-green-500/20' :
-                                        submitStatus === 'error' ? 'bg-red-500 text-white shadow-red-500/20' :
-                                            'bg-primary text-white hover:bg-[#6d28d9] hover:-translate-y-1 shadow-purple-500/30'
+                                    className={`w-full py-4.5 font-black text-lg rounded-2xl shadow-xl transition-all flex items-center justify-center gap-3 active:scale-[0.97] disabled:opacity-70 ${submitStatus === 'success' ? 'bg-green-500 text-primary font-bold shadow-green-500/20' :
+                                        submitStatus === 'error' ? 'bg-red-500 text-primary font-bold shadow-red-500/20' :
+                                            'bg-white border-2 border-primary hover:bg-primary-light/20 text-primary font-bold hover:bg-[#6d28d9] hover:-translate-y-1 shadow-purple-500/30'
                                         }`}
                                     type="submit"
                                     disabled={isSubmitting}

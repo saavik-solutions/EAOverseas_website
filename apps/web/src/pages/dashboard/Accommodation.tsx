@@ -611,7 +611,7 @@ const Accommodation = () => {
                                         <span className="text-sm font-medium text-gray-700">Verified Property</span>
                                     </div>
                                     <div className="flex items-center gap-3 p-2 bg-white rounded-lg border border-gray-100 shadow-sm">
-                                        <div className="size-8 rounded-full bg-purple-50 text-purple-600 flex items-center justify-center shrink-0">
+                                        <div className="size-8 rounded-full bg-primary-light/50 text-primary flex items-center justify-center shrink-0">
                                             <span className="material-symbols-outlined !text-[18px]">support_agent</span>
                                         </div>
                                         <span className="text-sm font-medium text-gray-700">24/7 Support</span>

@@ -267,13 +267,13 @@ const ViewApplicationDetailsModal: React.FC<ViewApplicationDetailsModalProps> = 
                     {/* Academic Profile */}
                     <div className="space-y-4">
                         <h3 className="text-xs font-black text-slate-900 uppercase tracking-[0.2em] flex items-center gap-2">
-                            <span className="material-symbols-outlined text-purple-600 text-lg">school</span>
+                            <span className="material-symbols-outlined text-primary text-lg">school</span>
                             Academic Profile
                         </h3>
                         <div className="flex items-center gap-4">
-                            <div className="bg-purple-50 px-4 py-3 rounded-2xl border border-purple-100 min-w-[100px]">
+                            <div className="bg-primary-light/50 px-4 py-3 rounded-2xl border border-purple-100 min-w-[100px]">
                                 <p className="text-[9px] font-black text-purple-400 uppercase tracking-widest mb-1 text-center">GPA</p>
-                                <p className="text-xl font-black text-purple-600 text-center leading-none">{application.gpa}</p>
+                                <p className="text-xl font-black text-primary text-center leading-none">{application.gpa}</p>
                             </div>
                             <div className="flex-1">
                                 <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Key Achievements</p>

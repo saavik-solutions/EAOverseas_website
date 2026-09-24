@@ -26,7 +26,7 @@ const FeedDetails = () => {
                 <span className="material-symbols-outlined text-gray-300 text-[64px] mb-4">find_in_page</span>
                 <h1 className="text-xl font-bold text-gray-900 mb-2">Post Not Found</h1>
                 <p className="text-gray-500 mb-6 max-w-xs">The post you are looking for might have been deleted or is no longer available.</p>
-                <Link to="/feed" className="px-6 py-2 bg-primary text-white font-bold rounded-lg hover:bg-primary/90 transition-all">
+                <Link to="/feed" className="px-6 py-2 bg-white border-2 border-primary hover:bg-primary-light/20 text-primary font-bold font-bold rounded-lg hover:bg-white border-2 border-primary hover:bg-primary-light/20/90 transition-all">
                     Back to Global Feed
                 </Link>
             </div>
@@ -36,7 +36,7 @@ const FeedDetails = () => {
     // Dynamic Label Class
     const getLabelClass = () => {
         if (data.id === 'stanford' || data.labelColor?.includes('blue')) return 'bg-blue-50 backdrop-blur rounded-full px-3 py-1 text-xs font-semibold text-blue-700 border border-blue-100 shadow-sm';
-        if (data.id === 'uk_psw' || data.labelColor?.includes('purple')) return 'bg-purple-50 backdrop-blur rounded-full px-3 py-1 text-xs font-semibold text-purple-700 border border-purple-100 shadow-sm';
+        if (data.id === 'uk_psw' || data.labelColor?.includes('purple')) return 'bg-primary-light/50 backdrop-blur rounded-full px-3 py-1 text-xs font-semibold text-primary-hover border border-purple-100 shadow-sm';
         return 'bg-green-50 backdrop-blur rounded-full px-3 py-1 text-xs font-semibold text-green-700 border border-green-100 shadow-sm';
     };
 

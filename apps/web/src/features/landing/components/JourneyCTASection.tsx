@@ -61,7 +61,7 @@ const JourneyCTASection = () => {
 
                {/* Grad Cap */}
                <div className="absolute -top-10 lg:-top-16 right-[10%] lg:right-[30%] text-transparent z-20 animate-[bounce_5s_infinite_1s]">
-                 <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" className="drop-shadow-sm text-purple-900 opacity-90 -rotate-12">
+                 <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" className="drop-shadow-sm text-primary-dark opacity-90 -rotate-12">
                    <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
                    <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
                  </svg>
@@ -69,7 +69,7 @@ const JourneyCTASection = () => {
 
                {/* Certificate */}
                <div className="absolute bottom-[0%] right-[5%] lg:-right-4 text-transparent z-20 animate-[bounce_4.5s_infinite_0.5s]">
-                 <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="drop-shadow-sm text-purple-900 opacity-90 rotate-[15deg]">
+                 <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="drop-shadow-sm text-primary-dark opacity-90 rotate-[15deg]">
                    <path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"></path>
                    <path d="M14.5 13.5 16 19l-4-1.5L8 19l1.5-5.5"></path>
                    <path d="m15 5-3-3-3 3"></path>

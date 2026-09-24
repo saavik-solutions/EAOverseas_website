@@ -42,7 +42,7 @@ export const postsData = {
     'uk_psw': {
         id: 'uk_psw',
         label: 'Policy Update',
-        labelColor: 'text-purple-700 border-purple-100 bg-purple-50',
+        labelColor: 'text-primary-hover border-purple-100 bg-primary-light/50',
         banner: 'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?q=80&w=2000&auto=format&fit=crop',
         logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Royal_Coat_of_Arms_of_the_United_Kingdom.svg/1200px-Royal_Coat_of_Arms_of_the_United_Kingdom.svg.webp',
         title: 'Important Update on Graduate Route Visa (PSW)',
@@ -162,7 +162,7 @@ export const postsData = {
     'aus_parttime': {
         id: 'aus_parttime',
         label: 'Policy Update',
-        labelColor: 'text-purple-700 border-purple-100 bg-purple-50',
+        labelColor: 'text-primary-hover border-purple-100 bg-primary-light/50',
         banner: 'https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?q=80&w=2000&auto=format&fit=crop',
         logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Coat_of_arms_of_Australia.svg/1200px-Coat_of_arms_of_Australia.svg.webp',
         title: 'Work Hour Limits for Student Visa Holders',
@@ -182,7 +182,7 @@ export const postsData = {
     'career_cv': {
         id: 'career_cv',
         label: 'Policy Update',
-        labelColor: 'text-purple-700 border-purple-100 bg-purple-50',
+        labelColor: 'text-primary-hover border-purple-100 bg-primary-light/50',
         banner: 'https://images.unsplash.com/photo-1586281380349-632531db7ed4?q=80&w=2000&auto=format&fit=crop',
         logo: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDTTkOWBBs14BDjyomcFOZrSqTFNsIKq1hGK41JYb45t_iVLVGNb_T9TdqRb1Y6SagUz_gZhagIczn35zHA-noKYcYq6DUANRbm46AL9woslklLLfbNQPVGHHUfsFTCzAsH2pQKQDpkFWk2pA4IclpFL0jJHkkUlEuy6Fnble8cGPq7kvYS9UeISnbFwa4jX73NlzII9653Lim3eGqwAjNKkWosAmVux3UeERBKgKvCcdjyw7QSAtcnOEPCZqVnH2nxClKsycqO8SB_',
         title: 'Crafting the Perfect Resume for US Tech Internships',
@@ -242,7 +242,7 @@ export const postsData = {
     'toronto_housing': {
         id: 'toronto_housing',
         label: 'Policy Update',
-        labelColor: 'text-purple-700 border-purple-100 bg-purple-50',
+        labelColor: 'text-primary-hover border-purple-100 bg-primary-light/50',
         banner: 'https://images.unsplash.com/photo-1580041065738-e72023775cdc?q=80&w=2000&auto=format&fit=crop',
         logo: 'https://upload.wikimedia.org/wikipedia/en/thumb/0/04/Utoronto_coa.svg/1200px-Utoronto_coa.svg.webp',
         title: 'UofT Residence Guarantee for First Years',
@@ -262,7 +262,7 @@ export const postsData = {
     'ielts_update': {
         id: 'ielts_update',
         label: 'Policy Update',
-        labelColor: 'text-purple-700 border-purple-100 bg-purple-50',
+        labelColor: 'text-primary-hover border-purple-100 bg-primary-light/50',
         banner: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=2000&auto=format&fit=crop',
         logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/IELTS_logo.svg/1200px-IELTS_logo.svg.webp',
         title: 'IELTS One Skill Retake Now Global',

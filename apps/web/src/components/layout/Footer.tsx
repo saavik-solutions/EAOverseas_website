@@ -57,8 +57,8 @@ const Footer = () => {
     <>
       <footer className="bg-[#0f111a] text-white pt-20 pb-10 font-sans relative border-t border-gray-800/50 overflow-hidden">
         {/* Ambient blobs */}
-        <div className="absolute top-[-100px] left-[-100px] w-[600px] h-[600px] bg-purple-600/10 blur-[120px] rounded-full pointer-events-none" />
-        <div className="absolute bottom-[-100px] right-[-100px] w-[600px] h-[600px] bg-purple-600/10 blur-[120px] rounded-full pointer-events-none" />
+        <div className="absolute top-[-100px] left-[-100px] w-[600px] h-[600px] bg-primary/10 blur-[120px] rounded-full pointer-events-none" />
+        <div className="absolute bottom-[-100px] right-[-100px] w-[600px] h-[600px] bg-primary/10 blur-[120px] rounded-full pointer-events-none" />
         <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none" />
 
         <div className="max-w-[1400px] mx-auto px-6 relative z-10">
@@ -86,7 +86,7 @@ const Footer = () => {
 
               <button
                 onClick={() => navigate('/contact')}
-                className="bg-primary hover:bg-[#6d28d9] text-white w-full py-3 rounded-xl text-[13px] font-bold flex items-center justify-center gap-2 mb-3 transition-all shadow-lg shadow-purple-500/25 border border-white/10 hover:scale-[1.02] active:scale-[0.98]"
+                className="bg-white border-2 border-primary hover:bg-primary-light/20 hover:bg-[#6d28d9] text-primary font-bold w-full py-3 rounded-xl text-[13px] font-bold flex items-center justify-center gap-2 mb-3 transition-all shadow-lg shadow-purple-500/25 border border-white/10 hover:scale-[1.02] active:scale-[0.98]"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
                   <path fillRule="evenodd" d="M7.5 6a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM3.751 20.105a8.25 8.25 0 0116.498 0 .75.75 0 01-.437.695A18.683 18.683 0 0112 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 01-.437-.695z" clipRule="evenodd" />
@@ -189,7 +189,7 @@ const Footer = () => {
                   href={social === 'whatsapp' ? getWhatsAppLink() : CONTACTS.socials[social as keyof typeof CONTACTS.socials] || '#'}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-8 h-8 rounded-full bg-white/5 border border-white/10 text-gray-400 flex items-center justify-center hover:bg-primary hover:text-white hover:border-primary transition-all"
+                  className="w-8 h-8 rounded-full bg-white/5 border border-white/10 text-gray-400 flex items-center justify-center hover:bg-white border-2 border-primary hover:bg-primary-light/20 hover:text-primary font-bold hover:border-primary transition-all"
                   aria-label={`Follow Eduwoy on ${social}`}
                 >
                   <div className="w-[13px] h-[13px] bg-current" style={{ maskImage: `url(https://unpkg.com/simple-icons@v9/icons/${social}.svg)`, WebkitMaskImage: `url(https://unpkg.com/simple-icons@v9/icons/${social}.svg)`, maskSize: 'contain', maskRepeat: 'no-repeat', maskPosition: 'center' }} aria-hidden="true"></div>

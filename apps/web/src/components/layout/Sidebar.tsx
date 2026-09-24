@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useLocation, useSearchParams, useNavigate } from 'react-router-dom';
-import logo from '@/assets/logo.webp';
+import logo from '@/assets/logo.png';
 import { useAuth } from '@/shared/contexts/AuthContext';
 
 
@@ -104,7 +104,7 @@ const Sidebar = ({ isOpen, onClose }) => {
                                         <button
                                             onClick={() => setIsPAIOpen(!isPAIOpen)}
                                             className={`w-full flex items-center justify-between px-3 py-2.5 rounded-lg group transition-colors ${isActive
-                                                ? 'bg-purple-50 text-primary font-semibold'
+                                                ? 'bg-primary-light/50 text-primary font-semibold'
                                                 : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900 font-medium'
                                                 }`}
                                         >
@@ -132,7 +132,7 @@ const Sidebar = ({ isOpen, onClose }) => {
                                                                 if (window.innerWidth < 1024) onClose();
                                                             }}
                                                             className={`w-full flex items-center gap-3 px-3 py-2 rounded-lg transition-colors text-left ${isChildActive
-                                                                ? 'bg-purple-50 text-primary font-semibold shadow-sm'
+                                                                ? 'bg-primary-light/50 text-primary font-semibold shadow-sm'
                                                                 : 'text-gray-500 hover:bg-gray-50 hover:text-gray-900 font-medium'
                                                                 }`}
                                                         >
@@ -153,7 +153,7 @@ const Sidebar = ({ isOpen, onClose }) => {
                                             if (window.innerWidth < 1024) onClose();
                                         }}
                                         className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg group transition-colors text-left ${isActive
-                                            ? 'bg-purple-50 text-primary font-semibold'
+                                            ? 'bg-primary-light/50 text-primary font-semibold'
                                             : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900 font-medium'
                                             }`}
                                     >
@@ -192,7 +192,7 @@ const Sidebar = ({ isOpen, onClose }) => {
                                                 navigate('/notification-preferences');
                                                 if (window.innerWidth < 1024) onClose();
                                             }}
-                                            className="w-full text-left px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-purple-50 hover:text-primary rounded-lg transition-colors flex items-center gap-3"
+                                            className="w-full text-left px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-primary-light/50 hover:text-primary rounded-lg transition-colors flex items-center gap-3"
                                         >
                                             <span className="material-symbols-outlined text-[18px]">notifications</span>
                                             Notification Preferences
@@ -202,7 +202,7 @@ const Sidebar = ({ isOpen, onClose }) => {
                                                 navigate('/privacy-security');
                                                 if (window.innerWidth < 1024) onClose();
                                             }}
-                                            className="w-full text-left px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-purple-50 hover:text-primary rounded-lg transition-colors flex items-center gap-3"
+                                            className="w-full text-left px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-primary-light/50 hover:text-primary rounded-lg transition-colors flex items-center gap-3"
                                         >
                                             <span className="material-symbols-outlined text-[18px]">security</span>
                                             Privacy & Security

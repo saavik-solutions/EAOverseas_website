@@ -16,10 +16,10 @@ const services = [
         title: 'Career Guidance',
         subtitle: 'Personalised roadmap to your dream career',
         badge: 'Most Popular',
-        badgeColor: 'bg-purple-100 text-purple-700',
+        badgeColor: 'bg-primary-light text-primary-hover',
         icon3d: icon3dCareer,
         gradient: 'from-purple-100 to-fuchsia-100',
-        accentColor: 'text-purple-700',
+        accentColor: 'text-primary-hover',
         borderColor: 'border-purple-300',
         hoverGlow: 'hover:shadow-purple-200/60',
         stats: '5,000+ Guided',
@@ -44,10 +44,10 @@ const services = [
         title: 'Application & Admission Support',
         subtitle: 'End-to-end application management',
         badge: 'Expert Team',
-        badgeColor: 'bg-violet-100 text-violet-700',
+        badgeColor: 'bg-primary-light text-primary-hover',
         icon3d: icon3dApplication,
         gradient: 'from-violet-50 to-purple-50',
-        accentColor: 'text-violet-700',
+        accentColor: 'text-primary-hover',
         borderColor: 'border-violet-200',
         hoverGlow: 'hover:shadow-violet-200/60',
         stats: '10K+ Accepted',
@@ -109,12 +109,12 @@ const ServicesSection = () => {
                     {/* Top: Badge + Heading */}
                     <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8">
                         <div className="max-w-2xl">
-                            <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-purple-100/80 text-purple-700 font-bold text-sm rounded-full mb-5 border border-purple-200">
+                            <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-primary-light/80 text-primary-hover font-bold text-sm rounded-full mb-5 border border-purple-200">
                                 <span className="material-symbols-outlined text-[16px]">auto_awesome</span>
                                 Services Provided
                             </div>
                             <h2 className="text-4xl md:text-5xl font-extrabold text-slate-900 leading-[1.1] tracking-tight">
-                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-fuchsia-600">
+                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-fuchsia-600">
                                     Overseas Education
                                 </span>{' '}
                                 Made<br className="hidden lg:block" /> Simple and Accessible
@@ -143,7 +143,7 @@ const ServicesSection = () => {
                                 ].map((stat, i) => (
                                     <div
                                         key={i}
-                                        className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-white border border-[#f3e8ff] rounded-full shadow-sm text-xs font-semibold text-[#0e121b] hover:border-primary hover:shadow-purple-100 transition-all duration-200"
+                                        className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-white border border-[#E7F0FF] rounded-full shadow-sm text-xs font-semibold text-[#0e121b] hover:border-primary hover:shadow-purple-100 transition-all duration-200"
                                     >
                                         <span className="material-symbols-outlined text-primary text-[14px]">{stat.icon}</span>
                                         {stat.label}

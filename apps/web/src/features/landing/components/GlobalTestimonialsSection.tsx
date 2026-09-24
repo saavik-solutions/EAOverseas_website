@@ -141,7 +141,7 @@ const GlobalTestimonialsSection = () => {
 
         {/* ── Header ── */}
         <div className="flex flex-col items-center justify-center text-center space-y-4 mb-14 mt-4">
-          <div className="bg-[#f3e8ff] text-primary px-6 py-1.5 rounded-full font-bold text-sm">
+          <div className="bg-[#E7F0FF] text-primary px-6 py-1.5 rounded-full font-bold text-sm">
             Eduwoy Alumni
           </div>
           <h2 className="text-3xl md:text-5xl font-bold text-[#0e121b]">
@@ -178,7 +178,7 @@ const GlobalTestimonialsSection = () => {
               {testimonials.map((testimonial) => (
                 <div
                   key={testimonial.id}
-                  className="bg-white rounded-[24px] p-6 shadow-[0_4px_20px_rgba(122,41,194,0.07)] flex flex-col space-y-5 relative ml-0 lg:mr-12 border border-[#f3e8ff]"
+                  className="bg-white rounded-[24px] p-6 shadow-[0_4px_20px_rgba(122,41,194,0.07)] flex flex-col space-y-5 relative ml-0 lg:mr-12 border border-[#E7F0FF]"
                 >
                   <p className="text-gray-600 text-sm leading-relaxed pr-6">
                     {testimonial.text}
@@ -193,7 +193,7 @@ const GlobalTestimonialsSection = () => {
                       <img
                         src={testimonial.image}
                         alt={testimonial.name}
-                        className="w-11 h-11 rounded-full object-cover border-2 border-[#f3e8ff] shadow-sm"
+                        className="w-11 h-11 rounded-full object-cover border-2 border-[#E7F0FF] shadow-sm"
                       />
                       <div>
                         <h4 className="font-bold text-[#0e121b] text-[15px]">{testimonial.name}</h4>
@@ -212,14 +212,14 @@ const GlobalTestimonialsSection = () => {
             <div className="flex flex-col space-y-4 absolute right-0 translate-x-1/2 z-20">
               <button
                 onClick={scrollUp}
-                className="w-12 h-12 rounded-full bg-white shadow-[0_4px_15px_rgba(122,41,194,0.15)] border border-[#f3e8ff] flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-colors"
+                className="w-12 h-12 rounded-full bg-white shadow-[0_4px_15px_rgba(122,41,194,0.15)] border border-[#E7F0FF] flex items-center justify-center text-primary hover:bg-white border-2 border-primary hover:bg-primary-light/20 hover:text-primary font-bold transition-colors"
                 aria-label="Scroll up"
               >
                 <ChevronUpIcon />
               </button>
               <button
                 onClick={scrollDown}
-                className="w-12 h-12 rounded-full bg-white shadow-[0_4px_15px_rgba(122,41,194,0.15)] border border-[#f3e8ff] flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-colors"
+                className="w-12 h-12 rounded-full bg-white shadow-[0_4px_15px_rgba(122,41,194,0.15)] border border-[#E7F0FF] flex items-center justify-center text-primary hover:bg-white border-2 border-primary hover:bg-primary-light/20 hover:text-primary font-bold transition-colors"
                 aria-label="Scroll down"
               >
                 <ChevronDownIcon />
@@ -233,7 +233,7 @@ const GlobalTestimonialsSection = () => {
             {/* Section label */}
             <div className="flex items-center justify-between">
               <div>
-                <span className="inline-flex items-center gap-2 bg-[#f3e8ff] text-primary px-4 py-1.5 rounded-full font-bold text-sm">
+                <span className="inline-flex items-center gap-2 bg-[#E7F0FF] text-primary px-4 py-1.5 rounded-full font-bold text-sm">
                   <span className="material-symbols-outlined text-base">play_circle</span>
                   Alumni Reels
                 </span>
@@ -242,7 +242,7 @@ const GlobalTestimonialsSection = () => {
               <div className="flex gap-2">
                 <button
                   onClick={scrollReelsLeft}
-                  className="w-9 h-9 rounded-full bg-white border border-[#f3e8ff] shadow-sm flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all duration-200"
+                  className="w-9 h-9 rounded-full bg-white border border-[#E7F0FF] shadow-sm flex items-center justify-center text-primary hover:bg-white border-2 border-primary hover:bg-primary-light/20 hover:text-primary font-bold transition-all duration-200"
                   aria-label="Scroll left"
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-4 h-4">
@@ -251,7 +251,7 @@ const GlobalTestimonialsSection = () => {
                 </button>
                 <button
                   onClick={scrollReelsRight}
-                  className="w-9 h-9 rounded-full bg-white border border-[#f3e8ff] shadow-sm flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all duration-200"
+                  className="w-9 h-9 rounded-full bg-white border border-[#E7F0FF] shadow-sm flex items-center justify-center text-primary hover:bg-white border-2 border-primary hover:bg-primary-light/20 hover:text-primary font-bold transition-all duration-200"
                   aria-label="Scroll right"
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-4 h-4">

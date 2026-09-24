@@ -48,8 +48,8 @@ const AdminDashboard = () => {
             value: loading ? '—' : stats?.totalLeads?.toLocaleString() ?? '0',
             icon: 'group',
             color: 'purple',
-            bgColor: 'bg-purple-50',
-            textColor: 'text-purple-600',
+            bgColor: 'bg-primary-light/50',
+            textColor: 'text-primary',
             sub: loading ? '...' : `${stats?.newLeads ?? 0} new`,
         },
         {
@@ -111,7 +111,7 @@ const AdminDashboard = () => {
                         <h3 className="text-lg md:text-xl font-black text-gray-900">Recent Lead Traffic</h3>
                         <button
                             onClick={() => navigate('/admin/leads')}
-                            className="text-purple-600 font-bold text-sm hover:underline"
+                            className="text-primary font-bold text-sm hover:underline"
                         >
                             View All →
                         </button>
@@ -136,11 +136,11 @@ const AdminDashboard = () => {
                             recentLeads.map((lead, i) => (
                                 <div
                                     key={lead._id}
-                                    className="flex items-center justify-between p-4 hover:bg-purple-50/40 rounded-2xl transition-all border border-transparent hover:border-purple-100 cursor-pointer"
+                                    className="flex items-center justify-between p-4 hover:bg-primary-light/50/40 rounded-2xl transition-all border border-transparent hover:border-purple-100 cursor-pointer"
                                     onClick={() => navigate('/admin/leads')}
                                 >
                                     <div className="flex items-center gap-4">
-                                        <div className="w-10 h-10 bg-purple-100 text-purple-700 rounded-xl flex items-center justify-center font-black text-sm">
+                                        <div className="w-10 h-10 bg-primary-light text-primary-hover rounded-xl flex items-center justify-center font-black text-sm">
                                             {lead.name?.charAt(0)?.toUpperCase() || '?'}
                                         </div>
                                         <div>
@@ -168,7 +168,7 @@ const AdminDashboard = () => {
 
                 {/* System Status Panel */}
                 <div className="bg-gray-900 rounded-[2.5rem] p-6 md:p-10 relative overflow-hidden">
-                    <div className="absolute top-0 right-0 w-64 h-64 bg-purple-600/15 rounded-full blur-3xl pointer-events-none" />
+                    <div className="absolute top-0 right-0 w-64 h-64 bg-primary/15 rounded-full blur-3xl pointer-events-none" />
                     <div className="relative z-10 space-y-8">
                         <h3 className="text-2xl font-black text-white leading-tight">System<br />Ready</h3>
                         <div className="space-y-4">

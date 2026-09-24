@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import logo from '@/assets/logo.webp';
+import logo from '@/assets/logo.png';
 import { useAuth } from '@/shared/contexts/AuthContext';
 import { destinations } from '@/data/countries';
 
@@ -15,7 +15,7 @@ const Navbar = () => {
     const [isCountriesOpen, setIsCountriesOpen] = useState(false);
     const [isMobileCountriesOpen, setIsMobileCountriesOpen] = useState(false);
 
-    const isActive = (path: string) => location.pathname === path;
+    const isActive = (path: string) => location.pathname === path || (path === '/landing' && location.pathname === '/');
 
     // True only when sitting on the landing/home page AND above the fold
     // → white/transparent navbar over the hero; purple everywhere else
@@ -49,13 +49,10 @@ const Navbar = () => {
 
     // Nav links: path = page route, sectionId = scroll anchor (home page only)
     const navLinks = [
+        { name: 'Home', path: '/landing' },
         { name: 'About', path: '/about' },
         { name: 'Countries', path: '/countries', hasDropdown: true },
         { name: 'Blogs', path: '/blogs' },
-        { name: 'Dashboard', path: 'https://student.eduwoy.com', external: true },
-        { name: 'Contact Us', path: '/contact' },
-        { name: 'Our Experts', sectionId: 'our-experts' },
-        { name: 'FAQ', sectionId: 'faq' },
     ];
 
     return (
@@ -110,13 +107,11 @@ const Navbar = () => {
                                             : navigate(link.path!)
                                 }
                                 className={`
-                                    relative inline-flex items-center gap-0.5 px-3 py-2 rounded-lg
-                                    text-[14px] font-semibold transition-all duration-200
-                                    ${link.name === 'Dashboard' 
-                                        ? 'bg-primary text-white hover:bg-[#6d28d9] px-4 shadow-[0_4px_12px_rgba(122,41,194,0.2)]' 
-                                        : ('path' in link && isActive(link.path!)
-                                            ? 'text-primary bg-purple-50'
-                                            : 'text-primary/80 hover:text-primary hover:bg-purple-50/60')}
+                                    relative inline-flex items-center gap-1 px-4 py-2 rounded-full
+                                    text-[15px] transition-all duration-200
+                                    ${'path' in link && isActive(link.path!)
+                                        ? 'text-primary bg-primary/10 font-semibold'
+                                        : 'text-slate-700 hover:text-primary font-medium'}
                                 `}
                             >
                                 {link.name}
@@ -141,7 +136,7 @@ const Navbar = () => {
                                                     navigate(`/country/${dest.code}`);
                                                     setIsCountriesOpen(false);
                                                 }}
-                                                className="flex items-center gap-3 p-2.5 rounded-xl hover:bg-purple-50 transition-colors cursor-pointer group/item"
+                                                className="flex items-center gap-3 p-2.5 rounded-xl hover:bg-primary-light/50 transition-colors cursor-pointer group/item"
                                             >
                                                 <div className="w-10 h-8 rounded-lg overflow-hidden border border-gray-100 flex-shrink-0">
                                                     <img src={`https://flagcdn.com/w160/${dest.code.toLowerCase()}.webp`} alt="" aria-hidden="true" className="w-full h-full object-cover" />
@@ -170,27 +165,12 @@ const Navbar = () => {
                 {/* 3. Right Action Group */}
                 <div className="ml-auto flex items-center gap-2 lg:gap-3">
 
-                    {/* Check Eligibility Button (Figma) */}
                     <button
-                        onClick={() => window.open('https://student.eduwoy.com/auth/login', '_blank', 'noopener,noreferrer')}
-                        className="group relative hidden lg:flex items-center justify-center px-6 py-2.5 min-w-[130px] rounded-xl border-none shadow-[inset_0px_1px_4px_rgba(255,236,218,0.2),0px_4px_12px_rgba(234,88,12,0.3)] hover:shadow-[0px_8px_25px_rgba(234,88,12,0.5)] transition-all hover:scale-105 active:scale-95"
-                        style={{ background: 'linear-gradient(180deg, #f97316 0%, #c2410c 100%)' }}
+                        onClick={() => navigate('/contact')}
+                        className="group relative hidden lg:flex items-center justify-center px-6 py-2.5 min-w-[130px] rounded-full bg-primary hover:bg-primary-hover transition-all hover:scale-105 active:scale-95 shadow-[0_8px_20px_-6px_rgba(11,52,146,0.4)]"
                     >
-                        <span className="relative z-10 font-sans font-medium text-white text-[15px] tracking-wide">
-                            Sign In
-                        </span>
-                    </button>
-
-                    {/* Join Community Button → external student portal (Hidden on mobile to save space) */}
-                    <button
-                        onClick={() => window.open('https://student.eduwoy.com/auth/signup', '_blank', 'noopener,noreferrer')}
-                        className="group relative hidden lg:flex items-center justify-center px-6 py-2.5 min-w-[130px] rounded-xl border border-white/30 shadow-[0px_4px_20px_rgba(88,28,135,0.4)] hover:shadow-[0px_6px_25px_rgba(88,28,135,0.6)] transition-all hover:scale-105 active:scale-95"
-                        style={{ background: 'linear-gradient(212deg, rgba(124,58,237,0.4) 0%, rgba(88,28,135,0.9) 54%, rgba(124,58,237,0.4) 100%)' }}
-                    >
-                        <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity bg-gradient-to-t from-transparent to-white/20 pointer-events-none" />
-                        <span className="relative z-10 font-sans font-medium text-white text-[15px] tracking-wide flex items-center gap-1.5">
-                            <span className="material-symbols-outlined text-[17px]">person_add</span>
-                            Sign Up
+                        <span className="relative z-10 font-sans font-medium text-white text-[15px] tracking-wide flex items-center justify-center">
+                            Contact Us
                         </span>
                     </button>
 
@@ -198,7 +178,7 @@ const Navbar = () => {
                     <div className="lg:hidden">
                         <button
                             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                            className="p-2 transition-colors rounded-lg text-gray-700 hover:text-primary hover:bg-purple-50"
+                            className="p-2 transition-colors rounded-lg text-gray-700 hover:text-primary hover:bg-primary-light/50"
                             aria-label="Toggle menu"
                         >
                             <span className="material-symbols-outlined text-[26px]" aria-hidden="true">
@@ -231,11 +211,9 @@ const Navbar = () => {
                                 }}
                                 className={`
                                     w-full text-left px-4 py-2.5 rounded-xl text-[15px] font-semibold transition-all flex items-center justify-between
-                                    ${link.name === 'Dashboard' 
-                                        ? 'bg-primary text-white' 
-                                        : ('path' in link && isActive(link.path!)
-                                            ? 'text-primary bg-purple-50'
-                                            : 'text-gray-700 hover:text-primary hover:bg-purple-50/60')}
+                                    ${'path' in link && isActive(link.path!)
+                                        ? 'text-primary bg-primary-light/20'
+                                        : 'text-gray-700 hover:text-primary hover:bg-primary-light/10'}
                                 `}
                             >
                                 {link.name}
@@ -272,7 +250,7 @@ const Navbar = () => {
                                     </div>
                                     <button 
                                         onClick={() => { navigate('/countries'); setIsMobileMenuOpen(false); }}
-                                        className="w-full py-3 text-[12px] font-bold text-primary hover:bg-purple-50 transition-colors mt-2"
+                                        className="w-full py-3 text-[12px] font-bold text-primary hover:bg-primary-light/50 transition-colors mt-2"
                                     >
                                         View all destinations →
                                     </button>
@@ -282,22 +260,12 @@ const Navbar = () => {
                     ))}
 
                     <div className="pt-4 mt-2 border-t border-gray-100 flex flex-col gap-3">
-                        {/* Mobile Join Community */}
                         <button
-                            onClick={() => window.open('https://student.eduwoy.com/auth/signup', '_blank', 'noopener,noreferrer')}
-                            className="w-full bg-primary text-white font-bold py-3.5 rounded-2xl flex items-center justify-center gap-2 shadow-lg shadow-purple-200"
+                            onClick={() => { navigate('/contact'); setIsMobileMenuOpen(false); }}
+                            className="w-full bg-primary hover:bg-primary-hover text-white font-bold py-3.5 rounded-2xl flex items-center justify-center gap-2 shadow-md shadow-primary/20 border-2 border-transparent"
                         >
-                            <span className="material-symbols-outlined text-[18px]">person_add</span>
-                            Sign Up
-                        </button>
-
-                        {/* Mobile Check Eligibility */}
-                        <button
-                            onClick={() => window.open('https://student.eduwoy.com/auth/login', '_blank', 'noopener,noreferrer')}
-                            className="w-full bg-gradient-to-r from-[#f97316] to-[#ea580c] text-white font-bold py-3.5 rounded-2xl flex items-center justify-center gap-2 shadow-lg shadow-orange-200"
-                        >
-                            <span className="material-symbols-outlined text-[18px]">login</span>
-                            Sign In
+                            <span className="material-symbols-outlined text-[18px]">support_agent</span>
+                            Contact Us
                         </button>
 
                         {user && (

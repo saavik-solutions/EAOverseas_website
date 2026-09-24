@@ -40,7 +40,7 @@ const CollegeFinder = () => {
                     image: uni.logoUrl,
                     tags: [
                         { icon: "trophy", text: `#${uni.ranking || 'N/A'} Global Ranking`, color: "text-blue-600" },
-                        { icon: "school", text: uni.universityType || 'Research', color: "text-purple-600" },
+                        { icon: "school", text: uni.universityType || 'Research', color: "text-primary" },
                         { icon: "check_circle", text: "Verified Partner", color: "text-emerald-600" }
                     ],
                     stats: {

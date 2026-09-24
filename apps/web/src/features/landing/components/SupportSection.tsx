@@ -38,7 +38,7 @@ const SupportSection = ({ onScheduleClick }: { onScheduleClick?: () => void }) =
 
     return (
         <section className="flex flex-col items-center px-8 pb-16 max-w-[1600px] w-full mx-auto font-sans max-sm:px-4">
-            <div className="inline-block bg-[#f3e8ff] text-primary py-1.5 px-5 rounded-full text-[13px] font-medium uppercase tracking-wider mb-6">Our Services</div>
+            <div className="inline-block bg-[#E7F0FF] text-primary py-1.5 px-5 rounded-full text-[13px] font-medium uppercase tracking-wider mb-6">Our Services</div>
             <h2 className="font-bold text-[40px] max-sm:text-[20px] text-center text-black mb-16 max-sm:mb-8 leading-tight">
                 Comprehensive Support for Your Study <br className="hidden md:block" /> Abroad Journey
             </h2>

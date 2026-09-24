@@ -68,12 +68,12 @@ const TYPE_ICONS: Record<PostType, string> = {
 };
 const TYPE_COLORS: Record<PostType, string> = {
     Article: 'border-blue-500 bg-blue-50 text-blue-700',
-    Scholarship: 'border-purple-500 bg-purple-50 text-purple-700',
+    Scholarship: 'border-primary bg-primary-light/50 text-primary-hover',
     Announcement: 'border-orange-500 bg-orange-50 text-orange-700',
     Event: 'border-pink-500 bg-pink-50 text-pink-700',
     Guide: 'border-teal-500 bg-teal-50 text-teal-700',
     News: 'border-sky-500 bg-sky-50 text-sky-700',
-    Webinar: 'border-violet-500 bg-violet-50 text-violet-700',
+    Webinar: 'border-primary bg-primary-light/50 text-primary-hover',
     Program: 'border-emerald-500 bg-emerald-50 text-emerald-700',
 };
 

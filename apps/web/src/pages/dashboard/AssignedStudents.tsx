@@ -82,7 +82,7 @@ const AssignedStudents = ({ isEmbedded = false }: { isEmbedded?: boolean }) => {
                                 <div className="flex justify-between items-start mb-4">
                                     <div className={`size-10 md:size-12 rounded-full flex items-center justify-center font-bold text-base md:text-lg ${student.color === 'blue' ? 'bg-blue-50 text-blue-600' :
                                         student.color === 'orange' ? 'bg-orange-50 text-orange-600' :
-                                            student.color === 'purple' ? 'bg-purple-50 text-purple-600' :
+                                            student.color === 'purple' ? 'bg-primary-light/50 text-primary' :
                                                 'bg-green-50 text-green-600'
                                         }`}>
                                         {student.name.split(' ').map(n => n[0]).join('')}

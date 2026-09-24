@@ -16,7 +16,7 @@ const WebsiteLayout = () => {
     return (
         <div className="min-h-screen bg-white flex flex-col relative overflow-x-hidden">
             {/* Unified Grid Background - Same as Home Page */}
-            <div className="absolute inset-0 bg-grid-purple opacity-50 pointer-events-none z-0"></div>
+            <div className="absolute inset-0 bg-grid-primary opacity-50 pointer-events-none z-0"></div>
 
             <div className="relative z-10 flex flex-col flex-grow">
                 <Navbar />

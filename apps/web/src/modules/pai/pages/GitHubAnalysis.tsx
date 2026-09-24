@@ -122,7 +122,7 @@ const GitHubAnalysis: React.FC = () => {
                                         <div className="flex h-3 w-full rounded-full overflow-hidden mb-4">
                                             <div className="bg-yellow-400" style={{ width: '45%' }}></div>
                                             <div className="bg-blue-500" style={{ width: '30%' }}></div>
-                                            <div className="bg-purple-500" style={{ width: '15%' }}></div>
+                                            <div className="bg-primary" style={{ width: '15%' }}></div>
                                             <div className="bg-orange-500" style={{ width: '10%' }}></div>
                                         </div>
                                         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-sm">
@@ -135,7 +135,7 @@ const GitHubAnalysis: React.FC = () => {
                                                 <span className="text-slate-500 font-mono text-xs mt-1">30.0%</span>
                                             </div>
                                             <div className="flex flex-col">
-                                                <div className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-purple-500"></span><span className="text-white font-medium">Python</span></div>
+                                                <div className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-primary"></span><span className="text-white font-medium">Python</span></div>
                                                 <span className="text-slate-500 font-mono text-xs mt-1">15.0%</span>
                                             </div>
                                             <div className="flex flex-col">
@@ -206,7 +206,7 @@ const GitHubAnalysis: React.FC = () => {
             </div>
 
             <div className="fixed top-0 left-1/4 -z-10 w-[500px] h-[500px] bg-blue-900/20 rounded-full blur-[120px] pointer-events-none"></div>
-            <div className="fixed bottom-0 right-1/4 -z-10 w-[500px] h-[500px] bg-purple-900/20 rounded-full blur-[120px] pointer-events-none"></div>
+            <div className="fixed bottom-0 right-1/4 -z-10 w-[500px] h-[500px] bg-primary-dark/20 rounded-full blur-[120px] pointer-events-none"></div>
         </div>
     );
 };

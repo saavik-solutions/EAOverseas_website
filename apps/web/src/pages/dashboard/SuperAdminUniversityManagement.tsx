@@ -185,7 +185,7 @@ const SuperAdminUniversityManagement = () => {
 
                                             <td className="px-8 py-5">
                                                 <div className="flex flex-col gap-1">
-                                                    <span className={`text-[10px] font-black uppercase px-2 py-0.5 rounded-full w-fit ${uni.universityType === 'Public' ? 'bg-blue-50 text-blue-600' : 'bg-purple-50 text-purple-600'}`}>
+                                                    <span className={`text-[10px] font-black uppercase px-2 py-0.5 rounded-full w-fit ${uni.universityType === 'Public' ? 'bg-blue-50 text-blue-600' : 'bg-primary-light/50 text-primary'}`}>
                                                         {uni.universityType || 'University'}
                                                     </span>
                                                     <span className="text-[10px] text-slate-400 font-bold flex items-center gap-1">

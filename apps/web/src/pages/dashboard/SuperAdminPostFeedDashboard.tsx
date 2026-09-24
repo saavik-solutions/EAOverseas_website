@@ -15,8 +15,8 @@ const TYPE_COLORS: Record<string, string> = {
     Event: 'bg-pink-100 text-pink-700',
     Guide: 'bg-teal-100 text-teal-700',
     News: 'bg-sky-100 text-sky-700',
-    Webinar: 'bg-violet-100 text-violet-700',
-    Blog: 'bg-purple-100 text-purple-700',
+    Webinar: 'bg-primary-light text-primary-hover',
+    Blog: 'bg-primary-light text-primary-hover',
 };
 
 const STATUS_COLORS: Record<string, string> = {
@@ -143,7 +143,7 @@ const SuperAdminPostFeedDashboard = () => {
     const stats = [
         { label: 'Live Posts', value: apiPosts.length, icon: 'article', color: 'text-blue-600 bg-blue-50' },
         { label: 'Published', value: apiPosts.filter(p => p.status === 'Published').length, icon: 'check_circle', color: 'text-emerald-600 bg-emerald-50' },
-        { label: 'Active Partners', value: new Set(apiPosts.map(p => p.institution)).size, icon: 'hub', color: 'text-purple-600 bg-purple-50' },
+        { label: 'Active Partners', value: new Set(apiPosts.map(p => p.institution)).size, icon: 'hub', color: 'text-primary bg-primary-light/50' },
         { label: 'System Reach', value: formatValue(totalReach), icon: 'visibility', color: 'text-orange-600 bg-orange-50' },
     ];
 
@@ -459,7 +459,7 @@ const ScholarshipCard = ({ data, onManage }: { data: Post; onManage: () => void 
         <div className="space-y-4 mb-4">
             {data.grid.slice(0, 3).map((item, i) => (
                 <div key={i} className="flex items-center gap-3">
-                    <div className={`size-8 rounded-xl flex items-center justify-center ${i === 0 ? 'bg-blue-50 text-[#2b6cee]' : i === 1 ? 'bg-purple-50 text-purple-600' : 'bg-orange-50 text-orange-600'}`}>
+                    <div className={`size-8 rounded-xl flex items-center justify-center ${i === 0 ? 'bg-blue-50 text-[#2b6cee]' : i === 1 ? 'bg-primary-light/50 text-primary' : 'bg-orange-50 text-orange-600'}`}>
                         <span className="material-symbols-outlined text-[18px]">
                             {item.label === 'Deadline' ? 'schedule' : item.label === 'Funding' ? 'payments' : 'info'}
                         </span>

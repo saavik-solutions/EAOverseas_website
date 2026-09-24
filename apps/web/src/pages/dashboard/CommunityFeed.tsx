@@ -648,7 +648,7 @@ const CommunityFeed = () => {
                             <button
                                 onClick={() => setChatSidebarOpen(prev => !prev)}
                                 className={`shrink-0 size-11 rounded-xl flex items-center justify-center transition-all border ${chatSidebarOpen
-                                    ? 'bg-primary text-white border-primary shadow-[0px_4px_12px_rgba(122,41,194,0.3)]'
+                                    ? 'bg-white border-2 border-primary hover:bg-primary-light/20 text-primary font-bold border-primary shadow-[0px_4px_12px_rgba(122,41,194,0.3)]'
                                     : 'bg-white border-slate-200 text-slate-500 hover:text-primary hover:border-primary'
                                     }`}
                                 title="Toggle Chat"
@@ -697,7 +697,7 @@ const CommunityFeed = () => {
                                             disabled={!newPostText.trim() || isPosting}
                                             className={`px-8 py-2.5 rounded-xl text-[14px] font-bold transition-all flex items-center gap-2 ${
                                                 newPostText.trim() && !isPosting 
-                                                ? 'bg-primary text-white hover:bg-[#6a24a8] shadow-md shadow-primary/20' 
+                                                ? 'bg-white border-2 border-primary hover:bg-primary-light/20 text-primary font-bold hover:bg-[#6a24a8] shadow-md shadow-primary/20' 
                                                 : 'bg-[#f0f2f5] text-[#bcc7d4] cursor-not-allowed'
                                             }`}
                                         >

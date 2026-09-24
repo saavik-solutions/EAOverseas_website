@@ -179,7 +179,7 @@ const TestPrep = () => {
                         <div className="bg-white/80 backdrop-blur-lg border border-slate-100 shadow-[0_4px_20px_-10px_rgba(0,0,0,0.05)] rounded-[1.2rem] p-4 group hover:-translate-y-1 transition-all duration-300 animate-fade-in-up delay-350">
                             <div className="flex justify-between items-start mb-3">
                                 <div className="relative">
-                                    <div className="absolute inset-0 bg-purple-500/10 blur-xl rounded-full"></div>
+                                    <div className="absolute inset-0 bg-primary/10 blur-xl rounded-full"></div>
                                     <div className="relative size-10 flex items-center justify-center">
                                         <span className="material-symbols-outlined text-2xl bg-clip-text text-transparent bg-gradient-to-br from-purple-500 to-indigo-800">architecture</span>
                                     </div>

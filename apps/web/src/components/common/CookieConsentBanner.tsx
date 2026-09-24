@@ -59,13 +59,13 @@ export function CookieConsentBanner() {
                 <h3 className="text-[#111218] font-bold text-sm mb-1">We value your privacy</h3>
                 <p className="text-slate-500 text-xs leading-relaxed">
                     Eduwoy uses strictly necessary cookies to run this site and analytics cookies to improve your experience. 
-                    By clicking "Accept", you agree to our <a href="/privacy-policy" className="text-purple-600 hover:underline">Privacy Policy</a>.
+                    By clicking "Accept", you agree to our <a href="/privacy-policy" className="text-primary hover:underline">Privacy Policy</a>.
                 </p>
             </div>
             <div className="flex gap-3">
                 <button 
                     onClick={handleAccept}
-                    className="flex-1 bg-primary hover:bg-primary-hover text-white text-xs font-bold py-2.5 px-4 rounded-lg transition-colors"
+                    className="flex-1 bg-white border-2 border-primary hover:bg-primary-light/20 hover:bg-white border-2 border-primary hover:bg-primary-light/20-hover text-primary font-bold text-xs font-bold py-2.5 px-4 rounded-lg transition-colors"
                 >
                     Accept
                 </button>

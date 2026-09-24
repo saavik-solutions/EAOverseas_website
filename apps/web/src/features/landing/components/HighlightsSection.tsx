@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import logo from '@/assets/logo.webp';
+import logo from '@/assets/logo.png';
 
 // Using the local placeholder images from the public directory
 const studentSuitcaseImage = '/student-suitcase.webp';
@@ -13,7 +13,7 @@ const HighlightsSection = () => {
             {/* Grid Background */}
             <div className="absolute inset-0 z-0 opacity-[0.3]" 
                  style={{ 
-                     backgroundImage: `linear-gradient(#f3e8ff 1px, transparent 1px), linear-gradient(90deg, #f3e8ff 1px, transparent 1px)`,
+                     backgroundImage: `linear-gradient(#E7F0FF 1px, transparent 1px), linear-gradient(90deg, #E7F0FF 1px, transparent 1px)`,
                      backgroundSize: '40px 40px' 
                  }}>
             </div>
@@ -48,12 +48,12 @@ const HighlightsSection = () => {
 
                 {/* Section Header */}
                 <div className="text-center mb-16 md:mb-24 space-y-6 relative">
-                    <div className="inline-block px-5 py-2 bg-purple-100 text-purple-700 font-bold text-xs rounded-full shadow-sm mb-2 border border-purple-200 uppercase tracking-[0.2em]">
+                    <div className="inline-block px-5 py-2 bg-primary-light text-primary-hover font-bold text-xs rounded-full shadow-sm mb-2 border border-purple-200 uppercase tracking-[0.2em]">
                         Highlights
                     </div>
                     <h2 className="text-4xl md:text-7xl font-black text-[#1e293b] tracking-tight leading-[1.1] max-w-5xl mx-auto font-bricolage">
                         Experience the Edge of <br/>
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-fuchsia-500 to-purple-600 bg-[length:200%_auto] animate-shimmer">Global Excellence</span>
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-fuchsia-500 to-purple-600 bg-[length:200%_auto] animate-shimmer">Global Excellence</span>
                     </h2>
                     <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
                         Our legacy of success is built on three decades of unwavering commitment to student dreams and world-class educational standards.
@@ -66,13 +66,13 @@ const HighlightsSection = () => {
                     {/* Box 1: Years of Excellence (Top Left) */}
                     <div 
                         onClick={() => navigate('/contact')}
-                        className="cursor-pointer bg-purple-100/60 rounded-[1.5rem] md:rounded-[2rem] md:rounded-bl-[4rem] p-5 md:p-8 flex flex-col items-center justify-center text-center shadow-sm hover:shadow-md transition-all border border-purple-100"
+                        className="cursor-pointer bg-primary-light/60 rounded-[1.5rem] md:rounded-[2rem] md:rounded-bl-[4rem] p-5 md:p-8 flex flex-col items-center justify-center text-center shadow-sm hover:shadow-md transition-all border border-purple-100"
                     >
                         <div className="flex flex-col md:flex-row items-center gap-1 md:gap-2 mb-1 md:mb-2">
-                            <span className="material-symbols-outlined text-purple-900 text-3xl md:text-4xl">workspace_premium</span>
+                            <span className="material-symbols-outlined text-primary-dark text-3xl md:text-4xl">workspace_premium</span>
                             <h3 className="text-3xl md:text-5xl font-black text-purple-950">3+</h3>
                         </div>
-                        <p className="text-sm md:text-lg font-semibold text-purple-900/80 leading-tight">Years of<br className="hidden md:block"/> Excellence</p>
+                        <p className="text-sm md:text-lg font-semibold text-primary-dark/80 leading-tight">Years of<br className="hidden md:block"/> Excellence</p>
                     </div>
 
                     {/* Box 3: Student Image (Tall Center) */}
@@ -91,7 +91,7 @@ const HighlightsSection = () => {
                             }}
                             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-purple-900/30 to-transparent pointer-events-none"></div>
+                        <div className="absolute inset-0 bg-gradient-to-t from-primary-dark/30 to-transparent pointer-events-none"></div>
                     </div>
 
                     {/* Box 4: Expert Counsellors (Top Mid-Right) */}
@@ -100,10 +100,10 @@ const HighlightsSection = () => {
                         className="cursor-pointer bg-fuchsia-100/60 rounded-[1.5rem] md:rounded-[2rem] md:rounded-br-[1rem] md:col-start-3 p-5 md:p-8 flex flex-col items-center justify-center text-center shadow-sm hover:shadow-md transition-all border border-fuchsia-100"
                     >
                         <div className="flex flex-col md:flex-row items-center gap-1 md:gap-2 mb-1 md:mb-2">
-                            <span className="material-symbols-outlined text-purple-900 text-3xl md:text-4xl">groups</span>
+                            <span className="material-symbols-outlined text-primary-dark text-3xl md:text-4xl">groups</span>
                             <h3 className="text-3xl md:text-5xl font-black text-purple-950">15+</h3>
                         </div>
-                        <p className="text-sm md:text-lg font-semibold text-purple-900/80">Expert Counsellors</p>
+                        <p className="text-sm md:text-lg font-semibold text-primary-dark/80">Expert Counsellors</p>
                     </div>
 
                     {/* Box 5: Global Destinations (Top Right) */}
@@ -112,22 +112,22 @@ const HighlightsSection = () => {
                         className="cursor-pointer bg-indigo-100/60 rounded-[1.5rem] md:rounded-[2rem] md:rounded-tr-[4rem] md:col-start-4 p-5 md:p-8 flex flex-col items-center justify-center text-center shadow-sm hover:shadow-md transition-all border border-indigo-100"
                     >
                         <div className="flex flex-col md:flex-row items-center gap-1 md:gap-2 mb-1 md:mb-2">
-                            <span className="material-symbols-outlined text-purple-900 text-3xl md:text-4xl">public</span>
+                            <span className="material-symbols-outlined text-primary-dark text-3xl md:text-4xl">public</span>
                             <h3 className="text-3xl md:text-5xl font-black text-purple-950">30+</h3>
                         </div>
-                        <p className="text-sm md:text-lg font-semibold text-purple-900/80 leading-tight">Global Study<br className="hidden md:block"/> Destination</p>
+                        <p className="text-sm md:text-lg font-semibold text-primary-dark/80 leading-tight">Global Study<br className="hidden md:block"/> Destination</p>
                     </div>
 
                     {/* Box 2: Students Counselled (Bottom Left) */}
                     <div 
                         onClick={() => navigate('/contact')}
-                        className="cursor-pointer bg-purple-50/80 rounded-[1.5rem] md:rounded-[2rem] md:rounded-tl-[4rem] md:col-start-1 md:row-start-2 p-5 md:p-8 flex flex-col items-center justify-center text-center shadow-sm hover:shadow-md transition-all border border-purple-100"
+                        className="cursor-pointer bg-primary-light/50/80 rounded-[1.5rem] md:rounded-[2rem] md:rounded-tl-[4rem] md:col-start-1 md:row-start-2 p-5 md:p-8 flex flex-col items-center justify-center text-center shadow-sm hover:shadow-md transition-all border border-purple-100"
                     >
                         <div className="flex flex-col md:flex-row items-center gap-1 md:gap-2 mb-1 md:mb-2">
-                            <span className="material-symbols-outlined text-purple-900 text-3xl md:text-4xl">forum</span>
+                            <span className="material-symbols-outlined text-primary-dark text-3xl md:text-4xl">forum</span>
                             <h3 className="text-2xl md:text-5xl font-black text-purple-950">17.5k+</h3>
                         </div>
-                        <p className="text-sm md:text-lg font-semibold text-purple-900/80 leading-tight">Student<br className="hidden md:block"/> Counselled</p>
+                        <p className="text-sm md:text-lg font-semibold text-primary-dark/80 leading-tight">Student<br className="hidden md:block"/> Counselled</p>
                     </div>
 
                     {/* Box 6: Monuments Image (Bottom Right) */}

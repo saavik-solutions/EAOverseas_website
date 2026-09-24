@@ -192,7 +192,7 @@ const ProfileIntelligenceReport: React.FC = () => {
                     <div className="bg-white rounded-2xl border border-gray-200 shadow-sm h-full flex flex-col">
                         <div className="p-6 border-b border-gray-100 flex items-center justify-between bg-gray-50/50">
                             <div className="flex items-center gap-3">
-                                <div className="w-8 h-8 rounded-full bg-purple-50 text-purple-600 flex items-center justify-center">
+                                <div className="w-8 h-8 rounded-full bg-primary-light/50 text-primary flex items-center justify-center">
                                     <span className="material-symbols-outlined text-[18px]">account_balance</span>
                                 </div>
                                 <h2 className="font-bold text-gray-900 text-lg">AI Smart Matches</h2>
@@ -208,7 +208,7 @@ const ProfileIntelligenceReport: React.FC = () => {
                                 <div className="w-12 h-12 rounded-lg bg-gray-100 border border-gray-200 mb-3 flex items-center justify-center overflow-hidden">
                                     <img src="https://logo.clearbit.com/uci.edu" alt="UCI" className="w-8 h-8 object-contain" onError={(e) => { e.currentTarget.src = 'https://ui-avatars.com/api/?name=UC&background=f3f4f6&color=4b5563'; }} />
                                 </div>
-                                <h3 className="font-bold text-gray-900 text-lg mb-1 group-hover:text-purple-600 transition-colors">UC Irvine</h3>
+                                <h3 className="font-bold text-gray-900 text-lg mb-1 group-hover:text-primary transition-colors">UC Irvine</h3>
                                 <p className="text-sm text-gray-600 mb-3">MS Software Engineering</p>
 
                                 <div className="flex items-center justify-between text-xs pt-3 border-t border-gray-100">
@@ -226,7 +226,7 @@ const ProfileIntelligenceReport: React.FC = () => {
                                 <div className="w-12 h-12 rounded-lg bg-gray-100 border border-gray-200 mb-3 flex items-center justify-center overflow-hidden">
                                     <img src="https://logo.clearbit.com/gatech.edu" alt="Georgia Tech" className="w-8 h-8 object-contain" onError={(e) => { e.currentTarget.src = 'https://ui-avatars.com/api/?name=GT&background=f3f4f6&color=4b5563'; }} />
                                 </div>
-                                <h3 className="font-bold text-gray-900 text-lg mb-1 group-hover:text-purple-600 transition-colors">Georgia Tech</h3>
+                                <h3 className="font-bold text-gray-900 text-lg mb-1 group-hover:text-primary transition-colors">Georgia Tech</h3>
                                 <p className="text-sm text-gray-600 mb-3">MS Computer Science</p>
 
                                 <div className="flex items-center justify-between text-xs pt-3 border-t border-gray-100">
@@ -244,7 +244,7 @@ const ProfileIntelligenceReport: React.FC = () => {
                                 <div className="w-12 h-12 rounded-lg bg-gray-100 border border-gray-200 mb-3 flex items-center justify-center overflow-hidden">
                                     <img src="https://logo.clearbit.com/cmu.edu" alt="CMU" className="w-8 h-8 object-contain" onError={(e) => { e.currentTarget.src = 'https://ui-avatars.com/api/?name=CM&background=f3f4f6&color=4b5563'; }} />
                                 </div>
-                                <h3 className="font-bold text-gray-900 text-lg mb-1 group-hover:text-purple-600 transition-colors">Carnegie Mellon</h3>
+                                <h3 className="font-bold text-gray-900 text-lg mb-1 group-hover:text-primary transition-colors">Carnegie Mellon</h3>
                                 <p className="text-sm text-gray-600 mb-3">MS INI</p>
 
                                 <div className="flex items-center justify-between text-xs pt-3 border-t border-gray-100">

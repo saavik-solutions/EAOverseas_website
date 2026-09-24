@@ -12,7 +12,7 @@
  */
 
 import React, { useState, ImgHTMLAttributes } from 'react';
-import logo from '@/assets/logo.webp';
+import logo from '@/assets/logo.png';
 
 interface Props extends ImgHTMLAttributes<HTMLImageElement> {
   /** Optional: override the fallback shown on error */

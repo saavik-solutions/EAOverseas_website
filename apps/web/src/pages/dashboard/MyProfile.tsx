@@ -286,7 +286,7 @@ const MyProfile = ({ isEmbedded = false }: { isEmbedded?: boolean }) => {
 
                                     {/* Item 3 */}
                                     <Link to="/saved-colleges" className="group flex items-center gap-4 px-4 py-4 hover:bg-gray-50 transition-colors border-b border-[#f0f2f5] last:border-0">
-                                        <div className="flex items-center justify-center rounded-lg bg-purple-50 text-purple-600 shrink-0 size-10">
+                                        <div className="flex items-center justify-center rounded-lg bg-primary-light/50 text-primary shrink-0 size-10">
                                             <span className="material-symbols-outlined text-[20px]">account_balance</span>
                                         </div>
                                         <div className="flex flex-col flex-1 min-w-0">
@@ -377,7 +377,7 @@ const MyProfile = ({ isEmbedded = false }: { isEmbedded?: boolean }) => {
                         <div className="bg-white rounded-xl shadow-sm border border-[#e5e7eb] p-6">
                             <div className="flex items-center justify-between mb-4">
                                 <div className="flex items-center gap-3">
-                                    <div className="p-2 bg-purple-50 rounded-lg text-purple-600">
+                                    <div className="p-2 bg-primary-light/50 rounded-lg text-primary">
                                         <span className="material-symbols-outlined">travel_explore</span>
                                     </div>
                                     <h3 className="text-lg font-bold text-[#111418]">Targets & Preferences</h3>

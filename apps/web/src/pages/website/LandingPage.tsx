@@ -19,7 +19,7 @@ const ServicesSection = lazy(() => import('@/features/landing/components/Service
 const CoreStrengthSection = lazy(() => import('@/features/landing/components/CoreStrengthSection'));
 const AboutUsSection = lazy(() => import('@/features/landing/components/AboutUsSection'));
 const CommunityPostsSection = lazy(() => import('@/features/landing/components/CommunityPostsSection'));
-const BlogSection = lazy(() => import('@/features/landing/components/BlogSection'));
+
 const GlobalTestimonialsSection = lazy(() => import('@/features/landing/components/GlobalTestimonialsSection'));
 const FAQSection = lazy(() => import('@/features/landing/components/FAQSection'));
 const TeamSection = lazy(() => import('@/features/landing/components/TeamSection'));
@@ -69,7 +69,7 @@ const LandingPage = () => {
                 image="/assets/hero_mobile_cartoon.webp"
             />
             {/* Unified Grid Background */}
-            <div className="absolute inset-0 bg-grid-purple opacity-50 pointer-events-none z-0"></div>
+            <div className="absolute inset-0 bg-grid-primary opacity-50 pointer-events-none z-0"></div>
 
             <div className="relative z-10">
                 <Navbar />
@@ -156,7 +156,7 @@ const LandingPage = () => {
                         <CoreStrengthSection />
                         <AboutUsSection />
                         <CommunityPostsSection />
-                        <BlogSection />
+
                         <GlobalTestimonialsSection />
                         <FAQSection />
                         <TeamSection />

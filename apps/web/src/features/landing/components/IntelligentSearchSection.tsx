@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import logo from '@/assets/logo.webp';
+import logo from '@/assets/logo.png';
 import ImageWithFallback from '@/components/common/ImageWithFallback';
 import {
     LEVELS,
@@ -24,8 +24,8 @@ const IntelligentSearchSection = () => {
 
     // Course tab
     const [activeCourseTab, setActiveCourseTab] = useState<'field' | 'career' | 'destination'>('field');
-    // University tab
-    const [activeUniTab, setActiveUniTab] = useState<'ranking' | 'location'>('ranking');
+    // University tab (always ranking)
+    // const [activeUniTab] = useState<'ranking'>('ranking');
     // University search
     const [uniSearch, setUniSearch] = useState('');
     // Compare mode
@@ -67,14 +67,8 @@ const IntelligentSearchSection = () => {
     const filteredUniversities = allUniversities
         .filter(u => selectedCountry ? u.country === selectedCountry : true)
         .filter(u => uniSearch ? u.name.toLowerCase().includes(uniSearch.toLowerCase()) || u.location.toLowerCase().includes(uniSearch.toLowerCase()) : true)
-        .sort((a, b) => activeUniTab === 'ranking' ? a.rankNum - b.rankNum : a.country.localeCompare(b.country));
+        .sort((a, b) => a.rankNum - b.rankNum);
 
-    // Group by country for location tab
-    const groupedByCountry = filteredUniversities.reduce((acc, u) => {
-        if (!acc[u.country]) acc[u.country] = [];
-        acc[u.country].push(u);
-        return acc;
-    }, {} as Record<string, typeof allUniversities>);
 
     return (
         <section className="w-full py-20 px-4 relative overflow-hidden" style={{ backgroundColor: 'transparent' }}>
@@ -82,20 +76,20 @@ const IntelligentSearchSection = () => {
 
                 {/* ── Hero Heading ── */}
                 <div className="text-center w-full max-w-4xl mx-auto mb-14 relative">
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-purple-500/5 rounded-full blur-[100px] pointer-events-none"></div>
-                    <div className="inline-block px-6 py-2 bg-gradient-to-r from-purple-50 to-fuchsia-50 text-purple-700 font-black text-[10px] uppercase tracking-[0.2em] rounded-full mb-8 border border-purple-200/50 shadow-sm">
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-primary/5 rounded-full blur-[100px] pointer-events-none"></div>
+                    <div className="inline-block px-6 py-2 bg-gradient-to-r from-purple-50 to-fuchsia-50 text-primary-hover font-black text-[10px] uppercase tracking-[0.2em] rounded-full mb-8 border border-purple-200/50 shadow-sm">
                         GLOBAL OPPORTUNITIES
                     </div>
                     <h2 className="text-3xl md:text-5xl lg:text-6xl font-black text-slate-800 leading-[1.1] mb-10 tracking-tight">
                         Transform Your Future with{' '}
                         <br className="hidden lg:block" />
                         <span className="relative inline-block">
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-fuchsia-600">Eduwoy</span>
-                            <div className="absolute -bottom-2 left-0 w-full h-1.5 bg-gradient-to-r from-purple-600/20 to-fuchsia-600/20 rounded-full blur-[2px]"></div>
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-fuchsia-600">Eduwoy</span>
+                            <div className="absolute -bottom-2 left-0 w-full h-1.5 bg-gradient-to-r from-primary/20 to-fuchsia-600/20 rounded-full blur-[2px]"></div>
                         </span>
                         <span className="block mt-4 text-xl md:text-2xl font-semibold text-slate-500 max-w-2xl mx-auto leading-relaxed">
                             Expert guidance perfectly aligned with your unique{' '}
-                            <span className="text-purple-600">Academic Aspirations</span>
+                            <span className="text-primary">Academic Aspirations</span>
                         </span>
                     </h2>
 
@@ -151,7 +145,7 @@ const IntelligentSearchSection = () => {
                             {/* Find Button */}
                             <button
                                 onClick={() => navigate('/contact')}
-                                className="flex-shrink-0 px-8 py-3 bg-gradient-to-r from-purple-600 to-fuchsia-600 hover:from-purple-700 hover:to-fuchsia-700 text-white font-bold rounded-xl flex items-center justify-center gap-2 transition-all shadow-lg shadow-purple-200 hover:shadow-purple-300 hover:-translate-y-0.5"
+                                className="flex-shrink-0 px-8 py-3 bg-gradient-to-r from-primary to-fuchsia-600 hover:from-purple-700 hover:to-fuchsia-700 text-white font-bold rounded-xl flex items-center justify-center gap-2 transition-all shadow-lg shadow-purple-200 hover:shadow-purple-300 hover:-translate-y-0.5"
                             >
                                 Find Courses
                                 <span className="material-symbols-outlined font-bold text-[20px]" aria-hidden="true">search</span>
@@ -171,7 +165,7 @@ const IntelligentSearchSection = () => {
                                 <button
                                     key={i}
                                     onClick={() => navigate('/contact')}
-                                    className="px-3.5 py-1.5 text-xs font-semibold bg-purple-50 text-purple-700 border border-purple-200 rounded-full hover:bg-purple-600 hover:text-white hover:border-purple-600 transition-all duration-200"
+                                    className="px-3.5 py-1.5 text-xs font-semibold bg-white border-2 border-primary hover:bg-primary-light/20-light/50 text-primary-hover border border-purple-200 rounded-full hover:bg-white border-2 border-primary hover:bg-primary-light/20 hover:text-primary font-bold hover:border-primary transition-all duration-200"
                                 >
                                     {pill.label}
                                 </button>
@@ -186,7 +180,7 @@ const IntelligentSearchSection = () => {
                     <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-5 mb-8">
                         <h3 className="text-2xl md:text-3xl font-bold text-slate-800 flex items-center gap-3 flex-shrink-0">
                             Discover courses by
-                            <svg width="36" height="22" viewBox="0 0 54 36" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-purple-500 mt-1" aria-hidden="true">
+                            <svg width="36" height="22" viewBox="0 0 54 36" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-primary mt-1" aria-hidden="true">
                                 <path d="M2.5 12.5C14.5 -1.5 35.5 -3.5 50.5 18M50.5 18L38 18M50.5 18C48 10 49 28.5 44.5 33.5" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
                             </svg>
                         </h3>
@@ -202,8 +196,8 @@ const IntelligentSearchSection = () => {
                                     onClick={() => setActiveCourseTab(tab.key)}
                                     className={`px-4 py-2.5 rounded-xl font-bold flex items-center gap-2.5 text-sm transition-all border ${
                                         activeCourseTab === tab.key
-                                            ? 'bg-[#f3e8ff] text-primary border-[#d8b4fe] shadow-sm'
-                                            : 'bg-white text-slate-500 border-slate-200 hover:bg-purple-50 hover:text-purple-700 hover:border-purple-200'
+                                            ? 'bg-[#E7F0FF] text-primary border-[#d8b4fe] shadow-sm'
+                                            : 'bg-white text-slate-500 border-slate-200 hover:bg-primary-light/50 hover:text-primary-hover hover:border-purple-200'
                                     }`}
                                 >
                                     <span className={`material-symbols-outlined text-[18px] ${activeCourseTab === tab.key ? 'text-primary' : 'text-slate-400'}`}>{tab.icon}</span>
@@ -243,9 +237,9 @@ const IntelligentSearchSection = () => {
                                             </div>
                                         </div>
                                         <div className="flex items-center justify-between">
-                                            <span className="font-bold text-xs text-slate-600 group-hover:text-purple-700 uppercase tracking-wide transition-colors">Explore</span>
-                                            <div className="w-7 h-7 rounded-full bg-purple-100 flex items-center justify-center group-hover:bg-purple-600 transition-all group-hover:scale-110">
-                                                <span className="material-symbols-outlined text-[14px] text-purple-600 group-hover:text-white font-bold">arrow_forward</span>
+                                            <span className="font-bold text-xs text-slate-600 group-hover:text-primary-hover uppercase tracking-wide transition-colors">Explore</span>
+                                            <div className="w-7 h-7 rounded-full bg-primary-light flex items-center justify-center group-hover:bg-primary transition-all group-hover:scale-110">
+                                                <span className="material-symbols-outlined text-[14px] text-primary group-hover:text-white font-bold">arrow_forward</span>
                                             </div>
                                         </div>
                                     </div>
@@ -282,10 +276,10 @@ const IntelligentSearchSection = () => {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="flex items-center justify-between group-hover:text-purple-600 transition-colors">
-                                            <span className="font-bold text-xs text-slate-600 group-hover:text-purple-700 uppercase tracking-wide transition-colors">Explore more</span>
-                                            <div className="w-7 h-7 rounded-full bg-purple-100 flex items-center justify-center group-hover:bg-purple-600 transition-all group-hover:scale-110">
-                                                <span className="material-symbols-outlined text-[14px] text-purple-600 group-hover:text-white font-bold">arrow_forward</span>
+                                        <div className="flex items-center justify-between group-hover:text-primary transition-colors">
+                                            <span className="font-bold text-xs text-slate-600 group-hover:text-primary-hover uppercase tracking-wide transition-colors">Explore more</span>
+                                            <div className="w-7 h-7 rounded-full bg-primary-light flex items-center justify-center group-hover:bg-primary transition-all group-hover:scale-110">
+                                                <span className="material-symbols-outlined text-[14px] text-primary group-hover:text-white font-bold">arrow_forward</span>
                                             </div>
                                         </div>
                                     </div>
@@ -298,7 +292,7 @@ const IntelligentSearchSection = () => {
                     <div className="mt-6 flex justify-center">
                         <button
                             onClick={handleFindCourses}
-                            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border-2 border-primary text-primary font-bold text-sm hover:bg-primary hover:text-white transition-all duration-200"
+                            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border-2 border-primary text-primary font-bold text-sm hover:bg-white border-2 border-primary hover:bg-primary-light/20 hover:text-primary font-bold transition-all duration-200"
                         >
                             View All Courses
                             <span className="material-symbols-outlined text-[18px]">open_in_new</span>
@@ -313,33 +307,20 @@ const IntelligentSearchSection = () => {
                     <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-5 mb-6">
                         <h3 className="text-2xl md:text-3xl font-bold text-slate-800 flex items-center gap-3 flex-shrink-0">
                             Discover universities by
-                            <svg width="36" height="22" viewBox="0 0 54 36" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-purple-600 mt-1 transform scale-x-[-1]">
+                            <svg width="36" height="22" viewBox="0 0 54 36" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-primary mt-1 transform scale-x-[-1]">
                                 <path d="M2.5 12.5C14.5 -1.5 35.5 -3.5 50.5 18M50.5 18L38 18M50.5 18C48 10 49 28.5 44.5 33.5" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
                             </svg>
                         </h3>
 
                         <div className="flex flex-wrap gap-3 items-center">
-                            {/* Sort tabs */}
-                            {([
-                                { key: 'ranking', icon: 'military_tech', label: 'Global Ranking' },
-                                { key: 'location', icon: 'location_on', label: 'By Location' },
-                            ] as const).map(tab => (
-                                <button
-                                    key={tab.key}
-                                    onClick={() => setActiveUniTab(tab.key)}
-                                    className={`px-4 py-2.5 rounded-xl font-bold flex items-center gap-2.5 text-sm transition-all border ${
-                                        activeUniTab === tab.key
-                                            ? 'bg-[#f3e8ff] text-primary border-[#d8b4fe] shadow-sm'
-                                            : 'bg-white text-slate-500 border-slate-200 hover:bg-purple-50 hover:text-purple-700 hover:border-purple-200'
-                                    }`}
-                                >
-                                    <span className={`material-symbols-outlined text-[18px] ${activeUniTab === tab.key ? 'text-primary' : 'text-slate-400'}`}>{tab.icon}</span>
-                                    <div className="text-left leading-tight">
-                                        <span className="block text-[10px] font-normal opacity-70">Sort by</span>
-                                        {tab.label}
-                                    </div>
-                                </button>
-                            ))}
+                            {/* Sort indicator */}
+                            <div className="px-4 py-2.5 rounded-xl font-bold flex items-center gap-2.5 text-sm bg-[#E7F0FF] text-primary border border-[#d8b4fe] shadow-sm">
+                                <span className="material-symbols-outlined text-[18px] text-primary">military_tech</span>
+                                <div className="text-left leading-tight">
+                                    <span className="block text-[10px] font-normal opacity-70">Sort by</span>
+                                    Global Ranking
+                                </div>
+                            </div>
 
                             {/* Country filter */}
                             <div className="relative">
@@ -360,8 +341,8 @@ const IntelligentSearchSection = () => {
                                 onClick={() => { setCompareMode(m => !m); setCompareList([]); }}
                                 className={`px-4 py-2.5 rounded-xl font-bold text-sm border transition-all flex items-center gap-2 ${
                                     compareMode
-                                        ? 'bg-primary text-white border-primary shadow-md'
-                                        : 'bg-white text-slate-500 border-slate-200 hover:bg-purple-50 hover:text-purple-700'
+                                        ? 'bg-white border-2 border-primary hover:bg-primary-light/20 text-primary font-bold border-primary shadow-md'
+                                        : 'bg-white text-slate-500 border-slate-200 hover:bg-white border-2 border-primary hover:bg-primary-light/20-light/50 hover:text-primary-hover'
                                 }`}
                             >
                                 <span className="material-symbols-outlined text-[18px]">compare</span>
@@ -390,7 +371,7 @@ const IntelligentSearchSection = () => {
 
                     {/* Compare Banner */}
                     {compareMode && (
-                        <div className="mb-5 p-4 bg-[#f3e8ff] border border-[#d8b4fe] rounded-2xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+                        <div className="mb-5 p-4 bg-[#E7F0FF] border border-[#d8b4fe] rounded-2xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
                             <div className="flex items-center gap-3">
                                 <span className="material-symbols-outlined text-primary text-[22px]">info</span>
                                 <p className="text-sm text-primary font-semibold">
@@ -402,7 +383,7 @@ const IntelligentSearchSection = () => {
                             {compareList.length === 2 && (
                                 <button
                                     onClick={() => navigate('/contact')}
-                                    className="flex-shrink-0 px-5 py-2 bg-primary text-white font-bold rounded-xl text-sm flex items-center gap-2 hover:bg-primary-hover transition-colors"
+                                    className="flex-shrink-0 px-5 py-2 bg-white border-2 border-primary hover:bg-primary-light/20 text-primary font-bold font-bold rounded-xl text-sm flex items-center gap-2 hover:bg-white border-2 border-primary hover:bg-primary-light/20-hover transition-colors"
                                 >
                                     <span className="material-symbols-outlined text-[18px]">compare_arrows</span>
                                     Compare Now
@@ -416,12 +397,11 @@ const IntelligentSearchSection = () => {
                         Showing {filteredUniversities.length} universities
                         {selectedCountry && <span> in <span className="text-primary">{selectedCountry}</span></span>}
                         {uniSearch && <span> matching "<span className="text-primary">{uniSearch}</span>"</span>}
-                        <span className="ml-2 text-slate-300">• Sorted by {activeUniTab === 'ranking' ? 'Global Ranking ↑' : 'Location A–Z'}</span>
+                        <span className="ml-2 text-slate-300">• Sorted by Global Ranking ↑</span>
                     </p>
 
-                    {/* University Cards – Flat (ranking) or Grouped (location) */}
-                    {activeUniTab === 'ranking' ? (
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    {/* University Cards – sorted by Global Ranking */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                             {filteredUniversities.map((uni) => (
                                 <div
                                     key={uni.id}
@@ -438,7 +418,7 @@ const IntelligentSearchSection = () => {
                                             alt={uni.name} 
                                             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
                                         />
-                                        <div className="absolute inset-0 bg-gradient-to-t from-purple-950/80 to-purple-900/10"></div>
+                                        <div className="absolute inset-0 bg-gradient-to-t from-purple-950/80 to-primary-dark/10"></div>
                                         {/* Compare checkbox overlay */}
                                         {compareMode && (
                                             <div className={`absolute top-2 right-2 w-6 h-6 rounded-md flex items-center justify-center border-2 transition-all ${
@@ -450,7 +430,7 @@ const IntelligentSearchSection = () => {
                                             </div>
                                         )}
                                         <div className="absolute bottom-2 left-3 flex items-center gap-2">
-                                            <span className="px-2 py-0.5 bg-primary/90 text-white text-[10px] font-bold rounded flex items-center gap-1 backdrop-blur-sm">
+                                            <span className="px-2 py-0.5 bg-white border-2 border-primary hover:bg-primary-light/20/90 text-primary font-bold text-[10px] font-bold rounded flex items-center gap-1 backdrop-blur-sm">
                                                 <span className="material-symbols-outlined text-[10px]">military_tech</span>
                                                 {uni.rank}
                                             </span>
@@ -463,7 +443,7 @@ const IntelligentSearchSection = () => {
                                         <div>
                                             <div className="flex items-start justify-between gap-1 mb-1">
                                                 <h4 className="font-bold text-slate-800 text-sm leading-tight group-hover:text-primary transition-colors flex-1">{uni.name}</h4>
-                                                <span className="text-[10px] font-bold px-1.5 py-0.5 bg-purple-50 text-purple-600 rounded flex-shrink-0">{uni.type}</span>
+                                                <span className="text-[10px] font-bold px-1.5 py-0.5 bg-primary-light/50 text-primary rounded flex-shrink-0">{uni.type}</span>
                                             </div>
                                             <p className="text-slate-500 flex items-center gap-1 text-xs mb-3">
                                                 <span className="material-symbols-outlined text-[12px] text-primary">location_on</span>
@@ -489,7 +469,7 @@ const IntelligentSearchSection = () => {
                                             <div className={`w-7 h-7 rounded-full flex items-center justify-center transition-all group-hover:scale-110 ${
                                                 compareMode && compareList.includes(uni.id)
                                                     ? 'bg-primary'
-                                                    : 'bg-purple-50 group-hover:bg-primary'
+                                                    : 'bg-primary-light/50 group-hover:bg-primary'
                                             }`}>
                                                 <span className={`material-symbols-outlined text-[13px] font-bold transition-colors ${
                                                     compareMode && compareList.includes(uni.id) ? 'text-white' : 'text-primary group-hover:text-white'
@@ -500,67 +480,18 @@ const IntelligentSearchSection = () => {
                                 </div>
                             ))}
                         </div>
-                    ) : (
-                        /* Grouped by location */
-                        <div className="space-y-8">
-                            {Object.entries(groupedByCountry).map(([country, unis]) => (
-                                <div key={country}>
-                                    <div className="flex items-center gap-3 mb-4">
-                                        <div className="flex items-center gap-2 px-3 py-1.5 bg-[#f3e8ff] border border-[#d8b4fe] rounded-full">
-                                            <span className="material-symbols-outlined text-primary text-[16px]">location_on</span>
-                                            <span className="text-sm font-bold text-primary">{country}</span>
-                                        </div>
-                                        <span className="text-xs text-slate-400 font-medium">{unis.length} universities</span>
-                                        <div className="flex-1 h-px bg-purple-100"></div>
-                                    </div>
-                                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                                        {unis.map(uni => (
-                                            <div
-                                                key={uni.id}
-                                                onClick={() => handleCardClick({ country: uni.country })}
-                                                className="cursor-pointer bg-white rounded-2xl border border-purple-100 overflow-hidden shadow-sm hover:shadow-xl hover:shadow-purple-100 transition-all group flex flex-col hover:-translate-y-1"
-                                            >
-                                                <div className="h-24 relative overflow-hidden">
-                                                    <ImageWithFallback 
-                                                        src={uni.img} 
-                                                        alt={uni.name} 
-                                                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
-                                                    />
-                                                    <div className="absolute inset-0 bg-gradient-to-t from-purple-950/70 to-transparent"></div>
-                                                    <div className="absolute bottom-2 left-2 flex gap-1.5">
-                                                        <span className="px-1.5 py-0.5 bg-primary/90 text-white text-[9px] font-bold rounded backdrop-blur-sm">{uni.rank}</span>
-                                                        {uni.scholarships && <span className="px-1.5 py-0.5 bg-emerald-600/90 text-white text-[9px] font-bold rounded backdrop-blur-sm">🎓</span>}
-                                                    </div>
-                                                </div>
-                                                <div className="p-3 flex-1 flex flex-col justify-between">
-                                                    <div>
-                                                        <h4 className="font-bold text-slate-800 text-sm leading-tight mb-0.5 group-hover:text-primary transition-colors">{uni.name}</h4>
-                                                        <p className="text-slate-400 text-[11px] mb-2">{uni.tuition} · {uni.acceptRate} accept rate</p>
-                                                    </div>
-                                                    <div className="flex items-center justify-between pt-2 border-t border-purple-50">
-                                                        <span className="text-[10px] font-bold text-primary uppercase tracking-wide">Explore</span>
-                                                        <span className="material-symbols-outlined text-primary text-[16px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
-                            ))}
-                            {Object.keys(groupedByCountry).length === 0 && (
-                                <div className="text-center py-16 text-slate-400">
-                                    <span className="material-symbols-outlined text-5xl mb-3 block">search_off</span>
-                                    <p className="font-semibold">No universities found. Try a different search.</p>
-                                </div>
-                            )}
-                        </div>
-                    )}
+                        {filteredUniversities.length === 0 && (
+                            <div className="text-center py-16 text-slate-400">
+                                <span className="material-symbols-outlined text-5xl mb-3 block">search_off</span>
+                                <p className="font-semibold">No universities found. Try a different search.</p>
+                            </div>
+                        )}
 
                     {/* View All + clear filters */}
                     <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center items-center">
                         <button
                             onClick={() => navigate('/contact')}
-                            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border-2 border-primary text-primary font-bold text-sm hover:bg-primary hover:text-white transition-all duration-200"
+                            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border-2 border-primary text-primary font-bold text-sm hover:bg-white border-2 border-primary hover:bg-primary-light/20 hover:text-primary font-bold transition-all duration-200"
                         >
                             View All Universities
                             <span className="material-symbols-outlined text-[18px]">open_in_new</span>

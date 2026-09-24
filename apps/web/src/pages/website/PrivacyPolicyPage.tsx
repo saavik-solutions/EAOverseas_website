@@ -23,28 +23,28 @@ const PrivacyPolicy = () => {
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                         <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
-                            <div className="w-10 h-10 bg-purple-50 text-primary rounded-full flex items-center justify-center mb-4">
+                            <div className="w-10 h-10 bg-primary-light/50 text-primary rounded-full flex items-center justify-center mb-4">
                                 <span className="material-symbols-outlined text-xl">data_usage</span>
                             </div>
                             <h3 className="font-bold text-lg mb-2">What We Collect</h3>
                             <p className="text-gray-500 text-sm leading-relaxed">Personal and academic data required for your applications.</p>
                         </div>
                         <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
-                            <div className="w-10 h-10 bg-purple-50 text-primary rounded-full flex items-center justify-center mb-4">
+                            <div className="w-10 h-10 bg-primary-light/50 text-primary rounded-full flex items-center justify-center mb-4">
                                 <span className="material-symbols-outlined text-xl">lightbulb</span>
                             </div>
                             <h3 className="font-bold text-lg mb-2">Why We Collect It</h3>
                             <p className="text-gray-500 text-sm leading-relaxed">To personalize your experience and improve our services.</p>
                         </div>
                         <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
-                            <div className="w-10 h-10 bg-purple-50 text-primary rounded-full flex items-center justify-center mb-4">
+                            <div className="w-10 h-10 bg-primary-light/50 text-primary rounded-full flex items-center justify-center mb-4">
                                 <span className="material-symbols-outlined text-xl">encrypted</span>
                             </div>
                             <h3 className="font-bold text-lg mb-2">How We Protect It</h3>
                             <p className="text-gray-500 text-sm leading-relaxed">Enterprise-grade encryption and secure infrastructure.</p>
                         </div>
                         <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
-                            <div className="w-10 h-10 bg-purple-50 text-primary rounded-full flex items-center justify-center mb-4">
+                            <div className="w-10 h-10 bg-primary-light/50 text-primary rounded-full flex items-center justify-center mb-4">
                                 <span className="material-symbols-outlined text-xl">settings_accessibility</span>
                             </div>
                             <h3 className="font-bold text-lg mb-2">Your Control</h3>
@@ -120,7 +120,7 @@ const PrivacyPolicy = () => {
                             </ul>
                         </section>
                         {/* Sharing */}
-                        <section className="bg-purple-50 rounded-xl p-8 shadow-sm border border-purple-100">
+                        <section className="bg-primary-light/50 rounded-xl p-8 shadow-sm border border-purple-100">
                             <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
                                 <span className="material-symbols-outlined text-primary">handshake</span>
                                 Data Sharing
@@ -145,7 +145,7 @@ const PrivacyPolicy = () => {
 
                     {/* Security & Rights */}
                     <section className="grid grid-cols-1 md:grid-cols-2 gap-8" id="security">
-                        <div className="bg-primary text-white rounded-xl p-8 shadow-lg">
+                        <div className="bg-white border-2 border-primary hover:bg-primary-light/20 text-primary font-bold rounded-xl p-8 shadow-lg">
                             <div className="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center mb-6">
                                 <span className="material-symbols-outlined text-white">admin_panel_settings</span>
                             </div>

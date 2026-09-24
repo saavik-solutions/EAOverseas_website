@@ -8,7 +8,7 @@ const CoverImage: React.FC<{ src: string; alt: string }> = ({ src, alt }) => {
     const [imgError, setImgError] = useState(!src);
     if (imgError) {
         return (
-            <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-purple-700 via-violet-600 to-purple-900 relative">
+            <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-purple-700 via-violet-600 to-primary-dark relative">
                 <div
                     className="absolute inset-0 opacity-10"
                     style={{ backgroundImage: 'linear-gradient(white 1px, transparent 1px), linear-gradient(90deg, white 1px, transparent 1px)', backgroundSize: '36px 36px' }}

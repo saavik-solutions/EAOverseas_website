@@ -275,7 +275,7 @@ ${docsList || "None"}
     const getColorClasses = (color) => {
         const colors = {
             blue: { bg: 'bg-blue-50', text: 'text-blue-600', hoverBg: 'group-hover:bg-blue-600', border: 'hover:border-blue-200' },
-            purple: { bg: 'bg-purple-50', text: 'text-purple-600', hoverBg: 'group-hover:bg-purple-600', border: 'hover:border-purple-200' },
+            purple: { bg: 'bg-primary-light/50', text: 'text-primary', hoverBg: 'group-hover:bg-primary', border: 'hover:border-purple-200' },
             emerald: { bg: 'bg-emerald-50', text: 'text-emerald-600', hoverBg: 'group-hover:bg-emerald-600', border: 'hover:border-emerald-200' },
             amber: { bg: 'bg-amber-50', text: 'text-amber-600', hoverBg: 'group-hover:bg-amber-600', border: 'hover:border-amber-200' }
         };

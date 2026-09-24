@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, Outlet, Link, useLocation } from 'react-router-dom';
-import logo from '@/assets/logo.webp';
+import logo from '@/assets/logo.png';
 
 const AdminLayout = () => {
     const navigate = useNavigate();

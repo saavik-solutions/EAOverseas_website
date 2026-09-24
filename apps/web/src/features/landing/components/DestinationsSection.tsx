@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import orbitGraphic from '@/features/landing/assets/destinations_orbit_graphic.webp';
-import logo from '@/assets/logo.webp';
+import logo from '@/assets/logo.png';
 import ImageWithFallback from '@/components/common/ImageWithFallback';
 
 type CountryKey = 'Netherlands' | 'UK' | 'USA' | 'Canada' | 'Ireland';
@@ -82,13 +82,13 @@ const DestinationsSection: React.FC = () => {
                                 <button
                                     key={country}
                                     onClick={() => setSelectedCountry(country)}
-                                    className={`inline-flex items-center gap-2 text-[14px] max-sm:text-[13px] font-medium cursor-pointer py-2 px-4 max-sm:px-3.5 rounded-full border-[1.5px] transition-all duration-200 select-none shadow-sm ${
+                                    className={`inline-flex items-center gap-2 text-[14px] max-sm:text-[13px] font-medium cursor-pointer py-2 px-4 max-sm:px-3.5 rounded-full border-[1.5px] transition-all duration-300 select-none ${
                                         isActive 
-                                        ? 'bg-gradient-to-br from-[#9333ea] to-primary border-transparent text-white font-semibold shadow-[0_4px_14px_rgba(122,41,194,0.35)] -translate-y-[2px]' 
-                                        : 'bg-white border-gray-200 text-gray-700 hover:border-primary hover:text-primary hover:bg-purple-50 hover:-translate-y-[1px] hover:shadow-[0_2px_8px_rgba(122,41,194,0.12)]'
+                                        ? 'bg-primary border-primary text-white shadow-md shadow-primary/30 -translate-y-[2px]' 
+                                        : 'bg-white border-slate-200 text-slate-600 hover:border-primary/40 hover:text-primary hover:bg-primary/5 hover:-translate-y-[1px] hover:shadow-sm'
                                     }`}
                                 >
-                                    <span className="text-[18px] max-sm:text-[16px] leading-none">{countryMeta[country].flag}</span>
+                                    <span className="text-[18px] max-sm:text-[16px] leading-none drop-shadow-sm">{countryMeta[country].flag}</span>
                                     <span className="whitespace-nowrap">{countryMeta[country].label}</span>
                                 </button>
                             );
@@ -96,11 +96,11 @@ const DestinationsSection: React.FC = () => {
                     </div>
 
                     <button
-                        className="inline-flex items-center gap-2 text-[14px] font-semibold text-primary bg-transparent border-2 border-primary rounded-full py-2 px-5 cursor-pointer transition-all duration-200 whitespace-nowrap outline-none hover:bg-primary hover:text-white hover:shadow-[0_4px_16px_rgba(122,41,194,0.3)] hover:-translate-y-[2px]"
+                        className="group inline-flex items-center gap-2 text-[14px] font-semibold text-slate-700 bg-white border-[1.5px] border-slate-200 rounded-full py-2 px-5 cursor-pointer transition-all duration-300 whitespace-nowrap outline-none hover:border-primary hover:text-primary hover:bg-primary/5 hover:shadow-md hover:shadow-primary/10 hover:-translate-y-[2px]"
                         onClick={() => navigate('/contact')}
                     >
                         <span>Explore More</span>
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="transition-transform duration-300 group-hover:translate-x-0.5">
                             <path d="M3 8H13M13 8L8.5 3.5M13 8L8.5 12.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
                     </button>
@@ -132,7 +132,7 @@ const DestinationsSection: React.FC = () => {
                                         </svg>
                                         #{uni.ranking} World
                                     </div>
-                                    <div className="absolute top-[18px] right-[18px] inline-flex items-center gap-1 bg-primary/80 backdrop-blur-sm text-white text-[11px] font-bold py-1 px-2 rounded-full tracking-wide">
+                                    <div className="absolute top-[18px] right-[18px] inline-flex items-center gap-1 bg-white border-2 border-primary hover:bg-primary-light/20/80 backdrop-blur-sm text-primary font-bold text-[11px] font-bold py-1 px-2 rounded-full tracking-wide">
                                         <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
                                             <circle cx="6" cy="6" r="5" stroke="white" strokeWidth="1.2" />
                                             <path d="M4 6h4M6 4v4" stroke="white" strokeWidth="1.2" strokeLinecap="round" />
@@ -157,14 +157,14 @@ const DestinationsSection: React.FC = () => {
                                         </div>
                                     </div>
                                     <button
-                                        className="inline-flex items-center justify-center gap-1.5 bg-white text-primary border-none py-2.5 px-4 max-sm:py-2.5 max-sm:px-3 rounded-full font-bold text-[13px] max-sm:text-[11px] cursor-pointer w-full text-center shadow-[0_4px_15px_rgba(0,0,0,0.12)] transition-all duration-200 hover:scale-[1.03] hover:shadow-[0_6px_20px_rgba(0,0,0,0.18)]"
+                                        className="group inline-flex items-center justify-center gap-1.5 bg-white text-slate-800 border-none py-2.5 px-4 max-sm:py-2.5 max-sm:px-3 rounded-full font-bold text-[13px] max-sm:text-[11px] cursor-pointer w-full text-center shadow-md transition-all duration-300 hover:bg-primary hover:text-white hover:shadow-lg hover:-translate-y-0.5"
                                         onClick={(e) => {
                                             e.stopPropagation();
                                             window.location.href = '/contact';
                                         }}
                                     >
-                                        <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
-                                            <path d="M2 2h11v9H8.5L5 13.5V11H2V2Z" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" />
+                                        <svg width="15" height="15" viewBox="0 0 15 15" fill="none" className="transition-transform duration-300 group-hover:scale-110">
+                                            <path d="M2 2h11v9H8.5L5 13.5V11H2V2Z" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" />
                                         </svg>
                                         Talk to a Consultant
                                     </button>
@@ -177,12 +177,12 @@ const DestinationsSection: React.FC = () => {
                 {/* Footer CTA */}
                 <div className="mt-12 mb-4 max-sm:mt-8">
                     <button 
-                        className="inline-flex items-center gap-2 bg-gradient-to-dr from-[#9333ea] to-primary bg-primary color-white text-white border-none py-3.5 px-9 max-sm:py-3 max-sm:px-7 rounded-full text-[16px] max-sm:text-[15px] font-bold cursor-pointer shadow-[0_6px_20px_rgba(122,41,194,0.35)] transition-all duration-200 hover:-translate-y-[2px] hover:shadow-[0_10px_28px_rgba(122,41,194,0.45)] tracking-wide" 
+                        className="group inline-flex items-center gap-2 bg-primary text-white font-bold py-3.5 px-9 max-sm:py-3 max-sm:px-7 rounded-full text-[16px] max-sm:text-[15px] cursor-pointer shadow-lg shadow-primary/30 transition-all duration-300 hover:-translate-y-[2px] hover:shadow-xl hover:shadow-primary/40 hover:bg-primary/95 tracking-wide" 
                         onClick={() => navigate('/contact')}
                     >
                         View All Destinations
-                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-                            <path d="M3.75 9H14.25M14.25 9L9.75 4.5M14.25 9L9.75 13.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" className="transition-transform duration-300 group-hover:translate-x-1">
+                            <path d="M3.75 9H14.25M14.25 9L9.75 4.5M14.25 9L9.75 13.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
                     </button>
                 </div>

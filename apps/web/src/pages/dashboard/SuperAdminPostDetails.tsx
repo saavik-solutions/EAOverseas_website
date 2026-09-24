@@ -11,8 +11,8 @@ const TYPE_COLORS: Record<string, string> = {
     Event: 'bg-rose-100 text-rose-700 border-rose-200',
     Guide: 'bg-indigo-100 text-indigo-700 border-indigo-200',
     News: 'bg-sky-100 text-sky-700 border-sky-200',
-    Webinar: 'bg-violet-100 text-violet-700 border-violet-200',
-    Program: 'bg-purple-100 text-purple-700 border-purple-200',
+    Webinar: 'bg-primary-light text-primary-hover border-violet-200',
+    Program: 'bg-primary-light text-primary-hover border-purple-200',
 };
 
 const TYPE_ICONS: Record<string, string> = {

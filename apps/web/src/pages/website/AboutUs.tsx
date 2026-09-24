@@ -85,12 +85,12 @@ const AboutUs = () => {
             {/* Hero Section */}
                 <section className="relative py-12 md:py-32 overflow-hidden">
                     {/* Hero Background Glow */}
-                    <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/4 w-[600px] h-[600px] bg-purple-50/50 rounded-full blur-[120px] pointer-events-none -z-10"></div>
+                    <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/4 w-[600px] h-[600px] bg-primary-light/50/50 rounded-full blur-[120px] pointer-events-none -z-10"></div>
                     
                     <div className="grid lg:grid-cols-2 gap-12 md:gap-20 items-center">
                         <div className="flex flex-col gap-6 md:gap-8">
                             <div className="space-y-6 md:space-y-8">
-                                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-50 border border-purple-100/50 text-primary text-xs font-bold tracking-widest uppercase">
+                                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-light/50 border border-purple-100/50 text-primary text-xs font-bold tracking-widest uppercase">
                                     <span className="relative flex h-2 w-2">
                                         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
                                         <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
@@ -105,7 +105,7 @@ const AboutUs = () => {
                                 </p>
                             </div>
                             <div className="flex flex-wrap gap-4 mt-2">
-                                <button onClick={handleExplore} className="bg-primary hover:bg-purple-700 text-white font-bold py-4 px-10 rounded-2xl shadow-xl shadow-purple-500/20 transition-all hover:-translate-y-1">
+                                <button onClick={handleExplore} className="bg-white border-2 border-primary hover:bg-primary-light/20 hover:bg-white border-2 border-primary hover:bg-primary-light/20-hover text-primary font-bold font-bold py-4 px-10 rounded-2xl shadow-xl shadow-purple-500/20 transition-all hover:-translate-y-1">
                                     Get Started
                                 </button>
                                 <button onClick={handleBrowseCourses} className="bg-white hover:bg-gray-50 text-gray-900 font-bold py-4 px-10 rounded-2xl border border-gray-200 transition-all">
@@ -130,7 +130,7 @@ const AboutUs = () => {
                                             <img src={`https://i.pravatar.cc/100?u=${i}`} alt="user" />
                                         </div>
                                     ))}
-                                    <div className="w-8 h-8 rounded-full border-2 border-white bg-primary flex items-center justify-center text-[10px] text-white font-bold">+10k</div>
+                                    <div className="w-8 h-8 rounded-full border-2 border-white bg-white border-2 border-primary hover:bg-primary-light/20 flex items-center justify-center text-[10px] text-primary font-bold font-bold">+10k</div>
                                 </div>
                             </div>
                         </div>
@@ -149,7 +149,7 @@ const AboutUs = () => {
                         <div className="text-center max-w-4xl mx-auto space-y-8">
                             <h2 className="text-primary font-[800] tracking-[0.3em] uppercase text-xs md:text-sm">The Foundation</h2>
                             <h3 className="text-4xl md:text-6xl font-black text-gray-900 leading-[1.05]">
-                                We Bridge the Gap Between <span className="text-primary">Ambition</span> and <span className="text-violet-600">Reality</span>
+                                We Bridge the Gap Between <span className="text-primary">Ambition</span> and <span className="text-primary">Reality</span>
                             </h3>
                             <p className="text-xl md:text-3xl text-gray-700 font-medium leading-relaxed italic border-l-4 border-primary pl-8 py-2 inline-block text-left">
                                 "Eduwoy is more than a platform; it's a commitment to clarity in global education."
@@ -248,9 +248,9 @@ const AboutUs = () => {
                         <div className="relative z-10 grid grid-cols-2 md:grid-cols-4 gap-12 md:gap-8 items-center">
                             {[
                                 { count: 10000, suffix: '+', label: 'Global Scholars', color: 'text-primary' },
-                                { count: 500, suffix: '+', label: 'Partner Institutions', color: 'text-violet-600' },
-                                { count: 25, suffix: '+', label: 'Study Destinations', color: 'text-purple-500' },
-                                { count: 98, suffix: '%', label: 'Success Rate', color: 'text-violet-500' }
+                                { count: 500, suffix: '+', label: 'Partner Institutions', color: 'text-primary' },
+                                { count: 25, suffix: '+', label: 'Study Destinations', color: 'text-primary' },
+                                { count: 98, suffix: '%', label: 'Success Rate', color: 'text-primary' }
                             ].map((item, index) => (
                                 <div key={index} className="flex flex-col items-center group">
                                     <div className={`text-4xl md:text-6xl font-[950] ${item.color} mb-3 flex items-center group-hover:scale-110 transition-transform duration-500`}>
@@ -352,9 +352,9 @@ const AboutUs = () => {
                 {/* Mission & Vision - High Impact */}
                 <section className="py-20 md:py-32 grid md:grid-cols-2 gap-10 md:gap-16 px-4 md:px-0">
                     <div className="group relative bg-[#0f172a] p-12 md:p-20 rounded-[3rem] overflow-hidden shadow-2xl hover:-translate-y-4 transition-all duration-700">
-                        <div className="absolute top-0 right-0 w-64 h-64 bg-purple-600/20 rounded-full blur-[100px]"></div>
+                        <div className="absolute top-0 right-0 w-64 h-64 bg-primary/20 rounded-full blur-[100px]"></div>
                         <div className="relative z-10 space-y-8">
-                            <div className="w-16 h-16 bg-primary text-white rounded-2xl flex items-center justify-center group-hover:rotate-12 transition-transform">
+                            <div className="w-16 h-16 bg-white border-2 border-primary hover:bg-primary-light/20 text-primary font-bold rounded-2xl flex items-center justify-center group-hover:rotate-12 transition-transform">
                                 <span className="material-symbols-outlined text-4xl">rocket_launch</span>
                             </div>
                             <h3 className="text-3xl md:text-5xl font-black text-white">Our Mission</h3>
@@ -364,9 +364,9 @@ const AboutUs = () => {
                         </div>
                     </div>
                     <div className="group relative bg-white p-12 md:p-20 rounded-[3rem] border border-gray-100 shadow-xl hover:-translate-y-4 transition-all duration-700">
-                        <div className="absolute bottom-0 left-0 w-64 h-64 bg-violet-50 rounded-full blur-[100px]"></div>
+                        <div className="absolute bottom-0 left-0 w-64 h-64 bg-primary-light/50 rounded-full blur-[100px]"></div>
                         <div className="relative z-10 space-y-8">
-                            <div className="w-16 h-16 bg-purple-50 text-primary rounded-2xl flex items-center justify-center group-hover:-rotate-12 transition-transform">
+                            <div className="w-16 h-16 bg-primary-light/50 text-primary rounded-2xl flex items-center justify-center group-hover:-rotate-12 transition-transform">
                                 <span className="material-symbols-outlined text-4xl">visibility</span>
                             </div>
                             <h3 className="text-3xl md:text-5xl font-black text-gray-900">Our Vision</h3>

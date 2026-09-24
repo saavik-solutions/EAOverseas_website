@@ -81,8 +81,8 @@ const ScholarshipDetails = () => {
                             {/* Eligibility Section */}
                             <section className="bg-white p-8 rounded-[32px] border border-gray-100 shadow-sm hover:shadow-md transition-shadow duration-300">
                                 <h3 className="text-sm font-black text-gray-900 mb-8 flex items-center gap-3 uppercase tracking-widest">
-                                    <div className="w-8 h-8 rounded-xl bg-purple-50 flex items-center justify-center">
-                                        <span className="material-symbols-outlined text-purple-600 !text-[20px]">assignment_turned_in</span>
+                                    <div className="w-8 h-8 rounded-xl bg-primary-light/50 flex items-center justify-center">
+                                        <span className="material-symbols-outlined text-primary !text-[20px]">assignment_turned_in</span>
                                     </div>
                                     Eligibility Criteria
                                 </h3>

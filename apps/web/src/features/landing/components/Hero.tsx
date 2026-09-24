@@ -18,7 +18,7 @@ const Hero = () => {
                     counseling — we've got you covered.
                 </p>
                 <button
-                    className="bg-primary hover:bg-[#6823a4] text-white border-none py-4 px-8 rounded-lg text-[18px] font-semibold cursor-pointer w-fit transition-all duration-200 outline-none shadow-md hover:shadow-lg hover:-translate-y-1"
+                    className="bg-white border-2 border-primary hover:bg-primary-light/20 hover:bg-[#6823a4] text-primary font-bold border-none py-4 px-8 rounded-lg text-[18px] font-semibold cursor-pointer w-fit transition-all duration-200 outline-none shadow-md hover:shadow-lg hover:-translate-y-1"
                     onClick={() => navigate('/about')}
                 >
                     Explore More About Us

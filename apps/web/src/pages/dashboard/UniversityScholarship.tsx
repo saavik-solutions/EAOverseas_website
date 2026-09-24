@@ -138,7 +138,7 @@ const UniversityScholarship: React.FC<UniversityScholarshipProps> = ({ isEmbedde
                                     </div>
 
                                     <div className="flex items-center gap-2.5 p-2.5 rounded-2xl bg-slate-50/50 group-hover:bg-white group-hover:shadow-sm transition-all duration-300 border border-transparent group-hover:border-slate-100">
-                                        <div className="w-7 h-7 rounded-lg bg-purple-100/50 flex items-center justify-center text-purple-600">
+                                        <div className="w-7 h-7 rounded-lg bg-primary-light/50 flex items-center justify-center text-primary">
                                             <span className="material-symbols-outlined text-[16px]">school</span>
                                         </div>
                                         <div className="flex flex-col">

@@ -39,10 +39,10 @@ const HeroCarousel = ({ slides, interval = 5000 }: HeroCarouselProps) => {
             onMouseLeave={() => setIsPaused(false)}
         >
             {/* Base Grid Background (Subtle for Enterprise look) */}
-            <div className="absolute inset-0 bg-grid-purple opacity-[0.06] pointer-events-none z-0" />
+            <div className="absolute inset-0 bg-grid-primary opacity-[0.06] pointer-events-none z-0" />
 
             {/* Background Ambient Glows */}
-            <div className="absolute top-[-10%] left-[-5%] w-[40%] h-[40%] bg-purple-100/20 blur-[140px] rounded-full pointer-events-none" />
+            <div className="absolute top-[-10%] left-[-5%] w-[40%] h-[40%] bg-primary-light/20 blur-[140px] rounded-full pointer-events-none" />
             
             {/* Slides Track */}
             <div 

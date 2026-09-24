@@ -1,12 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import logo from '@/assets/logo.webp';
+import logo from '@/assets/logo.png';
 import { ExternalBlog, fetchExternalBlogs } from '@/services/blogService';
 import ImageWithFallback from '@/components/common/ImageWithFallback';
 
 // ─── Deterministic Tag Color Mapping ─────────────────────────────────────────
 const TAG_COLORS = [
-    'bg-violet-600',
+    'bg-primary',
     'bg-blue-600',
     'bg-emerald-600',
     'bg-rose-600',
@@ -69,7 +69,7 @@ const BlogCard: React.FC<{ blog: ExternalBlog; index: number; isVisible: boolean
                     src={blog.coverImage ?? ''}
                     alt={blog.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    fallbackContainerClassName="w-full h-full bg-gradient-to-br from-purple-700 via-violet-600 to-purple-900"
+                    fallbackContainerClassName="w-full h-full bg-gradient-to-br from-purple-700 via-violet-600 to-primary-dark"
                 />
 
                 {/* Tag badge */}
@@ -95,7 +95,7 @@ const BlogCard: React.FC<{ blog: ExternalBlog; index: number; isVisible: boolean
                 </div>
 
                 {/* Title */}
-                <h3 className="text-[15px] font-extrabold text-gray-900 leading-snug line-clamp-2 group-hover:text-purple-700 transition-colors duration-200 m-0">
+                <h3 className="text-[15px] font-extrabold text-gray-900 leading-snug line-clamp-2 group-hover:text-primary-hover transition-colors duration-200 m-0">
                     {blog.title}
                 </h3>
 
@@ -106,7 +106,7 @@ const BlogCard: React.FC<{ blog: ExternalBlog; index: number; isVisible: boolean
 
                 {/* Footer row */}
                 <div className="flex items-center justify-between pt-3.5 border-t border-gray-50 mt-auto">
-                    <span className="flex items-center gap-1.5 text-[12px] font-extrabold text-purple-600 group-hover:gap-2.5 transition-all duration-200">
+                    <span className="flex items-center gap-1.5 text-[12px] font-extrabold text-primary group-hover:gap-2.5 transition-all duration-200">
                         Read Article
                         <span className="material-symbols-outlined text-[14px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
                     </span>
@@ -192,8 +192,8 @@ const BlogSection: React.FC = () => {
                 {/* ─── Section Header ─── */}
                 <div className={`flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
                     <div className="space-y-3">
-                        <div className="inline-flex items-center gap-2 text-[11px] font-extrabold uppercase tracking-[0.12em] text-purple-600 bg-purple-50 border border-purple-100 px-4 py-1.5 rounded-full">
-                            <span className="w-1.5 h-1.5 rounded-full bg-purple-500 animate-pulse" />
+                        <div className="inline-flex items-center gap-2 text-[11px] font-extrabold uppercase tracking-[0.12em] text-primary bg-primary-light/50 border border-purple-100 px-4 py-1.5 rounded-full">
+                            <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
                             Edu Insights
                         </div>
                         <h2 className="text-[34px] md:text-[44px] max-sm:text-[26px] font-extrabold text-gray-900 leading-tight tracking-tight m-0">
@@ -227,8 +227,8 @@ const BlogSection: React.FC = () => {
                             aria-label="Scroll left"
                             className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-5 z-20
                                        w-10 h-10 rounded-full bg-white border border-gray-200 shadow-lg
-                                       flex items-center justify-center text-purple-600
-                                       hover:bg-purple-50 hover:border-purple-300 hover:scale-110 transition-all duration-200"
+                                       flex items-center justify-center text-primary
+                                       hover:bg-primary-light/50 hover:border-purple-300 hover:scale-110 transition-all duration-200"
                         >
                             <span className="material-symbols-outlined text-[20px]">chevron_left</span>
                         </button>
@@ -241,8 +241,8 @@ const BlogSection: React.FC = () => {
                             aria-label="Scroll right"
                             className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-5 z-20
                                        w-10 h-10 rounded-full bg-white border border-gray-200 shadow-lg
-                                       flex items-center justify-center text-purple-600
-                                       hover:bg-purple-50 hover:border-purple-300 hover:scale-110 transition-all duration-200"
+                                       flex items-center justify-center text-primary
+                                       hover:bg-primary-light/50 hover:border-purple-300 hover:scale-110 transition-all duration-200"
                         >
                             <span className="material-symbols-outlined text-[20px]">chevron_right</span>
                         </button>
@@ -284,7 +284,7 @@ const BlogSection: React.FC = () => {
                                     aria-label={`Go to slide ${i + 1}`}
                                     className={`rounded-full transition-all duration-300 ${
                                         i === activeIdx
-                                            ? 'w-6 h-2 bg-purple-600'
+                                            ? 'w-6 h-2 bg-primary'
                                             : 'w-2 h-2 bg-gray-200 hover:bg-purple-200'
                                     }`}
                                 />

@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import logo from '@/assets/logo.webp';
+import logo from '@/assets/logo.png';
 import ImageWithFallback from '@/components/common/ImageWithFallback';
 import { experts } from '../../../data/experts';
 

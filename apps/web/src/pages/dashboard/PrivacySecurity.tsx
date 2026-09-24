@@ -103,7 +103,7 @@ const PrivacySecurity = () => {
                                 {/* University Sharing */}
                                 <div className="flex flex-col gap-3">
                                     <div className="flex items-start gap-3">
-                                        <div className="p-2 bg-purple-50 text-purple-600 rounded">
+                                        <div className="p-2 bg-primary-light/50 text-primary rounded">
                                             <span className="material-symbols-outlined text-[20px]">school</span>
                                         </div>
                                         <div>

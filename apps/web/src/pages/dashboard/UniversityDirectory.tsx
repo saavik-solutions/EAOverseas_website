@@ -162,7 +162,7 @@ const UniversityDirectory = ({ isEmbedded = false }: { isEmbedded?: boolean }) =
                                             <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Costs & Rank</p>
                                             <div className="flex items-center gap-1.5 text-gray-700">
                                                 <span className="text-[11px] font-black">{uni.tuitionValue === 0 ? 'FREE' : `$${uni.tuitionValue.toLocaleString()}`}</span>
-                                                <span className={`text-[9px] font-black px-1.5 py-0.5 rounded bg-opacity-10 ${uni.budget === 'Premium' ? 'bg-purple-600 text-purple-600' :
+                                                <span className={`text-[9px] font-black px-1.5 py-0.5 rounded bg-opacity-10 ${uni.budget === 'Premium' ? 'bg-primary text-primary' :
                                                     uni.budget === 'Moderate' ? 'bg-blue-600 text-blue-600' :
                                                         'bg-green-600 text-green-600'
                                                     }`}>
@@ -245,7 +245,7 @@ const UniversityDirectory = ({ isEmbedded = false }: { isEmbedded?: boolean }) =
                                                             Tuition: <span className={uni.tuitionValue === 0 ? 'text-green-600' : ''}>{uni.tuitionValue === 0 ? 'FREE' : `$${uni.tuitionValue.toLocaleString()}`}</span>
                                                         </p>
                                                         <p className="text-[10px] font-bold text-gray-400 uppercase">Living: ${uni.livingCostValue.toLocaleString()}</p>
-                                                        <div className={`mt-2 text-[10px] font-black px-2 py-0.5 rounded-full w-fit bg-opacity-10 ${uni.budget === 'Premium' ? 'bg-purple-600 text-purple-600' :
+                                                        <div className={`mt-2 text-[10px] font-black px-2 py-0.5 rounded-full w-fit bg-opacity-10 ${uni.budget === 'Premium' ? 'bg-primary text-primary' :
                                                             uni.budget === 'Moderate' ? 'bg-blue-600 text-blue-600' :
                                                                 'bg-green-600 text-green-600'
                                                             }`}>

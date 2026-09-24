@@ -16,7 +16,7 @@ const StudentStoriesSection = () => {
             name: "Avneet Kaur",
             image: avneetCard,
             review: "Eduwoy made my dream of studying in USA a reality. The visa process was incredibly smooth and the support was always there when I needed it.",
-            theme: { bg: "bg-purple-50", border: "border-purple-200", iconBg: "bg-purple-100", iconText: "text-purple-600", nameText: "text-purple-700" }
+            theme: { bg: "bg-primary-light/50", border: "border-purple-200", iconBg: "bg-primary-light", iconText: "text-primary", nameText: "text-primary-hover" }
         },
         {
             name: "Sanjukta Koli",
@@ -45,7 +45,7 @@ const StudentStoriesSection = () => {
         <section className="py-16 bg-transparent overflow-hidden relative font-sans">
             {/* Header */}
             <div className="max-w-7xl mx-auto text-center mb-12 px-4">
-                <span className="inline-block px-4 py-1.5 rounded-full bg-purple-100 text-purple-600 text-sm font-semibold mb-4">
+                <span className="inline-block px-4 py-1.5 rounded-full bg-primary-light text-primary text-sm font-semibold mb-4">
                     Success stories
                 </span>
                 <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-4">

@@ -168,7 +168,7 @@ const Testimonials = () => {
                         <div className="flex justify-center mt-12">
                                 <button
                                 onClick={handleLoadMore}
-                                className="group relative px-8 py-3 bg-white border-2 border-primary text-primary font-bold rounded-full hover:bg-primary hover:text-white transition-all duration-300 flex items-center gap-2 shadow-sm hover:shadow-lg"
+                                className="group relative px-8 py-3 bg-white border-2 border-primary text-primary font-bold rounded-full hover:bg-white border-2 border-primary hover:bg-primary-light/20 hover:text-primary font-bold transition-all duration-300 flex items-center gap-2 shadow-sm hover:shadow-lg"
                             >
                                 <span>Load More Stories</span>
                                 <span className="material-symbols-outlined group-hover:translate-y-1 transition-transform duration-300">expand_more</span>

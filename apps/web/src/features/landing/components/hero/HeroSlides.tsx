@@ -24,16 +24,16 @@ export const MainSlide: React.FC<SlideProps> = ({ onBookingClick }) => {
           <div className="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-slate-50 border border-slate-200 text-slate-500 font-bold text-[10px] md:text-[11px] tracking-[0.2em] uppercase">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-purple-600"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
             </span>
             Executive Education Advisory
           </div>
-          <h2 className="text-[28px] sm:text-[32px] md:text-[54px] lg:text-[72px] font-black text-[#0f172a] leading-[1.1] md:leading-[1.05] tracking-tight font-bricolage transition-all">
+          <h2 className="text-[24px] sm:text-[28px] md:text-[46px] lg:text-[60px] font-black text-[#0f172a] leading-[1.1] md:leading-[1.05] tracking-tight font-bricolage transition-all">
             Secure Your <br />
             <span className="text-primary">Global Future</span> <br />
             With Expert Guidance.
           </h2>
-          <p className="text-base md:text-lg lg:text-xl text-slate-500 max-w-xl leading-relaxed font-medium">
+          <p className="text-sm md:text-base lg:text-lg text-slate-500 max-w-xl leading-relaxed font-medium">
             Strategic university matching, sophisticated financial planning, and end-to-end visa compliance for the ambitious student.
           </p>
           <div className="flex flex-col sm:flex-row gap-5 pt-4">
@@ -47,7 +47,7 @@ export const MainSlide: React.FC<SlideProps> = ({ onBookingClick }) => {
               onClick={onBookingClick}
               className="px-8 md:px-10 py-4 md:py-5 bg-white border border-slate-200 text-slate-900 font-bold rounded-2xl transition-all hover:bg-slate-50 hover:border-slate-300 flex items-center justify-center gap-3 hover:translate-y-[-2px] active:translate-y-[0px] shadow-sm"
             >
-              <span className="material-symbols-outlined text-purple-600">calendar_today</span>
+              <span className="material-symbols-outlined text-primary">calendar_today</span>
               Free Consultation
             </button>
           </div>
@@ -87,21 +87,21 @@ export const ScholarshipSlide: React.FC<SlideProps> = ({ onBookingClick }) => {
     <div className="relative w-full min-h-[500px] md:min-h-[550px] md:h-full flex items-center justify-center overflow-hidden pt-28 pb-10 md:pt-40 md:pb-20">
       <div className="max-w-[1400px] w-full px-6 lg:px-16 grid lg:grid-cols-2 gap-10 md:gap-24 items-center z-10 text-left">
         <div className="space-y-6 md:space-y-8 animate-fade-in-up order-1 lg:order-1">
-          <div className="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-purple-50 border border-purple-100 text-primary font-bold text-[10px] md:text-[11px] tracking-[0.2em] uppercase">
+          <div className="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-primary-light/50 border border-purple-100 text-primary font-bold text-[10px] md:text-[11px] tracking-[0.2em] uppercase">
             Financial Strategy & Awards
           </div>
-          <h1 className="text-[28px] sm:text-[32px] md:text-[54px] lg:text-[72px] font-black text-[#0f172a] leading-[1.1] md:leading-[1.05] tracking-tight font-bricolage">
+          <h1 className="text-[24px] sm:text-[28px] md:text-[46px] lg:text-[60px] font-black text-[#0f172a] leading-[1.1] md:leading-[1.05] tracking-tight font-bricolage">
             Strategic <br />
             <span className="text-primary">Scholarship</span> <br />
             Advisory.
           </h1>
-          <p className="text-base md:text-lg lg:text-xl text-slate-500 max-w-xl leading-relaxed font-medium">
+          <p className="text-sm md:text-base lg:text-lg text-slate-500 max-w-xl leading-relaxed font-medium">
             Optimize your academic profile to access elite funding opportunities and specialized education loans at lower interest rates.
           </p>
           <div className="flex flex-col sm:flex-row gap-5 pt-4">
             <button
               onClick={() => window.open('https://student.eduwoy.com/auth/login', '_blank', 'noopener,noreferrer')}
-              className="px-8 md:px-10 py-4 md:py-5 bg-primary text-white font-bold rounded-2xl hover:bg-primary-hover transition-all hover:translate-y-[-2px] active:translate-y-[0px] shadow-xl shadow-purple-900/10"
+              className="px-8 md:px-10 py-4 md:py-5 bg-white border-2 border-slate-200 text-slate-800 font-bold rounded-2xl hover:border-primary hover:text-primary transition-all duration-300 hover:-translate-y-1 shadow-lg shadow-slate-200/50 hover:shadow-xl hover:shadow-primary/20"
             >
               Sign In
             </button>
@@ -148,25 +148,25 @@ export const DestinationsSlide: React.FC<SlideProps> = ({ onBookingClick }) => {
     <div className="relative w-full min-h-[500px] md:min-h-[550px] md:h-full flex items-center justify-center overflow-hidden pt-28 pb-10 md:pt-40 md:pb-20">
       <div className="max-w-[1400px] w-full px-6 lg:px-16 grid lg:grid-cols-2 gap-10 md:gap-24 items-center z-10 text-left">
         <div className="space-y-6 md:space-y-8 animate-fade-in-up order-1 lg:order-1">
-          <div className="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-purple-50 border border-purple-100 text-primary font-bold text-[10px] md:text-[11px] tracking-[0.2em] uppercase">
+          <div className="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-primary-light/50 border border-purple-100 text-primary font-bold text-[10px] md:text-[11px] tracking-[0.2em] uppercase">
             Global Network Centers
           </div>
-          <h2 className="text-[28px] sm:text-[32px] md:text-[54px] lg:text-[72px] font-black text-[#0f172a] leading-[1.1] md:leading-[1.05] tracking-tight font-bricolage">
-            Global <span className="text-purple-600">Hubs</span> <br />
+          <h2 className="text-[24px] sm:text-[28px] md:text-[46px] lg:text-[60px] font-black text-[#0f172a] leading-[1.1] md:leading-[1.05] tracking-tight font-bricolage">
+            Global <span className="text-primary">Hubs</span> <br />
             At Your <br />
             Command.
           </h2>
-          <p className="text-base md:text-lg lg:text-xl text-slate-500 max-w-xl leading-relaxed font-medium">
+          <p className="text-sm md:text-base lg:text-lg text-slate-500 max-w-xl leading-relaxed font-medium">
             Seamless access to 500+ top-tier universities across 15+ high-growth destinations including the USA, UK, and Canada.
           </p>
           <div className="flex flex-wrap gap-2 md:gap-3 py-2">
             {['USA', 'United Kingdom', 'Canada', 'Australia', 'Germany'].map(c => (
-              <span key={c} className="px-5 py-2.5 bg-white border border-slate-200 rounded-xl text-[11px] font-black text-slate-600 transition-all hover:border-purple-300 hover:text-purple-700 cursor-default shadow-sm uppercase tracking-widest">{c}</span>
+              <span key={c} className="px-5 py-2.5 bg-white border border-slate-200 rounded-xl text-[11px] font-black text-slate-600 transition-all hover:border-purple-300 hover:text-primary-hover cursor-default shadow-sm uppercase tracking-widest">{c}</span>
             ))}
           </div>
           <button
             onClick={() => navigate('/countries')}
-            className="px-8 md:px-10 py-4 md:py-5 bg-primary text-white font-bold rounded-2xl transition-all hover:bg-primary-hover hover:translate-y-[-2px] active:translate-y-[0px] shadow-xl shadow-purple-900/10"
+            className="px-8 md:px-10 py-4 md:py-5 bg-white border-2 border-slate-200 text-slate-800 font-bold rounded-2xl hover:border-primary hover:text-primary transition-all duration-300 hover:-translate-y-1 shadow-lg shadow-slate-200/50 hover:shadow-xl hover:shadow-primary/20"
           >
             Explore Network
           </button>
@@ -196,12 +196,12 @@ export const VisaSlide: React.FC<SlideProps> = ({ onBookingClick }) => {
           <div className="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-emerald-50 border border-emerald-100 text-emerald-700 font-bold text-[10px] md:text-[11px] tracking-[0.2em] uppercase">
             Visa Compliance Excellence
           </div>
-          <h2 className="text-[28px] sm:text-[32px] md:text-[54px] lg:text-[72px] font-black text-[#0f172a] leading-[1.1] md:leading-[1.05] tracking-tight font-bricolage">
+          <h2 className="text-[24px] sm:text-[28px] md:text-[46px] lg:text-[60px] font-black text-[#0f172a] leading-[1.1] md:leading-[1.05] tracking-tight font-bricolage">
             Seamless <br />
             <span className="text-emerald-600">Visa</span> <br />
             Approvals.
           </h2>
-          <p className="text-base md:text-lg lg:text-xl text-slate-500 max-w-xl leading-relaxed font-medium">
+          <p className="text-sm md:text-base lg:text-lg text-slate-500 max-w-xl leading-relaxed font-medium">
             Over 98% success rate with expert documentation auditing, mock interviews, and direct embassy compliance support.
           </p>
           <div className="flex flex-col sm:flex-row gap-5 pt-4">
@@ -244,12 +244,12 @@ export const UniversityMatchSlide: React.FC<SlideProps> = ({ onBookingClick }) =
           <div className="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-blue-50 border border-blue-100 text-blue-700 font-bold text-[10px] md:text-[11px] tracking-[0.2em] uppercase">
             AI-Powered Matchmaking
           </div>
-          <h2 className="text-[28px] sm:text-[32px] md:text-[54px] lg:text-[72px] font-black text-[#0f172a] leading-[1.1] md:leading-[1.05] tracking-tight font-bricolage">
+          <h2 className="text-[24px] sm:text-[28px] md:text-[46px] lg:text-[60px] font-black text-[#0f172a] leading-[1.1] md:leading-[1.05] tracking-tight font-bricolage">
             Perfect <br />
             <span className="text-blue-600">University</span> <br />
             Matching.
           </h2>
-          <p className="text-base md:text-lg lg:text-xl text-slate-500 max-w-xl leading-relaxed font-medium">
+          <p className="text-sm md:text-base lg:text-lg text-slate-500 max-w-xl leading-relaxed font-medium">
             Our proprietary AI platform matches you with the best-fit universities based on your profile, career goals, and budget.
           </p>
           <div className="flex flex-col sm:flex-row gap-5 pt-4">
@@ -286,12 +286,12 @@ export const IELTSSlide: React.FC<SlideProps> = ({ onBookingClick }) => {
           <div className="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-rose-50 border border-rose-100 text-rose-700 font-bold text-[10px] md:text-[11px] tracking-[0.2em] uppercase">
             Language Proficiency Hub
           </div>
-          <h2 className="text-[28px] sm:text-[32px] md:text-[54px] lg:text-[72px] font-black text-[#0f172a] leading-[1.1] md:leading-[1.05] tracking-tight font-bricolage">
+          <h2 className="text-[24px] sm:text-[28px] md:text-[46px] lg:text-[60px] font-black text-[#0f172a] leading-[1.1] md:leading-[1.05] tracking-tight font-bricolage">
             Master <br />
             <span className="text-rose-600">IELTS / PTE</span> <br />
             with Ease.
           </h2>
-          <p className="text-base md:text-lg lg:text-xl text-slate-500 max-w-xl leading-relaxed font-medium">
+          <p className="text-sm md:text-base lg:text-lg text-slate-500 max-w-xl leading-relaxed font-medium">
             Custom coaching plans and professional trainers focused on helping you achieve a band score of 7.5+ in your first attempt.
           </p>
           <div className="flex flex-col sm:flex-row gap-5 pt-4">
@@ -334,12 +334,12 @@ export const PreDepartureSlide: React.FC<SlideProps> = ({ onBookingClick }) => {
           <div className="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-amber-50 border border-amber-100 text-amber-700 font-bold text-[10px] md:text-[11px] tracking-[0.2em] uppercase">
             Orientation & Beyond
           </div>
-          <h2 className="text-[28px] sm:text-[32px] md:text-[54px] lg:text-[72px] font-black text-[#0f172a] leading-[1.1] md:leading-[1.05] tracking-tight font-bricolage">
+          <h2 className="text-[24px] sm:text-[28px] md:text-[46px] lg:text-[60px] font-black text-[#0f172a] leading-[1.1] md:leading-[1.05] tracking-tight font-bricolage">
             Smooth <br />
             <span className="text-amber-600">Transition</span> <br />
             Abroad.
           </h2>
-          <p className="text-base md:text-lg lg:text-xl text-slate-500 max-w-xl leading-relaxed font-medium">
+          <p className="text-sm md:text-base lg:text-lg text-slate-500 max-w-xl leading-relaxed font-medium">
             Pre-departure briefings, airport pickups, and initial settlement support to ensure you feel at home the moment you land.
           </p>
           <div className="flex flex-col sm:flex-row gap-5 pt-4">
@@ -373,21 +373,21 @@ export const AccommodationSlide: React.FC<SlideProps> = ({ onBookingClick }) => 
     <div className="relative w-full min-h-[500px] md:min-h-[550px] md:h-full flex items-center justify-center overflow-hidden pt-28 pb-10 md:pt-40 md:pb-20">
       <div className="max-w-[1400px] w-full px-6 lg:px-16 grid lg:grid-cols-2 gap-10 md:gap-24 items-center z-10 text-left">
         <div className="space-y-6 md:space-y-8 animate-fade-in-up order-1 lg:order-1">
-          <div className="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-violet-50 border border-violet-100 text-violet-700 font-bold text-[10px] md:text-[11px] tracking-[0.2em] uppercase">
+          <div className="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-primary-light/50 border border-violet-100 text-primary-hover font-bold text-[10px] md:text-[11px] tracking-[0.2em] uppercase">
             Premium Living Solutions
           </div>
-          <h2 className="text-[28px] sm:text-[32px] md:text-[54px] lg:text-[72px] font-black text-[#0f172a] leading-[1.1] md:leading-[1.05] tracking-tight font-bricolage">
+          <h2 className="text-[24px] sm:text-[28px] md:text-[46px] lg:text-[60px] font-black text-[#0f172a] leading-[1.1] md:leading-[1.05] tracking-tight font-bricolage">
             Curated <br />
-            <span className="text-violet-600">Living</span> <br />
+            <span className="text-primary">Living</span> <br />
             Spaces.
           </h2>
-          <p className="text-base md:text-lg lg:text-xl text-slate-500 max-w-xl leading-relaxed font-medium">
+          <p className="text-sm md:text-base lg:text-lg text-slate-500 max-w-xl leading-relaxed font-medium">
             Affordable and secure student accommodation options near your university campus, personally vetted by our local team.
           </p>
           <div className="flex flex-col sm:flex-row gap-5 pt-4">
             <button
               onClick={() => navigate('/contact')}
-              className="px-8 md:px-10 py-4 md:py-5 bg-violet-600 text-white font-bold rounded-2xl hover:bg-violet-700 transition-all hover:translate-y-[-2px] shadow-xl shadow-violet-900/10"
+              className="px-8 md:px-10 py-4 md:py-5 bg-white border-2 border-slate-200 text-slate-800 font-bold rounded-2xl hover:border-primary hover:text-primary transition-all duration-300 hover:-translate-y-1 shadow-lg shadow-slate-200/50 hover:shadow-xl hover:shadow-primary/20"
             >
               Browse Options
             </button>

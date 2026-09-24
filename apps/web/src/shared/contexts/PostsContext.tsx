@@ -41,7 +41,7 @@ export const PostsProvider: React.FC<{ children: ReactNode }> = ({ children }) =
         id: p._id,
         label: p.category || 'Article',
         labelColor: p.category === 'Scholarship' ? 'bg-orange-50 text-orange-700 border-orange-100' :
-            p.category === 'Program' ? 'bg-purple-50 text-purple-700 border-purple-100' : 'bg-blue-50 text-blue-700 border-blue-100',
+            p.category === 'Program' ? 'bg-primary-light/50 text-primary-hover border-purple-100' : 'bg-blue-50 text-blue-700 border-blue-100',
         banner: p.banner || (p.mediaUrls && p.mediaUrls[0]) || 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=800&auto=format&fit=crop',
         logo: p.universityLogo || 'https://via.placeholder.com/100',
         title: p.title,

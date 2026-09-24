@@ -110,8 +110,8 @@ const PortfolioAnalysis: React.FC = () => {
                                         <span className="px-3 py-1.5 bg-teal-50 text-teal-700 rounded-lg text-sm font-semibold border border-teal-100 flex items-center gap-1.5">
                                             <div className="w-1.5 h-1.5 rounded-full bg-teal-500"></div>Tailwind CSS
                                         </span>
-                                        <span className="px-3 py-1.5 bg-purple-50 text-purple-700 rounded-lg text-sm font-semibold border border-purple-100 flex items-center gap-1.5">
-                                            <div className="w-1.5 h-1.5 rounded-full bg-purple-500"></div>Gatsby
+                                        <span className="px-3 py-1.5 bg-primary-light/50 text-primary-hover rounded-lg text-sm font-semibold border border-purple-100 flex items-center gap-1.5">
+                                            <div className="w-1.5 h-1.5 rounded-full bg-primary"></div>Gatsby
                                         </span>
                                         <span className="px-3 py-1.5 bg-gray-50 text-gray-600 rounded-lg text-sm font-semibold border border-gray-200 flex items-center gap-1.5">
                                             <span className="material-symbols-outlined text-[14px]">api</span>Vercel Analytics

@@ -34,7 +34,7 @@ const CookiePolicy = () => {
                     <div className="bg-white p-5 md:p-8 rounded-xl md:rounded-2xl border border-gray-100 shadow-sm">
                         <h2 className="text-xl md:text-2xl font-bold mb-3 md:mb-4 text-primary">Types of Cookies</h2>
                         <div className="space-y-3 md:space-y-4">
-                            <div className="border-l-4 border-purple-600 pl-3 md:pl-4">
+                            <div className="border-l-4 border-primary pl-3 md:pl-4">
                                 <h3 className="font-bold mb-1 md:mb-2 text-sm md:text-base">Essential Cookies</h3>
                                 <p className="text-gray-600 text-xs md:text-sm">
                                     Required for the website to function. Cannot be disabled.
@@ -46,7 +46,7 @@ const CookiePolicy = () => {
                                     Help us understand visitor behavior and improve our platform.
                                 </p>
                             </div>
-                            <div className="border-l-4 border-purple-600 pl-3 md:pl-4">
+                            <div className="border-l-4 border-primary pl-3 md:pl-4">
                                 <h3 className="font-bold mb-1 md:mb-2 text-sm md:text-base">Marketing Cookies</h3>
                                 <p className="text-gray-600 text-xs md:text-sm">
                                     Used to show you relevant advertisements on other sites.

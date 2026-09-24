@@ -236,7 +236,7 @@ const UserProfile = () => {
                         {/* Target & Preferences (Read Only) */}
                         <div className="bg-white rounded-xl shadow-sm border border-[#e5e7eb] p-4">
                             <div className="flex items-center gap-2 mb-3">
-                                <div className="p-1.5 bg-purple-50 rounded-lg text-purple-600">
+                                <div className="p-1.5 bg-primary-light/50 rounded-lg text-primary">
                                     <span className="material-symbols-outlined !text-[20px]">travel_explore</span>
                                 </div>
                                 <h3 className="text-base font-bold text-[#111418]">Targets & Preferences</h3>
