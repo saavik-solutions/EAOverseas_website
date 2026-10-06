@@ -29,6 +29,7 @@ export interface IUniversity extends Document {
     ranking?: string;
     facilities?: string[];
     language?: string;
+    acceptanceRate?: string;
     admissionRequirements?: string;
     placementStatistics?: string;
     logoUrl?: string;
@@ -73,6 +74,7 @@ const UniversitySchema: Schema = new Schema(
         ranking: { type: String },
         facilities: [{ type: String }],
         language: { type: String },
+        acceptanceRate: { type: String },
         admissionRequirements: { type: String },
         placementStatistics: { type: String },
         logoUrl: { type: String },

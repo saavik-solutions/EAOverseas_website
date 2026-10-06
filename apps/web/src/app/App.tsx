@@ -156,6 +156,7 @@ import { ScholarshipsProvider } from '@/shared/contexts/ScholarshipsContext';
 import { ApplicationsProvider } from '@/shared/contexts/ApplicationsContext';
 import { useAuth } from '@/shared/contexts/AuthContext';
 import ProtectedRoute from '@/shared/components/ProtectedRoute';
+import AdminProtectedRoute from '@/shared/components/AdminProtectedRoute';
 
 const HomeRoute = () => {
     return <LandingPage />;
@@ -207,7 +208,7 @@ function App() {
                                             </Route>
 
                                             {/* Enterprise Admin Dashboard */}
-                                            <Route path="/admin" element={<AdminLayout />}>
+                                            <Route path="/admin" element={<AdminProtectedRoute><AdminLayout /></AdminProtectedRoute>}>
                                                 <Route index element={<Navigate to="dashboard" replace />} />
                                                 <Route path="dashboard" element={<AdminDashboard />} />
                                                 <Route path="blogs" element={<BlogManagement />} />

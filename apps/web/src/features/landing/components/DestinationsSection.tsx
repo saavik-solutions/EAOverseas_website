@@ -82,13 +82,12 @@ const DestinationsSection: React.FC = () => {
                                 <button
                                     key={country}
                                     onClick={() => setSelectedCountry(country)}
-                                    className={`inline-flex items-center gap-2 text-[14px] max-sm:text-[13px] font-medium cursor-pointer py-2 px-4 max-sm:px-3.5 rounded-full border-[1.5px] transition-all duration-300 select-none ${
+                                    className={`inline-flex items-center justify-center gap-2 text-[14px] max-sm:text-[13px] font-medium cursor-pointer py-2 px-5 max-sm:px-4 rounded-full border-[1.5px] transition-all duration-300 select-none ${
                                         isActive 
                                         ? 'bg-primary border-primary text-white shadow-md shadow-primary/30 -translate-y-[2px]' 
                                         : 'bg-white border-slate-200 text-slate-600 hover:border-primary/40 hover:text-primary hover:bg-primary/5 hover:-translate-y-[1px] hover:shadow-sm'
                                     }`}
                                 >
-                                    <span className="text-[18px] max-sm:text-[16px] leading-none drop-shadow-sm">{countryMeta[country].flag}</span>
                                     <span className="whitespace-nowrap">{countryMeta[country].label}</span>
                                 </button>
                             );

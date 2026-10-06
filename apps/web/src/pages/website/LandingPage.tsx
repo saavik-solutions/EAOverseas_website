@@ -156,7 +156,7 @@ const LandingPage = () => {
                         <AboutUsSection />
 
                         <FAQSection />
-                        <TeamSection />
+                        {/* <TeamSection /> */}
                         <BookingCTASection />
                         <JourneyCTASection />
                         <AIChatWidget />

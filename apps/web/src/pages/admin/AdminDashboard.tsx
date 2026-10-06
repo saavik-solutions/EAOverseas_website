@@ -89,17 +89,19 @@ const AdminDashboard = () => {
             </div>
 
             {/* ── Stats Grid ── */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                 {statCards.map((stat, i) => (
-                    <div key={i} className="bg-white p-7 rounded-3xl border border-gray-100 shadow-sm hover:shadow-lg transition-all group">
-                        <div className={`w-12 h-12 rounded-2xl ${stat.bgColor} ${stat.textColor} flex items-center justify-center mb-5`}>
-                            <span className="material-symbols-outlined text-2xl">{stat.icon}</span>
+                    <div key={i} className="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg transition-all group flex items-start gap-4">
+                        <div className={`w-10 h-10 rounded-xl flex-shrink-0 ${stat.bgColor} ${stat.textColor} flex items-center justify-center`}>
+                            <span className="material-symbols-outlined text-xl">{stat.icon}</span>
                         </div>
-                        <p className="text-[11px] font-black text-gray-400 uppercase tracking-widest mb-1">{stat.label}</p>
-                        <h2 className={`text-4xl font-black text-gray-900 ${loading ? 'animate-pulse text-gray-200' : ''}`}>
-                            {stat.value}
-                        </h2>
-                        <p className="text-xs text-gray-400 font-semibold mt-2">{stat.sub}</p>
+                        <div>
+                            <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">{stat.label}</p>
+                            <h2 className={`text-2xl font-black text-gray-900 leading-none mb-1 ${loading ? 'animate-pulse text-gray-200' : ''}`}>
+                                {stat.value}
+                            </h2>
+                            <p className="text-xs text-gray-400 font-semibold">{stat.sub}</p>
+                        </div>
                     </div>
                 ))}
             </div>

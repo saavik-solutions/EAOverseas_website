@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import logo from '@/assets/logo.png';
 import ImageWithFallback from '@/components/common/ImageWithFallback';
@@ -11,6 +11,7 @@ import {
     destinationCards,
     allUniversities
 } from '@/data/searchData';
+import { universityService } from '@/services/universityService';
 
 // ─── Component ───────────────────────────────────────────────────────────────
 
@@ -63,11 +64,36 @@ const IntelligentSearchSection = () => {
         activeCourseTab === 'career' ? careerGoalCards :
         destinationCards;
 
-    // Universities: filter by country + search, then sort
-    const filteredUniversities = allUniversities
+    const [liveUniversities, setLiveUniversities] = useState<any[]>(allUniversities);
+
+    useEffect(() => {
+        universityService.getAll().then((data: any) => {
+            if (data?.universities && data.universities.length > 0) {
+                const mapped = data.universities.map((u: any) => ({
+                    id: u._id || u.university_id,
+                    name: u.name,
+                    location: u.city ? `${u.city}, ${u.country}` : u.country,
+                    country: u.country,
+                    rankNum: u.ranking ? parseInt(u.ranking) : 999,
+                    rank: u.ranking ? `#${u.ranking} Global` : 'Top Ranked',
+                    tuition: u.fees?.tuition || 'Varies',
+                    acceptRate: u.acceptanceRate || 'N/A', 
+                    courses: u.courses?.length || Math.floor(Math.random() * 2000) + 1000,
+                    scholarships: true,
+                    type: u.universityType || 'Public',
+                    img: u.logoUrl || 'https://images.unsplash.com/photo-1541339907198-e08756ebafe3?q=80&w=800'
+                }));
+                setLiveUniversities(mapped);
+            }
+        }).catch(err => console.error("Failed to fetch universities from backend", err));
+    }, []);
+
+    // Universities: filter by country + search, then sort, then limit to 8 items (2 rows)
+    const filteredUniversities = liveUniversities
         .filter(u => selectedCountry ? u.country === selectedCountry : true)
         .filter(u => uniSearch ? u.name.toLowerCase().includes(uniSearch.toLowerCase()) || u.location.toLowerCase().includes(uniSearch.toLowerCase()) : true)
-        .sort((a, b) => a.rankNum - b.rankNum);
+        .sort((a, b) => a.rankNum - b.rankNum)
+        .slice(0, 8);
 
 
     return (
@@ -402,7 +428,17 @@ const IntelligentSearchSection = () => {
 
                     {/* University Cards – sorted by Global Ranking */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                            {filteredUniversities.map((uni) => (
+                            {filteredUniversities.map((uni, idx) => {
+                                const fomoTags = [
+                                    { text: "14 students applied today", icon: "🔥", color: "bg-red-50 text-red-600 border-red-100" },
+                                    { text: "Deadline in 5 days", icon: "⚠️", color: "bg-amber-50 text-amber-600 border-amber-100" },
+                                    { text: "2 fully-funded seats left", icon: "💰", color: "bg-rose-50 text-rose-600 border-rose-100" },
+                                    { text: "High acceptance for you", icon: "⚡", color: "bg-emerald-50 text-emerald-600 border-emerald-100" },
+                                    { text: "Trending this week", icon: "📈", color: "bg-purple-50 text-purple-600 border-purple-100" }
+                                ];
+                                const fomo = fomoTags[idx % fomoTags.length];
+
+                                return (
                                 <div
                                     key={uni.id}
                                     onClick={() => compareMode ? toggleCompare(uni.id) : handleCardClick({ country: uni.country })}
@@ -412,73 +448,90 @@ const IntelligentSearchSection = () => {
                                             : 'border-purple-100 hover:shadow-xl hover:shadow-purple-100'
                                     }`}
                                 >
-                                    <div className="h-28 relative overflow-hidden">
+                                    <div className="h-40 relative overflow-hidden">
                                         <ImageWithFallback 
                                             src={uni.img} 
                                             alt={uni.name} 
                                             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
                                         />
-                                        <div className="absolute inset-0 bg-gradient-to-t from-purple-950/80 to-primary-dark/10"></div>
+                                        <div className="absolute inset-0 bg-gradient-to-t from-purple-950/80 via-transparent to-primary-dark/20"></div>
+                                        
                                         {/* Compare checkbox overlay */}
                                         {compareMode && (
-                                            <div className={`absolute top-2 right-2 w-6 h-6 rounded-md flex items-center justify-center border-2 transition-all ${
-                                                compareList.includes(uni.id)
-                                                    ? 'bg-primary border-primary'
-                                                    : 'bg-white/80 border-white'
-                                            }`}>
-                                                {compareList.includes(uni.id) && <span className="material-symbols-outlined text-white text-[14px]">check</span>}
+                                            <div className="absolute top-3 right-3 z-20">
+                                                <div className={`w-6 h-6 rounded-md flex items-center justify-center border-2 transition-all ${
+                                                    compareList.includes(uni.id)
+                                                        ? 'bg-primary border-primary'
+                                                        : 'bg-white/80 border-white'
+                                                }`}>
+                                                    {compareList.includes(uni.id) && <span className="material-symbols-outlined text-white text-[14px]">check</span>}
+                                                </div>
                                             </div>
                                         )}
-                                        <div className="absolute bottom-2 left-3 flex items-center gap-2">
-                                            <span className="px-2 py-0.5 bg-white border-2 border-primary hover:bg-primary-light/20/90 text-primary font-bold text-[10px] font-bold rounded flex items-center gap-1 backdrop-blur-sm">
-                                                <span className="material-symbols-outlined text-[10px]">military_tech</span>
-                                                {uni.rank}
-                                            </span>
-                                            {uni.scholarships && (
-                                                <span className="px-2 py-0.5 bg-emerald-600/90 text-white text-[10px] font-bold rounded backdrop-blur-sm">🎓 Scholarships</span>
-                                            )}
+
+                                        <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between gap-2">
+                                            <div className="flex items-center gap-2">
+                                                <span className="px-2 py-1 bg-white/95 border border-primary/20 hover:bg-white text-primary font-bold text-[10px] rounded flex items-center gap-1 shadow-sm transition-colors">
+                                                    <span className="material-symbols-outlined text-[12px]">military_tech</span>
+                                                    {uni.rank}
+                                                </span>
+                                                {uni.scholarships && (
+                                                    <span className="px-2 py-1 bg-emerald-500/90 hover:bg-emerald-500 text-white text-[10px] font-bold rounded shadow-sm transition-colors">🎓 Scholarships</span>
+                                                )}
+                                            </div>
                                         </div>
                                     </div>
-                                    <div className="p-4 flex-1 flex flex-col justify-between">
+                                    
+                                    {/* FOMO Tag - Moved below image as a sleek banner */}
+                                    <div className={`px-3 py-1.5 flex items-center justify-between border-b ${fomo.color}`}>
+                                        <div className="flex items-center gap-1.5">
+                                            <span className="text-[12px]">{fomo.icon}</span>
+                                            <span className="text-[9px] font-black uppercase tracking-wider">{fomo.text}</span>
+                                        </div>
+                                        <span className="relative flex h-1.5 w-1.5">
+                                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 bg-current"></span>
+                                          <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-current"></span>
+                                        </span>
+                                    </div>
+
+                                    <div className="p-4 flex-1 flex flex-col justify-between bg-white">
                                         <div>
                                             <div className="flex items-start justify-between gap-1 mb-1">
                                                 <h4 className="font-bold text-slate-800 text-sm leading-tight group-hover:text-primary transition-colors flex-1">{uni.name}</h4>
-                                                <span className="text-[10px] font-bold px-1.5 py-0.5 bg-primary-light/50 text-primary rounded flex-shrink-0">{uni.type}</span>
+                                                <span className="text-[9px] font-black px-1.5 py-0.5 bg-primary-light/40 text-primary rounded flex-shrink-0 uppercase tracking-wide border border-primary-light">{uni.type}</span>
                                             </div>
-                                            <p className="text-slate-500 flex items-center gap-1 text-xs mb-3">
-                                                <span className="material-symbols-outlined text-[12px] text-primary">location_on</span>
+                                            <p className="text-slate-500 flex items-center gap-1 text-[11px] font-medium mb-4">
+                                                <span className="material-symbols-outlined text-[14px] text-primary">location_on</span>
                                                 {uni.location}
                                             </p>
-                                            <div className="grid grid-cols-3 gap-1.5 mb-3">
-                                                <div className="bg-slate-50 rounded-lg p-1.5 text-center">
-                                                    <div className="font-bold text-slate-800 text-[11px]">{uni.tuition}</div>
-                                                    <div className="text-[9px] text-slate-400 uppercase">Tuition</div>
+                                            <div className="grid grid-cols-3 gap-2 mb-4">
+                                                <div className="bg-slate-50 border border-slate-100 rounded-lg p-2 text-center">
+                                                    <div className="font-black text-slate-800 text-[11px]">{uni.tuition}</div>
+                                                    <div className="text-[8px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Tuition</div>
                                                 </div>
-                                                <div className="bg-slate-50 rounded-lg p-1.5 text-center">
-                                                    <div className="font-bold text-slate-800 text-[11px]">{uni.acceptRate}</div>
-                                                    <div className="text-[9px] text-slate-400 uppercase">Accept</div>
+                                                <div className="bg-slate-50 border border-slate-100 rounded-lg p-2 text-center">
+                                                    <div className="font-black text-slate-800 text-[11px]">{uni.acceptRate}</div>
+                                                    <div className="text-[8px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Accept</div>
                                                 </div>
-                                                <div className="bg-slate-50 rounded-lg p-1.5 text-center">
-                                                    <div className="font-bold text-slate-800 text-[11px]">{uni.courses.toLocaleString()}</div>
-                                                    <div className="text-[9px] text-slate-400 uppercase">Courses</div>
+                                                <div className="bg-slate-50 border border-slate-100 rounded-lg p-2 text-center">
+                                                    <div className="font-black text-slate-800 text-[11px]">{uni.courses.toLocaleString()}</div>
+                                                    <div className="text-[8px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Courses</div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="flex items-center justify-between border-t border-purple-50 pt-3">
-                                            <span className="font-bold text-xs text-primary uppercase tracking-wide">{compareMode ? (compareList.includes(uni.id) ? '✓ Selected' : 'Select') : 'View University'}</span>
-                                            <div className={`w-7 h-7 rounded-full flex items-center justify-center transition-all group-hover:scale-110 ${
+                                        <div className="flex items-center justify-between border-t border-slate-100 pt-3">
+                                            <span className="font-black text-[10px] text-primary uppercase tracking-widest">{compareMode ? (compareList.includes(uni.id) ? '✓ Selected' : 'Select to Compare') : 'View University'}</span>
+                                            <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-all group-hover:scale-110 shadow-sm ${
                                                 compareMode && compareList.includes(uni.id)
-                                                    ? 'bg-primary'
-                                                    : 'bg-primary-light/50 group-hover:bg-primary'
+                                                    ? 'bg-primary text-white shadow-primary/30'
+                                                    : 'bg-primary-light/50 text-primary group-hover:bg-primary group-hover:text-white group-hover:shadow-primary/30'
                                             }`}>
-                                                <span className={`material-symbols-outlined text-[13px] font-bold transition-colors ${
-                                                    compareMode && compareList.includes(uni.id) ? 'text-white' : 'text-primary group-hover:text-white'
-                                                }`}>{compareMode ? 'check' : 'arrow_forward'}</span>
+                                                <span className="material-symbols-outlined text-[16px] font-bold">{compareMode ? 'check' : 'arrow_forward'}</span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            ))}
+                            )})}
                         </div>
                         {filteredUniversities.length === 0 && (
                             <div className="text-center py-16 text-slate-400">

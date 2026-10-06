@@ -28,7 +28,7 @@ const AboutUsSection = () => {
                         
                         <div className="space-y-6 text-[#475569] text-base md:text-[17px] leading-relaxed font-medium">
                             <p>
-                                Since 2010, Eduwoy has been guiding students on their journey to quality international education. Our team of experienced advisors is committed to helping you find the right program, university, and country for your academic and career goals.
+                                Since 2023, Eduwoy has been guiding students on their journey to quality international education. Our team of experienced advisors is committed to helping you find the right program, university, and country for your academic and career goals.
                             </p>
                             <p>
                                 With a success rate of over 95% in university placements and visa approvals, we take pride in our personalized approach to each student's unique situation and aspirations.

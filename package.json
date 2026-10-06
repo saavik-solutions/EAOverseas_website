@@ -8,6 +8,7 @@
     "lint": "turbo run lint"
   },
   "devDependencies": {
-    "turbo": "latest"
+    "turbo": "latest",
+    "xlsx": "^0.18.5"
   }
 }

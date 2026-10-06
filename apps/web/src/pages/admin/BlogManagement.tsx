@@ -52,14 +52,14 @@ const BlogManagement = () => {
                 <div className="flex flex-col sm:flex-row w-full md:w-auto gap-4">
                     <button 
                         onClick={() => setIsAIGeneratorOpen(true)}
-                        className="w-full sm:w-auto bg-slate-900 text-white font-black px-6 py-4 rounded-2xl shadow-xl shadow-slate-200 hover:bg-black transition-all flex items-center justify-center gap-2 group"
+                        className="w-full sm:w-auto bg-slate-900 text-white font-black px-4 py-2.5 rounded-xl text-sm shadow-xl shadow-slate-200 hover:bg-black transition-all flex items-center justify-center gap-2 group"
                     >
                         <span className="material-symbols-outlined text-indigo-400 group-hover:rotate-12 transition-transform">auto_awesome</span>
                         AI Generator
                     </button>
                     <button 
                         onClick={() => { setEditingBlog({ title: '', content: '', excerpt: '', category: 'Article', coverImage: 'https://images.unsplash.com/photo-1523050335391-4df6515a4632', isPublished: false }); setIsEditorOpen(true); }}
-                        className="w-full sm:w-auto bg-white border-2 border-slate-200 text-slate-900 font-black px-6 py-4 rounded-2xl hover:bg-slate-50 transition-all flex items-center justify-center gap-2"
+                        className="w-full sm:w-auto bg-white border-2 border-slate-200 text-slate-900 font-black px-4 py-2.5 rounded-xl text-sm hover:bg-slate-50 transition-all flex items-center justify-center gap-2"
                     >
                         <span className="material-symbols-outlined">add</span>
                         Manual Entry
@@ -80,9 +80,9 @@ const BlogManagement = () => {
                     <p className="text-slate-500 max-w-sm mx-auto">Use the AI Generator above to create your first global strategy post in seconds.</p>
                 </div>
             ) : (
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                     {blogs.map((blog) => (
-                        <div key={blog._id} className="bg-white rounded-[2.5rem] border border-gray-100 shadow-sm overflow-hidden group hover:shadow-xl hover:shadow-slate-200/50 transition-all duration-500">
+                        <div key={blog._id} className="bg-white rounded-[1.5rem] border border-gray-100 shadow-sm overflow-hidden group hover:shadow-xl hover:shadow-slate-200/50 transition-all duration-500">
                             <div className="aspect-video relative overflow-hidden">
                                 <img src={blog.coverImage} alt={blog.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" />
                                 <div className="absolute top-6 left-6 flex gap-2">
@@ -94,10 +94,10 @@ const BlogManagement = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="p-8 space-y-6">
-                                <h3 className="text-2xl font-black text-gray-900 leading-tight group-hover:text-blue-600 transition-colors">{blog.title}</h3>
-                                <p className="text-gray-500 font-medium line-clamp-2 leading-relaxed">{blog.excerpt}</p>
-                                <div className="flex justify-between items-center pt-6 border-t border-gray-50">
+                            <div className="p-5 space-y-4">
+                                <h3 className="text-lg font-black text-gray-900 leading-snug group-hover:text-blue-600 transition-colors">{blog.title}</h3>
+                                <p className="text-gray-500 font-medium line-clamp-2 leading-relaxed text-sm">{blog.excerpt}</p>
+                                <div className="flex justify-between items-center pt-4 border-t border-gray-50">
                                     <div className="flex gap-4">
                                         <div className="flex items-center gap-2 text-gray-400 font-bold text-xs">
                                             <span className="material-symbols-outlined text-sm text-blue-500">visibility</span>
@@ -111,14 +111,14 @@ const BlogManagement = () => {
                                     <div className="flex gap-2">
                                         <button 
                                             onClick={() => { setEditingBlog(blog); setIsEditorOpen(true); }}
-                                            className="p-3 bg-slate-50 text-slate-600 hover:bg-slate-100 rounded-xl transition-colors"
+                                            className="p-2 bg-slate-50 text-slate-600 hover:bg-slate-100 rounded-lg transition-colors"
                                             title="Edit Post"
                                         >
                                             <span className="material-symbols-outlined text-[20px]">edit</span>
                                         </button>
                                         <button 
                                             onClick={() => handleDelete(blog._id)}
-                                            className="p-3 bg-red-50 text-red-500 hover:bg-red-100 rounded-xl transition-colors"
+                                            className="p-2 bg-red-50 text-red-500 hover:bg-red-100 rounded-lg transition-colors"
                                             title="Delete Post"
                                         >
                                             <span className="material-symbols-outlined text-[20px]">delete</span>

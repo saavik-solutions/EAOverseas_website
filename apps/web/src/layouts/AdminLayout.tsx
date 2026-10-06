@@ -11,7 +11,6 @@ const AdminLayout = () => {
         { name: 'Dashboard', path: '/admin/dashboard', icon: 'dashboard' },
         { name: 'Blog Management', path: '/admin/blogs', icon: 'edit_note' },
         { name: 'Lead Vault', path: '/admin/leads', icon: 'leaderboard' },
-        { name: 'Settings', path: '/admin/settings', icon: 'settings' },
     ];
 
     return (
@@ -27,7 +26,7 @@ const AdminLayout = () => {
             {/* Sidebar */}
             <aside className={`
                 fixed md:relative inset-y-0 left-0 z-[110]
-                ${isSidebarOpen ? 'w-72 translate-x-0' : 'w-0 -translate-x-full md:w-20 md:translate-x-0'} 
+                ${isSidebarOpen ? 'w-60 translate-x-0' : 'w-0 -translate-x-full md:w-20 md:translate-x-0'} 
                 bg-white border-r border-gray-200 transition-all duration-300 flex flex-col overflow-hidden
             `}>
                 <div className="h-20 flex items-center px-6 border-b border-gray-100 flex-shrink-0">
@@ -68,13 +67,7 @@ const AdminLayout = () => {
 
             {/* Main Content */}
             <main className="flex-1 flex flex-col h-screen overflow-hidden">
-                <header className="h-20 bg-white border-b border-gray-200 flex items-center justify-between px-4 md:px-10 flex-shrink-0">
-                    <button 
-                        onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-                        className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
-                    >
-                        <span className="material-symbols-outlined">menu</span>
-                    </button>
+                <header className="h-20 bg-white border-b border-gray-200 flex items-center justify-end px-4 md:px-10 flex-shrink-0">
                     <div className="flex items-center gap-6">
                         <div className="text-right">
                             <p className="text-sm font-black text-gray-900">Administrator</p>
